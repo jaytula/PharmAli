@@ -1,10 +1,10 @@
 import '../styles/App.css';
-import Button from './Button'
+import Navbar from './Navbar';
 
 function App() {
   return (
     <div className="App">
-      <Button />
+      <Navbar />
     </div>
   );
 }
