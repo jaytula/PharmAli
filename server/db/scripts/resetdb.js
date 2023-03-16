@@ -5,7 +5,7 @@ const { Client } = require('pg');
 const SCHEMA_PATH = './db/schema';
 const SEEDS_PATH = './db/seeds';
 
-const {DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT} = process.env;
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT } = process.env;
 const fs = require("fs").promises;
 
 const connObj = {
@@ -18,7 +18,7 @@ const connObj = {
 
 const runMigrations = async db => {
 	const migrations = await fs.readdir(SCHEMA_PATH);
-	for (migration of migrations) {
+	for (const migration of migrations) {
 		const sql = await fs.readFile(`${SCHEMA_PATH}/${migration}`, 'utf8');
 		console.log(`\t Running ${migration}`);
 		await db.query(sql);
@@ -27,7 +27,7 @@ const runMigrations = async db => {
 
 const runSeeds = async db => {
 	const seeds = await fs.readdir(SEEDS_PATH);
-	for (seed of seeds) {
+	for (const seed of seeds) {
 		const sql = await fs.readFile(`${SEEDS_PATH}/${seed}`, 'utf8');
 		console.log(`\t Running ${seed}`);
 		await db.query(sql);
