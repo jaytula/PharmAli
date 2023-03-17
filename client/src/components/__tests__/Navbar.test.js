@@ -7,5 +7,6 @@ import Navbar from "components/Navbar";
 afterEach(cleanup);
 
 it("renders without crashing", () => {
-  render(<Navbar />);
+  const menu = true;
+  render(<Navbar menu={menu} setMenu={!menu}/>);
 });

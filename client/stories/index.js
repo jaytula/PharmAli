@@ -1,12 +1,15 @@
 import React from 'react'
-
+import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 
-import Button from "components/Button";
+import Navbar from "components/Navbar";
 
-// Test Button
-storiesOf("Button", module)
+// Test Navbar
+storiesOf("Navbar", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
-  .add("Base", () => <Button />)
+  .add("Opened navbar", () => <Navbar menu={true}/>)
+  .add("Closed navbar", () => <Navbar menu={false}/>)
+  .add("Onclick on open navbar", () => <Navbar menu={true} setMenu={action("setMenu")}/>)
+  .add("Onclick on closed navbar", () => <Navbar menu={true} setMenu={action("setMenu")}/>)

@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState } from 'react'
 import "../styles/Nav.css"
 import { NavbarData } from './NavbarData'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-const Navbar = () => {
+
+const Navbar = (props) => {
 
   const theme = createTheme({
     palette: {
@@ -19,9 +19,8 @@ const Navbar = () => {
       },
     },
   });
-  const [menu, setMenu] = useState(false);
 
-  const showMenu = () => setMenu(!menu);
+  const showMenu = () => props.setMenu(!props.menu);
 
   return (
     <>
@@ -29,7 +28,7 @@ const Navbar = () => {
         <div className='navbar'>
             <MenuIcon onClick={showMenu} />
         </div>
-        <nav className={menu ? 'nav-menu active' : 'nav-menu'}>
+        <nav className={props.menu ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showMenu}>
             <ul className='navbar-toggle'>
                 <CloseIcon color="primary"/>
