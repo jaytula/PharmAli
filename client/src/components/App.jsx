@@ -8,7 +8,7 @@ import PharmLocator from './PharmLocator';
 import BlogPosts from './BlogPosts';
 import MyBlogs from './MyBlogs';
 import MyJournal from './MyJournal';
-
+import axios from "axios";
 import { useState } from 'react'
 
 function App() {
@@ -25,9 +25,14 @@ function App() {
   const [menu, setMenu] = useState(false);
   const [page, setPage] = useState(SEARCH);
   const onSubmit = (text) => {
-    console.log(text)
+    Promise.all([
+      axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
+    ]).then((data) => {
+      const remove = data[0].data.results[0].overdosage[0].replace('10 OVERDOSAGE ', '')
+      console.log(remove);
+    })
   }
-  
+
   return (
     <div className="App">
       <Navbar menu={menu} setMenu={setMenu} setPage={setPage} />
