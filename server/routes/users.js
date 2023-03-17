@@ -1,12 +1,15 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const users = ['Bob', 'Alex', 'Will', 'Tristan'];
-
-module.exports = (db) => {
-  // all routes will go here 
-  router.get('/', (req, res) => {
-      res.json(users);
+module.exports = db => {
+  router.get("/", (request, response) => {
+    db.query(
+      `
+      SELECT * FROM users
+    `
+    ).then(({ rows: users }) => {
+      response.json(users);
+    });
   });
 
   return router;
-}
+};
