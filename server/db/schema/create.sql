@@ -10,7 +10,7 @@ CREATE TABLE users (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  CONSTRAINT UC_User UNIQUE (email)
+  CONSTRAINT UC_User UNIQUE (email),
   postal_code VARCHAR(255) NOT NULL
 );
 
