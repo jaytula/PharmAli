@@ -25,10 +25,10 @@ const Navbar = (props) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <div className='navbar'>
-            <MenuIcon onClick={showMenu} />
+        <div data-testid="navbar" className='navbar'>
+            <MenuIcon data-testid="navmenu-icon" onClick={showMenu} />
         </div>
-        <nav className={props.menu ? 'nav-menu active' : 'nav-menu'}>
+        <nav data-testid="nav-menu" className={props.menu ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showMenu}>
             <ul className='navbar-toggle'>
                 <CloseIcon color="primary"/>
