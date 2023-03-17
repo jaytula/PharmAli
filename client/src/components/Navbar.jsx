@@ -21,7 +21,12 @@ const Navbar = (props) => {
   });
 
   const showMenu = () => props.setMenu(!props.menu);
-
+  
+  const showPage = (item) => {
+    props.setPage(item);
+    showMenu();
+  };
+  
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -29,13 +34,13 @@ const Navbar = (props) => {
             <MenuIcon data-testid="navmenu-icon" onClick={showMenu} />
         </div>
         <nav data-testid="nav-menu" className={props.menu ? 'nav-menu active' : 'nav-menu'}>
-          <ul className='nav-menu-items' onClick={showMenu}>
+          <ul className='nav-menu-items'>
             <ul className='navbar-toggle'>
-                <CloseIcon color="primary"/>
+                <CloseIcon color="primary" onClick={showMenu}/>
             </ul>
               {NavbarData.map((item, index) => {
                 return (
-                  <ul key={index} className={item.cName}>
+                  <ul key={index} className={item.cName} onClick={() => showPage(item.title)} data-testid="nav-item">
                       {item.icon}
                       <span>{item.title}</span>
                   </ul>

@@ -76,3 +76,6 @@ span {
   font-size: 15px;
   
 }
+span:hover {
+  background-color: #44444d;
+}

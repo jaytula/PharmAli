@@ -16,14 +16,16 @@ function App() {
   const HOME = "HOME";
   const LOGIN_SIGNUP = "LOGIN_SIGNUP";
   const SEARCH = "SEARCH";
-  const DRUG_LIST = "DRUG_LIST";
-  const PHARM_LOCATOR = "PHARM_LOCATOR";
-  const BLOG_POSTS = "BLOG_POSTS";
-  const MY_BLOGS = "MY_BLOGS";
-  const MY_JOURNAL = "MY_JOURNAL";
+  const DRUG_LIST = "DRUG LIST A-Z";
+  const PHARM_LOCATOR = "PHARMACY NEARBY";
+  const BLOG_POSTS = "BLOG POSTS";
+  const MY_BLOGS = "MY BLOGS";
+  const MY_JOURNAL = "MY JOURNAL";
 
   const [menu, setMenu] = useState(false);
-  const [page, setPage] = useState(SEARCH);
+  const [page, setPage] = useState(HOME);
+  console.log(page);
+  
   const onSubmit = (text) => {
     Promise.all([
       axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
