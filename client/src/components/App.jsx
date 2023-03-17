@@ -24,19 +24,20 @@ function App() {
 
   const [menu, setMenu] = useState(false);
   const [page, setPage] = useState(SEARCH);
-const onSubmit = (text) =>{
-  console.log(text)
-}
+  const onSubmit = (text) => {
+    console.log(text)
+  }
+  
   return (
     <div className="App">
-      <Navbar menu={menu} setMenu={setMenu} setPage={setPage}/>
+      <Navbar menu={menu} setMenu={setMenu} setPage={setPage} />
       {page === HOME &&
         (<Home />)}
       {page === LOGIN_SIGNUP &&
         (<LoginSignup />)}
       {page === SEARCH &&
-        (<Search 
-        onSubmit = {onSubmit} />)}
+        (<Search
+          onSubmit={onSubmit} />)}
       {page === DRUG_LIST &&
         (<DrugList />)}
       {page === PHARM_LOCATOR &&
