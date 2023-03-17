@@ -12,6 +12,7 @@ var articlesRouter = require('./routes/articles');
 var savedMedicationsRouter = require('./routes/saved_medications');
 
 var app = express();
+app.set("view engine", "ejs");
 
 app.use(logger('dev'));
 app.use(express.json());
