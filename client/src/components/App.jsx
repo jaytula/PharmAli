@@ -14,7 +14,7 @@ import { useState } from 'react'
 function App() {
   // The different pages user could visit
   const HOME = "HOME";
-  const LOGIN_SIGNUP = "LOGIN_SIGNUP";
+  const LOGIN_SIGNUP = "LOGIN/SIGNUP";
   const SEARCH = "SEARCH";
   const DRUG_LIST = "DRUG LIST A-Z";
   const PHARM_LOCATOR = "PHARMACY NEARBY";
