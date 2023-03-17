@@ -23,8 +23,10 @@ function App() {
   const MY_JOURNAL = "MY_JOURNAL";
 
   const [menu, setMenu] = useState(false);
-  const [page, setPage] = useState(HOME);
-
+  const [page, setPage] = useState(SEARCH);
+const onSubmit = (text) =>{
+  console.log(text)
+}
   return (
     <div className="App">
       <Navbar menu={menu} setMenu={setMenu} setPage={setPage}/>
@@ -33,7 +35,8 @@ function App() {
       {page === LOGIN_SIGNUP &&
         (<LoginSignup />)}
       {page === SEARCH &&
-        (<Search />)}
+        (<Search 
+        onSubmit = {onSubmit} />)}
       {page === DRUG_LIST &&
         (<DrugList />)}
       {page === PHARM_LOCATOR &&
