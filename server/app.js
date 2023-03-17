@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const db = require("./db");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,10 +20,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/blogs', blogsRouter);
-app.use('/comments', commentsRouter);
-app.use('/articles', articlesRouter);
-app.use('/saved_medications', savedMedicationsRouter);
+app.use('/users', usersRouter(db));
+app.use('/blogs', blogsRouter(db));
+app.use('/comments', commentsRouter(db));
+app.use('/articles', articlesRouter(db));
+app.use('/saved_medications', savedMedicationsRouter(db));
 
 module.exports = app;

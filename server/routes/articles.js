@@ -1,7 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const router = require("express").Router();
 
-router.get('/', function(req, res, next) {
-});
+module.exports = db => {
+  router.get("/", (request, response) => {
+    db.query(
+      `
+      SELECT * FROM articles
+    `
+    ).then(({ rows: articles }) => {
+      response.json(articles);
+    });
+  });
 
-module.exports = router;
+  return router;
+};
