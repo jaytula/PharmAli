@@ -55,8 +55,19 @@ app.use('/saved_medications', savedMedicationsRouter(db));
 
 app.post("/add", async (req, res) => {
   try {
-    req.session.name = req.body.name;
-    res.send({ message: "saved" }).status(201);
+    const queryString = `SELECT * FROM users WHERE email = $1 AND password = $2`
+    const queryParams = [req.body.email, req.body.password]
+
+    db.query(queryString, queryParams)
+      .then((result) => {
+        if (result.rows.length > 0) {
+          req.session.name = result.rows[0].id
+          res.send({ message: true });
+        } else {
+          res.send({ message: false });
+        }
+      });
+
   } catch (error) {
     console.log(error);
     res.status(500);
@@ -64,10 +75,9 @@ app.post("/add", async (req, res) => {
   }
 });
 
-app.get("/remove", async (req, res) => {
+app.post("/remove", async (req, res) => {
   try {
     req.session = null;
-    res.send({ message: req.session.name });
   } catch (error) {
     console.log(error);
     res.status(500);

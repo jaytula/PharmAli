@@ -27,8 +27,6 @@ function App() {
 
   const { page, menu, user, drugContent, setMenu, setPage, setCookie, removeCookie, onSubmit } = useApplicationData(DRUG, HOME);
 
-  console.log("USER", user);
-
   return (
     <div className="App">
       {/* Navbar */}
