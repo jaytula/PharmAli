@@ -15,6 +15,7 @@ const Search = (props) => {
     props.onSubmit(searchInput);
     setSearchInput("");
   }
+  
   return (
     <div>
       <main className="searxh__card search__card--create">

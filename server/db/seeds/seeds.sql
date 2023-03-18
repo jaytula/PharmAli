@@ -15,7 +15,7 @@ VALUES
 
 INSERT INTO comments (user_id, comment)
 VALUES 
-(5, 'OMG! I feel the same way I feel like it really helped with my depression I wasn on 10mg for 25 years. I feel like this medicaition is a life-saver. I recommend this to anyone who is suffering with severe insomnia'),
+(5, 'OMG! I feel the same way I feel like it really helped with my depression I was on 10mg for 25 years. I feel like this medicaition is a life-saver. I recommend this to anyone who is suffering with severe insomnia'),
 (3, 'My son is suffering from this addiction, he got perscribed it for the first time for his injury. He thought the feeling was so nice he continues to buy them off the streets and is currently addicted. I am thinking to send him to REHAB but he is mentally addicted and ignores me when I try to bring it up. I am happy your now fully recovered...I hate PERCOCETS!!');
 
 -- INSERT INTO articles (image_url, article_url)

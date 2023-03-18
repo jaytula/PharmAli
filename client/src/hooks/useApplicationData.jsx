@@ -7,7 +7,7 @@ const [menu, setMenu] = useState(false);
   const [drugContent, setDrugContent] = useState("");
 
   const onSubmit = (text) => {
-    Promise.all([
+    return Promise.all([
       axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
     ]).then((data) => {
       setPage(DRUG);
