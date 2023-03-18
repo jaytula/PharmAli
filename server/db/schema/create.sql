@@ -30,6 +30,7 @@ CREATE TABLE comments (
 
 CREATE TABLE articles (
   id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
   image_url VARCHAR(255) NOT NULL,
   article_url VARCHAR(255) NOT NULL
 );
