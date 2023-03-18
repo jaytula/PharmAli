@@ -8,6 +8,8 @@ const SEEDS_PATH = './db/seeds';
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT } = process.env;
 const fs = require("fs").promises;
 
+console.log(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT);
+
 const connObj = {
 	user: DB_USER,
 	host: DB_HOST,

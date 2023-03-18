@@ -19,25 +19,25 @@ CREATE TABLE blogs (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   title TEXT NOT NULL,
   image_url VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL,
+  content TEXT NOT NULL
 );
 
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  comment TEXT NOT NULL,
+  comment TEXT NOT NULL
 );
 
 CREATE TABLE articles (
   id SERIAL PRIMARY KEY NOT NULL,
   image_url VARCHAR(255) NOT NULL,
-  article_url VARCHAR(255) NOT NULL,
+  article_url VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE saved_medications (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  name TEXT NOT NULL,
+  name TEXT NOT NULL
 );
 
 -- Maybe
@@ -46,5 +46,5 @@ CREATE TABLE drugs (
   name VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   drug_interactions TEXT NOT NULL,
-  side_effects TEXT NOT NULL,
+  side_effects TEXT NOT NULL
 );
