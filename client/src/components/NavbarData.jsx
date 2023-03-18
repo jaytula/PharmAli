@@ -15,7 +15,12 @@ export const NavbarData = [
     className: 'nav-text'
   },
   {
-    title: "LOGIN/SIGNUP",
+    title: "LOGIN",
+    icon: <PersonIcon color="primary"/>,
+    className: 'nav-text'
+  },
+  {
+    title: "REGISTER",
     icon: <PersonIcon color="primary"/>,
     className: 'nav-text'
   },
