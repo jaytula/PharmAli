@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Navbar = (props) => {
   const LOGOUT = "LOGOUT";
+  const HOME = "HOME";
   const theme = createTheme({
     palette: {
       primary: {
@@ -28,7 +29,14 @@ const Navbar = (props) => {
   };
 
   const setLink = (item) => {
-    (item === LOGOUT) ? props.removeCookie() : showPage(item)
+    if (item === LOGOUT) {
+      props.removeCookie()
+        .then(() => {
+          showPage(HOME);
+        });
+    } else {
+      showPage(item);
+    }
   }
 
   return (
