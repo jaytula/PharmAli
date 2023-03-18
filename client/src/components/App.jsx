@@ -1,14 +1,15 @@
 import '../styles/App.css';
 import Navbar from './Navbar';
 import Home from './Home';
-import Login  from  './Login'
-import Register  from './Register';
+import Login from './Login'
+import Register from './Register';
 import Search from './Search';
 import DrugList from './DrugList';
 import PharmLocator from './PharmLocator';
 import BlogPosts from './BlogPosts';
 import MyBlogs from './MyBlogs';
 import MyJournal from './MyJournal';
+import Drug from './Drug';
 import axios from "axios";
 import { useState } from 'react'
 
@@ -24,17 +25,20 @@ function App() {
   const BLOG_POSTS = "BLOG POSTS";
   const MY_BLOGS = "MY BLOGS";
   const MY_JOURNAL = "MY JOURNAL";
+  const DRUG = "DRUG";
 
   const [menu, setMenu] = useState(false);
   const [page, setPage] = useState(HOME);
-  console.log(page);
-  
+  const [drugContent, setDrugContent] = useState("");
+
   const onSubmit = (text) => {
     Promise.all([
       axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
     ]).then((data) => {
-      const remove = data[0].data.results[0].overdosage[0].replace('10 OVERDOSAGE ', '')
-      console.log(remove);
+      // const remove = data[0].data.results[0].overdosage[0].replace('10 OVERDOSAGE ', '')
+      // console.log(remove);
+      setPage(DRUG);
+      setDrugContent(data);
     })
   }
 
@@ -44,9 +48,9 @@ function App() {
       {page === HOME &&
         (<Home />)}
       {page === LOGIN &&
-        (<Login  setPage={setPage} />)}
-          {page === REGISTER &&
-        (<Register setPage={setPage}/>)}
+        (<Login setPage={setPage} />)}
+      {page === REGISTER &&
+        (<Register setPage={setPage} />)}
       {page === SEARCH &&
         (<Search
           onSubmit={onSubmit} />)}
@@ -60,6 +64,8 @@ function App() {
         (<MyBlogs />)}
       {page === MY_JOURNAL &&
         (<MyJournal />)}
+      {page === DRUG &&
+        (<Drug content={drugContent}/>)}
     </div>
   );
 }
