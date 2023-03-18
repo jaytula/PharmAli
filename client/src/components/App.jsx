@@ -1,7 +1,8 @@
 import '../styles/App.css';
 import Navbar from './Navbar';
 import Home from './Home';
-import LoginSignup from './LoginSignup';
+import Login  from  './Login'
+import Register  from './Register';
 import Search from './Search';
 import DrugList from './DrugList';
 import PharmLocator from './PharmLocator';
@@ -11,10 +12,12 @@ import MyJournal from './MyJournal';
 import axios from "axios";
 import { useState } from 'react'
 
+
 function App() {
   // The different pages user could visit
   const HOME = "HOME";
-  const LOGIN_SIGNUP = "LOGIN/SIGNUP";
+  const LOGIN = "LOGIN";
+  const REGISTER = "REGISTER";
   const SEARCH = "SEARCH";
   const DRUG_LIST = "DRUG LIST A-Z";
   const PHARM_LOCATOR = "PHARMACY NEARBY";
@@ -40,8 +43,10 @@ function App() {
       <Navbar menu={menu} setMenu={setMenu} setPage={setPage} />
       {page === HOME &&
         (<Home />)}
-      {page === LOGIN_SIGNUP &&
-        (<LoginSignup />)}
+      {page === LOGIN &&
+        (<Login  setPage={setPage} />)}
+          {page === REGISTER &&
+        (<Register setPage={setPage}/>)}
       {page === SEARCH &&
         (<Search
           onSubmit={onSubmit} />)}
