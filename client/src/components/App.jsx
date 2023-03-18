@@ -11,6 +11,7 @@ import MyBlogs from './MyBlogs';
 import MyJournal from './MyJournal';
 import Drug from './Drug';
 import useApplicationData from '../hooks/useApplicationData';
+import BlogPost from './BlogPost';
 
 function App() {
   // The different pages user could visit
@@ -24,7 +25,7 @@ function App() {
   const MY_BLOGS = "MY BLOGS";
   const MY_JOURNAL = "MY JOURNAL";
   const DRUG = "DRUG";
-
+  const BLOG = "BLOG";
   const { page, menu, user, drugContent, setMenu, setPage, setCookie, removeCookie, onSubmit } = useApplicationData(DRUG, HOME);
 
   return (
@@ -46,13 +47,15 @@ function App() {
       {page === PHARM_LOCATOR &&
         (<PharmLocator user={user} />)}
       {page === BLOG_POSTS &&
-        (<BlogPosts />)}
+        (<BlogPosts setPage={setPage}/>)}
       {page === MY_BLOGS &&
         (<MyBlogs user={user} />)}
       {page === MY_JOURNAL &&
         (<MyJournal user={user} />)}
       {page === DRUG &&
         (<Drug content={drugContent} />)}
+      {page === BLOG &&
+        (<BlogPost />)}
     </div>
   );
 }

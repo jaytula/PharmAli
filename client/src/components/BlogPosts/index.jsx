@@ -1,9 +1,20 @@
 import React from 'react'
+import BlogPostItem from '../BlogPostItem/index.jsx'
+import "../../styles/BlogPosts.css";
 
-const BlogPosts = () => {
+const BlogPosts = (props) => {
+  const setBlog = (blog) =>{
+    console.log(blog)
+    props.setPage(blog)
+  }
+
   return (
-    <div>
-      BlogPosts Page
+    <div className='blogPosts'>
+      <BlogPostItem setBlog= {setBlog}/>
+      <BlogPostItem setBlog= {setBlog}/>
+      <BlogPostItem setBlog= {setBlog}/>
+      <BlogPostItem setBlog= {setBlog}/>
+      <BlogPostItem setBlog= {setBlog}/>
     </div>
   )
 }

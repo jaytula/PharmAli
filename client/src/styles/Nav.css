@@ -70,12 +70,12 @@
   padding-right: 10px;
 }
 
-span {
+.item-title {
   margin-left: 5px;
   color:white;
   font-size: 15px;
   
 }
-span:hover {
+.item-title:hover {
   background-color: #44444d;
 }

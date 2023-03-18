@@ -1,0 +1,47 @@
+.blogPost {
+  flex: 9;
+}
+
+.blogPostHolder {
+  padding: 20px;
+  padding-right: 0;
+}
+
+.blogPostImage {
+  width: 100%;
+  height: 300px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.blogPostTitle {
+  text-align: center;
+  margin: 10px;
+  font-size: 28px;
+  font-family: "Lora", sans-serif;
+}
+
+.blogPostInfo {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #be9656;
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+}
+
+.blogPostName{
+  margin-left: 5px;
+}
+
+.blogPostText {
+  color: #666;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.blogPostText::first-letter {
+  margin-left: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
