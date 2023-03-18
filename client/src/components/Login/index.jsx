@@ -13,8 +13,8 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.setCookie(email, pass)
-    .then((success) => {
-      (success) ? props.setPage(HOME) : setError('Could not login');
+    .then((passed) => {
+      (passed.email) ? props.setPage(HOME): setError(passed);
     });
   };
 
