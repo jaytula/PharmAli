@@ -35,35 +35,24 @@ app.use('/articles', articlesRouter(db));
 app.use('/saved_medications', savedMedicationsRouter(db));
 
 app.post("/user/add", async (req, res) => {
-  try {
-    const queryString = `SELECT * FROM users WHERE email = $1 AND password = $2`
-    const queryParams = [req.body.email, req.body.password]
+  const queryString = `SELECT * FROM users WHERE email = $1 AND password = $2`
+  const queryParams = [req.body.email, req.body.password]
 
-    db.query(queryString, queryParams)
-      .then((result) => {
-        if (result.rows.length > 0) {
-          req.session.name = result.rows[0].name
-          res.send({ message: true });
-        } else {
-          res.send({ message: false });
-        }
-      });
-
-  } catch (error) {
-    console.log(error);
-    res.status(500);
-    res.send(error);
-  }
+  db.query(queryString, queryParams)
+    .then((result) => {
+      if (result.rows.length > 0) {
+        req.session.name = result.rows[0].name
+        res.send({ message: true });
+      } else {
+        res.send({ message: false });
+      }
+    });
 });
 
 app.post("/user/remove", async (req, res) => {
-  try {
-    req.session = null;
-  } catch (error) {
-    console.log(error);
-    res.status(500);
-    res.send(error);
-  }
+  console.log(req.session);
+  req.session = null;
+  console.log(req.session);
 });
 
 app.get("/user", (req, res) => {

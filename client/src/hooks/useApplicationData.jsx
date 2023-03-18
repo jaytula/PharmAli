@@ -18,9 +18,7 @@ export default function useApplicationData(DRUG, HOME) {
 
   const setCookie = (email, password) => {
     const obj = { email, password };
-    return axios.post("/user/add", obj, {
-      withCredentials: true,
-    })
+    return axios.post("/user/add", obj)
       .then((data) => {
         const success = data.data.message;
         if (success) {
@@ -31,9 +29,7 @@ export default function useApplicationData(DRUG, HOME) {
   };
 
   const removeCookie = () => {
-    return axios.post("/user/remove", {
-      withCredentials: true,
-    })
+    return axios.post("/user/remove")
       .then(() => { setUser("") })
   };
 

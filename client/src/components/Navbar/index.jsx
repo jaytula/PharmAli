@@ -27,6 +27,10 @@ const Navbar = (props) => {
     showMenu();
   };
 
+  const setLink = (item) => {
+    (item === LOGOUT) ? props.removeCookie() : showPage(item)
+  }
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -40,7 +44,7 @@ const Navbar = (props) => {
             </ul>
             {NavbarData(props.user).map((item, index) => {
               return (
-                <ul key={index} className={item.cName} onClick={() => (item.title === LOGOUT) ? props.removeCookie : showPage(item.title)} data-testid="nav-item">
+                <ul key={index} className={item.cName} onClick={() => setLink(item.title)} data-testid="nav-item">
                   {item.icon}
                   <span>{item.title}</span>
                 </ul>
