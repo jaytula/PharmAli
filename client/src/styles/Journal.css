@@ -1,4 +1,4 @@
-.note{
+.journal{
   background-color: lightcoral;
   /* margin-bottom: 10px; */
   border-radius: 10px;
@@ -7,9 +7,10 @@
   display:flex;
   flex-direction: column;
   justify-content:space-between;
+  white-space: pre-wrap;
 }
 
-.note.new{
+.journal.new{
   background-color: rgb(179, 158, 172);
   
 }
@@ -28,12 +29,32 @@ outline:none;
 .save{
   /* background-color: blue; */
   border:none;
-  /* border-radius: 15px;
-  padding:5px 10px 5px 10px; */
+  border-radius: 15px;
+  padding:5px 10px 5px 10px;
+  cursor:pointer;
+  -ms-transform: scale(0.9); /* IE 9 */
+  -webkit-transform: scale(0.9); /* Safari 3-8 */
+  transform: scale(0.9);
+  
 }
 .save:hover{
   background-color: darksalmon;
   cursor:pointer;
+  -ms-transform: scale(1.0); /* IE 9 */
+  -webkit-transform: scale(1.0); /* Safari 3-8 */
+  transform: scale(1.0);
+  border-radius: 10px;
+  animation: jump-shaking 0.99s infinite;
+  
+}
+@keyframes jump-shaking {
+  0% { transform: translateX(0) }
+  25% { transform: translateY(-9px) }
+  35% { transform: translateY(-9px) rotate(17deg) }
+  55% { transform: translateY(-9px) rotate(-17deg) }
+  65% { transform: translateY(-9px) rotate(17deg) }
+  75% { transform: translateY(-9px) rotate(-17deg) }
+  100% { transform: translateY(0) rotate(0) }
 }
 .container{
   max-width: 1900px;
@@ -42,12 +63,12 @@ outline:none;
   padding-right: 15px;
   padding-left: 15px
 }
-.notes-list{
+.journals-list{
 display: grid;
 grid-gap: 1rem;
 grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
 }
-.note-footer{
+.journal-footer{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -91,4 +112,18 @@ align-items:center;
 	height: 50px;
 	padding: 2px;
   z-index: 0;
+}
+.delete-icon{
+  cursor:pointer;
+  -ms-transform: scale(0.9); /* IE 9 */
+  -webkit-transform: scale(0.9); /* Safari 3-8 */
+  transform: scale(0.9);
+  
+}
+.delete-icon:hover{
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
+  border-radius: 10px;
+  animation: jump-shaking 0.99s infinite;
 }
