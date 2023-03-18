@@ -15,9 +15,10 @@ const Register = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.setCookie(email, pass, name, postalCode)
-      .then((success) => {
-        (success) ? props.setPage(HOME) : setError('Could not register');
-      });
+      .then((message) => {
+        console.log(message);
+        (message) ? setError(message) : props.setPage(HOME);
+      })
   };
 
   return (
