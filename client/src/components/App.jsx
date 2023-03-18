@@ -25,34 +25,36 @@ function App() {
   const MY_JOURNAL = "MY JOURNAL";
   const DRUG = "DRUG";
 
-  const { page, menu, drugContent, setMenu, setPage, onSubmit } = useApplicationData(DRUG, HOME);
+  const { page, menu, user, drugContent, setMenu, setPage, setCookie, removeCookie, onSubmit } = useApplicationData(DRUG, HOME);
+
+  console.log("USER", user);
 
   return (
     <div className="App">
       {/* Navbar */}
-      <Navbar menu={menu} setMenu={setMenu} setPage={setPage} />
+      <Navbar menu={menu} setMenu={setMenu} setPage={setPage} user={user} removeCookie={removeCookie} />
       {/* Page user is on */}
       {page === HOME &&
-        (<Home />)}
+        (<Home user={user} />)}
       {page === LOGIN &&
-        (<Login setPage={setPage} />)}
+        (<Login setPage={setPage} setCookie={setCookie} />)}
       {page === REGISTER &&
-        (<Register setPage={setPage} />)}
+        (<Register setPage={setPage} setCookie={setCookie} />)}
       {page === SEARCH &&
         (<Search
           onSubmit={onSubmit} />)}
       {page === DRUG_LIST &&
         (<DrugList />)}
       {page === PHARM_LOCATOR &&
-        (<PharmLocator />)}
+        (<PharmLocator user={user} />)}
       {page === BLOG_POSTS &&
         (<BlogPosts />)}
       {page === MY_BLOGS &&
-        (<MyBlogs />)}
+        (<MyBlogs user={user} />)}
       {page === MY_JOURNAL &&
-        (<MyJournal />)}
+        (<MyJournal user={user} />)}
       {page === DRUG &&
-        (<Drug content={drugContent}/>)}
+        (<Drug content={drugContent} />)}
     </div>
   );
 }

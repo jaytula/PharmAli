@@ -1,12 +1,12 @@
 import React from 'react'
-import "../styles/Nav.css"
-import { NavbarData } from './NavbarData'
+import "../../styles/Nav.css"
+import NavbarData from '../../helpers/NavbarData'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Navbar = (props) => {
-
+  const LOGOUT = "LOGOUT";
   const theme = createTheme({
     palette: {
       primary: {
@@ -21,34 +21,34 @@ const Navbar = (props) => {
   });
 
   const showMenu = () => props.setMenu(!props.menu);
-  
+
   const showPage = (item) => {
     props.setPage(item);
     showMenu();
   };
-  
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <div data-testid="navbar" className='navbar'>
-            <MenuIcon data-testid="navmenu-icon" onClick={showMenu} />
+          <MenuIcon data-testid="navmenu-icon" onClick={showMenu} />
         </div>
         <nav data-testid="nav-menu" className={props.menu ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items'>
             <ul className='navbar-toggle'>
-                <CloseIcon color="primary" onClick={showMenu}/>
+              <CloseIcon color="primary" onClick={showMenu} />
             </ul>
-              {NavbarData.map((item, index) => {
-                return (
-                  <ul key={index} className={item.cName} onClick={() => showPage(item.title)} data-testid="nav-item">
-                      {item.icon}
-                      <span>{item.title}</span>
-                  </ul>
-                ); 
-              })}
+            {NavbarData(props.user).map((item, index) => {
+              return (
+                <ul key={index} className={item.cName} onClick={() => (item.title === LOGOUT) ? props.removeCookie : showPage(item.title)} data-testid="nav-item">
+                  {item.icon}
+                  <span>{item.title}</span>
+                </ul>
+              );
+            })}
           </ul>
         </nav>
-        </ThemeProvider>
+      </ThemeProvider>
     </>
   );
 }
