@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function useApplicationData(DRUG, HOME) {
   const [menu, setMenu] = useState(false);
@@ -18,7 +18,7 @@ export default function useApplicationData(DRUG, HOME) {
 
   const setCookie = (email, password) => {
     const obj = { email, password };
-    return axios.post("/add", obj, {
+    return axios.post("/user/add", obj, {
       withCredentials: true,
     })
       .then((data) => {
@@ -30,12 +30,21 @@ export default function useApplicationData(DRUG, HOME) {
       })
   };
 
-  const removeCookie = async () => {
-    return axios.post("/remove", {
+  const removeCookie = () => {
+    return axios.post("/user/remove", {
       withCredentials: true,
     })
       .then(() => { setUser("") })
   };
+
+  useEffect(() => {
+    Promise.all([
+      axios.get('/user'),
+    ]).then((data) => {
+      setUser(data[0].data.message);
+    })
+  }, []);
+
 
   return { page, menu, user, drugContent, setMenu, setPage, setCookie, removeCookie, onSubmit }
 }
