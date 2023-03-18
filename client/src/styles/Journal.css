@@ -1,0 +1,94 @@
+.note{
+  background-color: lightcoral;
+  /* margin-bottom: 10px; */
+  border-radius: 10px;
+  padding:1rem;
+  min-height: 300px;
+  display:flex;
+  flex-direction: column;
+  justify-content:space-between;
+}
+
+.note.new{
+  background-color: rgb(179, 158, 172);
+  
+}
+textarea{
+  border: none;
+  resize:none;
+  border-radius: 4px;
+  /* background-color: rgb(74, 57, 68); */
+}
+textarea:hover{
+  cursor:pointer;
+}
+textarea:focus{
+outline:none;
+}
+.save{
+  /* background-color: blue; */
+  border:none;
+  /* border-radius: 15px;
+  padding:5px 10px 5px 10px; */
+}
+.save:hover{
+  background-color: darksalmon;
+  cursor:pointer;
+}
+.container{
+  max-width: 1900px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px
+}
+.notes-list{
+display: grid;
+grid-gap: 1rem;
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+.note-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.profile, .profile-name{
+  /* display:flex; */
+  align-items:center;
+  justify-content:space-between;
+}
+aside{
+display:flex;
+justify-content: space-between;
+align-items:center;
+}
+.profile {
+  display:flex;
+	position: relative;
+	padding: 12px;
+	height: 80%;
+}
+
+.profile-name {
+	text-align: center;
+	width: 100%;
+	/* margin-top: -40px; */
+}
+
+.profile-name h2 {
+	margin: 0;
+	font-weight: 300;
+	color: #fff;
+}
+
+.profile--bold {
+	font-weight: 600;
+}
+
+.profile-image {
+	float: left;
+	width: 50px;
+	height: 50px;
+	padding: 2px;
+  z-index: 0;
+}
