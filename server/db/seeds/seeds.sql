@@ -20,8 +20,6 @@ VALUES
 (5, 'OMG! I feel the same way I feel like it really helped with my depression I wasn on 10mg for 25 years. I feel like this medicaition is a life-saver. I recommend this to anyone who is suffering with severe insomnia', 1, 2022-12-27),
 (3, 'My son is suffering from this addiction, he got perscribed it for the first time for his injury. He thought the feeling was so nice he continues to buy them off the streets and is currently addicted. I am thinking to send him to REHAB but he is mentally addicted and ignores me when I try to bring it up. I am happy your now fully recovered...I hate PERCOCETS!!', 4, 2023-02-27);
 
--- INSERT INTO articles (image_url, article_url)
--- VALUES
 INSERT INTO articles (title, image_url, article_url)
 VALUES
 ('Pharmedica USA LLC Issues Voluntary Worldwide Recall of Purely Soothing 15% MSM Drops Due to Non-Sterility','https://www.fda.gov/files/styles/recall_image_large/public/30ml.jpg?itok=QxW5roPH', 'https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/pharmedica-usa-llc-issues-voluntary-worldwide-recall-purely-soothing-15-msm-drops-due-non-sterility'),
