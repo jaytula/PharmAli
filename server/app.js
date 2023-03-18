@@ -1,17 +1,36 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const db = require("./db");
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const db = require('./db');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var blogsRouter = require('./routes/blogs');
-var commentsRouter = require('./routes/comments');
-var articlesRouter = require('./routes/articles');
-var savedMedicationsRouter = require('./routes/saved_medications');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const blogsRouter = require('./routes/blogs');
+const commentsRouter = require('./routes/comments');
+const articlesRouter = require('./routes/articles');
+const savedMedicationsRouter = require('./routes/saved_medications');
 
-var app = express();
+const fs = require("fs");
+
+function read(file) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(
+      file,
+      {
+        encoding: "utf-8"
+      },
+      (error, data) => {
+        if (error) return reject(error);
+        resolve(data);
+      }
+    );
+  });
+}
+
+const app = express();
+
+app.set("view engine", "ejs");
 
 app.use(logger('dev'));
 app.use(express.json());
