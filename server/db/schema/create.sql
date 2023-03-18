@@ -3,7 +3,9 @@ DROP TABLE IF EXISTS blogs CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
 DROP TABLE IF EXISTS articles CASCADE;
 DROP TABLE IF EXISTS saved_medications CASCADE;
-DROP TABLE IF EXISTS drugs CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS journals CASCADE;
+-- DROP TABLE IF EXISTS drugs CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -19,13 +21,17 @@ CREATE TABLE blogs (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   title TEXT NOT NULL,
   image_url VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL
+  content TEXT NOT NULL,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  created_at DATE NOT NULL DEFAULT CURRENT_DATE 
 );
 
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  comment TEXT NOT NULL
+  comment TEXT NOT NULL,
+  blog_id INTEGER REFERENCES blogs(id) ON DELETE CASCADE,
+  created_at DATE NOT NULL DEFAULT CURRENT_DATE 
 );
 
 CREATE TABLE articles (
@@ -38,14 +44,28 @@ CREATE TABLE articles (
 CREATE TABLE saved_medications (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
+);
+
+CREATE TABLE categories (
+  id SERIAL PRIMARY KEY NOT NULL,
   name TEXT NOT NULL
 );
 
--- Maybe
-CREATE TABLE drugs (
+CREATE TABLE journals (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  description TEXT NOT NULL,
-  drug_interactions TEXT NOT NULL,
-  side_effects TEXT NOT NULL
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  text TEXT NOT NULL,
+  created_at DATE NOT NULL DEFAULT CURRENT_DATE 
 );
+
+
+-- Maybe
+-- CREATE TABLE drugs (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   name VARCHAR(255) NOT NULL,
+--   description TEXT NOT NULL,
+--   drug_interactions TEXT NOT NULL,
+--   side_effects TEXT NOT NULL
+-- );
