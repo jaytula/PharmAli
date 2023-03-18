@@ -7,7 +7,6 @@ const client = new pg.Client({
 
 client
   .connect()
-  .then(() => console.log("Connected to database"))
   .catch(e => console.log(`Error connecting to Postgres server:\n${e}`));
 
 module.exports = client;
