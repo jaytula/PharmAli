@@ -16,8 +16,8 @@ export default function useApplicationData(DRUG, HOME) {
     })
   }
 
-  const setCookie = (email, password) => {
-    const obj = { email, password };
+  const setCookie = (email, password, name = null, postal_code = null) => {
+    const obj = (name) ? { email, password, name, postal_code } : { email, password };
     return axios.post("/user/add", obj)
       .then((data) => {
         const success = data.data.message;

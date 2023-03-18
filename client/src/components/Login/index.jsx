@@ -19,7 +19,6 @@ const Login = (props) => {
   };
 
   return (
-
     <div className="auth-form-container">
       {error.length > 0 &&
         (< Error message={error} />)}

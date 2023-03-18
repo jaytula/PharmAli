@@ -35,8 +35,16 @@ app.use('/articles', articlesRouter(db));
 app.use('/saved_medications', savedMedicationsRouter(db));
 
 app.post("/user/add", async (req, res) => {
-  const queryString = `SELECT * FROM users WHERE email = $1 AND password = $2`
-  const queryParams = [req.body.email, req.body.password]
+  let queryString = '';
+  const queryParams = [req.body.email, req.body.password];
+
+  if (req.body.name) {
+    queryString += 'INSERT INTO users (name, email, password, postal_code) VALUES ($1, $2, $3, $4) RETURNING name'
+    queryParams.push(req.body.postal_code);
+    queryParams.unshift(req.body.name);
+  } else {
+    queryString += `SELECT * FROM users WHERE email = $1 AND password = $2`
+  }
 
   db.query(queryString, queryParams)
     .then((result) => {
