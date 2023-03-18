@@ -15,6 +15,7 @@ storiesOf("Navbar", module)
   .add("Onclick on open navbar", () => <Navbar menu={true} setMenu={action("setMenu")}/>)
   .add("Onclick on closed navbar", () => <Navbar menu={true} setMenu={action("setMenu")}/>)
 
+// Test Search
   storiesOf("Search", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]

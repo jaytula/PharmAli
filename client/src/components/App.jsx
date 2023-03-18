@@ -10,9 +10,7 @@ import BlogPosts from './BlogPosts';
 import MyBlogs from './MyBlogs';
 import MyJournal from './MyJournal';
 import Drug from './Drug';
-import axios from "axios";
-import { useState } from 'react'
-
+import useApplicationData from '../hooks/useApplicationData';
 
 function App() {
   // The different pages user could visit
@@ -27,24 +25,13 @@ function App() {
   const MY_JOURNAL = "MY JOURNAL";
   const DRUG = "DRUG";
 
-  const [menu, setMenu] = useState(false);
-  const [page, setPage] = useState(HOME);
-  const [drugContent, setDrugContent] = useState("");
-
-  const onSubmit = (text) => {
-    Promise.all([
-      axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
-    ]).then((data) => {
-      // const remove = data[0].data.results[0].overdosage[0].replace('10 OVERDOSAGE ', '')
-      // console.log(remove);
-      setPage(DRUG);
-      setDrugContent(data);
-    })
-  }
+  const { page, menu, drugContent, setMenu, setPage, onSubmit } = useApplicationData(DRUG, HOME);
 
   return (
     <div className="App">
+      {/* Navbar */}
       <Navbar menu={menu} setMenu={setMenu} setPage={setPage} />
+      {/* Page user is on */}
       {page === HOME &&
         (<Home />)}
       {page === LOGIN &&
