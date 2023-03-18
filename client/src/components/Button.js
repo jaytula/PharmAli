@@ -1,30 +1,7 @@
 import React from "react";
 
 export default function Button(props) {
-
-
   return (
-    <button
-      onClick={props.onClick}
-    >
-      {props.children}
-    </button>
+    <button>{props.children}</button>
   );
 }
-
-// export default function Button() {
-//   return (
-//     <Box
-//       component="form"
-//       sx={{
-//         '& > :not(style)': { m: 1, width: '25ch' },
-//       }}
-//       noValidate
-//       autoComplete="off"
-//     >
-//       <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-//       <TextField id="filled-basic" label="Filled" variant="filled" />
-//       <TextField id="standard-basic" label="Standard" variant="standard" />
-//     </Box>
-//   );
-// }
