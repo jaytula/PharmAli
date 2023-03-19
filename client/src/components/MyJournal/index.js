@@ -9,7 +9,7 @@ import { Container } from '@mui/system';
 import "../../styles/Journal.css";
 import AddJournal from './AddJournal';
 
-const MyJournal = () => {
+const MyJournal = (props) => {
   const [journals, setJournals] = useState([
     {
       user: {
@@ -54,7 +54,7 @@ const MyJournal = () => {
   ]);
 
   const[searchText,setSearchText]=useState('');
-  const[darkMode,setDarkMode]=useState(false);
+  // const[darkMode,setDarkMode]=useState(false);
 
   useEffect(()=>{
 const savedJournals = JSON.parse(
@@ -82,9 +82,9 @@ useEffect(()=>{
     setJournals(newJournals);
   };
   return (
-    <div className={`${darkMode && 'dark-mode'}`}>
+    <div className={`${props.darkMode && 'dark-mode'}`}>
     <div className='container'>
-      <JournalHeader handleToggleDarkMode={setDarkMode}/>
+      <JournalHeader handleToggleDarkMode={props.setDarkMode}/>
       <SearchJournal
       handleSearchJournal={setSearchText}
       />

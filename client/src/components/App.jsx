@@ -27,6 +27,7 @@ function App() {
 
   const [menu, setMenu] = useState(false);
   const [page, setPage] = useState(HOME);
+  const[darkMode,setDarkMode]=useState(false);
   console.log(page);
   
   const onSubmit = (text) => {
@@ -59,7 +60,7 @@ function App() {
       {page === MY_BLOGS &&
         (<MyBlogs />)}
       {page === MY_JOURNAL &&
-        (<MyJournal />)}
+        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode} />)}
     </div>
   );
 }
