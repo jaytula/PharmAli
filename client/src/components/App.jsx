@@ -1,4 +1,5 @@
 import '../styles/App.css';
+import { useState } from 'react';
 import Navbar from './Navbar';
 import Home from './Home';
 import Login from './Login'
@@ -27,6 +28,7 @@ function App() {
   const DRUG = "DRUG";
   const BLOG = "BLOG";
   const { page, menu, user, drugContent, setMenu, setPage, setCookie, removeCookie, onSubmit } = useApplicationData(DRUG, HOME);
+  const[darkMode,setDarkMode]=useState(false);
 
   return (
     <div className="App">
@@ -51,7 +53,7 @@ function App() {
       {page === MY_BLOGS &&
         (<MyBlogs user={user} />)}
       {page === MY_JOURNAL &&
-        (<MyJournal user={user} />)}
+        (<MyJournal  darkMode={darkMode} setDarkMode={setDarkMode} user={user} />)}
       {page === DRUG &&
         (<Drug content={drugContent} />)}
       {page === BLOG &&
