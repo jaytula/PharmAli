@@ -9,6 +9,7 @@ const usersRouter = require('./routes/user');
 const blogsRouter = require('./routes/blogs');
 const commentsRouter = require('./routes/comments');
 const articlesRouter = require('./routes/articles');
+const journalRouter = require('./routes/journal');
 const savedMedicationsRouter = require('./routes/saved_medications');
 
 const app = express();
@@ -33,6 +34,7 @@ app.use('/user', usersRouter(db, cookieParams));
 app.use('/blogs', blogsRouter(db));
 app.use('/comments', commentsRouter(db));
 app.use('/articles', articlesRouter(db));
+app.use('/journal', journalRouter(db));
 app.use('/saved_medications', savedMedicationsRouter(db));
 
 module.exports = app;
