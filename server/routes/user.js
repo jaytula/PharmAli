@@ -41,7 +41,7 @@ module.exports = (db, cookieParams) => {
       password: bcrypt.hashSync(req.body.password, 10),
       postal_code: req.body.postalCode
     }
-
+    console.log('start register')
     getUser.getUser(db, userInfo)
       .then(() => {
         console.log('User Added')
@@ -50,8 +50,9 @@ module.exports = (db, cookieParams) => {
         res.send({ message: userInfo });
       })
       .catch((err) => {
+        console.log('error', err)
         // If account does exist with this email
-        res.send({ message: err.detail });
+        res.status(400).send({ message: err.detail });
       })
   });
 

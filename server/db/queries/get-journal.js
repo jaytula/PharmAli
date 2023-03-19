@@ -1,3 +1,4 @@
+
 const getJournal = function(db, email) {
   const queryParams = [email];
   const queryString = `
