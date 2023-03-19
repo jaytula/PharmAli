@@ -31,7 +31,6 @@ const navbarData = (login) => {
       className: 'nav-text'
     }
   ]
-// console.log(login);
   // If logged in allow user to visit the additional pages available
   if (login) {
     

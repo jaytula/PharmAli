@@ -1,7 +1,6 @@
 import React from 'react'
 
 function BlogPost(props) {
-  console.log(props)
   return (
     <div className='blogPost'>
       <div className="blogPostHolder">

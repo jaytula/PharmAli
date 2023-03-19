@@ -6,7 +6,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Navbar = (props) => {
-  // console.log(props);
   const LOGOUT = "LOGOUT";
   const HOME = "HOME";
   const theme = createTheme({

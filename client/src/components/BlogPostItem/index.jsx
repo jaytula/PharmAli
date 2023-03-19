@@ -2,7 +2,6 @@ import React from 'react'
 import "../../styles/BlogPostItem.css";
 
 function BlogPostItem(props) {
-  console.log(props);
   return (
     <div className="blog">
       <img

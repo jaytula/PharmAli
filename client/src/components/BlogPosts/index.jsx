@@ -11,7 +11,6 @@ const BlogPosts = (props) => {
       axios.get('/blogs'),
     ]).then((data) => {
       setBlogs(data[0].data);
-      console.log(data[0].data);
     })
   }, []);
 
