@@ -6,8 +6,9 @@ export default function useApplicationData(DRUG, HOME) {
   const [page, setPage] = useState(HOME);
   const [drugContent, setDrugContent] = useState("");
   const [user, setUser] = useState();
+  const [blogContent, setBlogContent] = useState();
 
-  const onSubmit = (text) => {
+  const onSearchSubmit = (text) => {
     return Promise.all([
       axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
     ]).then((data) => {
@@ -42,5 +43,5 @@ export default function useApplicationData(DRUG, HOME) {
   }, []);
 
 
-  return { page, menu, user, drugContent, setMenu, setPage, setCookie, removeCookie, onSubmit }
+  return { page, menu, user, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent }
 }

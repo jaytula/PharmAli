@@ -27,8 +27,13 @@ function App() {
   const MY_JOURNAL = "MY JOURNAL";
   const DRUG = "DRUG";
   const BLOG = "BLOG";
-  const { page, menu, user, drugContent, setMenu, setPage, setCookie, removeCookie, onSubmit } = useApplicationData(DRUG, HOME);
-  const[darkMode,setDarkMode]=useState(false);
+  const { page, menu, user, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent } = useApplicationData(DRUG, HOME);
+  const [darkMode, setDarkMode] = useState(false);
+
+  const setBlog = (blog) => {
+    setBlogContent(blog);
+    setPage(BLOG);
+  }
 
   return (
     <div className="App">
@@ -43,21 +48,21 @@ function App() {
         (<Register setPage={setPage} setCookie={setCookie} />)}
       {page === SEARCH &&
         (<Search
-          onSubmit={onSubmit} />)}
+          onSearchSubmit={onSearchSubmit} />)}
       {page === DRUG_LIST &&
         (<DrugList />)}
       {page === PHARM_LOCATOR &&
         (<PharmLocator user={user} />)}
       {page === BLOG_POSTS &&
-        (<BlogPosts setPage={setPage}/>)}
+        (<BlogPosts setBlog={setBlog} />)}
       {page === MY_BLOGS &&
         (<MyBlogs user={user} />)}
       {page === MY_JOURNAL &&
-        (<MyJournal  darkMode={darkMode} setDarkMode={setDarkMode} user={user} />)}
+        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode} user={user} />)}
       {page === DRUG &&
         (<Drug content={drugContent} />)}
       {page === BLOG &&
-        (<BlogPost />)}
+        (<BlogPost blogContent={blogContent} />)}
     </div>
   );
 }

@@ -12,7 +12,7 @@ const Search = (props) => {
       return;
     }
     setError("");
-    props.onSubmit(searchInput);
+    props.onSearchSubmit(searchInput);
     setSearchInput("");
   }
   
