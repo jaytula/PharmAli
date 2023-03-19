@@ -27,7 +27,7 @@ function App() {
   const MY_JOURNAL = "MY JOURNAL";
   const DRUG = "DRUG";
   const BLOG = "BLOG";
-  const { page, menu, user, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent } = useApplicationData(DRUG, HOME);
+  const { page, menu, user, drugList, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent } = useApplicationData(DRUG, HOME);
   const [darkMode, setDarkMode] = useState(false);
 
   const setBlog = (blog) => {
@@ -50,7 +50,7 @@ function App() {
         (<Search
           onSearchSubmit={onSearchSubmit} />)}
       {page === DRUG_LIST &&
-        (<DrugList />)}
+        (<DrugList drugList={drugList}/>)}
       {page === PHARM_LOCATOR &&
         (<PharmLocator user={user} />)}
       {page === BLOG_POSTS &&
