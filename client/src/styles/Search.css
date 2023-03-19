@@ -1,0 +1,13 @@
+.section-search{
+  width:100%
+}
+
+.articles {
+float: right;
+margin: 10px;
+}
+
+.search {
+  float: left;
+  margin:10px;
+}

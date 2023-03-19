@@ -1,5 +1,6 @@
 import React from 'react'
 import Article from '../Article'
+import '../../styles/Articles.css'
 
 function Articles() {
   return (

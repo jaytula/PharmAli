@@ -1,3 +1,18 @@
 .articles {
-  flex: 9
+  flex: 10
+}
+
+.articlesTitle {
+  display: flex;
+  padding: 5px;
+  width: 80%;
+  border-top: solid 1px #a7a4a4;
+  border-bottom: solid 1px #a7a4a4;
+  text-align: center;
+  font-family: "Varela Round", sans-serif;
+  font-size: 12px;
+  line-height: 19px;
+  color: #222222;
+  font-weight: 600;
+  justify-content: center;
 }
