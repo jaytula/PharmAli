@@ -23,8 +23,8 @@ const Register = (props) => {
 
   return (
     <div className="auth-form-container">
-      {error.length > 0 &&
-        (< Error message={error} />)}
+      {/* {error.length > 0 &&
+        (< Error message={error} />)} */}
       <h2>Register !</h2>
       <form className="register-form" onSubmit={handleSubmit}>
         <label htmlFor="name">Full Name</label>
