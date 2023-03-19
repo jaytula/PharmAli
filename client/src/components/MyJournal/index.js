@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import JournalList from './JournalList';
 import { nanoid } from 'nanoid';
 import profileImage from '../../assets/images/medicine.jpeg';
+import SearchJournal from './Search';
+import JournalHeader from './Header';
 
 import "../../styles/Journal.css";
 import AddJournal from './AddJournal';
+
 const MyJournal = () => {
   const [journals, setJournals] = useState([
     {
@@ -48,6 +51,7 @@ const MyJournal = () => {
       date: "06/02/1997"
     },
   ]);
+  const[searchText,setSearchText]=useState('')
   const AddJournal = (text) => {
     const date = new Date();
     const newJournal = {
@@ -63,8 +67,13 @@ const MyJournal = () => {
   };
   return (
     <div className='container'>
+      <JournalHeader/>
+      <SearchJournal
+      handleSearchJournal={searchText}
+      />
       <JournalList
-       journals={journals}
+        journals={journals.filter((journal)=>
+          journal.text.toLowerCase().includes(searchText))}
         handleAddJournal={AddJournal}
         handleDeleteJournal={DeleteJournal} />
     </div>
