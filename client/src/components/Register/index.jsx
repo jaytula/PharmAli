@@ -16,7 +16,7 @@ const Register = (props) => {
     e.preventDefault();
     props.setCookie(email, pass, name, postalCode)
       .then((message) => {
-        console.log(message);
+        // console.log(message);
         (message) ? setError(message) : props.setPage(HOME);
       })
   };

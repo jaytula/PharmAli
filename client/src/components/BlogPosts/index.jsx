@@ -4,7 +4,7 @@ import "../../styles/BlogPosts.css";
 
 const BlogPosts = (props) => {
   const setBlog = (blog) =>{
-    console.log(blog)
+    // console.log(blog)
     props.setPage(blog)
   }
 

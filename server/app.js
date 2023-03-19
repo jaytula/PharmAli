@@ -56,7 +56,7 @@ app.post("/user/add", (req, res) => {
       if (!req.body.name && result.rows.length > 0) {
         if (bcrypt.compareSync(req.body.password, password)) {
           res.cookie('name', name, cookieParams)
-          message = { email };
+          message = { name, email, postal_code };
         } else {
           message = 'Incorrect password';
         }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Profile({user}) {
-  console.log(user);
+  // console.log(user);
 
   return (
     <aside>
