@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import JournalList from './JournalList';
 import { nanoid } from 'nanoid';
 import profileImage from '../../assets/images/medicine.jpeg';
@@ -53,8 +53,20 @@ const MyJournal = () => {
     },
   ]);
 
-  const[searchText,setSearchText]=useState('')
-  const[darkMode,setDarkMode]=useState(false)
+  const[searchText,setSearchText]=useState('');
+  const[darkMode,setDarkMode]=useState(false);
+
+  useEffect(()=>{
+const savedJournals = JSON.parse(
+  localStorage.getItem('react-journal-app-data')
+);
+if(savedJournals){
+  setJournals(savedJournals)
+}
+  },[])
+useEffect(()=>{
+  localStorage.setItem('react-journal-app-data', JSON.stringify(journals) )
+},[journals])
 
   const AddJournal = (text) => {
     const date = new Date();
@@ -70,8 +82,6 @@ const MyJournal = () => {
     setJournals(newJournals);
   };
   return (
-    <div className='main-content'>
-  <Container>
     <div className={`${darkMode && 'dark-mode'}`}>
     <div className='container'>
       <JournalHeader handleToggleDarkMode={setDarkMode}/>
@@ -85,8 +95,7 @@ const MyJournal = () => {
         handleDeleteJournal={DeleteJournal} />
     </div>
     </div>
-    </Container>
-    </div>
+
   );
 };
 

@@ -3,7 +3,7 @@ import React from "react";
 const JournalHeader = ({handleToggleDarkMode}) => {
   return(
 <div className="journal-header">
-  <h1> Notes</h1>
+  <h1> Journal Entries</h1>
   <button
    onClick={()=>
     handleToggleDarkMode(
