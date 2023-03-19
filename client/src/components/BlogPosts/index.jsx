@@ -1,6 +1,7 @@
 import React from 'react'
 import BlogPostItem from '../BlogPostItem/index.jsx'
 import "../../styles/BlogPosts.css";
+import Articles from '../Articles/index.jsx';
 
 const BlogPosts = (props) => {
   const setBlog = (blog) =>{
@@ -9,13 +10,16 @@ const BlogPosts = (props) => {
   }
 
   return (
-    <div className='blogPosts'>
+    <>
+    <Articles/>
+    <div className='blogPosts'> 
       <BlogPostItem setBlog= {setBlog}/>
       <BlogPostItem setBlog= {setBlog}/>
       <BlogPostItem setBlog= {setBlog}/>
       <BlogPostItem setBlog= {setBlog}/>
       <BlogPostItem setBlog= {setBlog}/>
     </div>
+    </>
   )
 }
 

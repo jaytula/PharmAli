@@ -1,6 +1,8 @@
 import React from 'react'
+import "../../styles/BlogPost.css"
+import Articles from '../Articles'
 
-function BlogPost(props) {
+function BlogPost( ) {
   return (
     <div className='blogPost'>
       <div className="blogPostHolder">
