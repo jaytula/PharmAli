@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import profileImage from '../../assets/images/medicine.jpeg';
 import SearchJournal from './Search';
 import JournalHeader from './Header';
+import { Container } from '@mui/system';
 
 import "../../styles/Journal.css";
 import AddJournal from './AddJournal';
@@ -51,7 +52,10 @@ const MyJournal = () => {
       date: "06/02/1997"
     },
   ]);
+
   const[searchText,setSearchText]=useState('')
+  const[darkMode,setDarkMode]=useState(false)
+
   const AddJournal = (text) => {
     const date = new Date();
     const newJournal = {
@@ -66,16 +70,22 @@ const MyJournal = () => {
     setJournals(newJournals);
   };
   return (
+    <div className='main-content'>
+  <Container>
+    <div className={`${darkMode && 'dark-mode'}`}>
     <div className='container'>
-      <JournalHeader/>
+      <JournalHeader handleToggleDarkMode={setDarkMode}/>
       <SearchJournal
-      handleSearchJournal={searchText}
+      handleSearchJournal={setSearchText}
       />
       <JournalList
         journals={journals.filter((journal)=>
           journal.text.toLowerCase().includes(searchText))}
         handleAddJournal={AddJournal}
         handleDeleteJournal={DeleteJournal} />
+    </div>
+    </div>
+    </Container>
     </div>
   );
 };
