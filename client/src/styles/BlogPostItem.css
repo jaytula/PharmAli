@@ -3,6 +3,9 @@
   margin: 0px 25px 40px 25px;
   display: flex;
   flex-direction: column;
+  gap:10px;
+  background-color: #fdfbfb;
+  border-radius: 5px;
 }
 
 .blogImage {

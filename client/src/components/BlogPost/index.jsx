@@ -1,6 +1,7 @@
 import React from 'react'
 import "../../styles/BlogPost.css"
 import Articles from '../Articles'
+import OpenIconSpeedDial from '../SpeedDial'
 
 function BlogPost(props) {
   return (
@@ -27,6 +28,7 @@ function BlogPost(props) {
           {props.blogContent.content}
         </p>
       </div>
+      <OpenIconSpeedDial/>
     </div>
   )
 }
