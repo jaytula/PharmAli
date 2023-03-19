@@ -54,7 +54,7 @@ const Navbar = (props) => {
               return (
                 <ul key={index} className={item.cName} onClick={() => setLink(item.title)} data-testid="nav-item">
                   {item.icon}
-                  <span class="item-title">{item.title}</span>
+                  <span className="item-title">{item.title}</span>
                 </ul>
               );
             })}
