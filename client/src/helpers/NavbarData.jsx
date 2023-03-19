@@ -31,9 +31,9 @@ const navbarData = (login) => {
       className: 'nav-text'
     }
   ]
-
   // If logged in allow user to visit the additional pages available
   if (login) {
+    
     navbarData.push(
       {
         title: "MY BLOGS",
@@ -47,7 +47,7 @@ const navbarData = (login) => {
       },
       {
         title: "LOGOUT",
-        icon: <CreateIcon color="primary" />,
+        icon: <PersonIcon color="primary" />,
         className: 'nav-text'
       }
     )

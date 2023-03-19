@@ -4,6 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 20px;
+  z-index: 9999;
 }
 
 .menu-bars {
@@ -28,6 +29,7 @@
 .nav-menu.active {
   left: 0;
   transition: 350ms;
+  z-index: 9999;
 }
 
 .nav-text {
@@ -70,12 +72,13 @@
   padding-right: 10px;
 }
 
-.item-title {
+.title-.item-title {
   margin-left: 5px;
   color:white;
   font-size: 15px;
   
 }
-.item-title:hover {
+.title-.item-title:hover {
   background-color: #44444d;
+  cursor:pointer;
 }

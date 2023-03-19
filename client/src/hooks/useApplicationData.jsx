@@ -6,8 +6,9 @@ export default function useApplicationData(DRUG, HOME) {
   const [page, setPage] = useState(HOME);
   const [drugContent, setDrugContent] = useState("");
   const [user, setUser] = useState();
+  const [blogContent, setBlogContent] = useState();
 
-  const onSubmit = (text) => {
+  const onSearchSubmit = (text) => {
     return Promise.all([
       axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
     ]).then((data) => {
@@ -16,20 +17,25 @@ export default function useApplicationData(DRUG, HOME) {
     })
   }
 
-  const setCookie = (email, password, name = null, postal_code = null) => {
-    const obj = (name) ? { email, password, name, postal_code } : { email, password };
-    return axios.post("/user/add", obj)
-      .then((data) => {
+  const setCookie = (userInfo) => {
+    // Set up the userinfo to send and request type (get, post)
+    let makeRequest;
+    if (userInfo.name) {
+      makeRequest = axios.post("/user/register", userInfo)
+    } else {
+      makeRequest = axios.post("/user/login", userInfo)
+    }
+    return makeRequest.then((data) => {
         const success = data.data.message;
-        if (success) {
-          setUser(email)
+        if (success instanceof Object) {
+          setUser(userInfo.email);
         }
         return success;
       })
   };
 
   const removeCookie = () => {
-    return axios.post("/user/remove")
+    return axios.post("/user/logout")
       .then(() => { setUser("") })
   };
 
@@ -42,5 +48,5 @@ export default function useApplicationData(DRUG, HOME) {
   }, []);
 
 
-  return { page, menu, user, drugContent, setMenu, setPage, setCookie, removeCookie, onSubmit }
+  return { page, menu, user, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent }
 }

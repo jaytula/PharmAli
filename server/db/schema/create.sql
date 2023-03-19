@@ -53,11 +53,6 @@ CREATE TABLE saved_medications (
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 
-CREATE TABLE categories (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name TEXT NOT NULL
-);
-
 CREATE TABLE journals (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
