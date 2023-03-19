@@ -5,7 +5,7 @@ import Error from '../Error';
 
 const Register = (props) => {
   const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [postalCode, setPostalCode] = useState('');
   const [error, setError] = useState("");
@@ -14,9 +14,10 @@ const Register = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.setCookie(email, pass, name, postalCode)
+    const userInfo = { email, password, name, postalCode }
+    props.setCookie(userInfo)
       .then((message) => {
-        (message) ? setError(message) : props.setPage(HOME);
+        (typeof message === 'object') ? props.setPage(HOME) : setError(message);
       })
   };
 
@@ -31,7 +32,7 @@ const Register = (props) => {
         <label htmlFor="email">Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="placeyouremail@HERE.com" id="email" name="email" />
         <label htmlFor="password">Password</label>
-        <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
+        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
         <label htmlFor="postalCode">Postal Code</label>
         <input value={postalCode} onChange={(e) => setPostalCode(e.target.value)} type="ppostalCode" placeholder="M8M 1R3" id="postalCode" name="postalCode" />
         <Button children={SIGNUP} />

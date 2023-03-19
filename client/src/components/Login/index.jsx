@@ -5,16 +5,17 @@ import Error from '../Error';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState("");
   const HOME = "HOME";
   const LOGIN = "LOGIN";
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.setCookie(email, pass)
+    const userInfo = {email, password};
+    props.setCookie(userInfo)
     .then((passed) => {
-      (passed.email) ? props.setPage(HOME): setError(passed);
+      (passed.userInfo) ? props.setPage(HOME): setError(passed);
     });
   };
 
@@ -27,7 +28,7 @@ const Login = (props) => {
         <label htmlFor="email">Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="placeyouremail@HERE.com" id="email" name="email" />
         <label htmlFor="password">Password</label>
-        <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="*******" id="password" name="password" />
+        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="*******" id="password" name="password" />
         <Button children={LOGIN}/>
       </form>
       <button className="link-btn" onClick={() => props.setPage("REGISTER")}>Dont have an account? Register</button>
