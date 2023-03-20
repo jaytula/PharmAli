@@ -49,9 +49,9 @@ function App() {
         (<Register setPage={setPage} setCookie={setCookie} />)}
       {page === SEARCH &&
         (<Search
-          onSearchSubmit={onSearchSubmit} />)}
+          onSearchSubmit={onSearchSubmit} drugList={drugList} />)}
       {page === DRUG_LIST &&
-        (<DrugList drugList={drugList}/>)}
+        (<DrugList drugList={drugList} />)}
       {page === PHARM_LOCATOR &&
         (<PharmLocator user={user} />)}
       {page === BLOG_POSTS &&
@@ -59,7 +59,7 @@ function App() {
       {page === MY_BLOGS &&
         (<MyBlogs user={user} />)}
       {page === MY_JOURNAL &&
-        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode}  user_id={user} />)}
+        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode} user_id={user} />)}
       {page === DRUG &&
         (<Drug content={drugContent} />)}
       {page === BLOG &&

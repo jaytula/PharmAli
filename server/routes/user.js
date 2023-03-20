@@ -20,8 +20,9 @@ console.log(req.body);
         if (result.rows.length > 0) {
           // If password is correct
           if (bcrypt.compareSync(req.body.password, result.rows[0].password)) {
+            console.log(result.rows[0]);
             res.cookie('name', result.rows[0].id, cookieParams)
-            message = { userInfo };
+            message = { userInfo: result.rows[0] };
           } else {
             message = 'Incorrect password';
           }
