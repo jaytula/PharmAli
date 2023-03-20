@@ -63,7 +63,7 @@ function App() {
       {page === DRUG &&
         (<Drug content={drugContent} />)}
       {page === BLOG &&
-        (<BlogPost blogContent={blogContent} setPage={setPage}/>)}
+        (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user}/>)}
       {/* {(page === BLOG_POSTS) || (page === SEARCH) || (page === DRUG_LIST) && 
         <Articles/> } */}
     </div>

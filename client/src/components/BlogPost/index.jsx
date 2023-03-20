@@ -30,8 +30,7 @@ function BlogPost(props) {
         <p className="blogPostText">
           {props.blogContent.content}
         </p>
-      <Comments blog_id={props.blogContent.id}/>
-      <OpenIconSpeedDial/>
+      <Comments blog_id={props.blogContent.id} user_id={props.user_id}/>
       </div>
     </div>
   )
