@@ -7,7 +7,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 
 export default function OpenIconSpeedDial() {
   return (
-    <Box sx={{ height: 50, transform: 'translateZ(0px)', flexGrow: 1 }}>
+    <Box sx={{ height: 75, transform: 'translateZ(0px)', flexGrow: 1 }}>
       <SpeedDial
         ariaLabel="SpeedDial openIcon example"
         sx={{ position: 'absolute', bottom: 0, right: 16}}

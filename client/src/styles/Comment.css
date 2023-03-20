@@ -1,0 +1,17 @@
+.comment {
+  display:flex;
+  background-color: rgb(193 193 184 / 36%);
+  margin: 20px;
+  border: solid;
+    border-radius: 10px;
+}
+.commentDesc {
+  margin:20px;
+}
+
+.comment:hover {
+ -webkit-box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
+ -moz-box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
+ box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
+
+}

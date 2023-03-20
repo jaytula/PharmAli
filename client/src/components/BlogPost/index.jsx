@@ -2,10 +2,13 @@ import React from 'react'
 import "../../styles/BlogPost.css"
 import Articles from '../Articles'
 import OpenIconSpeedDial from '../SpeedDial'
+import Comments from '../Comments'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function BlogPost(props) {
   return (
     <div className='blogPost'>
+      <ArrowBackIcon size='large'/>
       <div className="blogPostHolder">
         <img
           className="blogPostImage"
@@ -27,8 +30,9 @@ function BlogPost(props) {
         <p className="blogPostText">
           {props.blogContent.content}
         </p>
-      </div>
+      <Comments blog_id={props.blogContent.id}/>
       <OpenIconSpeedDial/>
+      </div>
     </div>
   )
 }
