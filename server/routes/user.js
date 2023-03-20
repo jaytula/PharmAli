@@ -13,14 +13,14 @@ module.exports = (db, cookieParams) => {
   // For logging in
   router.post("/login", (req, res) => {
     const userInfo = { email: req.body.email }
-
+console.log(req.body);
     getUser.getUser(db, userInfo)
       .then((result) => {
         // If a user exists
         if (result.rows.length > 0) {
           // If password is correct
           if (bcrypt.compareSync(req.body.password, result.rows[0].password)) {
-            res.cookie('name', userInfo.email, cookieParams)
+            res.cookie('name', result.rows[0].id, cookieParams)
             message = { userInfo };
           } else {
             message = 'Incorrect password';
@@ -43,10 +43,11 @@ module.exports = (db, cookieParams) => {
     }
     console.log('start register')
     getUser.getUser(db, userInfo)
-      .then(() => {
+      .then((data) => {
         console.log('User Added')
+        userInfo.id = data
         // If account doesn't exist with this email
-        res.cookie('name', userInfo.email, cookieParams)
+        res.cookie('name', userInfo.id, cookieParams)
         res.send({ message: userInfo });
       })
       .catch((err) => {

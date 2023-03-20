@@ -2,11 +2,12 @@
 
 INSERT INTO users (name, email, password, postal_code)
 VALUES 
-('Michael', 'michael.lawson@gmail.com', 'Password@123', 'M3H 0C3'),
-('Lindsay', 'lindsay.ferguson@gmail.com', 'Password@123', 'M4B 0A3'),
-('Tobias', 'tobias.funke@gmail.com', 'Password@123', 'M3C 0E4'),
-('Byron', 'byron.fields@gmail.com', 'Password@123', 'M4C 1Z1'),
-('Rachel', 'rachel.howell@gmail.com', 'Password@123', 'M3H 5J8');
+-- password is 1
+('Michael', 'michael.lawson@gmail.com', '$2a$10$mOg1K5.ejDuaRtpYPw6E5.n9HASqxtdcMr66W4CtVPnlePROw8yP.', 'M3H 0C3'),
+('Lindsay', 'lindsay.ferguson@gmail.com', '$2a$10$mOg1K5.ejDuaRtpYPw6E5.n9HASqxtdcMr66W4CtVPnlePROw8yP.', 'M4B 0A3'),
+('Tobias', 'tobias.funke@gmail.com', '$2a$10$mOg1K5.ejDuaRtpYPw6E5.n9HASqxtdcMr66W4CtVPnlePROw8yP.', 'M3C 0E4'),
+('Byron', 'byron.fields@gmail.com', '$2a$10$mOg1K5.ejDuaRtpYPw6E5.n9HASqxtdcMr66W4CtVPnlePROw8yP.', 'M4C 1Z1'),
+('Rachel', 'rachel.howell@gmail.com', '$2a$10$mOg1K5.ejDuaRtpYPw6E5.n9HASqxtdcMr66W4CtVPnlePROw8yP.', 'M3H 5J8');
 
 INSERT INTO categories (name)
 VALUES 

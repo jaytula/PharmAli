@@ -1,23 +1,37 @@
 const router = require("express").Router();
 const getJournal = require('../db/queries/get-journal');
-const editJournal = require('../db/queries/edit-journal');
+const addJournal = require('../db/queries/add-journal');
 const removeJournal = require('../db/queries/remove-journal');
+// const { default: Journal } = require("../../client/src/components/MyJournal/Journal");
 
 module.exports = (db) => {
   // To get all journals of a user
-  router.get("/:email", (req, res) => {
-    const email = request.url.replace('/', '')
-    getJournal.getJournal(db, email)
+  router.get("/:id", (req, res) => {
+    const id = req.url.replace('/', '')
+    console.log(id)
+    console.log("--------------")
+    getJournal.getJournal(db, id)
       .then((journal) => {
-        res.send({ journal });
+        res.send({ journal: journal.rows });
       })
   });
   
   // To edit or remove a journal of a user
-  router.post("/", (req, res) => {
-    const { email, journal, edit_journal } = req.body;
-    (edit_journal) ? editJournal.editJournal(db, journal, email) : removeJournal.removeJournal(db, email)
+  router.post("/delete", (req, res) => {
+    // const { email, journal, edit_journal } = req.body;
+    const journalId = Object.keys(req.body)[0]
+    // (edit_journal) ? editJournal.editJournal(db, journal, journalId) : removeJournal.removeJournal(db, journalId)
+    removeJournal.removeJournal(db, journalId)
+    // console.log(Object.keys(req.body)[0])
   });
-
+  router.post("/add", (req, res) => {
+    // const { email, journal, edit_journal } = req.body;
+    // const journalId = Object.keys(req.body)[0]
+    // (edit_journal) ? editJournal.editJournal(db, journal, journalId) : removeJournal.removeJournal(db, journalId)
+   
+    addJournal.addJournal(db, req.body.user_id, req.body.text)
+   
+    // console.log(Object.keys(req.body)[0])
+  });
   return router;
 };
