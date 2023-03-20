@@ -6,4 +6,4 @@ const addComment = function(db, user_id, comment, blog_id) {
   return db.query(queryString, queryParams);
 };
 
-module.exports = {addComment}
+module.exports = { addComment }

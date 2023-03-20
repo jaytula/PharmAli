@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const addComment = require("../db/queries/add-comment");
-
+const deleteComment = require("../db/queries/delete-comment")
 module.exports = db => {
   router.get("/", (request, response) => {
    let blog_id = request.url.split('=')[1]
@@ -12,10 +12,7 @@ module.exports = db => {
     `;
     console.log(request.url.split('=')[1]);
     db.query(queryString, queryParams)
-    // db.query(`
-    // SELECT * FROM comments
-    // WHERE blog_id = ?`,blog_id
-    // )
+
     .then((data) => {
       response.json({rows : data.rows});
       console.log(data.rows);
@@ -24,9 +21,15 @@ module.exports = db => {
     })
   });
 
-  router.post("/", (req, res) => {
-    console.log(req.body);
-    addComment.addComment(db, req.body.user_id, req.body.comment, req.body.blog_id)
+  router.post("/", async (req, res) => {
+    console.log('****************************');
+    const newComment = await addComment.addComment(db, req.body.user_id, req.body.comment, req.body.blog_id)
+    console.log(newComment)
+    return res.json ({'key': 'abc'})
+  });
+  router.post("/delete", (req, res) => {
+    const comment_id = Object.keys(req.body)[0]
+    deleteComment.deleteComment(db, comment_id)
   });
 
 
