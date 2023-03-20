@@ -52,9 +52,8 @@ console.log(req.body);
         res.send({ message: userInfo });
       })
       .catch((err) => {
-        console.log('error', err)
         // If account does exist with this email
-        res.status(400).send({ message: err.detail });
+        res.send({ message: err.detail });
       })
   });
 

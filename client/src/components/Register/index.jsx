@@ -17,14 +17,15 @@ const Register = (props) => {
     const userInfo = { email, password, name, postalCode }
     props.setCookie(userInfo)
       .then((message) => {
+        console.log(message);
         (typeof message === 'object') ? props.setPage(HOME) : setError(message);
       })
   };
 
   return (
     <div className="auth-form-container">
-      {/* {error.length > 0 &&
-        (< Error message={error} />)} */}
+      {error.length > 0 &&
+        (< Error message={error} />)}
       <h2>Register !</h2>
       <form className="register-form" onSubmit={handleSubmit}>
         <label htmlFor="name">Full Name</label>
