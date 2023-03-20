@@ -41,17 +41,18 @@ export default function useApplicationData(DRUG, HOME) {
       .then(() => { setUser({}) })
   };
 
-  useEffect(() => {
-    Promise.all([
-      axios.get('/user'),
-      axios.get('/drugs')
-    ]).then((data) => {
-      console.log("useEffect",data)
-      setUser(data[0].data);
+  // useEffect(() => {
+  //   Promise.all([
+  //     axios.get('/user'),
+  //     axios.get('/drugs')
+  //   ])
+  //   .then((data) => {
+  //     console.log("useEffect",data)
+  //     setUser(data[0].data);
       
-      setDrugList(data[1].data);
-    })
-  }, []);
+  //     setDrugList(data[1].data);
+  //   })
+  // }, []);
   
   return { page, menu, user, drugList, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent }
 }

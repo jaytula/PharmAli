@@ -50,7 +50,7 @@ const Navbar = (props) => {
             <ul className='navbar-toggle'>
               <CloseIcon color="primary" onClick={showMenu} />
             </ul>
-            {NavbarData(props.user).map((item, index) => {
+            {NavbarData(props.user.id).map((item, index) => {
               return (
                 <ul key={index} className={item.cName} onClick={() => setLink(item.title)} data-testid="nav-item">
                   {item.icon}
