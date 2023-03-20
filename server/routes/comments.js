@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const addComment = require("../db/queries/add-comment");
 
 module.exports = db => {
   router.get("/", (request, response) => {
@@ -22,6 +23,12 @@ module.exports = db => {
       console.log(e);
     })
   });
+
+  router.post("/", (req, res) => {
+    console.log(req.body);
+    addComment.addComment(db, req.body.user_id, req.body.comment, req.body.blog_id)
+  });
+
 
   return router;
 };
