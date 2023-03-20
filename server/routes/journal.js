@@ -8,7 +8,7 @@ module.exports = (db) => {
   // To get all journals of a user
   router.get("/:id", (req, res) => {
     const id = req.url.replace('/', '')
-    console.log(id)
+    console.log("id",id)
     console.log("--------------")
     getJournal.getJournal(db, id)
       .then((journal) => {
@@ -18,10 +18,14 @@ module.exports = (db) => {
   
   // To edit or remove a journal of a user
   router.post("/delete", (req, res) => {
+
     // const { email, journal, edit_journal } = req.body;
     const journalId = Object.keys(req.body)[0]
     // (edit_journal) ? editJournal.editJournal(db, journal, journalId) : removeJournal.removeJournal(db, journalId)
     removeJournal.removeJournal(db, journalId)
+    .then(()=>{
+      res.status(200).send("db update")
+    })
     // console.log(Object.keys(req.body)[0])
   });
   router.post("/add", (req, res) => {
@@ -30,6 +34,10 @@ module.exports = (db) => {
     // (edit_journal) ? editJournal.editJournal(db, journal, journalId) : removeJournal.removeJournal(db, journalId)
    
     addJournal.addJournal(db, req.body.user_id, req.body.text)
+    .then((data)=>{
+      console.log("helloooo",data)
+      res.status(200).json(data.rows[0])
+    })
    
     // console.log(Object.keys(req.body)[0])
   });
