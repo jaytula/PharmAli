@@ -8,7 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 function BlogPost(props) {
   return (
     <div className='blogPost'>
-      <ArrowBackIcon size='large'/>
+      <ArrowBackIcon size='large' onClick={() => props.setPage("BLOG POSTS")}/>
       <div className="blogPostHolder">
         <img
           className="blogPostImage"
