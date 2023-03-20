@@ -1,9 +1,15 @@
 import React from 'react'
 
-const DrugList = () => {
+const DrugList = (props) => {
+  console.log(props.drugList[0]);
   return (
+
     <div>
-      DrugList Page
+      {props.drugList.map((drug) => (
+        <div>
+          {drug.name}
+        </div>
+      ))}
     </div>
   )
 }

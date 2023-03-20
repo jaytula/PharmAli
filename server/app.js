@@ -10,6 +10,7 @@ const blogsRouter = require('./routes/blogs');
 const commentsRouter = require('./routes/comments');
 const articlesRouter = require('./routes/articles');
 const journalRouter = require('./routes/journal');
+const drugsRouter = require('./routes/drugs');
 const savedMedicationsRouter = require('./routes/saved_medications');
 const categoriesRouter = require('./routes/categories');
 
@@ -36,6 +37,7 @@ app.use('/blogs', blogsRouter(db));
 app.use('/comments', commentsRouter(db));
 app.use('/articles', articlesRouter(db));
 app.use('/journal', journalRouter(db));
+app.use('/drugs', drugsRouter(db));
 app.use('/saved_medications', savedMedicationsRouter(db));
 app.use('/categories', categoriesRouter(db));
 

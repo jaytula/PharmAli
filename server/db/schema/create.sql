@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS articles CASCADE;
 DROP TABLE IF EXISTS saved_medications CASCADE;
 DROP TABLE IF EXISTS journals CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
--- DROP TABLE IF EXISTS drugs CASCADE;
+DROP TABLE IF EXISTS drugs CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -60,12 +60,7 @@ CREATE TABLE journals (
   created_at DATE NOT NULL DEFAULT CURRENT_DATE 
 );
 
-
--- Maybe
--- CREATE TABLE drugs (
---   id SERIAL PRIMARY KEY NOT NULL,
---   name VARCHAR(255) NOT NULL,
---   description TEXT NOT NULL,
---   drug_interactions TEXT NOT NULL,
---   side_effects TEXT NOT NULL
--- );
+CREATE TABLE drugs (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL
+);
