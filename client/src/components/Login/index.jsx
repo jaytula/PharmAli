@@ -15,7 +15,8 @@ const Login = (props) => {
     const userInfo = {email, password};
     props.setCookie(userInfo)
     .then((passed) => {
-      (passed.userInfo) ? props.setPage(HOME): setError(passed);
+      
+      (typeof passed === 'object') ? props.setPage(HOME): setError(passed);
     });
   };
 

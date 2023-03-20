@@ -11,6 +11,7 @@ const AddJournal = ({ handleAddJournal }) => {
     if (journalText.trim().length > 0) {
       handleAddJournal(journalText);
       setJournalText('');
+      // props.setPage("MY_JOURNAL")
     }
 
   };

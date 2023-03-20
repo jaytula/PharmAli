@@ -56,14 +56,14 @@ const MyJournal = (props) => {
   const [searchText, setSearchText] = useState('');
   // const[darkMode,setDarkMode]=useState(false);
   console.log(props);
+  const userId = props.user.id
   useEffect(() => {
     Promise.all([
-      axios.get(`/journal/${props.user_id}`),
+      axios.get(`/journal/${userId}`),
     ]).then((data) => {
       console.log(data[0].data);
       const user = {
-        firstName: 'Maryan',
-        lastName: 'Ali',
+        name: data[0].data.journal[0].name,
         image: profileImage
       };
       console.log(data[0].data)
@@ -88,17 +88,24 @@ const MyJournal = (props) => {
   useEffect(() => {
     localStorage.setItem('react-journal-app-data', JSON.stringify(journals));
   }, [journals]);
-
   const AddJournal = (text) => {
-    axios.post("/journal/add", {user_id: props.user_id, text})
-   .then(()=> {
-    const date = new Date();
+    axios.post("/journal/add", {user_id: props.user.id, text})
+   .then((data)=> {
+    console.log("help",data.data)
+    const date = data.data.created_at;
     const newJournal = {
-      text: text,
-      date: date.toLocaleDateString(),
+      text: data.data.text,
+      created_at: date,
+      id:data.data.id,
+      user_id:data.data.user_id,
+      user:{
+        name: data.data.name,
+        image: profileImage
+      }
     };
-    const newJournals = [...journals, newJournal];
-    setJournals(newJournals);
+    console.log(newJournal)
+    // const newJournals = [...prev, newJournal];
+    setJournals((prev)=>[...prev, newJournal]);
    })
   };
   const DeleteJournal = (id) => {

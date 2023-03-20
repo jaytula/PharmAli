@@ -35,7 +35,10 @@ function App() {
     setBlogContent(blog);
     setPage(BLOG);
   }
-
+  console.log(user)
+//   const { email, id} = user
+// console.log("email",email)
+// console.log("id",id)
   return (
     <div className="App">
       {/* Navbar */}
@@ -59,7 +62,7 @@ function App() {
       {page === MY_BLOGS &&
         (<MyBlogs user={user} />)}
       {page === MY_JOURNAL &&
-        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode}  user_id={user} />)}
+        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode}  user={user} />)}
       {page === DRUG &&
         (<Drug content={drugContent} />)}
       {page === BLOG &&

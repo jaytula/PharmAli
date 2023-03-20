@@ -5,7 +5,7 @@ export default function useApplicationData(DRUG, HOME) {
   const [menu, setMenu] = useState(false);
   const [page, setPage] = useState(HOME);
   const [drugContent, setDrugContent] = useState("");
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [blogContent, setBlogContent] = useState();
   const [drugList, setDrugList] = useState([]);
 
@@ -27,10 +27,10 @@ export default function useApplicationData(DRUG, HOME) {
       makeRequest = axios.post("/user/login", userInfo)
     }
     return makeRequest.then((data) => {
-      console.log(data)
-        const success = data.data.message;
+      const success = data.data.message;
+      console.log("success",success)
         if (success instanceof Object) {
-          setUser(userInfo.id);
+          setUser(success);
         }
         return success;
       })
@@ -38,7 +38,7 @@ export default function useApplicationData(DRUG, HOME) {
 
   const removeCookie = () => {
     return axios.post("/user/logout")
-      .then(() => { setUser("") })
+      .then(() => { setUser({}) })
   };
 
   useEffect(() => {
@@ -46,7 +46,9 @@ export default function useApplicationData(DRUG, HOME) {
       axios.get('/user'),
       axios.get('/drugs')
     ]).then((data) => {
-      setUser(data[0].data.message);
+      console.log("useEffect",data)
+      setUser(data[0].data);
+      
       setDrugList(data[1].data);
     })
   }, []);
