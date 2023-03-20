@@ -11,6 +11,7 @@ const commentsRouter = require('./routes/comments');
 const articlesRouter = require('./routes/articles');
 const journalRouter = require('./routes/journal');
 const savedMedicationsRouter = require('./routes/saved_medications');
+const categoriesRouter = require('./routes/categories');
 
 const app = express();
 
@@ -36,5 +37,6 @@ app.use('/comments', commentsRouter(db));
 app.use('/articles', articlesRouter(db));
 app.use('/journal', journalRouter(db));
 app.use('/saved_medications', savedMedicationsRouter(db));
+app.use('/categories', categoriesRouter(db));
 
 module.exports = app;
