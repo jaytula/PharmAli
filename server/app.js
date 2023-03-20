@@ -23,7 +23,7 @@ const cookieParams = {
   httpOnly: true,
   signed: true,
 };
-console.log(bcrypt.hashSync("1", 10));
+
 app.set("view engine", "ejs");
 app.set("trust proxy", 1);
 
