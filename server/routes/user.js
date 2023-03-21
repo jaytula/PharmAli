@@ -45,7 +45,7 @@ module.exports = (db, cookieParams) => {
         userInfo.id = data.rows[0].id;
         // If account doesn't exist with this email
         res.cookie('name', userInfo.id, cookieParams)
-        res.send({ message: userInfo });
+        res.send({ message: { userInfo } });
       })
       .catch((err) => {
         // If account does exist with this email

@@ -26,6 +26,7 @@ export default function useApplicationData(DRUG, HOME) {
       makeRequest = axios.post("/user/login", userInfo)
     }
     return makeRequest.then((data) => {
+      console.log(data)
       const success = data.data.message;
         if (success instanceof Object) {
           setUser(success.userInfo.id);
