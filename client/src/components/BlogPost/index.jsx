@@ -6,7 +6,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 function BlogPost(props) {
   return (
     <div className='blogPost'>
-      <ArrowBackIcon size='large' onClick={() => props.setPage("BLOG POSTS")}/>
+      <ArrowBackIcon size='large' onClick={() => props.setPage("BLOG POSTS")} />
       <div className="blogPostHolder">
         <img
           className="blogPostImage"
@@ -28,7 +28,9 @@ function BlogPost(props) {
         <p className="blogPostText">
           {props.blogContent.content}
         </p>
-      <Comments blog_id={props.blogContent.id} user_id={props.user_id}/>
+        {props.user_id &&
+          (<Comments blog_id={props.blogContent.id} user_id={props.user_id} />)
+        }
       </div>
     </div>
   )
