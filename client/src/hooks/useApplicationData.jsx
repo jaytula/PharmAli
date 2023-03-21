@@ -7,6 +7,7 @@ export default function useApplicationData(DRUG, HOME) {
   const [drugContent, setDrugContent] = useState();
   const [user, setUser] = useState({});
   const [blogContent, setBlogContent] = useState();
+  const [darkMode, setDarkMode] = useState(false);
 
   const onSearchSubmit = (drug) => {
     return Promise.all([
@@ -50,5 +51,5 @@ export default function useApplicationData(DRUG, HOME) {
     })
   }, []);
 
-  return { page, menu, user, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent }
+  return { menu, page, drugContent, user, blogContent, darkMode, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode }
 }
