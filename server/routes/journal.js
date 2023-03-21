@@ -18,11 +18,17 @@ module.exports = (db) => {
   router.post("/delete", (req, res) => {
     const journalId = Object.keys(req.body)[0]
     removeJournal.removeJournal(db, journalId)
+    .then(() => {
+      res.send(200);
+    })
   });
 
   // To add a journal entry of a user
   router.post("/add", (req, res) => {
     addJournal.addJournal(db, req.body.user_id, req.body.text)
+    .then(() => {
+      res.send(200);
+    })
   });
   
   return router;
