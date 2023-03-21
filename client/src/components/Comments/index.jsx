@@ -38,6 +38,7 @@ function Comments(props) {
           blog_id: props.blog_id
         }
         setComments((prev) => [...prev, addedComment])
+        setNewComment('');
       })
   }
 
