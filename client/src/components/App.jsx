@@ -12,7 +12,6 @@ import MyJournal from './MyJournal';
 import Drug from './Drug';
 import useApplicationData from '../hooks/useApplicationData';
 import BlogPost from './BlogPost';
-import Articles from './Articles'
 
 function App() {
   // The different pages user could visit
@@ -20,7 +19,6 @@ function App() {
   const LOGIN = "LOGIN";
   const REGISTER = "REGISTER";
   const SEARCH = "SEARCH";
-  const DRUG_LIST = "DRUG LIST A-Z";
   const PHARM_LOCATOR = "PHARMACY NEARBY";
   const BLOG_POSTS = "BLOG POSTS";
   const MY_BLOGS = "MY BLOGS";
@@ -41,7 +39,7 @@ function App() {
       <Navbar menu={menu} setMenu={setMenu} setPage={setPage} user={user} removeCookie={removeCookie} />
       {/* Page user is on */}
       {page === HOME &&
-        (<Home user={user} />)}
+        (<Home user={user.id} />)}
       {page === LOGIN &&
         (<Login setPage={setPage} setCookie={setCookie} />)}
       {page === REGISTER &&
@@ -50,17 +48,17 @@ function App() {
         (<Search
           onSearchSubmit={onSearchSubmit} drugList={drugList} />)}
       {page === PHARM_LOCATOR &&
-        (<PharmLocator user={user} />)}
+        (<PharmLocator user={user.id} />)}
       {page === BLOG_POSTS &&
         (<BlogPosts setBlog={setBlog} />)}
       {page === MY_BLOGS &&
-        (<MyBlogs user={user} />)}
+        (<MyBlogs user={user.id} />)}
       {page === MY_JOURNAL &&
-        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode} user_id={user} />)}
+        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode} user_id={user.id} />)}
       {page === DRUG &&
         (<Drug content={drugContent} />)}
       {page === BLOG &&
-        (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user} />)}
+        (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user.id} />)}
     </div>
   );
 }

@@ -1,13 +1,19 @@
 const router = require("express").Router();
 const getUser = require('../db/queries/get-user');
+const getUserById = require('../db/queries/get-user-id');
+const addUser = require('../db/queries/add-user');
 const bcrypt = require("bcryptjs");
 
 
 module.exports = (db, cookieParams) => {
   // For getting login state when app is refreshed
   router.get("/", (req, res) => {
-    const message = req.signedCookies.name
-    res.send({ message });
+    console.log(req.signedCookies.name);
+    getUserById.getUserById(db, req.signedCookies.name)
+      .then((data) => {
+        const message = data.rows[0];
+        res.send({ message });
+      })
   });
 
   // For logging in
@@ -40,7 +46,7 @@ module.exports = (db, cookieParams) => {
       password: bcrypt.hashSync(req.body.password, 10),
       postal_code: req.body.postalCode
     }
-    getUser.getUser(db, userInfo)
+    addUser.addUser(db, userInfo)
       .then((data) => {
         userInfo.id = data.rows[0].id;
         // If account doesn't exist with this email

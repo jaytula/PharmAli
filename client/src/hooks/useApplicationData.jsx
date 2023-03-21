@@ -5,7 +5,7 @@ export default function useApplicationData(DRUG, HOME) {
   const [menu, setMenu] = useState(false);
   const [page, setPage] = useState(HOME);
   const [drugContent, setDrugContent] = useState("");
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [blogContent, setBlogContent] = useState();
 
   const onSearchSubmit = (text) => {
@@ -29,7 +29,7 @@ export default function useApplicationData(DRUG, HOME) {
       console.log(data)
       const success = data.data.message;
         if (success instanceof Object) {
-          setUser(success.userInfo.id);
+          setUser(success.userInfo);
         }
         return success;
       })
@@ -42,9 +42,13 @@ export default function useApplicationData(DRUG, HOME) {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/user'),
+      axios.get('/user')
     ]).then((data) => {
-      setUser(data[0].data.message);
+      // Only set a user if a cookie exists
+      console.log(data[0].data.message);
+      if (data[0].data.message) {
+        setUser(data[0].data.message);
+      }
     })
   }, []);
   
