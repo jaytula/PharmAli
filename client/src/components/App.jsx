@@ -12,6 +12,7 @@ import MyJournal from './MyJournal';
 import Drug from './Drug';
 import useApplicationData from '../hooks/useApplicationData';
 import BlogPost from './BlogPost';
+import MyDrugs from './MyDrugs';
 
 function App() {
   // The different pages user could visit
@@ -25,7 +26,7 @@ function App() {
   const MY_JOURNAL = "MY JOURNAL";
   const DRUG = "DRUG";
   const BLOG = "BLOG";
-  const EDIT = "EDIT";
+  const MY_DRUGS = "MY DRUGS";
   const { page, menu, user, drugList, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent } = useApplicationData(DRUG, HOME);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -53,13 +54,15 @@ function App() {
       {page === BLOG_POSTS &&
         (<BlogPosts setBlog={setBlog} />)}
       {page === MY_BLOGS &&
-        (<MyBlogs user={user.id} setBlog={setBlog}/>)}
+        (<MyBlogs user={user.id} setBlog={setBlog} />)}
       {page === MY_JOURNAL &&
         (<MyJournal darkMode={darkMode} user_id={user.id} />)}
       {page === DRUG &&
-        (<Drug content={drugContent} setPage={setPage} user_id={user.id}/>)}
+        (<Drug content={drugContent} setPage={setPage} user_id={user.id} />)}
       {page === BLOG &&
         (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user.id} />)}
+      {page === MY_DRUGS &&
+        (<MyDrugs />)}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import BookIcon from '@mui/icons-material/Book';
 import CreateIcon from '@mui/icons-material/Create';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import VaccinesIcon from '@mui/icons-material/Vaccines';
 
 const navbarData = (login) => {
   const navbarData = [
@@ -37,6 +38,11 @@ const navbarData = (login) => {
       {
         title: "MY JOURNAL",
         icon: <CreateIcon color="primary" />,
+        className: 'nav-text'
+      },
+      {
+        title: "MY DRUGS",
+        icon: <VaccinesIcon color="primary" />,
         className: 'nav-text'
       },
       {
