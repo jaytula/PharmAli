@@ -6,9 +6,6 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 function EditBlog(props) {
-  console.log('----------------------------------------------------------------')
-  console.log(props);
-  console.log('----------------------------------------------------------------')
 
   const [title, setTitle] = useState(props.blog[0].title)
   const [image, setImage] = useState(props.blog[0].image_url)
@@ -22,7 +19,6 @@ function EditBlog(props) {
   useEffect(() => {
     axios.get('/categories')
       .then((data) => {
-        console.log(data)
         setCategory(data.data)
       })
   }, []);

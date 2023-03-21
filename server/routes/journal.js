@@ -17,7 +17,6 @@ module.exports = (db) => {
   // To remove a journal entry of a user
   router.post("/delete", (req, res) => {
     const journalId = Object.keys(req.body)[0]
-    console.log(req.body)
     removeJournal.removeJournal(db, journalId)
     .then(() => {
       res.send(200);

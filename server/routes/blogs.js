@@ -29,11 +29,11 @@ module.exports = db => {
   });
 
   router.post("/delete", (req, res) => {
-
     const blogId = Object.keys(req.body)[0]
-
-    console.log(req.body)
     deleteBlog.deleteBlog(db, blogId)
+    .then(() => {
+      res.send(200)
+    })
   });
 
   router.post("/edit", (req, res) => {

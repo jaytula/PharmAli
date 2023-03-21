@@ -12,12 +12,10 @@ const MyBlogs = (props) => {
   
   const blogById = () => {
     const id = blogs.filter((blog) => blog.id === edit)
-    // console.log('iddddddddd',id);
     return id;
   }
 
   const editPost = (editBlog) => {
-    console.log(editBlog.title, editBlog.image_url, editBlog.content, editBlog.name, editBlog)
     Promise.all([
       axios.post("/blogs/edit", editBlog)
     ])
@@ -38,7 +36,6 @@ const MyBlogs = (props) => {
     axios.post("/blogs/delete", id)
     .then(() => {
       const newBlogPost = blogs.filter((blog) => blog.id !== id);
-      console.log(newBlogPost)
       setBlogs(newBlogPost);
     })
   }
@@ -49,7 +46,6 @@ const MyBlogs = (props) => {
       axios.get('/categories')
     ]).then((data) => {
       setBlogs(data[0].data)
-      console.log(data[1].data)
       setCategories(data[1].data)
     })
   }, []);

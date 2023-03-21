@@ -17,7 +17,6 @@ const BlogPosts = (props) => {
       axios.get('/categories')
     ]).then((data) => {
       setBlogs(data[0].data)
-      console.log(data[0].data)
       setCategories(data[1].data)
     })
   }, []);
@@ -36,15 +35,6 @@ const BlogPosts = (props) => {
           key={blog.id}
           blog={blog}
           setBlog={() => props.setBlog(blog)} />
-        //   { blog.user_id === props.user_id &&
-        //     <BlogPostItem
-        //     key={blog.id}
-        //     blog={blog}
-        //     setBlog={() => props.setBlog(blog)} />}
-        //     {<BlogPostItem
-        //     key={blog.id}
-        //     blog={blog}
-        //     setBlog={() => props.setBlog(blog)} />}
         ))}
         
       </div>
