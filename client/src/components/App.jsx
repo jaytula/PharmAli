@@ -5,7 +5,6 @@ import Home from './Home';
 import Login from './Login'
 import Register from './Register';
 import Search from './Search';
-import DrugList from './DrugList';
 import PharmLocator from './PharmLocator';
 import BlogPosts from './BlogPosts';
 import MyBlogs from './MyBlogs';
@@ -50,8 +49,6 @@ function App() {
       {page === SEARCH &&
         (<Search
           onSearchSubmit={onSearchSubmit} drugList={drugList} />)}
-      {page === DRUG_LIST &&
-        (<DrugList drugList={drugList} />)}
       {page === PHARM_LOCATOR &&
         (<PharmLocator user={user} />)}
       {page === BLOG_POSTS &&
@@ -63,9 +60,7 @@ function App() {
       {page === DRUG &&
         (<Drug content={drugContent} />)}
       {page === BLOG &&
-        (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user}/>)}
-      {/* {(page === BLOG_POSTS) || (page === SEARCH) || (page === DRUG_LIST) && 
-        <Articles/> } */}
+        (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user} />)}
     </div>
   );
 }
