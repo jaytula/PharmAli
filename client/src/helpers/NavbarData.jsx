@@ -1,7 +1,6 @@
 import React from 'react'
 import PersonIcon from '@mui/icons-material/Person';
 import HomeIcon from '@mui/icons-material/Home';
-import VaccinesIcon from '@mui/icons-material/Vaccines';
 import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
 import SearchIcon from '@mui/icons-material/Search';
 import BookIcon from '@mui/icons-material/Book';
@@ -13,11 +12,6 @@ const navbarData = (login) => {
     {
       title: "SEARCH",
       icon: <SearchIcon color="primary" />,
-      className: 'nav-text'
-    },
-    {
-      title: "DRUG LIST A-Z",
-      icon: <VaccinesIcon color="primary" />,
       className: 'nav-text'
     },
     {
