@@ -1,8 +1,20 @@
 import React from 'react'
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import TimeAgo from 'timeago-react';
+import EditBlog from '../EditBlog';
+import { useState } from 'react';
 
 function MyBlogsItem(props) {
+  const [edit, setEdit]=useState(false);
+  
   return (
-    <div className="blog">  
+    <>
+    {edit === true && 
+      (<EditBlog setEdit={setEdit} editPost={props.editPost} blog={props.blog}/>)}
+      {edit === false && 
+    (<div className="blog">  
     <img
       className="blogImage"
       src={`${props.blog.image_url}`}
@@ -23,8 +35,17 @@ function MyBlogsItem(props) {
     <p className="blogDescription">
       {props.blog.content}
     </p>
-  </div>
+      <IconButton onClick={() => setEdit(!edit)}>
+        <EditIcon/>
+      </IconButton>
+      <IconButton onClick={() => props.deletePost(props.blog.id)}>
+         <DeleteIcon/>
+      </IconButton>
+
+    </div>
+  )}
+  </>
   )
 }
 
-export default MyBlogsItem
+export default MyBlogsItem;

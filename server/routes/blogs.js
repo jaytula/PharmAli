@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const deleteBlog = require("../db/queries/delete-blog");
+const editBlog = require("../db/queries/edit-blog");
 
 module.exports = db => {
   router.get("/", (request, response) => {
@@ -24,6 +26,22 @@ module.exports = db => {
       .then(({ rows: blogs }) => {
       response.json(blogs);
     });
+  });
+
+  router.post("/delete", (req, res) => {
+    
+    const blogId = Object.keys(req.body)[0]
+    
+    console.log(req.body)
+    deleteBlog.deleteBlog(db, blogId)
+  });
+
+  router.post("/edit", (req, res) => {
+    
+    const blog = (req.body)
+    console.log(blog)
+    
+    editBlog.editBlog(db, blog).then(() => console.log("you reached this") )
   });
   return router;
 };
