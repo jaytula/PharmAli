@@ -43,10 +43,12 @@ function Comments(props) {
 
   // To delete a comment
   const deleteComment = (id) => {
-    axios.post("/comments/delete", id)
+    Promise.all([
+      axios.post("/comments/delete", id)
+    ])
       .then(() => {
         console.log("Comment deleted")
-        const newComment = comments.filter((comment) => comments.id !== id);
+        const newComment = comments.filter((comment) => comment.id !== id);
         setComments(newComment);
       })
   }

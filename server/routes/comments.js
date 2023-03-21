@@ -29,7 +29,10 @@ module.exports = db => {
 
   router.post("/delete", (req, res) => {
     const comment_id = Object.keys(req.body)[0];
-    deleteComment.deleteComment(db, comment_id);
+    deleteComment.deleteComment(db, comment_id)
+    .then(() => {
+      res.send(200);
+    })
   });
 
   return router;
