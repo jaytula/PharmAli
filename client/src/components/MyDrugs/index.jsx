@@ -12,7 +12,6 @@ const MyDrugs = (props) => {
     })
   }, []);
 
-  console.log(drugs)
   return (
     <>
       {drugs.map((drug) => (
