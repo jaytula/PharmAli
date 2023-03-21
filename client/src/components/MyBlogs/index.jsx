@@ -11,12 +11,13 @@ const MyBlogs = (props) => {
   const [edit, setEdit]=useState();
   
   const blogById = () => {
-    const id = blogs.filter((blog) => blog.id == edit)
+    const id = blogs.filter((blog) => blog.id === edit)
+    // console.log('iddddddddd',id);
     return id;
   }
 
   const editPost = (editBlog) => {
-    // console.log(editBlog)
+    console.log(editBlog.title, editBlog.image_url, editBlog.content, editBlog.name, editBlog)
     Promise.all([
       axios.post("/blogs/edit", editBlog)
     ])
@@ -29,8 +30,7 @@ const MyBlogs = (props) => {
         });
         return [...prev]
       })
-      props.setPage("BLOG")
-      // console.log(newBlogPost)
+      props.setBlog(editBlog)
     })
   }
 

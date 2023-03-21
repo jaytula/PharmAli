@@ -53,7 +53,7 @@ function App() {
       {page === BLOG_POSTS &&
         (<BlogPosts setBlog={setBlog} />)}
       {page === MY_BLOGS &&
-        (<MyBlogs user={user.id} />)}
+        (<MyBlogs user={user.id} setBlog={setBlog}/>)}
       {page === MY_JOURNAL &&
         (<MyJournal darkMode={darkMode} user_id={user.id} />)}
       {page === DRUG &&

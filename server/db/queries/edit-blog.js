@@ -9,6 +9,8 @@ const editBlog = function(db, blog) {
   category_id = $4
   WHERE id = $5`;
 
+  console.log(queryString);
+  console.log(queryParams);
   return db.query(queryString, queryParams);
 };
 

@@ -24,24 +24,24 @@ module.exports = db => {
   `
     db.query(queryString, queryParams)
       .then(({ rows: blogs }) => {
-      response.json(blogs);
-    });
+        response.json(blogs);
+      });
   });
 
   router.post("/delete", (req, res) => {
-    
+
     const blogId = Object.keys(req.body)[0]
-    
+
     console.log(req.body)
     deleteBlog.deleteBlog(db, blogId)
   });
 
   router.post("/edit", (req, res) => {
-    
-    const blog = (req.body)
-    console.log(blog)
-    
-    editBlog.editBlog(db, blog).then(() => res.json({success : true}) )
+    const blog = req.body
+    editBlog.editBlog(db, blog)
+    .then(() => {
+      res.json({ success: true })
+    })
   });
   return router;
 };

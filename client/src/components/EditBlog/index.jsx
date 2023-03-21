@@ -6,22 +6,25 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 function EditBlog(props) {
+  console.log('----------------------------------------------------------------')
   console.log(props);
+  console.log('----------------------------------------------------------------')
+
   const [title, setTitle] = useState(props.blog[0].title)
   const [image, setImage] = useState(props.blog[0].image_url)
   const [content, setContent] = useState(props.blog[0].content)
-  const [category, setCategory]= useState([])
+  const [category, setCategory] = useState([])
 
   const titleChange = (e) => setTitle(e.target.value);
   const imageChange = (e) => setImage(e.target.value);
   const contentChange = (e) => setContent(e.target.value);
-  
+
   useEffect(() => {
-      axios.get('/categories')
+    axios.get('/categories')
       .then((data) => {
-      console.log(data)
-      setCategory(data.data)
-    })
+        console.log(data)
+        setCategory(data.data)
+      })
   }, []);
 
   return (
@@ -43,7 +46,7 @@ function EditBlog(props) {
           Category:
           <select>
             {category.map((cat) => (
-            <option key={cat.id} value={cat.id}>{cat.name}</option>
+              <option key={cat.id} value={cat.id}>{cat.name}</option>
             ))}
           </select>
         </label>
@@ -52,7 +55,7 @@ function EditBlog(props) {
         <button className='button-cancel' onClick={() => props.setEdit(prev => !prev)}>
           Cancel
         </button>
-        <button className='button-save' onClick={() => props.editPost({...props.blog, title, image_url:image, content, name:category})}>
+        <button className='button-save' onClick={() => props.editPost({ id: props.blog[0].id, title, image_url: image, content, name: 1 })}>
           Save
         </button>
       </div>
