@@ -19,9 +19,7 @@ const Drug = (props) => {
   const changeLike = () => {
     let params;
     let route;
-    console.log('I AM HGERE')
     if (favourite) {
-    console.log('I AM HGERE NOWWWWWW')
       params = { favourite };
       route = '/favourite/remove';
     } else {

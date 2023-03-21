@@ -26,7 +26,6 @@ export default function useApplicationData(DRUG, HOME) {
       makeRequest = axios.post("/user/login", userInfo)
     }
     return makeRequest.then((data) => {
-      console.log(data)
       const success = data.data.message;
       if (success instanceof Object) {
         setUser(success.userInfo);
@@ -45,7 +44,6 @@ export default function useApplicationData(DRUG, HOME) {
       axios.get('/user')
     ]).then((data) => {
       // Only set a user if a cookie exists
-      console.log(data[0].data.message);
       if (data[0].data.message) {
         setUser(data[0].data.message);
       }

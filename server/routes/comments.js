@@ -13,7 +13,6 @@ module.exports = db => {
     db.query(queryString, queryParams)
       .then((data) => {
         response.json({ rows: data.rows });
-        console.log(data.rows);
       }).catch((e) => {
         console.log(e);
       })

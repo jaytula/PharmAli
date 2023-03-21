@@ -7,7 +7,6 @@ module.exports = db => {
     
     db.query(queryString, queryParams)
     .then(({ rows: saved_medications }) => {
-      console.log(saved_medications)
       response.json(saved_medications);
     })
   });

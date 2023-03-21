@@ -8,7 +8,6 @@ const bcrypt = require("bcryptjs");
 module.exports = (db, cookieParams) => {
   // For getting login state when app is refreshed
   router.get("/", (req, res) => {
-    console.log(req.signedCookies.name);
     getUserById.getUserById(db, req.signedCookies.name)
       .then((data) => {
         const message = data.rows[0];
