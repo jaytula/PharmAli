@@ -7,14 +7,9 @@ import EditBlog from '../EditBlog';
 import { useState } from 'react';
 
 function MyBlogsItem(props) {
-  const [edit, setEdit]=useState(false);
   
   return (
-    <>
-    {edit === true && 
-      (<EditBlog setEdit={setEdit} editPost={props.editPost} blog={props.blog}/>)}
-      {edit === false && 
-    (<div className="blog">  
+    <div className="blog">  
     <img
       className="blogImage"
       src={`${props.blog.image_url}`}
@@ -35,7 +30,7 @@ function MyBlogsItem(props) {
     <p className="blogDescription">
       {props.blog.content}
     </p>
-      <IconButton onClick={() => setEdit(!edit)}>
+      <IconButton onClick={() => props.setEdit(props.blog.id)}>
         <EditIcon/>
       </IconButton>
       <IconButton onClick={() => props.deletePost(props.blog.id)}>
@@ -43,8 +38,6 @@ function MyBlogsItem(props) {
       </IconButton>
 
     </div>
-  )}
-  </>
   )
 }
 
