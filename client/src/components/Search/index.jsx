@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Articles from '../Articles';
 import '../../styles/Search.css'
 import axios from 'axios';
+import { useNavigate, useParams } from "react-router-dom";
 
 const Search = (props) => {
+  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const [drugList, setDrugList] = useState([])
 
@@ -20,6 +22,9 @@ const Search = (props) => {
     })
   }, [searchInput]);
 
+  const tryNavigate = () => {
+    navigate('/');
+  }
   return (
     <>
       <section className='section-search'>
@@ -49,6 +54,9 @@ const Search = (props) => {
               {drug.name}
             </div>
           ))}
+          <button onClick={tryNavigate}>
+              Click Me
+            </button>
         </div>
       </section>
     </>
