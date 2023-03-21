@@ -46,7 +46,7 @@ console.log(req.body);
     getUser.getUser(db, userInfo)
       .then((data) => {
         console.log('User Added')
-        userInfo.id = data
+        userInfo.id = data.rows[0].id;
         // If account doesn't exist with this email
         res.cookie('name', userInfo.id, cookieParams)
         res.send({ message: userInfo });
