@@ -3,12 +3,12 @@ const router = require("express").Router();
 module.exports = db => {
   router.get("/:id", (request, response) => {
     const queryParams = request.url.substring(1).split("&");
-    const queryString = `SELECT * FROM saved_medications WHERE user_id = $1 AND drug_id = $2;`
-    
+    const queryString = (queryParams.length === 2) ? `SELECT * FROM saved_medications WHERE user_id = $1 AND drug_id = $2;` : `SELECT * FROM saved_medications WHERE user_id = $1;`
+
     db.query(queryString, queryParams)
-    .then(({ rows: saved_medications }) => {
-      response.json(saved_medications);
-    })
+      .then(({ rows: saved_medications }) => {
+        response.json(saved_medications);
+      })
   });
 
   router.post("/add", (request, response) => {

@@ -62,7 +62,7 @@ function App() {
       {page === BLOG &&
         (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user.id} />)}
       {page === MY_DRUGS &&
-        (<MyDrugs />)}
+        (<MyDrugs user_id={user.id} />)}
     </div>
   );
 }

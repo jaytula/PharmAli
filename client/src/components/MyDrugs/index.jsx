@@ -1,14 +1,27 @@
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import { useEffect, useState } from "react"
+import axios from "axios"
 
-export class MyDrugs extends Component {
-  static propTypes = {}
+const MyDrugs = (props) => {
+  const [drugs, setDrugs] = useState([]);
 
-  render() {
-    return (
-      <div>MyDrugs</div>
-    )
-  }
+  useEffect(() => {
+    Promise.all([
+      axios.get(`/favourite/${props.user_id}`),
+    ]).then((data) => {
+      setDrugs(data[0].data)
+    })
+  }, []);
+
+  console.log(drugs)
+  return (
+    <>
+      {drugs.map((drug) => (
+        <div>
+          {drug.drug_id}
+        </div>
+      ))}
+    </>
+  )
 }
 
 export default MyDrugs
