@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       {/* Navbar */}
-      <Navbar menu={menu} setMenu={setMenu} setPage={setPage} user={user} removeCookie={removeCookie} />
+      <Navbar menu={menu} setMenu={setMenu} setPage={setPage} user={user} removeCookie={removeCookie} setDarkMode={setDarkMode} />
       {/* Page user is on */}
       {page === HOME &&
         (<Home user={user.id} />)}
@@ -54,7 +54,7 @@ function App() {
       {page === MY_BLOGS &&
         (<MyBlogs user={user.id} />)}
       {page === MY_JOURNAL &&
-        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode} user_id={user.id} />)}
+        (<MyJournal darkMode={darkMode} user_id={user.id} />)}
       {page === DRUG &&
         (<Drug content={drugContent} setPage={setPage} user_id={user.id}/>)}
       {page === BLOG &&

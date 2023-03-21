@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import JournalList from './JournalList';
-import { nanoid } from 'nanoid';
 import profileImage from '../../assets/images/medicine.jpeg';
 import SearchJournal from './Search';
-import JournalHeader from './Header';
+import JournalHeader from './JournalHeader';
 import axios from 'axios';
-
 import "../../styles/Journal.css";
-
 
 const MyJournal = (props) => {
   const [journals, setJournals] = useState([]);
@@ -64,7 +61,7 @@ const MyJournal = (props) => {
   return (
     <div className={`${props.darkMode && 'dark-mode'}`}>
       <div className='container'>
-        <JournalHeader handleToggleDarkMode={props.setDarkMode} />
+        <JournalHeader />
         <SearchJournal
           handleSearchJournal={setSearchText}
         />

@@ -26,27 +26,6 @@ textarea:hover{
 textarea:focus{
 outline:none;
 }
-.save{
-  /* background-color: blue; */
-  border:none;
-  border-radius: 15px;
-  padding:5px 10px 5px 10px;
-  cursor:pointer;
-  -ms-transform: scale(0.9); /* IE 9 */
-  -webkit-transform: scale(0.9); /* Safari 3-8 */
-  transform: scale(0.9);
-  
-}
-.save:hover{
-  background-color: darksalmon;
-  cursor:pointer;
-  -ms-transform: scale(1.0); /* IE 9 */
-  -webkit-transform: scale(1.0); /* Safari 3-8 */
-  transform: scale(1.0);
-  border-radius: 10px;
-  animation: jump-shaking 0.99s infinite;
-  
-}
 @keyframes jump-shaking {
   0% { transform: translateX(0) }
   25% { transform: translateY(-9px) }

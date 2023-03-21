@@ -50,12 +50,19 @@ const Navbar = (props) => {
             <ul className='navbar-toggle'>
               <CloseIcon color="primary" onClick={showMenu} />
             </ul>
-            <ul key={props.user.id} className="nav-text" onClick={() => setLink(props.user.name)} data-testid="nav-item">
-            {props.user.name &&
-              (<h3>
-                Welcome {props.user.name}
-              </h3>)}
-              </ul>
+            <ul key={props.user.id} className="nav-text" data-testid="nav-item">
+              {props.user.name &&
+                (<h3>
+                  Welcome {props.user.name}
+                </h3>)}
+              <button
+                onClick={() =>
+                  props.setDarkMode(
+                    (previousDarkMode) =>
+                      !previousDarkMode)
+                } className="save"
+              >Dark Mode</button>
+            </ul>
             {NavbarData(props.user.id).map((item, index) => {
               return (
                 <ul key={index} className={item.cName} onClick={() => setLink(item.title)} data-testid="nav-item">
