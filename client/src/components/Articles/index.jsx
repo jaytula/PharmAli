@@ -1,15 +1,28 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import Article from '../Article'
 import '../../styles/Articles.css'
+import axios from 'axios'
 
-function Articles() {
+const Articles = (props) => {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    Promise.all([
+      axios.get('/articles'),
+    ]).then((data) => {
+      setArticles(data[0].data)
+    })
+  }, []);
+
   return (
     <div className='articles'>
       <span className="articlesTitle">ARTICLES</span>
-      <Article />
-      <Article />
-      <Article />
-      <Article />
+      {articles.map((article) => (
+        <Article
+          key={article.id}
+          article={article}
+        />
+      ))}
     </div>
   )
 }
