@@ -46,11 +46,15 @@ CREATE TABLE articles (
   article_url VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE drugs (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE saved_medications (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  name TEXT NOT NULL,
-  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
+  drug_id INTEGER REFERENCES drugs(id) ON DELETE CASCADE
 );
 
 CREATE TABLE journals (
@@ -58,9 +62,4 @@ CREATE TABLE journals (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   text TEXT NOT NULL,
   created_at DATE NOT NULL DEFAULT CURRENT_DATE 
-);
-
-CREATE TABLE drugs (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
 );

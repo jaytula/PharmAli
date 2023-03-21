@@ -36,16 +36,16 @@ VALUES
 ('Nationwide Recall of TIROSINT®-SOL Due to Subpotency','https://dev.rodpub.com/images/172/051_350.jpg', 'https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/ibsa-pharma-inc-issues-voluntary-nationwide-recall-select-lots-tirosintr-sol-levothyroxine-sodium'),
 ('Nationwide Recall of Banana Boat Hair & Scalp Sunscreen Due to the Presence of Benzene', 'https://cdn.shopify.com/s/files/1/0551/0728/9293/products/Hair_and_Scalp_Spray_FRONT.jpg?v=1624388569', 'https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/edgewell-personal-care-issues-voluntary-nationwide-recall-banana-boat-hair-scalp-sunscreen-due-0');
 
-INSERT INTO saved_medications (user_id, name)
+INSERT INTO saved_medications (user_id, drug_id)
 VALUES
-(1, 'Olanzapine'),
-(1, 'Caffeine'),
-(1, 'Ibuprofen'),
-(3, 'Codeine'),
-(4, 'Percocet'),
-(4, 'Cosentyx'),
-(3, 'Naproxen'),
-(3, 'Indocin');
+(1, 1),
+(1, 2),
+(1, 3),
+(3, 4),
+(4, 5),
+(4, 6),
+(3, 7),
+(3, 8);
 
 INSERT INTO journals (user_id, text, created_at)
 VALUES 

@@ -45,7 +45,7 @@ const Search = (props) => {
             </section>
           </main>
           {drugList.map((drug) => (
-            <div onClick={() => validate(drug.name)}>
+            <div onClick={() => validate(drug)}>
               {drug.name}
             </div>
           ))}

@@ -4,16 +4,16 @@ import { useState, useEffect } from 'react'
 export default function useApplicationData(DRUG, HOME) {
   const [menu, setMenu] = useState(false);
   const [page, setPage] = useState(HOME);
-  const [drugContent, setDrugContent] = useState("");
+  const [drugContent, setDrugContent] = useState();
   const [user, setUser] = useState({});
   const [blogContent, setBlogContent] = useState();
 
-  const onSearchSubmit = (text) => {
+  const onSearchSubmit = (drug) => {
     return Promise.all([
-      axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
+      axios.get(`https://api.fda.gov/drug/label.json?search=description:${drug.name}`)
     ]).then((data) => {
       setPage(DRUG);
-      setDrugContent(data);
+      setDrugContent({ data, drug_id: drug.id });
     })
   }
 
@@ -28,11 +28,11 @@ export default function useApplicationData(DRUG, HOME) {
     return makeRequest.then((data) => {
       console.log(data)
       const success = data.data.message;
-        if (success instanceof Object) {
-          setUser(success.userInfo);
-        }
-        return success;
-      })
+      if (success instanceof Object) {
+        setUser(success.userInfo);
+      }
+      return success;
+    })
   };
 
   const removeCookie = () => {
@@ -51,6 +51,6 @@ export default function useApplicationData(DRUG, HOME) {
       }
     })
   }, []);
-  
+
   return { page, menu, user, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent }
 }

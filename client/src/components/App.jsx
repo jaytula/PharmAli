@@ -56,7 +56,7 @@ function App() {
       {page === MY_JOURNAL &&
         (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode} user_id={user.id} />)}
       {page === DRUG &&
-        (<Drug content={drugContent} setPage={setPage} />)}
+        (<Drug content={drugContent} setPage={setPage} user_id={user.id}/>)}
       {page === BLOG &&
         (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user.id} />)}
     </div>
