@@ -8,9 +8,8 @@ import "../../styles/Journal.css";
 
 const MyJournal = (props) => {
   const [journals, setJournals] = useState([]);
-
   const [searchText, setSearchText] = useState('');
-  // const[darkMode,setDarkMode]=useState(false);
+
   useEffect(() => {
     Promise.all([
       axios.get(`/journal/${props.user_id}`),
