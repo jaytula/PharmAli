@@ -21,11 +21,16 @@ const MyBlogs = (props) => {
       axios.post("/blogs/edit", editBlog)
     ])
     .then(() => {
-      const newBlogPost = blogs.map((blog) => {
-        // blog.id === editBlog.id
-      });
+      setBlogs((prev)=> {
+        prev.forEach((blog) => {
+          if (blog.id === editBlog.id) {
+            blog = {...blog, ...editBlog}
+          }
+        });
+        return [...prev]
+      })
+      props.setPage("BLOG")
       // console.log(newBlogPost)
-      setBlogs(newBlogPost);
     })
   }
 

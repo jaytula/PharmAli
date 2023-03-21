@@ -1,49 +1,61 @@
 import { FormControl } from '@mui/material';
 import React from 'react'
 import { useState } from 'react';
+import '../../styles/EditBlog.css';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function EditBlog(props) {
-  // console.log(props);
-  const [formValues, setFormValues] = useState({});
+  console.log(props);
+  const [title, setTitle] = useState(props.blog[0].title)
+  const [image, setImage] = useState(props.blog[0].image_url)
+  const [content, setContent] = useState(props.blog[0].content)
+  const [category, setCategory]= useState([])
 
-  const handleChange = (e) => {
-    setFormValues({ ...formValues, [e.target.id]: e.target.value });
-  };
+  const titleChange = (e) => setTitle(e.target.value);
+  const imageChange = (e) => setImage(e.target.value);
+  const contentChange = (e) => setContent(e.target.value);
+  
+  useEffect(() => {
+      axios.get('/categories')
+      .then((data) => {
+      console.log(data)
+      setCategory(data.data)
+    })
+  }, []);
 
   return (
-    <div>EditBlog
-      <form>
-      <label>
-        Title:
-        <input type="text" name="title" value={formValues.title && props.blog[0].title} onChange={handleChange} />
-      </label>
-      <label>
-        Image:
-        <input type="text" name="image" value={props.blog[0].image_url} />
-      </label>
-      <label>
-        Content:
-        <textarea type="text" name="image" value={props.blog[0].content} />
-      </label>
-      <label>
-        Category:
-        <select>
-          <option value="liquids">Liquids</option>
-          <option value="tablets">Tablets</option>
-          <option value="capsules">Capsules</option>
-          <option value="injection">Injections</option>
-        </select>
-      </label>
-
-    </form>
-
-
-      <button onClick={() => props.setEdit(prev => !prev)}>
-        Cancel
-      </button>
-      <button onClick={() => props.editPost({id: 4, title: 'Neew title', name: 4, content: 'Omg i csnt type', image_url:'https://5.imimg.com/data5/SELLER/Default/2022/1/VU/BB/BY/13166357/olanzapine-ip-5mg--500x500.jpg' })}>
-        Save
-      </button>
+    <div className='write'>EditBlog
+      <form className='writeForm'>
+        <label className='writeFormGroup'>
+          Title:
+          <input className='writeInput' type="text" id="title" defaultValue={title} onChange={titleChange} />
+        </label>
+        <label className='writeFormGroup'>
+          Image:
+          <input className='writeInput' type="text" id="image" defaultValue={image} onChange={imageChange} />
+        </label>
+        <label className='writeFormGroup'>
+          Content:
+          <textarea className='writeInput writeText' type="text" name="image" defaultValue={content} onChange={contentChange} />
+        </label>
+        <label className='writeFormGroup'>
+          Category:
+          <select>
+            {category.map((cat) => (
+            <option key={cat.id} value={cat.id}>{cat.name}</option>
+            ))}
+          </select>
+        </label>
+      </form>
+      <div className='btn-group'>
+        <button className='button-cancel' onClick={() => props.setEdit(prev => !prev)}>
+          Cancel
+        </button>
+        <button className='button-save' onClick={() => props.editPost({...props.blog, title, image_url:image, content, name:category})}>
+          Save
+        </button>
+      </div>
     </div>
   )
 }

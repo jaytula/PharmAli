@@ -41,7 +41,7 @@ module.exports = db => {
     const blog = (req.body)
     console.log(blog)
     
-    editBlog.editBlog(db, blog).then(() => console.log("you reached this") )
+    editBlog.editBlog(db, blog).then(() => res.json({success : true}) )
   });
   return router;
 };
