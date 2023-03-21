@@ -27,7 +27,6 @@ export default function useApplicationData(DRUG, HOME) {
     }
     return makeRequest.then((data) => {
       const success = data.data.message;
-      console.log(success)
         if (success instanceof Object) {
           setUser(success.userInfo.id);
         }

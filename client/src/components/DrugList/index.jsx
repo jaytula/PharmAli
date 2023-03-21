@@ -1,7 +1,6 @@
 import React from 'react'
 
 const DrugList = (props) => {
-  console.log(props.drugList[0]);
   return (
 
     <div>

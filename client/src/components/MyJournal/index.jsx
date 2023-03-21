@@ -10,70 +10,22 @@ import "../../styles/Journal.css";
 
 
 const MyJournal = (props) => {
-  const [journals, setJournals] = useState([
-    // {
-    //   user: {
-    //     firstName: 'Bob',
-    //     lastName: 'Jacob',
-    //     image: profileImage
-    //   },
-
-    //   text: "some text here! 1",
-    //   date: "06/02/1997"
-    // },
-    // {
-    //   user: {
-    //     firstName: 'Amaal',
-    //     lastName: 'Ali',
-    //     image: profileImage
-    //   },
-
-    //   text: "some text here! 2",
-    //   date: "06/02/1997"
-    // },
-    // {
-    //   user: {
-    //     firstName: 'Irha',
-    //     lastName: 'Ali',
-    //     image: profileImage
-    //   },
-
-    //   text: "some text here! 3",
-    //   date: "06/02/1997"
-    // },
-    // {
-    //   user: {
-    //     firstName: 'Maryan',
-    //     lastName: 'Ali',
-    //     image: profileImage
-    //   },
-
-    //   text: "some text here! 4",
-    //   date: "06/02/1997"
-    // },
-  ]);
+  const [journals, setJournals] = useState([]);
 
   const [searchText, setSearchText] = useState('');
   // const[darkMode,setDarkMode]=useState(false);
-  console.log(props);
   useEffect(() => {
     Promise.all([
       axios.get(`/journal/${props.user_id}`),
     ]).then((data) => {
-      console.log(data[0].data);
       const user = {
         firstName: 'Maryan',
         lastName: 'Ali',
         image: profileImage
       };
-      console.log(data[0].data)
       const myJournals = data[0].data.journal.map((loop) => ({ ...loop, user }));
 
       setJournals(myJournals);
-      console.log("-----------------------------------------------------");
-      console.log(myJournals)
-      // setUser(data[0].data.message);
-      // setDrugList(data[1].data);
     });
   }, []);
   useEffect(() => {

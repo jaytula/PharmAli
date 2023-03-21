@@ -46,11 +46,10 @@ function Comments(props) {
     Promise.all([
       axios.post("/comments/delete", id)
     ])
-      .then(() => {
-        console.log("Comment deleted")
-        const newComment = comments.filter((comment) => comment.id !== id);
-        setComments(newComment);
-      })
+    .then(() => {
+      const newComment = comments.filter((comment) => comment.id !== id);
+      setComments(newComment);
+    })
   }
 
   // To load all comments when the blog is visited

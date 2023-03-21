@@ -10,7 +10,6 @@ module.exports = db => {
     SELECT * FROM comments
     WHERE blog_id = $1
     `;
-    console.log(request.url.split('=')[1]);
     db.query(queryString, queryParams)
       .then((data) => {
         response.json({ rows: data.rows });
