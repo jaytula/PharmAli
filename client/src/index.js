@@ -7,19 +7,18 @@ import {
 
 import './styles/index.css';
 
-import App from './components/App';
 import Home from './components/Home';
 import Search from './components/Search';
 import PharmaLocator from './components/PharmLocator';
-import BlogPosts from './BlogPosts';
-import MyBlogs from './MyBlogs';
-import Login from './Login'
-import Register from './Register';
-import MyJournal from './MyJournal';
-import Drug from './Drug';
-import MyDrugs from './MyDrugs';
-import BlogPost from './BlogPost';
-import Navbar from './Navbar';
+import BlogPosts from './components/BlogPosts';
+import MyBlogs from './components/MyBlogs';
+import Login from './components/Login'
+import Register from './components/Register';
+import MyJournal from './components/MyJournal';
+import Drug from './components/Drug';
+import MyDrugs from './components/MyDrugs';
+import BlogPost from './components/BlogPost';
+import Navbar from './components/Navbar';
 
 
 const router = createBrowserRouter([
@@ -47,7 +46,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <Navbar />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

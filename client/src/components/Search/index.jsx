@@ -3,6 +3,7 @@ import Articles from '../Articles';
 import '../../styles/Search.css'
 import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '../Navbar';
 
 const Search = (props) => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const Search = (props) => {
   }
   return (
     <>
+      <Navbar />
       <section className='section-search'>
         <div className='articles'>
           <Articles />
@@ -55,8 +57,8 @@ const Search = (props) => {
             </div>
           ))}
           <button onClick={tryNavigate}>
-              Click Me
-            </button>
+            Click Me
+          </button>
         </div>
       </section>
     </>

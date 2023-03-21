@@ -2,6 +2,7 @@ import { useState } from 'react';
 import "../../styles/login.css"
 import Button from '../Button';
 import Error from '../Error';
+import Navbar from '../Navbar';
 
 const Register = (props) => {
   const [email, setEmail] = useState('');
@@ -22,25 +23,28 @@ const Register = (props) => {
   };
 
   return (
-    <div className="auth-form-container">
-      {error.length > 0 &&
-        (< Error message={error} />)}
-      <h2>Register !</h2>
-      <form className="register-form" onSubmit={handleSubmit}>
-        <label htmlFor="name">Full Name</label>
-        <input value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="Write Name Here" id="name" name="name" required/>
-        <label htmlFor="email">Email</label>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="placeyouremail@HERE.com" id="email" name="email" required/>
-        <label htmlFor="password">Password</label>
-        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" required/>
-        <label htmlFor="postalCode">Postal Code</label>
-        <input value={postalCode} onChange={(e) => setPostalCode(e.target.value)} type="ppostalCode" placeholder="M8M 1R3" id="postalCode" name="postalCode" required/>
-        <Button children={SIGNUP} />
-      </form>
+    <>
+      <Navbar />
+      <div className="auth-form-container">
+        {error.length > 0 &&
+          (< Error message={error} />)}
+        <h2>Register !</h2>
+        <form className="register-form" onSubmit={handleSubmit}>
+          <label htmlFor="name">Full Name</label>
+          <input value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="Write Name Here" id="name" name="name" required />
+          <label htmlFor="email">Email</label>
+          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="placeyouremail@HERE.com" id="email" name="email" required />
+          <label htmlFor="password">Password</label>
+          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" required />
+          <label htmlFor="postalCode">Postal Code</label>
+          <input value={postalCode} onChange={(e) => setPostalCode(e.target.value)} type="ppostalCode" placeholder="M8M 1R3" id="postalCode" name="postalCode" required />
+          <Button children={SIGNUP} />
+        </form>
 
-      <button className="link-btn" onClick={() => props.setPage("LOGIN")}> Already have an account? Log In</button>
+        <button className="link-btn" onClick={() => props.setPage("LOGIN")}> Already have an account? Log In</button>
 
-    </div>
+      </div>
+    </>
   );
 };
 export default Register;

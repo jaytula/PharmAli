@@ -4,6 +4,7 @@ import "../../styles/BlogPosts.css";
 import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
 import EditBlog from '../EditBlog';
+import Navbar from '../Navbar';
 
 const MyBlogs = (props) => {
   const [blogs, setBlogs] = useState([]);
@@ -51,6 +52,8 @@ const MyBlogs = (props) => {
   }, []);
 
   return (
+    <>
+    <Navbar />
     <section className='section'>
       {typeof edit === "number" && 
       (<EditBlog setEdit={setEdit} editPost={editPost} blog={blogById()}/>)}
@@ -70,6 +73,7 @@ const MyBlogs = (props) => {
         ))}
       </div>)}
     </section>
+    </>
   )
 }
 

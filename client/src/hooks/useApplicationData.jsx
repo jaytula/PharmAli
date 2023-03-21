@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from 'react'
 
-export default function useApplicationData(DRUG, HOME) {
+export default function useApplicationData() {
   const [menu, setMenu] = useState(false);
-  const [page, setPage] = useState(HOME);
   const [drugContent, setDrugContent] = useState();
   const [user, setUser] = useState({});
   const [blogContent, setBlogContent] = useState();
@@ -13,7 +12,6 @@ export default function useApplicationData(DRUG, HOME) {
     return Promise.all([
       axios.get(`https://api.fda.gov/drug/label.json?search=description:${drug.name}`)
     ]).then((data) => {
-      setPage(DRUG);
       setDrugContent({ data, drug_id: drug.id });
     })
   }
@@ -51,5 +49,5 @@ export default function useApplicationData(DRUG, HOME) {
     })
   }, []);
 
-  return { menu, page, drugContent, user, blogContent, darkMode, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode }
+  return { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode }
 }

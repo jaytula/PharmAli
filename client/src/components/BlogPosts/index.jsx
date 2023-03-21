@@ -4,6 +4,7 @@ import "../../styles/BlogPosts.css";
 import Articles from '../Articles/index.jsx';
 import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
+import Navbar from '../Navbar/index.jsx';
 
 const BlogPosts = (props) => {
   // Set the blogs and categories to show
@@ -23,6 +24,8 @@ const BlogPosts = (props) => {
 
   // Render all articles and available categories
   return (
+    <>
+    <Navbar />
     <section className='section'>
       <div className='articles'>
       <Articles/>
@@ -39,6 +42,7 @@ const BlogPosts = (props) => {
         
       </div>
     </section>
+    </>
   )
 }
 

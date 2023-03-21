@@ -1,5 +1,6 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import Navbar from '../Navbar';
 
 const containerStyle = {
   width: '100vw',
@@ -32,6 +33,8 @@ function PharmLocator() {
   }, [])
 
   return isLoaded ? (
+    <>
+      <Navbar />
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -39,9 +42,11 @@ function PharmLocator() {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        { /* Child components, such as markers, info windows, etc. */ }
+        { /* Child components, such as markers, info windows, etc. */}
         <></>
       </GoogleMap>
+
+    </>
   ) : <></>
 }
 

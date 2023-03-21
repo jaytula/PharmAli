@@ -2,6 +2,7 @@ import { useState } from 'react';
 import "../../styles/login.css"
 import Button from '../Button';
 import Error from '../Error';
+import Navbar from '../Navbar';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
@@ -20,6 +21,8 @@ const Login = (props) => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="auth-form-container">
       {error.length > 0 &&
         (< Error message={error} />)}
@@ -33,6 +36,7 @@ const Login = (props) => {
       </form>
       <button className="link-btn" onClick={() => props.setPage("REGISTER")}>Dont have an account? Register</button>
     </div>
+    </>
 
   );
 };
