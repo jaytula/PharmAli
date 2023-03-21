@@ -25,6 +25,7 @@ function App() {
   const MY_JOURNAL = "MY JOURNAL";
   const DRUG = "DRUG";
   const BLOG = "BLOG";
+  const EDIT = "EDIT";
   const { page, menu, user, drugList, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent } = useApplicationData(DRUG, HOME);
   const [darkMode, setDarkMode] = useState(false);
 
