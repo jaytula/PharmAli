@@ -1,11 +1,9 @@
 import axios from "axios";
-import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from 'react'
+// import { useNavigate } from "react-router-dom";
 
 
 export default function useApplicationData() {
-  const [menu, setMenu] = useState(false);
-  const [drugContent, setDrugContent] = useState();
   const [user, setUser] = useState({});
   const [darkMode, setDarkMode] = useState(false);
   // const navigate = useNavigate();
@@ -33,13 +31,15 @@ export default function useApplicationData() {
 
   const removeCookie = () => {
     return axios.post("/user/logout")
-      .then(() => { setUser(null) })
+      .then(() => {
+        setUser(null)
+      })
   };
 
   const getCookie = () => {
     return axios.get("/user")
   }
 
-  return { menu, drugContent, user, darkMode, setMenu, setCookie, removeCookie, getCookie, onSearchSubmit, setDarkMode }
+  return { user, darkMode, setCookie, removeCookie, getCookie, onSearchSubmit, setDarkMode }
 
 }
