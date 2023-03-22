@@ -4,24 +4,48 @@ import { useState } from 'react';
 import '../../styles/EditBlog.css';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate, useLocation } from "react-router-dom";
+
 
 function EditBlog(props) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const blogId = location.pathname.split('/').pop();
 
-  const [title, setTitle] = useState(props.blog[0].title)
-  const [image, setImage] = useState(props.blog[0].image_url)
-  const [content, setContent] = useState(props.blog[0].content)
-  const [category, setCategory] = useState([])
+  const editPost = (editBlog) => {
+    Promise.all([
+      axios.post("/blogs/edit", editBlog)
+    ])
+    .then(() => {
+      navigate(`/myblogs`);
+    });
+  };
+
+
+  useEffect(() => {
+    Promise.all([
+      axios.get(`/blogs/${props.user}&${blogId}`),
+      axios.get('/categories')
+    ]).then((data) => {
+      const blog = data[0].data[0];
+      console.log(data[1].data);
+      setTitle(blog.title);
+      setImage(blog.image_url);
+      setContent(blog.content);
+      setCategory(blog.category);
+      setCategories(data[1].data);
+    });
+  }, []);
+
+  const [title, setTitle] = useState("")
+  const [image, setImage] = useState("")
+  const [content, setContent] = useState("")
+  const [category, setCategory] = useState("")
+  const [categories, setCategories] = useState([])
 
   const titleChange = (e) => setTitle(e.target.value);
   const imageChange = (e) => setImage(e.target.value);
   const contentChange = (e) => setContent(e.target.value);
-
-  useEffect(() => {
-    axios.get('/categories')
-      .then((data) => {
-        setCategory(data.data)
-      })
-  }, []);
 
   return (
     <div className='write'>EditBlog
@@ -41,17 +65,17 @@ function EditBlog(props) {
         <label className='writeFormGroup'>
           Category:
           <select>
-            {category.map((cat) => (
+            {categories.map((cat) => (
               <option key={cat.id} value={cat.id}>{cat.name}</option>
             ))}
           </select>
         </label>
       </form>
       <div className='btn-group'>
-        <button className='button-cancel' onClick={() => props.setEdit(prev => !prev)}>
+        <button className='button-cancel' onClick={() => navigate('/myblogs')}>
           Cancel
         </button>
-        <button className='button-save' onClick={() => props.editPost({ id: props.blog[0].id, title, image_url: image, content, name: 1 })}>
+        <button className='button-save' onClick={() => editPost({ id: blogId, title, image_url: image, content, name: 1 })}>
           Save
         </button>
       </div>

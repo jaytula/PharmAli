@@ -3,41 +3,12 @@ import MyBlogsItem from '../MyBlogsItem/index';
 import "../../styles/BlogPosts.css";
 import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
-import EditBlog from '../EditBlog';
-import Navbar2 from '../Home/Navbar2';
-import useApplicationData from '../../hooks/useApplicationData';
-import { useNavigate, useParams } from "react-router-dom";
-
 
 const MyBlogs = (props) => {
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
-  const navigate = useNavigate();
+  // const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
 
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [edit, setEdit] = useState();
-
-  const blogById = () => {
-    const id = blogs.filter((blog) => blog.id === edit);
-    return id;
-  };
-
-  const editPost = (editBlog) => {
-    Promise.all([
-      axios.post("/blogs/edit", editBlog)
-    ])
-      .then(() => {
-        setBlogs((prev) => {
-          prev.forEach((blog) => {
-            if (blog.id === editBlog.id) {
-              blog = { ...blog, ...editBlog };
-            }
-          });
-          return [...prev];
-        });
-        navigate(`/myblogs/edit/${editBlog.id}`);
-      });
-  };
 
   const deletePost = (id) => {
     axios.post("/blogs/delete", id)
@@ -48,8 +19,9 @@ const MyBlogs = (props) => {
   };
 
   useEffect(() => {
+    console.log(props);
     Promise.all([
-      axios.get(`/blogs/${user}`),
+      axios.get(`/blogs/${props.user}`),
       axios.get('/categories')
     ]).then((data) => {
       setBlogs(data[0].data);
@@ -59,24 +31,18 @@ const MyBlogs = (props) => {
 
   return (
     <>
-      <Navbar2 />
       <section className='section'>
-        {typeof edit === "number" &&
-          (<EditBlog setEdit={setEdit} editPost={editPost} blog={blogById()} />)}
-        {typeof edit !== "number" && (<div className='blogPosts'>
+        <div className='blogPosts'>
           <SelectSmall categories={categories} />
           <span className="blogPostsTitle">BLOGS </span>
           {blogs.map((blog) => (
             <MyBlogsItem
               key={blog.id}
-              user_id={user.id}
+              user_id={props.user}
               blog={blog}
-              setBlog={() => navigate(`/blogs/${blog.id}`)}
-              deletePost={deletePost}
-              editPost={editPost}
-              setEdit={setEdit} />
+              deletePost={deletePost} />
           ))}
-        </div>)}
+        </div>
       </section>
     </>
   );

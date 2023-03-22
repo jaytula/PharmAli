@@ -6,8 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import useApplicationData from "../../hooks/useApplicationData";
 
 const Navbar2 = (props) => {
-  console.log(navbarData)
-
   const { removeCookie } = useApplicationData();
   const navigate = useNavigate();
   const LOGOUT = "/logout"
