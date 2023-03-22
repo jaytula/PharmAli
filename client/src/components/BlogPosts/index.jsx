@@ -11,7 +11,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 const BlogPosts = () => {
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
   const navigate = useNavigate();
 
   // Set the blogs and categories to show

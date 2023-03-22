@@ -17,6 +17,7 @@ import Navbar2 from "./Home/Navbar2";
 import EditBlog from "./EditBlog";
 import AddBlog from "./AddBlog";
 import useApplicationData from "../hooks/useApplicationData";
+import { UserContext, UserProvider } from '../context/UserContext';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,31 +25,37 @@ function App() {
 
   useEffect(() => {
     getCookie()
-    .then((data) => {
-      setUser(data.data.user_id);
-    })
+      .then((data) => {
+        setUser(data.data.user_id);
+      })
   }, []);
 
+
+
+
+  // create context file to make api call to get cookie and get cookie from that (context provider)
   return (
     <div className="App">
       <Router>
-        <Navbar2 user={user}/>
-        <Routes>
-          <Route path="*" element={<h1>404 Page Not Found</h1>} />
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/drugs/*" element={<Drug user={user}/>} />
-          <Route path="/pharma" element={<PharmaLocator user={user}/>} />
-          <Route path="/myblogs" element={<MyBlogs user={user}/>} />
-          <Route path="/myblogs/edit/*" element={<EditBlog user={user}/>} />
-          <Route path="/myblogs/add" element={<AddBlog user={user}/>} />
-          <Route path="/myjournal" element={<MyJournal user={user}/>} />
-          <Route path="/mydrugs" element={<MyDrugs user={user}/>} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/blogs" element={<BlogPosts />} />
-          <Route path="/blogs/*" element={<BlogPost user={user}/>} />
-        </Routes>
+        <Navbar2 user={user} />
+        <UserProvider>
+          <Routes>
+            <Route path="*" element={<h1>404 Page Not Found</h1>} />
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/drugs/*" element={<Drug user={user} />} />
+            <Route path="/pharma" element={<PharmaLocator user={user} />} />
+            <Route path="/myblogs" element={<MyBlogs user={user} />} />
+            <Route path="/myblogs/edit/*" element={<EditBlog user={user} />} />
+            <Route path="/myblogs/add" element={<AddBlog user={user} />} />
+            <Route path="/myjournal" element={<MyJournal user={user} />} />
+            <Route path="/mydrugs" element={<MyDrugs user={user} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/blogs" element={<BlogPosts />} />
+            <Route path="/blogs/:id" element={<BlogPost />} />
+          </Routes>
+        </ UserProvider>
       </Router>
     </div>
   );
