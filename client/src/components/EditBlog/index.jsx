@@ -16,25 +16,27 @@ function EditBlog(props) {
     Promise.all([
       axios.post("/blogs/edit", editBlog)
     ])
-    .then(() => {
-      navigate(`/myblogs`);
-    });
+      .then(() => {
+        navigate(`/myblogs`);
+      });
   };
 
 
   useEffect(() => {
-    Promise.all([
-      axios.get(`/blogs/${props.user}&${blogId}`),
-      axios.get('/categories')
-    ]).then((data) => {
-      const blog = data[0].data[0];
-      setTitle(blog.title);
-      setImage(blog.image_url);
-      setContent(blog.content);
-      setCategory(blog.category);
-      setCategories(data[1].data);
-    });
-  }, []);
+    if (props.user) {
+      Promise.all([
+        axios.get(`/blogs/${props.user}&${blogId}`),
+        axios.get('/categories')
+      ]).then((data) => {
+        const blog = data[0].data[0];
+        setTitle(blog.title);
+        setImage(blog.image_url);
+        setContent(blog.content);
+        setCategory(blog.category);
+        setCategories(data[1].data);
+      });
+    }
+  }, [props.user]);
 
   const [title, setTitle] = useState("")
   const [image, setImage] = useState("")
