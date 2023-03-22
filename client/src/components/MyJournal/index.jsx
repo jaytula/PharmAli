@@ -18,18 +18,20 @@ const MyJournal = (props) => {
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    Promise.all([
-      axios.get(`/journal/${props.user}`),
-    ]).then((data) => {
-      const user = {
-        firstName: 'Maryan',
-        lastName: 'Ali',
-        image: profileImage
-      };
-      const myJournals = data[0].data.journal.map((loop) => ({ ...loop, user }));
-      setJournals(myJournals);
-    });
-  }, []);
+    if (props.user) {
+      Promise.all([
+        axios.get(`/journal/${props.user}`),
+      ]).then((data) => {
+        const user = {
+          firstName: 'Maryan',
+          lastName: 'Ali',
+          image: profileImage
+        };
+        const myJournals = data[0].data.journal.map((loop) => ({ ...loop, user }));
+        setJournals(myJournals);
+      });
+    }
+  }, [props.user]);
 
   useEffect(() => {
     localStorage.setItem('react-journal-app-data', JSON.stringify(journals));
