@@ -16,6 +16,10 @@ const MyJournal = (props) => {
 console.log(darkMode)
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
+  // const[darkMode,setDarkMode]=useState(false);
+  console.log(props);
+  const userId = props.user.id
+
 
   useEffect(() => {
     if (props.user) {
@@ -36,18 +40,25 @@ console.log(darkMode)
   useEffect(() => {
     localStorage.setItem('react-journal-app-data', JSON.stringify(journals));
   }, [journals]);
-
   const AddJournal = (text) => {
-    axios.post("/journal/add", { user_id: props.user, text })
-      .then(() => {
-        const date = new Date();
-        const newJournal = {
-          text: text,
-          date: date.toLocaleDateString(),
-        };
-        const newJournals = [...journals, newJournal];
-        setJournals(newJournals);
-      });
+    axios.post("/journal/add", {user_id: props.user.id, text})
+   .then((data)=> {
+    console.log("help",data.data)
+    const date = data.data.created_at;
+    const newJournal = {
+      text: data.data.text,
+      created_at: date,
+      id:data.data.id,
+      user_id:data.data.user_id,
+      user:{
+        name: data.data.name,
+        image: profileImage
+      }
+    };
+    console.log(newJournal)
+    // const newJournals = [...prev, newJournal];
+    setJournals((prev)=>[...prev, newJournal]);
+   })
   };
 
   const DeleteJournal = (id) => {

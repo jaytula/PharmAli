@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from 'react'
 // import { useNavigate } from "react-router-dom";
 
-
 export default function useApplicationData() {
   const [user, setUser] = useState({});
   const [darkMode, setDarkMode] = useState(false);
@@ -22,11 +21,12 @@ export default function useApplicationData() {
     }
     return makeRequest.then((data) => {
       const success = data.data.message;
-      if (success instanceof Object) {
-        setUser(success.userInfo);
-      }
-      return success;
-    })
+      console.log("success",success)
+        if (success instanceof Object) {
+          setUser(success);
+        }
+        return success;
+      })
   };
 
   const removeCookie = () => {
