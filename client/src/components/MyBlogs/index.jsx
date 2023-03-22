@@ -6,10 +6,12 @@ import SelectSmall from '../Category/index.jsx';
 import EditBlog from '../EditBlog';
 import Navbar from '../Navbar';
 import useApplicationData from '../../hooks/useApplicationData'
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const MyBlogs = (props) => {
   const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+  const navigate = useNavigate();
 
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -33,7 +35,7 @@ const MyBlogs = (props) => {
         });
         return [...prev]
       })
-      setBlog(editBlog)
+      navigate(`/myblogs/edit/${editBlog.id}`);
     })
   }
 
@@ -69,10 +71,9 @@ const MyBlogs = (props) => {
             key={blog.id}
             user_id={user.id}
             blog={blog}
-            setBlog={() => setBlog(blog)}
+            setBlog={() => navigate(`/blogs/${blog.id}`)}
             deletePost={deletePost} 
             editPost={editPost}
-            setPage={setPage}
             setEdit={setEdit}/>
         ))}
       </div>)}

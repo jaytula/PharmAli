@@ -4,9 +4,11 @@ import Button from '../Button';
 import Error from '../Error';
 import Navbar from '../Navbar';
 import useApplicationData from '../../hooks/useApplicationData'
+import { useNavigate, useParams } from "react-router-dom";
 
 const Login = () => {
   const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +21,7 @@ const Login = () => {
     const userInfo = {email, password};
     setCookie(userInfo)
     .then((passed) => {
-      (passed.userInfo) ? setPage(HOME): setError(passed);
+      (passed.userInfo) ? navigate('/'): setError(passed);
     });
   };
 
@@ -37,7 +39,7 @@ const Login = () => {
         <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="*******" id="password" name="password" required/>
         <Button children={LOGIN}/>
       </form>
-      <button className="link-btn" onClick={() => setPage("REGISTER")}>Dont have an account? Register</button>
+      <button className="link-btn" onClick={() => navigate('/register')}>Dont have an account? Register</button>
     </div>
     </>
 

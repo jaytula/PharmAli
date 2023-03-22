@@ -30,6 +30,7 @@ const router = createBrowserRouter([
   { path: "/pharma", element: <PharmaLocator /> },
 
   { path: "/myblogs", element: <MyBlogs /> },
+  { path: "/myblogs/edit/:id", element: <MyBlogs /> },
   { path: "/myjournal", element: <MyJournal /> },
   { path: "/mydrugs", element: <MyDrugs /> },
 

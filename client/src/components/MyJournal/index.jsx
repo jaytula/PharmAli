@@ -7,9 +7,12 @@ import axios from 'axios';
 import "../../styles/Journal.css";
 import Navbar from '../Navbar';
 import useApplicationData from '../../hooks/useApplicationData'
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const MyJournal = () => {
+  const navigate = useNavigate();
+
   const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
 
   const [journals, setJournals] = useState([]);
