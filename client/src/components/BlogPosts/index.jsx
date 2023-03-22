@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react'
-import BlogPostItem from '../BlogPostItem/index.jsx'
+import { useEffect, useState } from 'react';
+import BlogPostItem from '../BlogPostItem/index.jsx';
 import "../../styles/BlogPosts.css";
 import Articles from '../Articles/index.jsx';
 import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
-import Navbar from '../Navbar/index.jsx';
-import useApplicationData from '../../hooks/useApplicationData'
+import Navbar2 from '../Home/Navbar2.js';
+import useApplicationData from '../../hooks/useApplicationData';
 import { useNavigate, useParams } from "react-router-dom";
 
 
 
 const BlogPosts = () => {
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
   const navigate = useNavigate();
 
   // Set the blogs and categories to show
@@ -24,15 +24,15 @@ const BlogPosts = () => {
       axios.get('/blogs'),
       axios.get('/categories')
     ]).then((data) => {
-      setBlogs(data[0].data)
-      setCategories(data[1].data)
-    })
+      setBlogs(data[0].data);
+      setCategories(data[1].data);
+    });
   }, []);
 
   // Render all articles and available categories
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <section className='section'>
         <div className='articles'>
           <Articles />
@@ -50,7 +50,7 @@ const BlogPosts = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default BlogPosts 
+export default BlogPosts;

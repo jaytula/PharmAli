@@ -2,7 +2,7 @@ import { useState } from 'react';
 import "../../styles/login.css"
 import Button from '../Button';
 import Error from '../Error';
-import Navbar from '../Navbar';
+import Navbar2 from '../Home/Navbar2';
 import useApplicationData from '../../hooks/useApplicationData'
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -29,7 +29,7 @@ const Register = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <div className="auth-form-container">
         {error.length > 0 &&
           (< Error message={error} />)}

@@ -3,7 +3,7 @@ import Articles from '../Articles';
 import '../../styles/Search.css'
 import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from '../Navbar';
+import Navbar2 from '../Home/Navbar2';
 import useApplicationData from '../../hooks/useApplicationData'
 
 
@@ -28,7 +28,7 @@ const Search = () => {
 
   return (
     <>
-      <Navbar />
+        <Navbar2 />
       <section className='section-search'>
         <div className='articles'>
           <Articles />

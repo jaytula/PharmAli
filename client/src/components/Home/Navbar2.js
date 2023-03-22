@@ -2,7 +2,15 @@ import { useState } from "react";
 import "../../styles/Navbar.css";
 import { FiMenu, FiX } from "react-icons/fi";
 // const navbarLinks = [{url:"/home", title:"Home"}]
-const Navbar = ({ navbarLinks }) => {
+const Navbar2 = () => {
+
+const navbarLinks = [
+  {url:"/", title:"Home"},
+  {url:"/search", title:"Search"},
+  {url:"/pharma", title:"Locator"},
+  {url:"/blogs", title:"Blogs"},
+  {url:"/myjournal", title:"Journal"}
+]
   const [menuClicked, setMenuClicked]= useState(false);
   const toggleMenuClick = () => {
     setMenuClicked(!menuClicked)
@@ -41,4 +49,4 @@ const Navbar = ({ navbarLinks }) => {
   );
 
 };
-export default Navbar;
+export default Navbar2;
