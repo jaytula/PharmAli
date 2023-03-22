@@ -28,7 +28,6 @@ const Search = () => {
 
   return (
     <>
-        <Navbar2 />
       <section className='section-search'>
         <div className='articles'>
           <Articles />

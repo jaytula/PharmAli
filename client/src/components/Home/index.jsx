@@ -5,13 +5,10 @@ import pillfalling from "../../assets/images/pill-falling.jpeg"
 import medicine from "../../assets/images/home-background.jpeg"
 import Hero from './Hero';
 import Slider from './Slider';
-import Navbar2 from "./Navbar2";
-import Navbar from "../Navbar";
 
 const Home = () => {
   return (
     <div className="App-2">
-      <Navbar2 />
       <Hero imageSrc={banner}/>
       <Slider 
       imageSrc={pillfalling} 

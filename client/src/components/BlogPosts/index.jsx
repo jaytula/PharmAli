@@ -32,7 +32,6 @@ const BlogPosts = () => {
   // Render all articles and available categories
   return (
     <>
-      <Navbar2 />
       <section className='section'>
         <div className='articles'>
           <Articles />

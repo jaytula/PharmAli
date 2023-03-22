@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const getUser = require('../db/queries/get-user');
-const getUserById = require('../db/queries/get-user-id');
 const addUser = require('../db/queries/add-user');
 const bcrypt = require("bcryptjs");
 
@@ -8,11 +7,8 @@ const bcrypt = require("bcryptjs");
 module.exports = (db, cookieParams) => {
   // For getting login state when app is refreshed
   router.get("/", (req, res) => {
-    getUserById.getUserById(db, req.signedCookies.name)
-      .then((data) => {
-        const message = data.rows[0];
-        res.send({ message });
-      })
+        const user_id = req.signedCookies.name
+        res.send({ user_id });
   });
 
   // For logging in
