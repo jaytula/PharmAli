@@ -28,11 +28,6 @@ const Navbar = () => {
 
   const showMenu = () => setMenu(!menu);
 
-  const showPage = (item) => {
-    navigate('/');
-    showMenu();
-  };
-
   const setLink = (item) => {
     if (item === LOGOUT) {
       removeCookie()
@@ -40,7 +35,7 @@ const Navbar = () => {
           navigate('/');
         });
     } else {
-      navigate('/');
+      navigate(item);
     }
   }
 
@@ -70,7 +65,7 @@ const Navbar = () => {
             </ul>
             {NavbarData(user.id).map((item, index) => {
               return (
-                <ul key={index} className={item.cName} onClick={() => setLink(item.title)} data-testid="nav-item">
+                <ul key={index} className={item.cName} onClick={() => setLink(item.route)} data-testid="nav-item">
                   {item.icon}
                   <span className="item-title">{item.title}</span>
                 </ul>
