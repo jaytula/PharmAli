@@ -53,6 +53,7 @@ const navbarData = (login) => {
       },
       {
         title: "LOGOUT",
+        route: "/logout",
         icon: <PersonIcon color="primary" />,
         className: 'nav-text'
       }
