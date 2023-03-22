@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import JournalList from './JournalList';
-import profileImage from '../../assets/images/medicine.jpeg';
+import profileImage from '../../assets/images/medicine.png';
 import SearchJournal from './Search';
 import JournalHeader from './JournalHeader';
 import axios from 'axios';
@@ -13,7 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const MyJournal = (props) => {
   const navigate = useNavigate();
   const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
-
+console.log(darkMode)
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
 

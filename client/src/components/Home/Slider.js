@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/slider.css";
 import { useInView } from "react-intersection-observer";
-
+import { useNavigate, useLocation } from "react-router-dom";
 // const Slider = ({ imageSrc, title, subtitle, flipped }) => {
 //   const { ref, inView } = useInView({
 //     /* Optional options */
@@ -40,7 +40,8 @@ import { useInView } from "react-intersection-observer";
 // };
 
 // export default Slider;
-const Slider = ({imageSrc, title, subtitle, flipped}) => {
+const Slider = ({imageSrc, hrefvalue,title, subtitle, flipped}) => {
+  const navigate = useNavigate();
   const { ref, inView } = useInView({
         /* Optional options */
         threshold: 0.4,
@@ -50,10 +51,11 @@ const Slider = ({imageSrc, title, subtitle, flipped}) => {
     if (!flipped) {
       return (
       <>
-        <img src={imageSrc} alt="Travel" className="slider__image" />
+        <img href={hrefvalue} src={imageSrc} alt="Travel" className="slider__image" />
         <div className="slider__content">
-          <h1 className="slider__title">{title}</h1>
-          <p>{subtitle}</p>
+          <h1 className="slider__title">
+            <a href={hrefvalue} >{title}</a></h1>
+          <p className="slider__subtitle">{subtitle}</p>
         </div>
       </>
       );
@@ -61,10 +63,13 @@ const Slider = ({imageSrc, title, subtitle, flipped}) => {
       return (
       <>
         <div className="slider__content">
-          <h1 className="slider__title">{title}</h1>
-          <p>{subtitle}</p>
+          <h1 className="slider__title">
+          <a href={hrefvalue}>{title}</a>
+          </h1>
+          <p className="slider__subtitle">{subtitle}</p>
         </div>
-        <img src={imageSrc} alt="Travel" className="slider__image" />
+        <img  href={hrefvalue} src={imageSrc} alt="Travel" className="slider__image" />
+    
       </>
       );
     }
