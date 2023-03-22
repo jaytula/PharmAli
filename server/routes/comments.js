@@ -3,14 +3,9 @@ const addComment = require("../db/queries/add-comment");
 const deleteComment = require("../db/queries/delete-comment")
 
 module.exports = db => {
+  // Get comments for a blog
   router.get("/", (request, response) => {
-    let blog_id = request.url.split('=')[1]
-    const queryParams = [blog_id];
-    const queryString = `
-    SELECT * FROM comments
-    WHERE blog_id = $1
-    `;
-    db.query(queryString, queryParams)
+    getComments.getComments(db, request.url.split('=')[1])
       .then((data) => {
         response.json({ rows: data.rows });
       }).catch((e) => {
@@ -18,6 +13,7 @@ module.exports = db => {
       })
   });
 
+  // Add a comment to the blog
   router.post("/add", (req, res) => {
     addComment.addComment(db, req.body.user_id, req.body.comment, req.body.blog_id)
       .then((data) => {
@@ -25,6 +21,7 @@ module.exports = db => {
       })
   });
 
+  // Remove a comment from th blog
   router.post("/delete", (req, res) => {
     const comment_id = Object.keys(req.body)[0];
     deleteComment.deleteComment(db, comment_id)

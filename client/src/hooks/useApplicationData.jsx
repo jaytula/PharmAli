@@ -1,19 +1,15 @@
 import axios from "axios";
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+// import { useNavigate } from "react-router-dom";
+
 
 export default function useApplicationData() {
-  const [menu, setMenu] = useState(false);
-  const [drugContent, setDrugContent] = useState();
   const [user, setUser] = useState({});
-  const [blogContent, setBlogContent] = useState();
   const [darkMode, setDarkMode] = useState(false);
+  // const navigate = useNavigate();
 
   const onSearchSubmit = (drug) => {
-    return Promise.all([
-      axios.get(`https://api.fda.gov/drug/label.json?search=description:${drug.name}`)
-    ]).then((data) => {
-      setDrugContent({ data, drug_id: drug.id });
-    })
+    // navigate(`/drugs/${drug.id}`);
   }
 
   const setCookie = (userInfo) => {
@@ -35,20 +31,15 @@ export default function useApplicationData() {
 
   const removeCookie = () => {
     return axios.post("/user/logout")
-      .then(() => { setUser("") })
+      .then(() => {
+        setUser(null)
+      })
   };
 
-  useEffect(() => {
-    Promise.all([
-      axios.get('/user')
-    ]).then((data) => {
-      // Only set a user if a cookie exists
-      if (data[0].data.message) {
-        setUser(data[0].data.message);
-      }
-    })
-  }, []);
+  const getCookie = () => {
+    return axios.get("/user")
+  }
 
-  return { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode }
+  return { user, darkMode, setCookie, removeCookie, getCookie, onSearchSubmit, setDarkMode }
 
 }

@@ -12,21 +12,21 @@ const navbarData = (login) => {
   const navbarData = [
     {
       title: "SEARCH",
-      route: "/search",
-      icon: <SearchIcon color="primary" />,
-      className: 'nav-text'
+      url: "/search",
+      // icon: <SearchIcon color="primary" />,
+      // className: 'nav-text'
     },
     {
       title: "PHARMACY NEARBY",
-      route: "/pharma",
-      icon: <LocalPharmacyIcon color="primary" />,
-      className: 'nav-text'
+      url: "/pharma",
+      // icon: <LocalPharmacyIcon color="primary" />,
+      // className: 'nav-text'
     },
     {
       title: "BLOG POSTS",
-      route: "/blogs",
-      icon: <BookIcon color="primary" />,
-      className: 'nav-text'
+      url: "/blogs",
+      // icon: <BookIcon color="primary" />,
+      // className: 'nav-text'
     }
   ]
   // If logged in allow user to visit the additional pages available
@@ -35,41 +35,42 @@ const navbarData = (login) => {
     navbarData.push(
       {
         title: "MY BLOGS",
-        route: "/myblogs",
-        icon: <AutoStoriesIcon color="primary" />,
-        className: 'nav-text'
+        url: "/myblogs",
+        // icon: <AutoStoriesIcon color="primary" />,
+        // className: 'nav-text'
       },
       {
         title: "MY JOURNAL",
-        route: "/myjournal",
-        icon: <CreateIcon color="primary" />,
-        className: 'nav-text'
+        url: "/myjournal",
+        // icon: <CreateIcon color="primary" />,
+        // className: 'nav-text'
       },
       {
         title: "MY DRUGS",
-        route: "/mydrugs",
-        icon: <VaccinesIcon color="primary" />,
-        className: 'nav-text'
+        url: "/mydrugs",
+        // icon: <VaccinesIcon color="primary" />,
+        // className: 'nav-text'
       },
       {
         title: "LOGOUT",
-        icon: <PersonIcon color="primary" />,
-        className: 'nav-text'
+        url: "/logout",
+        // icon: <PersonIcon color="primary" />,
+        // className: 'nav-text'
       }
     )
   } else {
     navbarData.unshift(
       {
         title: "LOGIN",
-        route: "/login",
-        icon: <PersonIcon color="primary" />,
-        className: 'nav-text'
+        url: "/login",
+        // icon: <PersonIcon color="primary" />,
+        // className: 'nav-text'
       },
       {
         title: "REGISTER",
-        route: "/register",
-        icon: <PersonIcon color="primary" />,
-        className: 'nav-text'
+        url: "/register",
+        // icon: <PersonIcon color="primary" />,
+        // className: 'nav-text'
       }
     )
   }
@@ -78,9 +79,9 @@ const navbarData = (login) => {
   // Add Home at the end to preserve the order of the pages (in case user is logged in)
   navbarData.unshift({
     title: "HOME",
-    route: "/",
-    icon: <HomeIcon color="primary" />,
-    className: 'nav-text'
+    url: "/",
+    // icon: <HomeIcon color="primary" />,
+    // className: 'nav-text'
   })
 
   return navbarData

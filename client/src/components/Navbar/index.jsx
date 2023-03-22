@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const LOGOUT = "LOGOUT"
+  const LOGOUT = "/logout"
 
   const { menu, user, setMenu, removeCookie, setDarkMode } = useApplicationData();
 

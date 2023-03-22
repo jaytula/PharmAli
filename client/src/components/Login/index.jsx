@@ -2,18 +2,17 @@ import { useState } from 'react';
 import "../../styles/login.css"
 import Button from '../Button';
 import Error from '../Error';
-import Navbar from '../Navbar';
+import Navbar2 from '../Home/Navbar2';
 import useApplicationData from '../../hooks/useApplicationData'
 import { useNavigate, useParams } from "react-router-dom";
 
 const Login = () => {
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+  const { setCookie } = useApplicationData()
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState("");
-  const HOME = "HOME";
   const LOGIN = "LOGIN";
 
   const handleSubmit = (e) => {
@@ -27,7 +26,6 @@ const Login = () => {
 
   return (
     <>
-    <Navbar />
     <div className="auth-form-container">
       {error.length > 0 &&
         (< Error message={error} />)}

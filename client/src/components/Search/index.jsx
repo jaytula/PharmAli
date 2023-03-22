@@ -3,21 +3,20 @@ import Articles from '../Articles';
 import '../../styles/Search.css'
 import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from '../Navbar';
+import Navbar2 from '../Home/Navbar2';
 import useApplicationData from '../../hooks/useApplicationData'
 import SearchIcon from '@mui/icons-material/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 const Search = () => {
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+  const { onSearchSubmit } = useApplicationData()
 
   const [searchInput, setSearchInput] = useState("");
   const [drugList, setDrugList] = useState([])
 
   const validate = (drug) => {
     onSearchSubmit(drug);
-    setSearchInput("");
   }
 
   useEffect(() => {
