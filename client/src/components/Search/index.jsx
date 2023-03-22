@@ -8,7 +8,7 @@ import useApplicationData from '../../hooks/useApplicationData'
 
 
 const Search = () => {
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+  const { onSearchSubmit } = useApplicationData()
 
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
@@ -16,7 +16,6 @@ const Search = () => {
 
   const validate = (drug) => {
     onSearchSubmit(drug);
-    setSearchInput("");
   }
 
   useEffect(() => {
@@ -27,9 +26,6 @@ const Search = () => {
     })
   }, [searchInput]);
 
-  const tryNavigate = () => {
-    navigate('/');
-  }
   return (
     <>
       <Navbar />
@@ -60,9 +56,6 @@ const Search = () => {
               {drug.name}
             </div>
           ))}
-          <button onClick={tryNavigate}>
-            Click Me
-          </button>
         </div>
       </section>
     </>

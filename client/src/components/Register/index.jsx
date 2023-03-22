@@ -6,7 +6,7 @@ import Navbar from '../Navbar';
 import useApplicationData from '../../hooks/useApplicationData'
 import { useNavigate, useParams } from "react-router-dom";
 
-const Register = (props) => {
+const Register = () => {
   const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
   const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ const Register = (props) => {
           <Button children={SIGNUP} />
         </form>
 
-        <button className="link-btn" onClick={() => props.setPage("LOGIN")}> Already have an account? Log In</button>
+        <button className="link-btn" onClick={() => navigate('/login')}> Already have an account? Log In</button>
 
       </div>
     </>

@@ -7,13 +7,12 @@ import useApplicationData from '../../hooks/useApplicationData'
 import { useNavigate, useParams } from "react-router-dom";
 
 const Login = () => {
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+  const { setCookie } = useApplicationData()
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState("");
-  const HOME = "HOME";
   const LOGIN = "LOGIN";
 
   const handleSubmit = (e) => {
