@@ -33,7 +33,7 @@ const Home = () => {
           hrefvalue={"/"}
           imageSrc={medicine}
           title={"DRUG LIST A-Z"}
-          subtitle={"Pharmali stands out from othe pages"}
+          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
           flipped={true}
         />
       </div>
@@ -42,7 +42,7 @@ const Home = () => {
           hrefvalue={"/search"}
           imageSrc={search}
           title={"DRUG SEARCH"}
-          subtitle={"why we made search component "}
+          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
         />
       </div>
       <div className="slider_container_one">
@@ -50,7 +50,7 @@ const Home = () => {
           hrefvalue={"/pharma"}
           imageSrc={locator}
           title={"PHARMACY LOCATOR"}
-          subtitle={"why we made locator component"}
+          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
           flipped={true}
         />
       </div>
@@ -59,7 +59,7 @@ const Home = () => {
           hrefvalue={"/blogs"}
           imageSrc={blogs}
           title={"BLOGS / MY BLOGS"}
-          subtitle={"why we made blogs component "}
+          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
         />
       </div>
       <div className="slider_container_one">
@@ -67,23 +67,23 @@ const Home = () => {
           hrefvalue={"/myjournal"}
           imageSrc={journal}
           title={"MY JOURNAL"}
-          subtitle={"why we made Journal component"}
+          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
           flipped={true}
         />
       </div>
       <div className="slider_container_two">
         <Slider
           hrefvalue={"/mydrugs"}
-          imageSrc={medlist}
+          imageSrc={medlist} 
           title={"MY MED LIST "}
-          subtitle={"This is talking about our story and why we created this app who we made this app for "}
+          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
         />
       </div>
       <div className="slider_container_one">
         <Slider
           imageSrc={contact}
           title={"CONTACT US"}
-          subtitle={"conclusion and then footer of page"}
+          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
           flipped={true}
         />
       </div>
