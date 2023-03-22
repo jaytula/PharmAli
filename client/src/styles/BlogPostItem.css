@@ -22,9 +22,9 @@
 }
 
 .blogCategories {
-  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+  font-family: "Varela Round";
   font-weight: 400;
-  font-size: 11px;
+  font-size: 15px;
   color: #be9656;
   line-height: 19px;
   margin-top: 15px;
@@ -33,11 +33,13 @@
 }
 
 .blogTitle {
-  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  font-family: "Varela Round";
   font-size: 24px;
   font-weight: 900;
   margin-top: 15px;
   cursor: pointer;
+  text-align: center;
+  color: #DC0000;
 }
 
 .blogDate {
@@ -55,6 +57,7 @@
   font-size: 14px;
   line-height: 24px;
   color: #444444;
+  margin: 8px;
   margin-top: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
