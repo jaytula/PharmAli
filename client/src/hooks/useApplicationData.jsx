@@ -37,17 +37,10 @@ export default function useApplicationData() {
       .then(() => { setUser("") })
   };
 
-  useEffect(() => {
-    Promise.all([
-      axios.get('/user')
-    ]).then((data) => {
-      // Only set a user if a cookie exists
-      if (data[0].data.message) {
-        setUser(data[0].data.message);
-      }
-    })
-  }, []);
+  const getCookie = () => {
+    return axios.get("/user")
+  }
 
-  return { menu, drugContent, user, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setDarkMode }
+  return { menu, drugContent, user, darkMode, setMenu, setCookie, removeCookie, getCookie, onSearchSubmit, setDarkMode }
 
 }

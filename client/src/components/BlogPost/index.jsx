@@ -11,18 +11,17 @@ function BlogPost() {
   const navigate = useNavigate();
   const location = useLocation();
   
-  const [blogContent, setBlogContent] = useState();
-
+  const [blogContent, setBlogContent] = useState({});
+  
   useEffect(() => {
     const blogId = location.pathname.split('/')[2];
 
     Promise.all([
-      axios.get(`/blogs/:${blogId}`),
+      axios.get(`/blogs/${blogId}`)
     ]).then((data) => {
       setBlogContent(data[0].data)
     })
     .catch((err) => {
-      console.log('----------------------------------------------------------------')
       console.log(err);
     })
   }, []);

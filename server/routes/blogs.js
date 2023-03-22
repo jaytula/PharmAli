@@ -14,6 +14,7 @@ module.exports = db => {
       response.json(blogs);
     });
   });
+
   router.get("/:id", (request, response) => {
     const queryParams = [request.url.replace('/', '')]
     const queryString = `
