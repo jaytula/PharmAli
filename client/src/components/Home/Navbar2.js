@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "../../styles/Navbar.css";
 import { FiMenu, FiX } from "react-icons/fi";
-
 import navbarData from "../../helpers/NavbarData";
 import { useNavigate, useParams } from "react-router-dom";
 import useApplicationData from "../../hooks/useApplicationData";
 
 const Navbar2 = (props) => {
-  const { removeCookie } = useApplicationData();
+  const { removeCookie, setDarkMode } = useApplicationData();
   const navigate = useNavigate();
   const LOGOUT = "/logout"
 

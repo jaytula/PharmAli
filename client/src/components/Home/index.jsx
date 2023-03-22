@@ -20,8 +20,6 @@ import Navbar2 from "./Navbar2";
 const Home = () => {
   return (
     <div className="App-2">
-
-      <Navbar2 />
       <Hero imageSrc={pharmaliLogo} />
       <div className="slider_container_two">
         <Slider
