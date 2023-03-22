@@ -5,15 +5,15 @@ import SearchJournal from './Search';
 import JournalHeader from './JournalHeader';
 import axios from 'axios';
 import "../../styles/Journal.css";
-import Navbar from '../Navbar';
-import useApplicationData from '../../hooks/useApplicationData'
+import Navbar2 from '../Home/Navbar2';
+import useApplicationData from '../../hooks/useApplicationData';
 import { useNavigate, useParams } from "react-router-dom";
 
 
 const MyJournal = () => {
   const navigate = useNavigate();
 
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
 
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
@@ -55,19 +55,19 @@ const MyJournal = () => {
         };
         const newJournals = [...journals, newJournal];
         setJournals(newJournals);
-      })
+      });
   };
   const DeleteJournal = (id) => {
     axios.post("/journal/delete", id)
       .then(() => {
         const newJournals = journals.filter((journal) => journal.id !== id);
         setJournals(newJournals);
-      })
+      });
 
   };
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <div className={`${darkMode && 'dark-mode'}`}>
         <div className='container'>
           <JournalHeader />

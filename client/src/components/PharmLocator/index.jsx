@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import Navbar from '../Navbar';
+import Navbar2 from '../Home/Navbar2';
 
 const containerStyle = {
   width: '100vw',
@@ -16,25 +16,25 @@ function PharmLocator() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyBZLYsE0DFYcttZR6nL8N_2N7HPj1WItBs"
-  })
+  });
 
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
 
-    setMap(map)
-  }, [])
+    setMap(map);
+  }, []);
 
   const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+    setMap(null);
+  }, []);
 
   return isLoaded ? (
     <>
-      <Navbar />
+      <Navbar2 />
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -47,7 +47,7 @@ function PharmLocator() {
       </GoogleMap>
 
     </>
-  ) : <></>
+  ) : <></>;
 }
 
-export default React.memo(PharmLocator)
+export default React.memo(PharmLocator);
