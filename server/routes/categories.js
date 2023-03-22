@@ -1,12 +1,11 @@
 const router = require("express").Router();
+const getCategories = require("../db/queries/get-categories");
 
 module.exports = db => {
+  // Get all categories
   router.get("/", (request, response) => {
-    db.query(
-      `
-      SELECT * FROM categories
-    `
-    ).then(({ rows: categories }) => {
+    getCategories.getCategories(db)
+    .then(({ rows: categories }) => {
       response.json(categories);
     });
   });

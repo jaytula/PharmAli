@@ -1,11 +1,10 @@
 const router = require("express").Router();
+const getDrug = require("../db/queries/get-drug");
 
 module.exports = db => {
+  // Get drug by name or id
   router.get("/:name", (req, res) => {
-    const queryParam = (isNaN(req.url)) ? [`${req.url.replace('/', '').toUpperCase()}%`] : [`${req.url.replace('/', '')}`];
-    const queryString = (isNaN(req.url)) ? `SELECT * FROM drugs WHERE name LIKE $1` : `SELECT * FROM drugs WHERE id = $1`
-
-    db.query(queryString, queryParam)
+    getDrug.getDrug(db, req.url)
       .then(({ rows: drugs }) => {
         res.json(drugs);
       });
