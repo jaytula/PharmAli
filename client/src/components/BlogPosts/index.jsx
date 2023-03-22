@@ -37,8 +37,14 @@ const BlogPosts = () => {
           <Articles />
         </div>
         <div className='blogPosts'>
-          <SelectSmall categories={categories} />
-          <span className="blogPostsTitle">BLOGS </span>
+          <span className="blogPostsTitle">
+            <div className='bloggg'>
+            BLOGS
+            </div>
+            <div className='category-dropdown'>
+              <SelectSmall categories={categories} />
+            </div>
+          </span>
           {blogs.map((blog) => (
             <BlogPostItem
               key={blog.id}

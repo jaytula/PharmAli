@@ -1,13 +1,47 @@
-.section-search{
-  width:100%
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.section-search {
+  margin-left: 10px;
 }
 
-.articles {
-float: right;
-margin: 10px;
+.search-outer {
+  float: left;
+  margin-left: 50px;
+}
+
+.icon {
+  position: relative;
+  top: 3px;
+  right: 5px;
+  font-size: 30px;
+}
+
+.searchTitle {
+  margin-left:15px;
+  font-size: 30px;
+  font-family:'Montserrat';
+  color: #DC0000;
 }
 
 .search {
-  float: left;
-  margin:10px;
+  width: 100%;
+  /* position: relative; */
+  display: flex;
 }
+
+.searchTerm {
+  width: 800px;
+  padding: 15px;
+  height: 49px;
+  border-radius: 45px;
+  outline: none;
+  color: #9DBFAF;
+  font-size: 30px;
+}
+
+.searchTerm:focus{
+  color: #DC0000;
+  
+}
+
+
