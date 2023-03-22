@@ -1,20 +1,15 @@
 import axios from "axios";
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+// import { useNavigate } from "react-router-dom";
 
-export default function useApplicationData(DRUG, HOME) {
-  const [menu, setMenu] = useState(false);
-  const [page, setPage] = useState(HOME);
-  const [drugContent, setDrugContent] = useState("");
-  const [user, setUser] = useState();
-  const [blogContent, setBlogContent] = useState();
 
-  const onSearchSubmit = (text) => {
-    return Promise.all([
-      axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
-    ]).then((data) => {
-      setPage(DRUG);
-      setDrugContent(data);
-    })
+export default function useApplicationData() {
+  const [user, setUser] = useState({});
+  const [darkMode, setDarkMode] = useState(false);
+  // const navigate = useNavigate();
+
+  const onSearchSubmit = (drug) => {
+    // navigate(`/drugs/${drug.id}`);
   }
 
   const setCookie = (userInfo) => {
@@ -26,28 +21,25 @@ export default function useApplicationData(DRUG, HOME) {
       makeRequest = axios.post("/user/login", userInfo)
     }
     return makeRequest.then((data) => {
-      console.log(data)
-        const success = data.data.message;
-        if (success instanceof Object) {
-          console.log(success);
-          setUser(success.userInfo.id);
-        }
-        return success;
-      })
+      const success = data.data.message;
+      if (success instanceof Object) {
+        setUser(success.userInfo);
+      }
+      return success;
+    })
   };
 
   const removeCookie = () => {
     return axios.post("/user/logout")
-      .then(() => { setUser("") })
+      .then(() => {
+        setUser(null)
+      })
   };
 
-  useEffect(() => {
-    Promise.all([
-      axios.get('/user'),
-    ]).then((data) => {
-      setUser(data[0].data.message);
-    })
-  }, []);
-  
-  return { page, menu, user, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent }
+  const getCookie = () => {
+    return axios.get("/user")
+  }
+
+  return { user, darkMode, setCookie, removeCookie, getCookie, onSearchSubmit, setDarkMode }
+
 }

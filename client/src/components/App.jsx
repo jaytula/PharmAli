@@ -1,71 +1,53 @@
 import '../styles/App.css';
-import { useState } from 'react';
-import Navbar from './Navbar';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from 'react';
+
 import Home from './Home';
-import Login from './Login'
-import Register from './Register';
 import Search from './Search';
-import DrugList from './DrugList';
-import PharmLocator from './PharmLocator';
+import PharmaLocator from './PharmLocator';
 import BlogPosts from './BlogPosts';
 import MyBlogs from './MyBlogs';
+import Login from './Login'
+import Register from './Register';
 import MyJournal from './MyJournal';
 import Drug from './Drug';
-import useApplicationData from '../hooks/useApplicationData';
+import MyDrugs from './MyDrugs';
 import BlogPost from './BlogPost';
-import Articles from './Articles'
+import Navbar2 from "./Home/Navbar2";
+import EditBlog from "./EditBlog";
+import useApplicationData from "../hooks/useApplicationData";
 
 function App() {
-  // The different pages user could visit
-  const HOME = "HOME";
-  const LOGIN = "LOGIN";
-  const REGISTER = "REGISTER";
-  const SEARCH = "SEARCH";
-  const DRUG_LIST = "DRUG LIST A-Z";
-  const PHARM_LOCATOR = "PHARMACY NEARBY";
-  const BLOG_POSTS = "BLOG POSTS";
-  const MY_BLOGS = "MY BLOGS";
-  const MY_JOURNAL = "MY JOURNAL";
-  const DRUG = "DRUG";
-  const BLOG = "BLOG";
-  const { page, menu, user, drugList, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent } = useApplicationData(DRUG, HOME);
-  const [darkMode, setDarkMode] = useState(false);
+  const [user, setUser] = useState(null);
+  const { getCookie } = useApplicationData();
 
-  const setBlog = (blog) => {
-    setBlogContent(blog);
-    setPage(BLOG);
-  }
+  useEffect(() => {
+    getCookie()
+    .then((data) => {
+      setUser(data.data.user_id);
+    })
+  }, []);
 
   return (
     <div className="App">
-      {/* Navbar */}
-      <Navbar menu={menu} setMenu={setMenu} setPage={setPage} user={user} removeCookie={removeCookie} />
-      {/* Page user is on */}
-      {page === HOME &&
-        (<Home user={user} />)}
-      {page === LOGIN &&
-        (<Login setPage={setPage} setCookie={setCookie} />)}
-      {page === REGISTER &&
-        (<Register setPage={setPage} setCookie={setCookie} />)}
-      {page === SEARCH &&
-        (<Search
-          onSearchSubmit={onSearchSubmit} drugList={drugList} />)}
-      {page === DRUG_LIST &&
-        (<DrugList drugList={drugList} />)}
-      {page === PHARM_LOCATOR &&
-        (<PharmLocator user={user} />)}
-      {page === BLOG_POSTS &&
-        (<BlogPosts setBlog={setBlog} />)}
-      {page === MY_BLOGS &&
-        (<MyBlogs user={user} />)}
-      {page === MY_JOURNAL &&
-        (<MyJournal darkMode={darkMode} setDarkMode={setDarkMode} user_id={user} />)}
-      {page === DRUG &&
-        (<Drug content={drugContent} />)}
-      {page === BLOG &&
-        (<BlogPost blogContent={blogContent} setPage={setPage} user_id={user}/>)}
-      {/* {(page === BLOG_POSTS) || (page === SEARCH) || (page === DRUG_LIST) && 
-        <Articles/> } */}
+      <Router>
+        <Navbar2 user={user}/>
+        <Routes>
+          <Route path="*" element={<h1>404 Page Not Found</h1>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/drugs/*" element={<Drug user={user}/>} />
+          <Route path="/pharma" element={<PharmaLocator user={user}/>} />
+          <Route path="/myblogs" element={<MyBlogs user={user}/>} />
+          <Route path="/myblogs/edit/*" element={<EditBlog user={user}/>} />
+          <Route path="/myjournal" element={<MyJournal user={user}/>} />
+          <Route path="/mydrugs" element={<MyDrugs user={user}/>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/blogs" element={<BlogPosts />} />
+          <Route path="/blogs/*" element={<BlogPost user={user}/>} />
+        </Routes>
+      </Router>
     </div>
   );
 }

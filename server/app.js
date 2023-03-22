@@ -39,7 +39,7 @@ app.use('/comments', commentsRouter(db));
 app.use('/articles', articlesRouter(db));
 app.use('/journal', journalRouter(db));
 app.use('/drugs', drugsRouter(db));
-app.use('/saved_medications', savedMedicationsRouter(db));
+app.use('/favourite', savedMedicationsRouter(db));
 app.use('/categories', categoriesRouter(db));
 
 module.exports = app;

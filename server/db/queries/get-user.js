@@ -1,5 +1,4 @@
 const getUser = function(db, userInfo) {
-  console.log('getUser');
   let queryString = '';
   const queryParams = [userInfo.email];
 

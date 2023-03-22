@@ -4,10 +4,15 @@ import NavbarData from '../../helpers/NavbarData'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import useApplicationData from '../../hooks/useApplicationData'
+import { useNavigate, useParams } from "react-router-dom";
 
-const Navbar = (props) => {
-  const LOGOUT = "LOGOUT";
-  const HOME = "HOME";
+const Navbar = () => {
+  const navigate = useNavigate();
+  const LOGOUT = "/logout"
+
+  const { menu, user, setMenu, removeCookie, setDarkMode } = useApplicationData();
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -21,21 +26,16 @@ const Navbar = (props) => {
     },
   });
 
-  const showMenu = () => props.setMenu(!props.menu);
-
-  const showPage = (item) => {
-    props.setPage(item);
-    showMenu();
-  };
+  const showMenu = () => setMenu(!menu);
 
   const setLink = (item) => {
     if (item === LOGOUT) {
-      props.removeCookie()
+      removeCookie()
         .then(() => {
-          showPage(HOME);
+          navigate('/');
         });
     } else {
-      showPage(item);
+      navigate(item);
     }
   }
 
@@ -45,14 +45,27 @@ const Navbar = (props) => {
         <div data-testid="navbar" className='navbar'>
           <MenuIcon data-testid="navmenu-icon" onClick={showMenu} />
         </div>
-        <nav data-testid="nav-menu" className={props.menu ? 'nav-menu active' : 'nav-menu'}>
+        <nav data-testid="nav-menu" className={menu ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items'>
             <ul className='navbar-toggle'>
               <CloseIcon color="primary" onClick={showMenu} />
             </ul>
-            {NavbarData(props.user).map((item, index) => {
+            <ul key={user.id} className="nav-text" data-testid="nav-item">
+              {user.name &&
+                (<h3>
+                  Welcome {user.name}
+                </h3>)}
+              <button
+                onClick={() =>
+                  setDarkMode(
+                    (previousDarkMode) =>
+                      !previousDarkMode)
+                } className="save"
+              >Dark Mode</button>
+            </ul>
+            {NavbarData(user.id).map((item, index) => {
               return (
-                <ul key={index} className={item.cName} onClick={() => setLink(item.title)} data-testid="nav-item">
+                <ul key={index} className={item.cName} onClick={() => setLink(item.route)} data-testid="nav-item">
                   {item.icon}
                   <span className="item-title">{item.title}</span>
                 </ul>

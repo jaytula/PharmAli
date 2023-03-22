@@ -1,19 +1,19 @@
 import React from 'react'
 import "../../styles/Article.css"
 
-function Article() {
+function Article(props) {
   return (
     <div className='articlebar'>
-       <div className="articlebarItem">
+      <div className="articlebarItem">
         <img
-          src="https://www.fda.gov/files/styles/recall_image_large/public/30ml.jpg?itok=QxW5roPH"
+          src={`${props.article.image_url}`}
           alt=""
         />
-         <span className="sidebarTitle">
-          <a href = "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/pharmedica-usa-llc-issues-voluntary-worldwide-recall-purely-soothing-15-msm-drops-due-non-sterility"> Article Title </a>
-          </span>
+        <span className="sidebarTitle">
+          <a href={`${props.article.article_url}`} target="_blank" rel="noreferrer"> {props.article.title} </a>
+        </span>
       </div>
-      
+
     </div>
   )
 }

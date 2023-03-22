@@ -7,7 +7,6 @@ import Select from '@mui/material/Select';
 
 export default function SelectSmall(props) {
   const [category, setCategory] = useState('')
-  console.log(props)
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
