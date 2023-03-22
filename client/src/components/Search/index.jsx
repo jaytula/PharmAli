@@ -29,7 +29,6 @@ const Search = () => {
 
   return (
     <>
-      <Navbar />
       {/* <section className='section-search'> */}
         <div className='articles'>
           <Articles />

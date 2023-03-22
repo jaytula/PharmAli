@@ -1,0 +1,13 @@
+.pharmLocator{
+  display:flex;
+}
+.pharmacy-title{
+  color: #DC0000;
+
+}
+
+.pharmacy-map {
+  width:100vw;
+  height:100vh;
+  margin: 10px;
+}

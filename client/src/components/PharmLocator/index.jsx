@@ -1,52 +1,14 @@
-import React from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import Navbar2 from '../Home/Navbar2';
-
-const containerStyle = {
-  width: '100vw',
-  height: '100vh'
-};
-
-const center = {
-  lat: 43.64,
-  lng: -79.38
-};
+import React from 'react'
+import '../../styles/Map.css'
 
 function PharmLocator() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyBZLYsE0DFYcttZR6nL8N_2N7HPj1WItBs"
-  });
-
-  const [map, setMap] = React.useState(null);
-
-  const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-
-    setMap(map);
-  }, []);
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null);
-  }, []);
-
-  return isLoaded ? (
-    <>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        { /* Child components, such as markers, info windows, etc. */}
-        <></>
-      </GoogleMap>
-
-    </>
-  ) : <></>;
+  return (
+    <div className='pharmLocator'>
+      <div className='pharmacy-map'>
+      <iframe src="https://my.atlistmaps.com/map/e2f947f5-e898-49e2-afc2-d6c7ac4d59fb?share=true" allow="geolocation 'self' https://my.atlistmaps.com" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
+      </div>
+    </div>
+  )
 }
 
-export default React.memo(PharmLocator);
+export default PharmLocator
