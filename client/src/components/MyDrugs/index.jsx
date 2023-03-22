@@ -2,31 +2,30 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import useApplicationData from '../../hooks/useApplicationData'
 import { useNavigate } from "react-router-dom";
+import DrugListItem from "../MyDrugItem";
 
-const MyDrugs = () => {
-  const { getCookie } = useApplicationData()
+const MyDrugs = (props) => {
   const navigate = useNavigate();
-
   const [drugs, setDrugs] = useState([]);
 
   useEffect(() => {
-    getCookie()
-    .then((user) => {
-      console.log(user.data.message.id);
+    if (props.user) {
       Promise.all([
-        axios.get(`/favourite/${user.data.message.id}`),
+        axios.get(`/favourite/${props.user}`),
       ]).then((data) => {
         setDrugs(data[0].data)
       })
-    })
-  }, []);
+    }
+  }, [props.user]);
 
   return (
     <>
       {drugs.map((drug) => (
-        <div onClick={() => navigate(`drugs/${drug.drug_id}`)}>
-          {drug.drug_id}
-        </div>
+        <DrugListItem
+          key={drug.id}
+          drug_id={drug.id}
+          user={props.user}
+        />
       ))}
     </>
   )
