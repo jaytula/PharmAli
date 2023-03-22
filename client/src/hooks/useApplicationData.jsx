@@ -5,7 +5,6 @@ export default function useApplicationData() {
   const [menu, setMenu] = useState(false);
   const [drugContent, setDrugContent] = useState();
   const [user, setUser] = useState({});
-  const [blogContent, setBlogContent] = useState();
   const [darkMode, setDarkMode] = useState(false);
 
   const onSearchSubmit = (drug) => {
@@ -49,6 +48,6 @@ export default function useApplicationData() {
     })
   }, []);
 
-  return { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode }
+  return { menu, drugContent, user, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setDarkMode }
 
 }
