@@ -29,7 +29,6 @@ const Register = () => {
 
   return (
     <>
-      <Navbar2 />
       <div className="auth-form-container">
         {error.length > 0 &&
           (< Error message={error} />)}

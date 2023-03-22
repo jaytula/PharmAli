@@ -34,7 +34,6 @@ function PharmLocator() {
 
   return isLoaded ? (
     <>
-      <Navbar2 />
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

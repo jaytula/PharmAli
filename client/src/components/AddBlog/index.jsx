@@ -7,10 +7,9 @@ import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
 
 
-function EditBlog(props) {
+function AddBlog(props) {
   const navigate = useNavigate();
-  const location = useLocation();
-  const blogId = location.pathname.split('/').pop();
+  const blogId = null;
 
   const editPost = (editBlog) => {
     Promise.all([
@@ -21,21 +20,12 @@ function EditBlog(props) {
       });
   };
 
-
   useEffect(() => {
-    if (props.user) {
-      Promise.all([
-        axios.get(`/blogs/${props.user}&${blogId}`),
-        axios.get('/categories')
-      ]).then((data) => {
-        const blog = data[0].data[0];
-        setTitle(blog.title);
-        setImage(blog.image_url);
-        setContent(blog.content);
-        setCategory(blog.category);
-        setCategories(data[1].data);
-      });
-    }
+    Promise.all([
+      axios.get('/categories')
+    ]).then((data) => {
+      setCategories(data[1].data);
+    });
   }, [props.user]);
 
   const [title, setTitle] = useState("")
@@ -76,7 +66,7 @@ function EditBlog(props) {
         <button className='button-cancel' onClick={() => navigate('/myblogs')}>
           Cancel
         </button>
-        <button className='button-save' onClick={() => editPost({ id: blogId, title, image_url: image, content, name: 1 })}>
+        <button className='button-save' onClick={() => editPost({ id: blogId, title, image_url: image, content, name: 1, user_id: props.user })}>
           Save
         </button>
       </div>
@@ -84,4 +74,4 @@ function EditBlog(props) {
   )
 }
 
-export default EditBlog
+export default AddBlog

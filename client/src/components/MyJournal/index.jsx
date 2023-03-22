@@ -10,43 +10,35 @@ import useApplicationData from '../../hooks/useApplicationData';
 import { useNavigate, useParams } from "react-router-dom";
 
 
-const MyJournal = () => {
+const MyJournal = (props) => {
   const navigate = useNavigate();
-
   const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
 console.log(darkMode)
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
-    Promise.all([
-      axios.get(`/journal/${user}`),
-    ]).then((data) => {
-      const user = {
-        firstName: 'Maryan',
-        lastName: 'Ali',
-        image: profileImage
-      };
-      const myJournals = data[0].data.journal.map((loop) => ({ ...loop, user }));
-
-      setJournals(myJournals);
-    });
-  }, []);
-  useEffect(() => {
-    const savedJournals = JSON.parse(
-      localStorage.getItem('react-journal-app-data')
-    );
-    if (savedJournals) {
-      setJournals(savedJournals);
+    if (props.user) {
+      Promise.all([
+        axios.get(`/journal/${props.user}`),
+      ]).then((data) => {
+        const user = {
+          firstName: 'Maryan',
+          lastName: 'Ali',
+          image: profileImage
+        };
+        const myJournals = data[0].data.journal.map((loop) => ({ ...loop, user }));
+        setJournals(myJournals);
+      });
     }
-  }, []);
+  }, [props.user]);
 
   useEffect(() => {
     localStorage.setItem('react-journal-app-data', JSON.stringify(journals));
   }, [journals]);
 
   const AddJournal = (text) => {
-    axios.post("/journal/add", { user_id: user, text })
+    axios.post("/journal/add", { user_id: props.user, text })
       .then(() => {
         const date = new Date();
         const newJournal = {
@@ -57,17 +49,16 @@ console.log(darkMode)
         setJournals(newJournals);
       });
   };
+
   const DeleteJournal = (id) => {
     axios.post("/journal/delete", id)
       .then(() => {
         const newJournals = journals.filter((journal) => journal.id !== id);
         setJournals(newJournals);
       });
-
   };
   return (
     <>
-      <Navbar2 />
       <div className={`${darkMode && 'dark-mode'}`}>
         <div className='container'>
           <JournalHeader />
