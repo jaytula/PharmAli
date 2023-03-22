@@ -3,9 +3,11 @@ import MyBlogsItem from '../MyBlogsItem/index';
 import "../../styles/BlogPosts.css";
 import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
+import Button from '../Button';
+import { useNavigate } from "react-router-dom";
 
 const MyBlogs = (props) => {
-  // const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
+  const navigate = useNavigate();
 
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -43,6 +45,7 @@ const MyBlogs = (props) => {
               blog={blog}
               deletePost={deletePost} />
           ))}
+          <Button onClick={() => navigate('/myblogs/add')} children={"Add a Blog"} />
         </div>
       </section>
     </>

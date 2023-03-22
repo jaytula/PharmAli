@@ -15,6 +15,7 @@ import MyDrugs from './MyDrugs';
 import BlogPost from './BlogPost';
 import Navbar2 from "./Home/Navbar2";
 import EditBlog from "./EditBlog";
+import AddBlog from "./AddBlog";
 import useApplicationData from "../hooks/useApplicationData";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/pharma" element={<PharmaLocator user={user}/>} />
           <Route path="/myblogs" element={<MyBlogs user={user}/>} />
           <Route path="/myblogs/edit/*" element={<EditBlog user={user}/>} />
+          <Route path="/myblogs/add" element={<AddBlog user={user}/>} />
           <Route path="/myjournal" element={<MyJournal user={user}/>} />
           <Route path="/mydrugs" element={<MyDrugs user={user}/>} />
           <Route path="/register" element={<Register />} />
