@@ -19,7 +19,6 @@ const MyBlogs = (props) => {
   };
 
   useEffect(() => {
-    console.log(props);
     Promise.all([
       axios.get(`/blogs/${props.user}`),
       axios.get('/categories')

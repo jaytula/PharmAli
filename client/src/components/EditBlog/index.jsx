@@ -28,7 +28,6 @@ function EditBlog(props) {
       axios.get('/categories')
     ]).then((data) => {
       const blog = data[0].data[0];
-      console.log(data[1].data);
       setTitle(blog.title);
       setImage(blog.image_url);
       setContent(blog.content);

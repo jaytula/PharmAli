@@ -17,7 +17,6 @@ module.exports = db => {
 
   router.get("/:id", (request, response) => {
     const queryParams = request.url.replace('/', '').split('&')
-    console.log(queryParams);
     let queryString = `
     SELECT blogs.id, blogs.title, blogs.image_url, blogs.content, categories.name as category, blogs.created_at 
     FROM blogs
