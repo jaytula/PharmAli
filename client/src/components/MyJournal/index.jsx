@@ -6,14 +6,18 @@ import JournalHeader from './JournalHeader';
 import axios from 'axios';
 import "../../styles/Journal.css";
 import Navbar from '../Navbar';
+import useApplicationData from '../../hooks/useApplicationData'
 
-const MyJournal = (props) => {
+
+const MyJournal = () => {
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     Promise.all([
-      axios.get(`/journal/${props.user_id}`),
+      axios.get(`/journal/${user}`),
     ]).then((data) => {
       const user = {
         firstName: 'Maryan',
@@ -39,7 +43,7 @@ const MyJournal = (props) => {
   }, [journals]);
 
   const AddJournal = (text) => {
-    axios.post("/journal/add", { user_id: props.user_id, text })
+    axios.post("/journal/add", { user_id: user, text })
       .then(() => {
         const date = new Date();
         const newJournal = {
@@ -61,7 +65,7 @@ const MyJournal = (props) => {
   return (
     <>
       <Navbar />
-      <div className={`${props.darkMode && 'dark-mode'}`}>
+      <div className={`${darkMode && 'dark-mode'}`}>
         <div className='container'>
           <JournalHeader />
           <SearchJournal

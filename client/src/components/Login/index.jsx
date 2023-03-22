@@ -3,8 +3,11 @@ import "../../styles/login.css"
 import Button from '../Button';
 import Error from '../Error';
 import Navbar from '../Navbar';
+import useApplicationData from '../../hooks/useApplicationData'
 
-const Login = (props) => {
+const Login = () => {
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState("");
@@ -14,9 +17,9 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInfo = {email, password};
-    props.setCookie(userInfo)
+    setCookie(userInfo)
     .then((passed) => {
-      (passed.userInfo) ? props.setPage(HOME): setError(passed);
+      (passed.userInfo) ? setPage(HOME): setError(passed);
     });
   };
 
@@ -34,7 +37,7 @@ const Login = (props) => {
         <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="*******" id="password" name="password" required/>
         <Button children={LOGIN}/>
       </form>
-      <button className="link-btn" onClick={() => props.setPage("REGISTER")}>Dont have an account? Register</button>
+      <button className="link-btn" onClick={() => setPage("REGISTER")}>Dont have an account? Register</button>
     </div>
     </>
 

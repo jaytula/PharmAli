@@ -5,8 +5,12 @@ import Articles from '../Articles/index.jsx';
 import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
 import Navbar from '../Navbar/index.jsx';
+import useApplicationData from '../../hooks/useApplicationData'
 
-const BlogPosts = (props) => {
+
+const BlogPosts = () => {
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+
   // Set the blogs and categories to show
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -37,7 +41,7 @@ const BlogPosts = (props) => {
           <BlogPostItem
           key={blog.id}
           blog={blog}
-          setBlog={() => props.setBlog(blog)} />
+          setBlog={() => setBlog(blog)} />
         ))}
         
       </div>

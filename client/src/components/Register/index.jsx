@@ -3,8 +3,12 @@ import "../../styles/login.css"
 import Button from '../Button';
 import Error from '../Error';
 import Navbar from '../Navbar';
+import useApplicationData from '../../hooks/useApplicationData'
+
 
 const Register = (props) => {
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -16,9 +20,9 @@ const Register = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInfo = { email, password, name, postalCode }
-    props.setCookie(userInfo)
+    setCookie(userInfo)
       .then((message) => {
-        (typeof message === 'object') ? props.setPage(HOME) : setError(message);
+        (typeof message === 'object') ? setPage(HOME) : setError(message);
       })
   };
 

@@ -4,14 +4,18 @@ import '../../styles/Search.css'
 import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from '../Navbar';
+import useApplicationData from '../../hooks/useApplicationData'
 
-const Search = (props) => {
+
+const Search = () => {
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const [drugList, setDrugList] = useState([])
 
   const validate = (drug) => {
-    props.onSearchSubmit(drug);
+    onSearchSubmit(drug);
     setSearchInput("");
   }
 

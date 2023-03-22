@@ -50,4 +50,5 @@ export default function useApplicationData() {
   }, []);
 
   return { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode }
+
 }

@@ -5,8 +5,12 @@ import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
 import EditBlog from '../EditBlog';
 import Navbar from '../Navbar';
+import useApplicationData from '../../hooks/useApplicationData'
+
 
 const MyBlogs = (props) => {
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
   const [edit, setEdit]=useState();
@@ -29,7 +33,7 @@ const MyBlogs = (props) => {
         });
         return [...prev]
       })
-      props.setBlog(editBlog)
+      setBlog(editBlog)
     })
   }
 
@@ -43,7 +47,7 @@ const MyBlogs = (props) => {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`/blogs/${props.user}`),
+      axios.get(`/blogs/${user}`),
       axios.get('/categories')
     ]).then((data) => {
       setBlogs(data[0].data)
@@ -63,12 +67,12 @@ const MyBlogs = (props) => {
         {blogs.map((blog) => (
           <MyBlogsItem
             key={blog.id}
-            user_id={props.user_id}
+            user_id={user.id}
             blog={blog}
-            setBlog={() => props.setBlog(blog)}
+            setBlog={() => setBlog(blog)}
             deletePost={deletePost} 
             editPost={editPost}
-            setPage={props.setPage}
+            setPage={setPage}
             setEdit={setEdit}/>
         ))}
       </div>)}

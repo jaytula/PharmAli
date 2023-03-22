@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import useApplicationData from '../../hooks/useApplicationData'
 
-const MyDrugs = (props) => {
+const MyDrugs = () => {
+  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData()
+
   const [drugs, setDrugs] = useState([]);
 
   useEffect(() => {
     Promise.all([
-      axios.get(`/favourite/${props.user_id}`),
+      axios.get(`/favourite/${user.id}`),
     ]).then((data) => {
       setDrugs(data[0].data)
     })
