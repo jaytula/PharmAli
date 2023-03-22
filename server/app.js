@@ -3,6 +3,7 @@ const path = require('path');
 const logger = require('morgan');
 const db = require('./db/index');
 var cookieParser = require('cookie-parser')
+const bcrypt = require("bcryptjs");
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
@@ -10,7 +11,9 @@ const blogsRouter = require('./routes/blogs');
 const commentsRouter = require('./routes/comments');
 const articlesRouter = require('./routes/articles');
 const journalRouter = require('./routes/journal');
+const drugsRouter = require('./routes/drugs');
 const savedMedicationsRouter = require('./routes/saved_medications');
+const categoriesRouter = require('./routes/categories');
 
 const app = express();
 
@@ -35,6 +38,8 @@ app.use('/blogs', blogsRouter(db));
 app.use('/comments', commentsRouter(db));
 app.use('/articles', articlesRouter(db));
 app.use('/journal', journalRouter(db));
-app.use('/saved_medications', savedMedicationsRouter(db));
+app.use('/drugs', drugsRouter(db));
+app.use('/favourite', savedMedicationsRouter(db));
+app.use('/categories', categoriesRouter(db));
 
 module.exports = app;

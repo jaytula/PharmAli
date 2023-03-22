@@ -1,11 +1,10 @@
 const getUser = function(db, userInfo) {
-  console.log('getUser');
   let queryString = '';
   const queryParams = [userInfo.email];
 
   // Create a query string based  on register/login
   if (userInfo.name) {
-    queryString += 'INSERT INTO users (name, email, password, postal_code) VALUES ($1, $2, $3, $4)'
+    queryString += 'INSERT INTO users (name, email, password, postal_code) VALUES ($1, $2, $3, $4) RETURNING id'
     queryParams.unshift(userInfo.name);
     queryParams.push(userInfo.password, userInfo.postal_code);
   } else {

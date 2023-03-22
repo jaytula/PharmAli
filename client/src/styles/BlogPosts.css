@@ -1,5 +1,61 @@
+.section {
+  width: 100%;
+}
 .blogPosts {
-  flex: 9;
+  flex: 7;
   display: flex;
   flex-wrap: wrap;
+  float: left;
+  width: 70%;
+  margin: 10px;
+}
+
+.articles {
+  float: right;
+}
+
+.blogPostsTitle {
+  margin: 10px;
+  padding: 5px;
+  width: 80%;
+  border-top: solid 1px #a7a4a4;
+  border-bottom: solid 1px #a7a4a4;
+  text-align: center;
+  font-family: "Varela Round", sans-serif;
+  font-size: 12px;
+  line-height: 19px;
+  color: #222222;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 1182px) {
+  .section {
+    width: 100%;
+  }
+  .blogPosts {
+    flex: 7;
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    width: 40%;
+    margin: 10px;
+  }
+  
+  .articles {
+    float: right;
+  }
+  
+  .blogPostsTitle {
+    margin: 10px;
+    padding: 5px;
+    width: 80vw;
+    border-top: solid 1px #a7a4a4;
+    border-bottom: solid 1px #a7a4a4;
+    text-align: center;
+    font-family: "Varela Round", sans-serif;
+    font-size: 12px;
+    line-height: 19px;
+    color: #222222;
+    font-weight: 600;
+  }
 }

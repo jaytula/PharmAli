@@ -1,46 +1,64 @@
-import React, { useState } from 'react'
-import Button from '../Button';
-import Error from '../Error';
+import React, { useState, useEffect } from 'react'
+import Articles from '../Articles';
+import '../../styles/Search.css'
+import axios from 'axios';
+import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '../Navbar';
+import useApplicationData from '../../hooks/useApplicationData'
 
-const Search = (props) => {
+
+const Search = () => {
+  const { onSearchSubmit } = useApplicationData()
+
+  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
-  const [error, setError] = useState("");
+  const [drugList, setDrugList] = useState([])
 
-  const validate = () => {
-    if (searchInput === "") {
-      setError("Search input cannot be blank");
-      return;
-    }
-    setError("");
-    props.onSearchSubmit(searchInput);
-    setSearchInput("");
+  const validate = (drug) => {
+    onSearchSubmit(drug);
   }
 
+  useEffect(() => {
+    Promise.all([
+      axios.get(`/drugs/${searchInput}`)
+    ]).then((data) => {
+      setDrugList(data[0].data);
+    })
+  }, [searchInput]);
+
   return (
-    <div>
-      {error.length > 0 &&
-        (< Error message={error} />)}
-      <main className="searxh__card search__card--create">
-        <section className="searxh__card-left">
-          <form autoComplete="off" onSubmit={event => event.preventDefault()}>
-            <input
-              className="search__create-input text--semi-bold"
-              name="name"
-              type="text"
-              placeholder="Enter Drug Name"
-              value={searchInput}
-              onChange={(event) => { setSearchInput(event.target.value); }}
-              data-testid="search-input"
-            />
-          </form>
-        </section>
-        <section className="search__card-right">
-          <section className="searxh__actions">
-            <Button onClick={() => validate()}>Search</Button>
-          </section>
-        </section>
-      </main>
-    </div>
+    <>
+      <Navbar />
+      <section className='section-search'>
+        <div className='articles'>
+          <Articles />
+        </div>
+        <div className='search'>
+          <main className="searxh__card search__card--create">
+            <section className="searxh__card-left">
+              <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+                <input
+                  className="search__create-input text--semi-bold"
+                  name="name"
+                  type="text"
+                  placeholder="Enter Drug Name"
+                  value={searchInput}
+                  onChange={(event) => { setSearchInput(event.target.value); }}
+                  data-testid="search-input"
+                />
+              </form>
+            </section>
+            <section className="search__card-right">
+            </section>
+          </main>
+          {drugList.map((drug) => (
+            <div onClick={() => validate(drug)}>
+              {drug.name}
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   )
 }
 

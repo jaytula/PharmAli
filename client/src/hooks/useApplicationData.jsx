@@ -1,19 +1,17 @@
 import axios from "axios";
 import { useState, useEffect } from 'react'
 
-export default function useApplicationData(DRUG, HOME) {
+export default function useApplicationData() {
   const [menu, setMenu] = useState(false);
-  const [page, setPage] = useState(HOME);
-  const [drugContent, setDrugContent] = useState("");
-  const [user, setUser] = useState();
-  const [blogContent, setBlogContent] = useState();
+  const [drugContent, setDrugContent] = useState();
+  const [user, setUser] = useState({});
+  const [darkMode, setDarkMode] = useState(false);
 
-  const onSearchSubmit = (text) => {
+  const onSearchSubmit = (drug) => {
     return Promise.all([
-      axios.get(`https://api.fda.gov/drug/label.json?search=description:${text}`)
+      axios.get(`https://api.fda.gov/drug/label.json?search=description:${drug.name}`)
     ]).then((data) => {
-      setPage(DRUG);
-      setDrugContent(data);
+      setDrugContent({ data, drug_id: drug.id });
     })
   }
 
@@ -26,12 +24,12 @@ export default function useApplicationData(DRUG, HOME) {
       makeRequest = axios.post("/user/login", userInfo)
     }
     return makeRequest.then((data) => {
-        const success = data.data.message;
-        if (success instanceof Object) {
-          setUser(userInfo.email);
-        }
-        return success;
-      })
+      const success = data.data.message;
+      if (success instanceof Object) {
+        setUser(success.userInfo);
+      }
+      return success;
+    })
   };
 
   const removeCookie = () => {
@@ -41,12 +39,15 @@ export default function useApplicationData(DRUG, HOME) {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/user'),
+      axios.get('/user')
     ]).then((data) => {
-      setUser(data[0].data.message);
+      // Only set a user if a cookie exists
+      if (data[0].data.message) {
+        setUser(data[0].data.message);
+      }
     })
   }, []);
 
+  return { menu, drugContent, user, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setDarkMode }
 
-  return { page, menu, user, blogContent, drugContent, setMenu, setPage, setCookie, removeCookie, onSearchSubmit, setBlogContent }
 }

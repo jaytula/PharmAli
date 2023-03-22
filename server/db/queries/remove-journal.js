@@ -1,10 +1,9 @@
-const getJournal = function(db, email) {
-  const queryParams = [email];
+const removeJournal = function(db, journalId) {
+  const queryParams = [journalId];
   const queryString = `
   DELETE FROM journals WHERE
-  user_id = (SELECT id FROM users WHERE email = $1)`
-  
+  id = $1`
   return db.query(queryString, queryParams);
 };
 
-module.exports = { getJournal };
+module.exports = { removeJournal };
