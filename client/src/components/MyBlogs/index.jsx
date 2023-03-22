@@ -19,14 +19,16 @@ const MyBlogs = (props) => {
   };
 
   useEffect(() => {
-    Promise.all([
-      axios.get(`/blogs/${props.user}`),
-      axios.get('/categories')
-    ]).then((data) => {
-      setBlogs(data[0].data);
-      setCategories(data[1].data);
-    });
-  }, []);
+    if (props.user) {
+      Promise.all([
+        axios.get(`/blogs/${props.user}`),
+        axios.get('/categories')
+      ]).then((data) => {
+        setBlogs(data[0].data);
+        setCategories(data[1].data);
+      });
+    }
+  }, [props.user]);
 
   return (
     <>
