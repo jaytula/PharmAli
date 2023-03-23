@@ -39,7 +39,7 @@ const BlogPosts = () => {
         <div className='blogPosts'>
           <span className="blogPostsTitle">
             <div className='bloggg'>
-            BLOGS
+            <h1>BLOGS</h1>
             </div>
             <div className='category-dropdown'>
               <SelectSmall categories={categories} />

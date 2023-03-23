@@ -30,12 +30,14 @@ function MyBlogsItem(props) {
     <p className="blogDescription">
       {props.blog.content}
     </p>
+    <>
       <IconButton onClick={() => navigate(`/myblogs/edit/${props.blog.id}`)}>
-        <EditIcon/>
+        <EditIcon color='primary'/>
       </IconButton>
       <IconButton onClick={() => props.deletePost(props.blog.id)}>
-         <DeleteIcon/>
+         <DeleteIcon color="error"/>
       </IconButton>
+    </>
 
     </div>
   )
