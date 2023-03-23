@@ -1,15 +1,8 @@
 import axios from "axios";
 import { useState } from 'react'
-// import { useNavigate } from "react-router-dom";
-
 
 export default function useApplicationData() {
   const [user, setUser] = useState({});
-  // const navigate = useNavigate();
-
-  const onSearchSubmit = (drug) => {
-    // navigate(`/drugs/${drug.id}`);
-  }
 
   const setCookie = (userInfo) => {
     // Set up the userinfo to send and request type (get, post)
@@ -39,6 +32,6 @@ export default function useApplicationData() {
     return axios.get("/user")
   }
 
-  return { user, setCookie, removeCookie, getCookie, onSearchSubmit }
+  return { user, setCookie, removeCookie, getCookie }
 
 }
