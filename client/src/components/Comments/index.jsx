@@ -56,7 +56,7 @@ function Comments(props) {
   // To load all comments when the blog is visited
   useEffect(() => {
     Promise.all([
-      axios.get(`/comments?blogid=${props.blog_id}`),
+      axios.get(`/comments/${props.blog_id}`),
     ]).then((data) => {
       setComments(data[0].data.rows)
     })
@@ -75,9 +75,9 @@ function Comments(props) {
               comment={comment}
               setComments={() => props.setComment(comment)}
             />
-            <IconButton onClick={() => deleteComment(comment.id)}>
+            {props.user && (<IconButton onClick={() => deleteComment(comment.id)}>
               <DeleteIcon />
-            </IconButton>
+            </IconButton>)}
           </>
         ))}
 

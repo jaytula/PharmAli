@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const addComment = require("../db/queries/add-comment");
 const deleteComment = require("../db/queries/delete-comment")
+const getComments = require("../db/queries/get-comments");
 
 module.exports = db => {
   // Get comments for a blog
-  router.get("/", (request, response) => {
-    getComments.getComments(db, request.url.split('=')[1])
+  router.get("/:id", (request, response) => {
+    getComments.getComments(db, request.url.split("/")[1])
       .then((data) => {
         response.json({ rows: data.rows });
       }).catch((e) => {

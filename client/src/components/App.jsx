@@ -41,7 +41,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/blogs/:id" element={<BlogPost />} />
+            <Route path="/blogs/:id" element={<BlogPost user={user} />} />
             <Route path="/drugs/*" element={<Drug user={user} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
             <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} />} />
