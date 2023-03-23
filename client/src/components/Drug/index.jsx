@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
+import '../../styles/Drug.css'
 
 const Drug = (props) => {
   // favourite will be the saved_medication id
   const [favourite, setFavourite] = useState("");
-  const [content, setContent] = useState({});
+  const [content, setContent] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
+
 
   // First time page is visited
   useEffect(() => {
@@ -18,7 +20,20 @@ const Drug = (props) => {
         return axios.get(`https://api.fda.gov/drug/label.json?search=description:${drug.name}`)
       })
       .then((data) => {
-        setContent(data.data.results[0]);
+        console.log(data.data.results[0].description[0],
+          data.data.results[0].drug_interactions[0],
+          data.data.results[0].dosage_and_administration[0],
+          data.data.results[0].adverse_reactions[0],
+          data.data.results[0].contraindications[0],
+          data.data.results[0].information_for_patients[0],
+          data.data.results[0].overdosage[0]);
+        setContent([data.data.results[0].description[0],
+        data.data.results[0].drug_interactions[0],
+        data.data.results[0].dosage_and_administration[0],
+        data.data.results[0].adverse_reactions[0],
+        data.data.results[0].contraindications[0],
+        data.data.results[0].information_for_patients[0],
+        data.data.results[0].overdosage[0]]);
       })
   }, []);
 
@@ -53,11 +68,13 @@ const Drug = (props) => {
   }
 
   return (
-    <div>
+    <div className="drug">
       <ArrowBackIcon size='large' onClick={() => navigate('/search')} />
-      <p>
-        {content.effective_time}
-      </p>
+      {content.map((data) => (
+        <>
+        <h1>HEADING</h1>
+        <p>{data}</p>
+        </>))}
       {!favourite &&
         (<div onClick={changeLike}>Click me to favourite this drug</div>)}
       {favourite &&
