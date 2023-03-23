@@ -1,0 +1,187 @@
+.auth-form-container2 {
+  text-align: center;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(90deg, #ffdb8952, #E0241E, 100%, #DC0000);
+  padding: 5rem;
+  width: 60vw;
+  margin-left: 0;
+  margin:0;
+    padding:0;
+  /* box-shadow: inset 20px 2px 20px 0px #E0241E; */
+  /* clip-path: inset(Rpx); */
+}
+
+.auth-form-container,
+.login-form,
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+.register_container {
+  width: 600px !important;
+  position: relative;
+  margin: 0 auto;
+
+}
+
+.logo {
+  /* width: 100px;
+  height: 50vh;
+  /* float: left; */
+  /* position: absolute; /*or fixed*/
+    /* right: 0px; */
+
+}
+
+.register_image {
+  width: 890px;
+  height: 100vh;
+  float: right;
+  position: absolute;
+  right: -2212px;
+}
+
+.overlay2 {
+  width: 0px;
+  height: 50vh;
+  position: relative;
+  background-color: rgb(249, 246, 244);
+  opacity: 0.93;
+  bottom: 0vh;
+
+}
+
+.register__page {
+  display: flex;
+  /* z-index: 5; issue might be here */
+  float: left;
+
+}
+
+.register-content {
+  background: #ffffff;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  padding: 50px 85px;
+  box-shadow: inset 20px 0px 99px -18px #e0241ead;;
+}
+
+.form-input {
+  border: 3.5px solid #873434;
+  border-radius: 25px;
+}
+
+.form-group {
+  /* overflow: hidden;
+  margin-bottom: 20px;
+  background-color: black; */
+}
+
+label {
+  text-align: right;
+  padding: 0.25rem 0;
+
+}
+
+input {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: yellow;
+  border-radius: 10px;
+}
+
+.register-button {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  border-radius: 45px;
+  padding: 10px;
+  color: white;
+  font-weight: 900;
+  background-color: #b70000;
+  border: #DC0000;
+  width: 178px;
+  font-size: 25px;
+  cursor: pointer;
+  margin-top: 30px;
+
+}
+.signup{
+  color: #6c757d;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 91px;
+  margin-bottom: 5px;
+  border: 2.3px solid #c1c2c3b0;
+  box-shadow: -1px 0px 30px 2px #8982825c;
+  border-radius: 60px;
+}
+.link-btn {
+  background: none;
+  color: rgb(5, 8, 2);
+  text-decoration: underline;
+  font-size: 18px;
+  border: none;
+  cursor:pointer;
+  margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 22px;
+}
+.label-register{
+  font-size: 22px;
+}
+
+.link-btn :hover{
+  color: #6c757d;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 91px;
+  margin-bottom: 5px;
+}
+
+.App1-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion:no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App1Header {
+  background-color: aqua;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: blue;
+
+}
+
+.App1-link {
+  color: black;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
