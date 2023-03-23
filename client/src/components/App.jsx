@@ -31,9 +31,6 @@ function App() {
       })
   }, []);
 
-
-
-
   // create context file to make api call to get cookie and get cookie from that (context provider)
   return (
     <div className="App">

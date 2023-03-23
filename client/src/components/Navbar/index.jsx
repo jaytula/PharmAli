@@ -7,11 +7,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useApplicationData from '../../hooks/useApplicationData'
 import { useNavigate, useParams } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  console.log('navbar', props.user);
   const navigate = useNavigate();
   const LOGOUT = "/logout"
 
-  const { menu, user, setMenu, removeCookie, setDarkMode } = useApplicationData();
+  const { menu, setMenu, removeCookie, setDarkMode } = useApplicationData();
 
   const theme = createTheme({
     palette: {
@@ -50,10 +51,10 @@ const Navbar = () => {
             <ul className='navbar-toggle'>
               <CloseIcon color="primary" onClick={showMenu} />
             </ul>
-            <ul key={user.id} className="nav-text" data-testid="nav-item">
-              {user.name &&
+            <ul key={props.user} className="nav-text" data-testid="nav-item">
+              {props.user &&
                 (<h3>
-                  Welcome {user.name}
+                  Welcome {props.user}
                 </h3>)}
               <button
                 onClick={() =>
@@ -63,7 +64,7 @@ const Navbar = () => {
                 } className="save"
               >Dark Mode</button>
             </ul>
-            {NavbarData(user.id).map((item, index) => {
+            {NavbarData(props.user).map((item, index) => {
               return (
                 <ul key={index} className={item.cName} onClick={() => setLink(item.route)} data-testid="nav-item">
                   {item.icon}
