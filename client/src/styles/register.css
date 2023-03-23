@@ -79,7 +79,12 @@
 .form-input {
   border: 3.5px solid #873434;
   border-radius: 25px;
+  padding: 20px 25px;
+  width: 15vw;
+  height: 7vh;
+  font-size: 21px;
 }
+
 
 .form-group {
   /* overflow: hidden;
