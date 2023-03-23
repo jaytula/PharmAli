@@ -76,5 +76,3 @@ function AddBlog(props) {
     </div>
   )
 }
-
-export default AddBlog

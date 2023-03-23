@@ -2,7 +2,6 @@ const router = require("express").Router();
 const getJournal = require('../db/queries/get-journal');
 const addJournal = require('../db/queries/add-journal');
 const removeJournal = require('../db/queries/remove-journal');
-// const { default: Journal } = require("../../client/src/components/MyJournal/Journal");
 
 module.exports = (db) => {
   // To get all journal entries of a user
@@ -26,8 +25,8 @@ module.exports = (db) => {
   // To add a journal entry of a user
   router.post("/add", (req, res) => {
     addJournal.addJournal(db, req.body.user_id, req.body.text)
-    .then(() => {
-      res.send(200);
+    .then((journal) => {
+      res.send(journal.rows[0]);
     })
   });
   

@@ -9,7 +9,7 @@ const JournalList = ({ journals, handleAddJournal, handleDeleteJournal}) => {
           user={journal.user}
           id={journal.id}
           text={journal.text}
-          date={journal.date}
+          date={journal.created_at}
           handleDeleteJournal={handleDeleteJournal}
         />
       ))}
