@@ -1,19 +1,22 @@
-import { FormControl } from '@mui/material';
 import React from 'react'
 import { useState } from 'react';
 import '../../styles/EditBlog.css';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
+import SelectSmall from '../Category/index.jsx';
 
 
-function AddBlog(props) {
+function SaveBlog(props) {
   const navigate = useNavigate();
-  const blogId = null;
+  const location = useLocation();
+  const urlEnd = location.pathname.split('/').pop()
+  const blogId = (urlEnd === "add") ? 0 : urlEnd;
 
-  const editPost = (editBlog) => {
+  const savePost = (saveBlog) => {
+    saveBlog.category = categories.find(cat => cat.name === category).id;
     Promise.all([
-      axios.post("/blogs/edit", editBlog)
+      axios.post("/blogs/edit", saveBlog)
     ])
       .then(() => {
         navigate(`/myblogs`);
@@ -21,11 +24,21 @@ function AddBlog(props) {
   };
 
   useEffect(() => {
-    Promise.all([
-      axios.get('/categories')
-    ]).then((data) => {
-      setCategories(data[1].data);
-    });
+    if (props.user) {
+      Promise.all([
+        axios.get(`/blogs/${props.user}&${blogId}`),
+        axios.get('/categories')
+      ]).then((data) => {
+        if (blogId) {
+          const blog = data[0].data[0];
+          setTitle(blog.title);
+          setImage(blog.image_url);
+          setContent(blog.content);
+          setCategory(blog.category);
+        }
+        setCategories(data[1].data);
+      });
+    }
   }, [props.user]);
 
   const [title, setTitle] = useState("")
@@ -39,7 +52,7 @@ function AddBlog(props) {
   const contentChange = (e) => setContent(e.target.value);
 
   return (
-    <div className='write'>EditBlog
+    <div className='write'>{blogId ? "Edit Blog" : "Add Blog"}
       <form className='writeForm'>
         <label className='writeFormGroup'>
           Title:
@@ -55,18 +68,16 @@ function AddBlog(props) {
         </label>
         <label className='writeFormGroup'>
           Category:
-          <select>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>{cat.name}</option>
-            ))}
-          </select>
+          <div className='category-dropdown'>
+            <SelectSmall categories={categories} category={category} setCategory={setCategory} />
+          </div>
         </label>
       </form>
       <div className='btn-group'>
         <button className='button-cancel' onClick={() => navigate('/myblogs')}>
           Cancel
         </button>
-        <button className='button-save' onClick={() => editPost({ id: blogId, title, image_url: image, content, name: 1, user_id: props.user })}>
+        <button className='button-save' onClick={() => savePost({ id: blogId, title, image_url: image, content, user_id: props.user })}>
           Save
         </button>
       </div>
@@ -74,4 +85,4 @@ function AddBlog(props) {
   )
 }
 
-export default AddBlog
+export default SaveBlog

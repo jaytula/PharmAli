@@ -24,7 +24,7 @@ const AddJournal = ({ handleAddJournal }) => {
         onChange={handleChange}
       ></textarea>
       <div className="journal-footer">
-        <small>{charMaximumLimit - journalText.length} remaining                   </small>
+        <small>{charMaximumLimit - journalText.length} remaining </small>
         <button 
         className="save" 
         onClick={handleClickSave}

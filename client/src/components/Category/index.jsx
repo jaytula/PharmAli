@@ -11,7 +11,7 @@ export default function SelectSmall(props) {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 250, minHeight:10 }} size="small">
+    <FormControl sx={{ m: 1, minWidth: 250, minHeight: 10 }} size="small">
       <InputLabel id="demo-select-small">Category</InputLabel>
       <Select
         labelId="demo-select-small"
@@ -20,10 +20,10 @@ export default function SelectSmall(props) {
         label="Category"
         onChange={handleChange}
       >
-        <MenuItem value="">
+        {props.blogFiltering && (<MenuItem value="None">
           <em>None</em>
-        </MenuItem>
-        
+        </MenuItem>)}
+
         {props.categories.map((option) => (
           <MenuItem
             key={option.id}
