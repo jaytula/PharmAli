@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useApplicationData from "../../hooks/useApplicationData";
 
 const Navbar2 = (props) => {
-  const { removeCookie, setDarkMode } = useApplicationData();
+  const { removeCookie } = useApplicationData();
   const navigate = useNavigate();
   const LOGOUT = "/logout"
 
@@ -57,13 +57,13 @@ const Navbar2 = (props) => {
             </li>
           );
         })}
-          <button
-                onClick={() =>
-                  setDarkMode(
-                    (previousDarkMode) =>
-                      !previousDarkMode)
-                } className="save"
-              >Dark Mode</button>
+        <button
+          onClick={() =>
+            props.setDarkMode(
+              (previousDarkMode) =>
+                !previousDarkMode)
+          } className="save"
+        >Dark Mode</button>
       </ul>
     </nav >
   );

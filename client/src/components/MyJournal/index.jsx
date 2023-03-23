@@ -11,9 +11,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 const MyJournal = (props) => {
-  const navigate = useNavigate();
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
-console.log(darkMode)
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
 
@@ -59,7 +56,7 @@ console.log(darkMode)
   };
   return (
     <>
-      <div className={`${darkMode && 'dark-mode'}`}>
+      <div className={`${props.darkMode && 'dark-mode'}`}>
         <div className='container'>
           <JournalHeader />
           <SearchJournal

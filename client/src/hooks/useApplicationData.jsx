@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 export default function useApplicationData() {
   const [user, setUser] = useState({});
-  const [darkMode, setDarkMode] = useState(false);
   // const navigate = useNavigate();
 
   const onSearchSubmit = (drug) => {
@@ -40,6 +39,6 @@ export default function useApplicationData() {
     return axios.get("/user")
   }
 
-  return { user, darkMode, setCookie, removeCookie, getCookie, onSearchSubmit, setDarkMode }
+  return { user, setCookie, removeCookie, getCookie, onSearchSubmit }
 
 }
