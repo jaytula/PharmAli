@@ -4,18 +4,15 @@ import "../../styles/BlogPosts.css";
 import Articles from '../Articles/index.jsx';
 import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
-import Navbar2 from '../Home/Navbar2.js';
-import useApplicationData from '../../hooks/useApplicationData';
-import { useNavigate, useParams } from "react-router-dom";
-
-
+import { useNavigate } from "react-router-dom";
 
 const BlogPosts = () => {
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
   const navigate = useNavigate();
 
   // Set the blogs and categories to show
   const [blogs, setBlogs] = useState([]);
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [category, setCategory] = useState('')
   const [categories, setCategories] = useState([]);
 
   // Get all blogs and categories when page is first visited
@@ -25,9 +22,15 @@ const BlogPosts = () => {
       axios.get('/categories')
     ]).then((data) => {
       setBlogs(data[0].data);
+      setAllBlogs(data[0].data)
       setCategories(data[1].data);
     });
   }, []);
+
+  useEffect(() => {
+    const filteredByCategory = allBlogs.filter(blog => blog.name === category);
+    setBlogs(filteredByCategory)
+  }, [category])
 
   // Render all articles and available categories
   return (
@@ -39,10 +42,10 @@ const BlogPosts = () => {
         <div className='blogPosts'>
           <span className="blogPostsTitle">
             <div className='bloggg'>
-            BLOGS
+              BLOGS
             </div>
             <div className='category-dropdown'>
-              <SelectSmall categories={categories} />
+              <SelectSmall categories={categories} category={category} setCategory={setCategory} />
             </div>
           </span>
           {blogs.map((blog) => (

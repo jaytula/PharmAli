@@ -15,8 +15,6 @@ const editBlog = function(db, blog) {
     VALUES ($1, $2, $3, $4, $5)`
   }
 
-  console.log(queryString)
-  console.log(queryParams)
   return db.query(queryString, queryParams);
 };
 

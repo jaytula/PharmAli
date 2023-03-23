@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const MyBlogs = (props) => {
   const navigate = useNavigate();
-
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [category, setCategory] = useState('')
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -27,16 +28,22 @@ const MyBlogs = (props) => {
         axios.get('/categories')
       ]).then((data) => {
         setBlogs(data[0].data);
+        setAllBlogs(data[0].data)
         setCategories(data[1].data);
       });
     }
   }, [props.user]);
 
+  useEffect(() => {
+    const filteredByCategory = allBlogs.filter(blog => blog.category === category);
+    setBlogs(filteredByCategory)
+  }, [category])
+
   return (
     <>
       <section className='section'>
         <div className='blogPosts'>
-          <SelectSmall categories={categories} />
+          <SelectSmall categories={categories} category={category} setCategory={setCategory} />
           <span className="blogPostsTitle">BLOGS </span>
           {blogs.map((blog) => (
             <MyBlogsItem

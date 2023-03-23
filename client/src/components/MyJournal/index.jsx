@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import JournalList from './JournalList';
-import profileImage from '../../assets/images/medicine.png';
 import SearchJournal from './Search';
 import JournalHeader from './JournalHeader';
 import axios from 'axios';
 import "../../styles/Journal.css";
-import Navbar2 from '../Home/Navbar2';
-import useApplicationData from '../../hooks/useApplicationData';
-import { useNavigate, useParams } from "react-router-dom";
-
 
 const MyJournal = (props) => {
-  const navigate = useNavigate();
-  const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
-console.log(darkMode)
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
 
@@ -23,9 +15,7 @@ console.log(darkMode)
         axios.get(`/journal/${props.user}`),
       ]).then((data) => {
         const user = {
-          firstName: 'Maryan',
-          lastName: 'Ali',
-          image: profileImage
+          name: data[0].data.journal[0].name
         };
         const myJournals = data[0].data.journal.map((loop) => ({ ...loop, user }));
         setJournals(myJournals);
@@ -39,17 +29,19 @@ console.log(darkMode)
 
   const AddJournal = (text) => {
     axios.post("/journal/add", { user_id: props.user, text })
-      .then(() => {
-        const date = new Date();
+      .then((data) => {
         const newJournal = {
+          id: data.data.id,
           text: text,
-          date: date.toLocaleDateString(),
+          created_at: data.data.created_at,
+          user: {
+            name: journals[0].name
+          }
         };
         const newJournals = [...journals, newJournal];
         setJournals(newJournals);
       });
   };
-
   const DeleteJournal = (id) => {
     axios.post("/journal/delete", id)
       .then(() => {
@@ -59,7 +51,7 @@ console.log(darkMode)
   };
   return (
     <>
-      <div className={`${darkMode && 'dark-mode'}`}>
+      <div className={`${props.darkMode && 'dark-mode'}`}>
         <div className='container'>
           <JournalHeader />
           <SearchJournal
