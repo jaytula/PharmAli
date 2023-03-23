@@ -4,18 +4,62 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(79deg, #fefea1, #f599f5, 48%, #d2ead2);
+  background-image: linear-gradient(270deg, #ffdb8952, #E0241E, 120%, #DC0000);
   padding: 5rem;
-  border:5px solid  #ff00c3;
-  border-radius: 10px;
+  width: 60vw;
+  box-shadow: inset 20px 2px 20px 0px #E0241E;
+  clip-path: inset(Lpx);
 }
 .auth-form-container, .login-form, .register-form{
   display: flex;
   flex-direction:column;
   align-items: center;
 
-}
 
+}
+.login_container{
+  width: 600px !important;
+  position: relative;
+  margin: 0 auto;
+  
+}
+.logo{
+  width:100px;
+  height:50vh;
+  float:left;
+
+}
+.login_image{
+  width: 1000px;
+  height: 100vh;
+  float: right;
+  background-color: black;
+   z-index: 9999;
+}
+.overlay3{
+  width: 99px;
+  height: 50vh;
+  position: relative;
+  background-color: rgb(249, 246, 244);
+  opacity: 0.93;
+  bottom: 0vh;
+
+}
+.login__page{
+  display: flex;
+  float:right;
+
+}
+.login-content{
+  background: #ffffff;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  padding: 50px 85px;
+  
+}
 
 label{
   text-align: left;
