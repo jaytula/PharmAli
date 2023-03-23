@@ -39,7 +39,7 @@ module.exports = db => {
   router.post("/edit", (req, res) => {
     const blog = req.body
     editBlog.editBlog(db, blog)
-      .then(() => {
+      .then((data) => {
         res.json({ success: true })
       })
   });

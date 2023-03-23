@@ -19,8 +19,15 @@ function SaveBlog(props) {
       axios.post("/blogs/edit", saveBlog)
     ])
       .then(() => {
-        navigate(`/myblogs`);
-      });
+        // set all blogs
+        // make axios request to get all blogs when setAllBLogs
+        return axios.get('/blogs');
+      })
+      .then((data) => {
+        console.log(data);
+        props.setAllBlogs(data.data)
+        navigate(`/blogs`);
+      })
   };
 
   useEffect(() => {
@@ -57,15 +64,15 @@ function SaveBlog(props) {
         <label className='writeFormGroup'>
           Title:
         </label>
-          <input className='writeInput' type="text" id="title" defaultValue={title} onChange={titleChange} />
+        <input className='writeInput' type="text" id="title" defaultValue={title} onChange={titleChange} />
         <label className='writeFormGroup'>
           Image:
         </label>
-          <input className='writeInput' type="text" id="image" defaultValue={image} onChange={imageChange} />
+        <input className='writeInput' type="text" id="image" defaultValue={image} onChange={imageChange} />
         <label className='writeFormGroup'>
           Content:
         </label>
-          <textarea className='writeInput writeText' type="text" name="image" defaultValue={content} onChange={contentChange} />
+        <textarea className='writeInput writeText' type="text" name="image" defaultValue={content} onChange={contentChange} />
         <label className='writeFormGroup'>
           Category:
           <div className='category-dropdown'>
