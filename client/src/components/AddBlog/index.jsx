@@ -5,6 +5,7 @@ import '../../styles/EditBlog.css';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
+import SelectSmall from '../Category/index.jsx';
 
 
 function AddBlog(props) {
@@ -24,7 +25,7 @@ function AddBlog(props) {
     Promise.all([
       axios.get('/categories')
     ]).then((data) => {
-      setCategories(data[1].data);
+      setCategories(data[0].data);
     });
   }, [props.user]);
 
@@ -55,18 +56,16 @@ function AddBlog(props) {
         </label>
         <label className='writeFormGroup'>
           Category:
-          <select>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>{cat.name}</option>
-            ))}
-          </select>
+          <div className='category-dropdown'>
+              <SelectSmall categories={categories} category={category} setCategory={setCategory} />
+            </div>
         </label>
       </form>
       <div className='btn-group'>
         <button className='button-cancel' onClick={() => navigate('/myblogs')}>
           Cancel
         </button>
-        <button className='button-save' onClick={() => editPost({ id: blogId, title, image_url: image, content, name: 1, user_id: props.user })}>
+        <button className='button-save' onClick={() => editPost({ id: blogId, title, image_url: image, content, name: 1, user_id: props.user, category })}>
           Save
         </button>
       </div>

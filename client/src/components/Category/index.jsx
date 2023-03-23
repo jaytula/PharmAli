@@ -20,7 +20,7 @@ export default function SelectSmall(props) {
         label="Category"
         onChange={handleChange}
       >
-        <MenuItem value="">
+        <MenuItem value="None">
           <em>None</em>
         </MenuItem>
         
