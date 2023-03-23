@@ -39,6 +39,9 @@ function App() {
             <Route path="*" element={<h1>404 Page Not Found</h1>} />
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/blogs/:id" element={<BlogPost />} />
             <Route path="/drugs/*" element={<Drug user={user} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
             <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} />} />
@@ -46,10 +49,7 @@ function App() {
             <Route path="/myblogs/add" element={<SaveBlog user={user} />} />
             <Route path="/myjournal" element={<MyJournal user={user} darkMode={darkMode} />} />
             <Route path="/mydrugs" element={<MyDrugs user={user} />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/blogs" element={<BlogPosts user={user} />} />
-            <Route path="/blogs/:id" element={<BlogPost />} />
           </Routes>
         </ UserProvider>
       </Router>
