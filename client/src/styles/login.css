@@ -1,42 +1,49 @@
-.auth-form-container{
+.auth-form-container {
   text-align: center;
-  display:flex;
+  display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(270deg, #ffdb8952, #E0241E, 120%, #DC0000);
+  background-image: linear-gradient(270deg, #ffdb8952, #E0241E, 100%, #DC0000);
   padding: 5rem;
   width: 60vw;
   box-shadow: inset 20px 2px 20px 0px #E0241E;
   clip-path: inset(Lpx);
 }
-.auth-form-container, .login-form, .register-form{
+
+.auth-form-container,
+.login-form,
+.register-form {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
 
 
 }
-.login_container{
+
+.login_container {
   width: 600px !important;
   position: relative;
   margin: 0 auto;
-  
-}
-.logo{
-  width:100px;
-  height:50vh;
-  float:left;
 
 }
-.login_image{
-  width: 1000px;
+
+.logo {
+  width: 100px;
+  height: 50vh;
+  float: left;
+
+}
+
+.login_image {
+  width: 950px;
   height: 100vh;
   float: right;
   background-color: black;
-   z-index: 9999;
+  z-index: 9999;
 }
-.overlay3{
+
+.overlay3 {
   width: 99px;
   height: 50vh;
   position: relative;
@@ -45,12 +52,14 @@
   bottom: 0vh;
 
 }
-.login__page{
+
+.login__page {
   display: flex;
-  float:right;
+  float: right;
 
 }
-.login-content{
+
+.login-content {
   background: #ffffff;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -58,52 +67,98 @@
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
   padding: 50px 85px;
-  
+  box-shadow: inset 20px 0px 99px -18px #e0241ead;;
 }
 
-label{
+.form-input {
+  border: 3.5px solid #873434;
+  border-radius: 25px;
+}
+
+.form-group {
+  /* overflow: hidden;
+  margin-bottom: 20px;
+  background-color: black; */
+}
+
+label {
   text-align: left;
   padding: 0.25rem 0;
-  
+
 }
-input{
+
+input {
   margin: 0.5rem 0;
   padding: 1rem;
-  border:yellow;
- border-radius: 10px;
+  border: yellow;
+  border-radius: 10px;
 }
 
-button{
-  border: none;
-background-color: rgb(248, 216, 222);
-padding: 20px;
-border-radius: 10px;
-cursor:pointer;
+.login-button {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  border-radius: 45px;
+  padding: 10px;
+  color: white;
+  font-weight: 900;
+  background-color: #b70000;
+  border: #DC0000;
+  width: 178px;
+  font-size: 25px;
+  cursor: pointer;
+  margin-top: 30px;
 
 }
-
-.link-btn{
-  background:none;
-  color:rgb(5, 8, 2);
+.signup{
+  color: #6c757d;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 91px;
+  margin-bottom: 5px;
+  border: 2.3px solid #c1c2c3b0;
+  box-shadow: -1px 0px 30px 2px #8982825c;
+  border-radius: 60px;
+}
+.link-btn {
+  background: none;
+  color: rgb(5, 8, 2);
   text-decoration: underline;
+  font-size: 18px;
+  border: none;
+  cursor:pointer;
+  margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 22px;
+}
+.label-login{
+  font-size: 22px;
 }
 
-.App1-logo{
+.link-btn :hover{
+  color: #6c757d;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 91px;
+  margin-bottom: 5px;
+}
+
+.App1-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion:no-preference){
-  .App-logo{
+@media (prefers-reduced-motion:no-preference) {
+  .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.App1Header{
+.App1Header {
   background-color: aqua;
   min-height: 100vh;
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -111,14 +166,16 @@ cursor:pointer;
 
 }
 
-.App1-link{
+.App1-link {
   color: black;
 }
+
 @keyframes App-logo-spin {
-  from{
+  from {
     transform: rotate(0deg);
   }
+
   to {
-transform:rotate(360deg);
+    transform: rotate(360deg);
   }
 }
