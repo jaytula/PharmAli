@@ -14,7 +14,8 @@
 }
 
 .blog:hover{
-  box-shadow: 5px 5px #850000;  
+  box-shadow: 5px 5px #850000;
+  box-shadow: 5px 5px 0px 1px #850000;  
 }
 
 .articles {
