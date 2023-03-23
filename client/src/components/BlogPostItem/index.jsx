@@ -1,16 +1,17 @@
 import React from 'react'
 import "../../styles/BlogPostItem.css";
 import TimeAgo from 'timeago-react';
-import axios from 'axios';
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function BlogPostItem(props) {
   return (
     <div className="blog">
-
       <img
         className="blogImage"
         src={`${props.blog.image_url}`}
-        alt="blog-image"
+        alt={`${props.blog.image_url}`}
       />
       <div className="blogInfo">
         <div className="blogCategories">
@@ -27,6 +28,16 @@ function BlogPostItem(props) {
       <p className="blogDescription">
         {props.blog.content}
       </p>
+      {props.user == props.blog.user_id && (
+        <>
+          <IconButton onClick={props.editPost}>
+            <EditIcon />
+          </IconButton>
+          <IconButton onClick={props.deletePost}>
+            <DeleteIcon />
+          </IconButton>
+        </>
+      )}
     </div>
   )
 }
