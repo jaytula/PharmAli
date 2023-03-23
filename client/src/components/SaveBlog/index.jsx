@@ -1,4 +1,3 @@
-import { FormControl } from '@mui/material';
 import React from 'react'
 import { useState } from 'react';
 import '../../styles/EditBlog.css';
@@ -8,21 +7,21 @@ import { useNavigate, useLocation } from "react-router-dom";
 import SelectSmall from '../Category/index.jsx';
 
 
-function EditBlog(props) {
+function SaveBlog(props) {
   const navigate = useNavigate();
   const location = useLocation();
-  const blogId = location.pathname.split('/').pop();
+  const urlEnd = location.pathname.split('/').pop()
+  const blogId = (urlEnd === "add") ? 0 : urlEnd;
 
-  const editPost = (editBlog) => {
-    editBlog.category = categories.find(cat => cat.name === category).id;
+  const savePost = (saveBlog) => {
+    saveBlog.category = categories.find(cat => cat.name === category).id;
     Promise.all([
-      axios.post("/blogs/edit", editBlog)
+      axios.post("/blogs/edit", saveBlog)
     ])
       .then(() => {
         navigate(`/myblogs`);
       });
   };
-
 
   useEffect(() => {
     if (props.user) {
@@ -30,11 +29,13 @@ function EditBlog(props) {
         axios.get(`/blogs/${props.user}&${blogId}`),
         axios.get('/categories')
       ]).then((data) => {
-        const blog = data[0].data[0];
-        setTitle(blog.title);
-        setImage(blog.image_url);
-        setContent(blog.content);
-        setCategory(blog.category);
+        if (blogId) {
+          const blog = data[0].data[0];
+          setTitle(blog.title);
+          setImage(blog.image_url);
+          setContent(blog.content);
+          setCategory(blog.category);
+        }
         setCategories(data[1].data);
       });
     }
@@ -51,7 +52,7 @@ function EditBlog(props) {
   const contentChange = (e) => setContent(e.target.value);
 
   return (
-    <div className='write'>EditBlog
+    <div className='write'>{blogId ? "Edit Blog" : "Add Blog"}
       <form className='writeForm'>
         <label className='writeFormGroup'>
           Title:
@@ -68,15 +69,15 @@ function EditBlog(props) {
         <label className='writeFormGroup'>
           Category:
           <div className='category-dropdown'>
-              <SelectSmall categories={categories} category={category} setCategory={setCategory} />
-            </div>
+            <SelectSmall categories={categories} category={category} setCategory={setCategory} />
+          </div>
         </label>
       </form>
       <div className='btn-group'>
         <button className='button-cancel' onClick={() => navigate('/myblogs')}>
           Cancel
         </button>
-        <button className='button-save' onClick={() => editPost({ id: blogId, title, image_url: image, content })}>
+        <button className='button-save' onClick={() => savePost({ id: blogId, title, image_url: image, content, user_id: props.user })}>
           Save
         </button>
       </div>
@@ -84,4 +85,4 @@ function EditBlog(props) {
   )
 }
 
-export default EditBlog
+export default SaveBlog

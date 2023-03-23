@@ -59,7 +59,7 @@ const BlogPosts = (props) => {
               {props.myBlogs ? "MY BLOGS" : "BLOGS"}
             </div>
             <div className='category-dropdown'>
-              <SelectSmall categories={categories} category={category} setCategory={setCategory} />
+              <SelectSmall categories={categories} category={category} setCategory={setCategory} blogFiltering={true} />
             </div>
           </span>
           {blogs.map((blog) => (
