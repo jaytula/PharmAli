@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import "../../styles/BlogPost.css"
 import Comments from '../Comments'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -8,22 +8,16 @@ import { useNavigate, useLocation } from "react-router-dom";
 function BlogPost(props) {
   const navigate = useNavigate();
   const location = useLocation();
-
   const [blogContent, setBlogContent] = useState({});
+  const blogId = location.pathname.split('/')[2]
 
   useEffect(() => {
-    const blogId = location.pathname.split('/')[2];
-    Promise.all([
-      axios.get(`/blogs/${blogId}`)
-    ])
-      .then((data) => {
-        console.log('--------------------------------')
-        setBlogContent(data[0].data)
-      })
-      .catch((err) => {
-        console.log('++++++++++++++++++++++++++++++++++++++++++++++++')
-        console.log(err);
-      })
+      Promise.all([
+        axios.get(`/blogs/${blogId}`),
+      ])
+        .then((data) => {
+          setBlogContent(data[0].data[0])
+        })
   }, []);
 
   return (
@@ -51,7 +45,7 @@ function BlogPost(props) {
           {blogContent.content}
         </p>
         {props.user &&
-          (<Comments blog_id={blogContent.id} user_id={props.user} />)
+          (<Comments blog_id={blogId} user={props.user} />)
         }
       </div>
     </div>

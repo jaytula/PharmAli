@@ -7,18 +7,23 @@ const getBlogById = require("../db/queries/get-blog-by-id");
 module.exports = db => {
   // Get all blogs
   router.get("/", (request, response) => {
-   getBlogs.getBlogs(db)
-   .then(({ rows: blogs }) => {
-      response.json(blogs);
-    });
+    getBlogs.getBlogs(db)
+      .then(({ rows: blogs }) => {
+        response.json(blogs);
+      });
   });
 
   // Get blog by user id (and blog_id)
   router.get("/:id", (request, response) => {
-    getBlogById.getBlogById(db, request.url.replace('/', '').split('&'))
-      .then(({ rows: blogs }) => {
-        response.json(blogs);
-      });
+    if (request.url !== '/undefined') {
+      const params = request.url.replace('/', '').split('&').reverse();
+      getBlogById.getBlogById(db, params)
+        .then(({ rows: blogs }) => {
+          response.json(blogs);
+        });
+    } else {
+      response.send(200);
+    }
   });
 
   // Delete a blog
@@ -29,7 +34,7 @@ module.exports = db => {
         res.send(200)
       })
   });
-  
+
   // Edit a blog
   router.post("/edit", (req, res) => {
     const blog = req.body
