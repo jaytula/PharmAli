@@ -62,3 +62,22 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+.myBlogPosts {
+  flex: 7 1;
+  display: flex;
+  flex-wrap: wrap;
+  /* float: left; */
+  /* width: 70%; */
+  margin: 10px;
+}
+
+.blog-button{
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  font-weight: 900;
+  background-color: #DC0000;
+  border: #DC0000;
+  height:30px;
+}

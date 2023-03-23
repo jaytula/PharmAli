@@ -6,6 +6,8 @@ import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
 import { useNavigate } from "react-router-dom";
 import Button from '../Button';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import "../../styles/MyBlogs.css";
 
 const BlogPosts = (props) => {
   // Set the blogs and categories to show
@@ -49,17 +51,21 @@ const BlogPosts = (props) => {
           (<div className='articles'>
             <Articles />
           </div>)}
-        <div className='blogPosts'>
-          {props.myBlogs &&
-            (<Button
-              onClick={() => navigate('/myblogs/add')}
-              children={"Add a Blog"} />)}
+        <div className='myBlogPosts'>
           <span className="blogPostsTitle">
             <div className='bloggg'>
+              <h1>
               {props.myBlogs ? "MY BLOGS" : "BLOGS"}
+              </h1>
             </div>
             <div className='category-dropdown'>
               <SelectSmall categories={categories} category={category} setCategory={setCategory} blogFiltering={true} />
+          {props.myBlogs &&
+            (<>
+            <button className="blog-button"
+              onClick={() => navigate('/myblogs/add')}>Add a blog</button>
+              <PostAddIcon onClick={() => navigate('/myblogs/add')} fontSize='large' color='error'/>
+              </>)}
             </div>
           </span>
           {blogs.map((blog) => (

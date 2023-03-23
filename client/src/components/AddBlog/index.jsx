@@ -1,22 +1,19 @@
+import { FormControl } from '@mui/material';
 import React from 'react'
 import { useState } from 'react';
 import '../../styles/EditBlog.css';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
-import SelectSmall from '../Category/index.jsx';
 
 
-function SaveBlog(props) {
+function AddBlog(props) {
   const navigate = useNavigate();
-  const location = useLocation();
-  const urlEnd = location.pathname.split('/').pop()
-  const blogId = (urlEnd === "add") ? 0 : urlEnd;
+  const blogId = null;
 
-  const savePost = (saveBlog) => {
-    saveBlog.category = categories.find(cat => cat.name === category).id;
+  const editPost = (editBlog) => {
     Promise.all([
-      axios.post("/blogs/edit", saveBlog)
+      axios.post("/blogs/edit", editBlog)
     ])
       .then(() => {
         navigate(`/myblogs`);
@@ -24,21 +21,11 @@ function SaveBlog(props) {
   };
 
   useEffect(() => {
-    if (props.user) {
-      Promise.all([
-        axios.get(`/blogs/${props.user}&${blogId}`),
-        axios.get('/categories')
-      ]).then((data) => {
-        if (blogId) {
-          const blog = data[0].data[0];
-          setTitle(blog.title);
-          setImage(blog.image_url);
-          setContent(blog.content);
-          setCategory(blog.category);
-        }
-        setCategories(data[1].data);
-      });
-    }
+    Promise.all([
+      axios.get('/categories')
+    ]).then((data) => {
+      setCategories(data[1].data);
+    });
   }, [props.user]);
 
   const [title, setTitle] = useState("")
@@ -52,7 +39,10 @@ function SaveBlog(props) {
   const contentChange = (e) => setContent(e.target.value);
 
   return (
-    <div className='write'>{blogId ? "Edit Blog" : "Add Blog"}
+    <div className='write'>
+      <span className='writeTitle'>
+        Add a new Blog
+      </span>
       <form className='writeForm'>
         <label className='writeFormGroup'>
           Title:
@@ -68,21 +58,21 @@ function SaveBlog(props) {
           <textarea className='writeInput writeText' type="text" name="image" defaultValue={content} onChange={contentChange} />
         <label className='writeFormGroup'>
           Category:
-          <div className='category-dropdown'>
-            <SelectSmall categories={categories} category={category} setCategory={setCategory} />
-          </div>
         </label>
+          <select>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>{cat.name}</option>
+            ))}
+          </select>
       </form>
       <div className='btn-group'>
         <button className='button-cancel' onClick={() => navigate('/myblogs')}>
           Cancel
         </button>
-        <button className='button-save' onClick={() => savePost({ id: blogId, title, image_url: image, content, user_id: props.user })}>
+        <button className='button-save' onClick={() => editPost({ id: blogId, title, image_url: image, content, name: 1, user_id: props.user })}>
           Save
         </button>
       </div>
     </div>
   )
 }
-
-export default SaveBlog

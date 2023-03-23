@@ -9,6 +9,13 @@
   width: 70%;
   margin: 10px;
 }
+.bloggg h1 {
+  font-family:'Montserrat', sans-serif;
+}
+
+.blog:hover{
+  box-shadow: 5px 5px #850000;  
+}
 
 .articles {
   float: right;
@@ -22,7 +29,7 @@
   font-family: "Montserrat", sans-serif;
   font-size: 48px;
   line-height: 19px;
-  color: #DC0000;
+  color: #850000;
 }
 
 .category-dropdown{
@@ -45,7 +52,7 @@
     width: 40%;
     margin: 10px;
   }
-  
+
   .articles {
     float: right;
   }
@@ -60,6 +67,6 @@
     font-family: "Montserrat", sans-serif;
     font-size: 30px;
     line-height: 19px;
-    color: #DC0000;
+    color: #850000;
   }
 }
