@@ -14,7 +14,7 @@ function EditBlog(props) {
   const blogId = location.pathname.split('/').pop();
 
   const editPost = (editBlog) => {
-    editBlog.name = categories.find(cat => cat.name === category).id;
+    editBlog.category = categories.find(cat => cat.name === category).id;
     Promise.all([
       axios.post("/blogs/edit", editBlog)
     ])

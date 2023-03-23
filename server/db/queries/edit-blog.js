@@ -1,6 +1,6 @@
 const editBlog = function(db, blog) {
   let queryString = '';
-  const queryParams = [blog.title, blog.image_url, blog.content, blog.name];
+  const queryParams = [blog.title, blog.image_url, blog.content, blog.category];
   if (blog.id) {
     queryParams.push(blog.id);
     queryString = `UPDATE blogs SET

@@ -15,7 +15,7 @@ function BlogPostItem(props) {
       <div className="blogInfo">
         <div className="blogCategories">
           <span className="blogCategory">
-            Category: {props.blog.name}
+            Category: {props.blog.category}
           </span>
         </div>
         <span className="blogTitle" onClick={props.setBlog}>
