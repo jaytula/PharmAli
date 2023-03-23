@@ -36,7 +36,6 @@ const MyBlogs = (props) => {
 
   useEffect(() => {
     const filteredByCategory = allBlogs.filter(blog => blog.category === category);
-    console.log('all', allBlogs, category);
     setBlogs(filteredByCategory)
   }, [category])
 

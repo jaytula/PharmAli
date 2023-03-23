@@ -8,7 +8,6 @@ import useApplicationData from '../../hooks/useApplicationData'
 import { useNavigate, useParams } from "react-router-dom";
 
 const Navbar = (props) => {
-  console.log('navbar', props.user);
   const navigate = useNavigate();
   const LOGOUT = "/logout"
 
