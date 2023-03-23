@@ -22,8 +22,8 @@ const MyDrugs = (props) => {
     <>
       {drugs.map((drug) => (
         <DrugListItem
-          key={drug.id}
-          drug_id={drug.id}
+          key={drug.drug_id}
+          drug={drug}
           user={props.user}
         />
       ))}
