@@ -121,6 +121,9 @@ align-items:center;
 .search input:focus {
   outline: none;
 }
+.search-input{
+  background-color: #E9E9E9;;
+}
 .journal-header{
   display:flex;
   align-items: center;

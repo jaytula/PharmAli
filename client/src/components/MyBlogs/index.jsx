@@ -46,6 +46,8 @@ const MyBlogs = (props) => {
               <SelectSmall categories={categories} />  
             </div> 
           </span>
+          <PostAddIcon onClick={() => navigate('/myblogs/add')} fontSize='large' color='error'/>
+          <button onClick={() => navigate('/myblogs/add')} children={"Add a Blog"} className="blog-button"></button>
           {blogs.map((blog) => (
             <MyBlogsItem
               key={blog.id}
@@ -54,8 +56,6 @@ const MyBlogs = (props) => {
               deletePost={deletePost} />
           ))}
           <div>
-          <PostAddIcon onClick={() => navigate('/myblogs/add')} fontSize='large' color='error'/>
-          <button onClick={() => navigate('/myblogs/add')} children={"Add a Blog"} className="blog-button"></button>
           </div>
         </div>
       </section>
