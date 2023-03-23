@@ -4,9 +4,9 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(90deg, #ffdb8952, #E0241E, 100%, #DC0000);
+  background-image: linear-gradient(90deg, #ffdb8952, #e0241e, 77%, #e0241e);
   padding: 5rem;
-  width: 60vw;
+  width: 57.295vw;
   margin-left: 0;
   margin:0;
     padding:0;
@@ -41,7 +41,7 @@
 }
 
 .register_image {
-  width: 890px;
+  width: 950px;
   height: 100vh;
   float: right;
   position: absolute;
