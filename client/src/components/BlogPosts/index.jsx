@@ -28,7 +28,7 @@ const BlogPosts = () => {
   }, []);
 
   useEffect(() => {
-    const filteredByCategory = allBlogs.filter(blog => blog.name === category);
+    const filteredByCategory = (category === "None") ? allBlogs : allBlogs.filter(blog => blog.name === category);
     setBlogs(filteredByCategory)
   }, [category])
 
