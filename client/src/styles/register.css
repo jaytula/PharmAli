@@ -1,14 +1,17 @@
-.auth-form-container {
+.auth-form-container2 {
   text-align: center;
   display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(270deg, #ffdb8952, #E0241E, 100%, #DC0000);
+  background-image: linear-gradient(90deg, #ffdb8952, #e0241e, 77%, #e0241e);
   padding: 5rem;
-  width: 60vw;
-  box-shadow: inset 20px 2px 20px 0px #E0241E;
-  clip-path: inset(Lpx);
+  width: 57.295vw;
+  margin-left: 0;
+  margin:0;
+    padding:0;
+  /* box-shadow: inset 20px 2px 20px 0px #E0241E; */
+  /* clip-path: inset(Rpx); */
 }
 
 .auth-form-container,
@@ -21,7 +24,7 @@
 
 }
 
-.login_container {
+.register_container {
   width: 600px !important;
   position: relative;
   margin: 0 auto;
@@ -29,22 +32,24 @@
 }
 
 .logo {
-  width: 100px;
+  /* width: 100px;
   height: 50vh;
-  float: left;
+  /* float: left; */
+  /* position: absolute; /*or fixed*/
+    /* right: 0px; */
 
 }
 
-.login_image {
+.register_image {
   width: 950px;
   height: 100vh;
   float: right;
-  background-color: black;
-  z-index: 9999;
+  position: absolute;
+  right: -2212px;
 }
 
-.overlay3 {
-  width: 99px;
+.overlay2 {
+  width: 0px;
   height: 50vh;
   position: relative;
   background-color: rgb(249, 246, 244);
@@ -53,13 +58,14 @@
 
 }
 
-.login__page {
+.register__page {
   display: flex;
-  float: right;
+  /* z-index: 5; issue might be here */
+  float: left;
 
 }
 
-.login-content {
+.register-content {
   background: #ffffff;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -79,6 +85,7 @@
   font-size: 21px;
 }
 
+
 .form-group {
   /* overflow: hidden;
   margin-bottom: 20px;
@@ -86,7 +93,7 @@
 }
 
 label {
-  text-align: left;
+  text-align: right;
   padding: 0.25rem 0;
 
 }
@@ -98,7 +105,7 @@ input {
   border-radius: 10px;
 }
 
-.login-button {
+.register-button {
   /* display: flex; */
   align-items: center;
   justify-content: center;
@@ -135,7 +142,7 @@ input {
     margin-top: 10px;
     font-size: 22px;
 }
-.label-login{
+.label-register{
   font-size: 22px;
 }
 
