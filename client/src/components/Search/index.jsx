@@ -49,7 +49,7 @@ const Search = () => {
         </div>
         <div>
           {drugList.map((drug) => (
-            <div onClick={() => navigate(`/drugs/${drug.id}`)}>
+            <div onClick={() => navigate(`/drugs/${drug.name}`)}>
               {drug.name}
             </div>
           ))}
