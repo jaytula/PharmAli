@@ -12,10 +12,11 @@ import "../../styles/MyBlogs.css";
 const BlogPosts = (props) => {
   // Set the blogs and categories to show
   const navigate = useNavigate();
-  const [allBlogs, setAllBlogs] = useState([]);
+  // const [allBlogs, setAllBlogs] = useState([]);
   const [category, setCategory] = useState('')
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
+  const allBlogs = props.allBlogs;
 
   // Get all blogs and categories when page is first visited
   useEffect(() => {
@@ -25,7 +26,7 @@ const BlogPosts = (props) => {
       axios.get('/categories')
     ]).then((data) => {
       setBlogs(data[0].data);
-      setAllBlogs(data[0].data)
+      props.setAllBlogs(data[0].data)
       setCategories(data[1].data);
     });
   }, [props.user]);
