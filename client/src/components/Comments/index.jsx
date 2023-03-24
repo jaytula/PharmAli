@@ -75,9 +75,11 @@ function Comments(props) {
               comment={comment}
               setComments={() => props.setComment(comment)}
             />
+            <div className='trash'>
             {props.user && (<IconButton onClick={() => deleteComment(comment.id)}>
               <DeleteIcon />
             </IconButton>)}
+            </div>
           </>
         ))}
 
@@ -93,7 +95,7 @@ function Comments(props) {
         noValidate
         autoComplete="off"
       >
-        <TextField id="filled-basic" label="Filled" variant="filled" fullWidth
+        <TextField id="filled-basic" label="Leave a comment" variant="filled" fullWidth
           {...props}
           value={newComment}
           onChange={(event) => setNewComment(event.target.value)}

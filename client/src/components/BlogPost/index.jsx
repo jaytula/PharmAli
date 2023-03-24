@@ -4,6 +4,8 @@ import Comments from '../Comments'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios'
 import { useNavigate, useLocation } from "react-router-dom";
+import TimeAgo from 'timeago-react';
+
 
 function BlogPost(props) {
   const navigate = useNavigate();
@@ -36,10 +38,10 @@ function BlogPost(props) {
           <span>
             Author:
             <b className="blogPostName">
-              Safak
+              {blogContent.name}
             </b>
           </span>
-          <span>1 day ago</span>
+          <span><TimeAgo datetime={blogContent.created_at}/></span>
         </div>
         <p className="blogPostText">
           {blogContent.content}
