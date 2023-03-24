@@ -62,6 +62,7 @@ function App() {
         </ UserProvider>
        </Router>
     </div>
+  )
 }
 
 export default App;
