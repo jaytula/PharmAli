@@ -19,11 +19,11 @@ import { UserProvider } from '../context/UserContext';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
   const [darkMode, setDarkMode] = useState(false);
   const [allBlogs, setAllBlogs] = useState([]);
   const [drugs, setDrugs] = useState([]);
   const { getCookie } = useApplicationData();
-  const [userInfo, setUserInfo] = useState();
 
   // When app is refreshed
   useEffect(() => {
@@ -51,14 +51,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar2 user={user} setUser={setUser} setDarkMode={setDarkMode} userInfo={userInfo} />
+        <Navbar2 user={user} setUser={setUser} setUserInfo={setUserInfo} setDarkMode={setDarkMode} userInfo={userInfo} />
         <UserProvider>
           <Routes>
             <Route path="*" element={<h1>404 Page Not Found</h1>} />
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/register" element={<Register setUser={setUser} setUserInfo={setUserInfo} />} />
+            <Route path="/login" element={<Login setUser={setUser} setUserInfo={setUserInfo} />} />
             <Route path="/blogs/:id" element={<BlogPost user={user} />} />
             <Route path="/drugs/*" element={<Drug user={user} drugs={drugs} setDrugs={setDrugs} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />

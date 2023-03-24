@@ -6,6 +6,7 @@ import Navbar2 from '../Home/Navbar2';
 import useApplicationData from '../../hooks/useApplicationData';
 import { useNavigate, useParams } from "react-router-dom";
 import pharmaliLogo from "../../assets/images/pharmaliLogo.png";
+
 const Login = (props) => {
   const { setCookie } = useApplicationData();
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Login = (props) => {
       .then((passed) => {
         if (passed.userInfo) {
           props.setUser(passed.userInfo.id);
+          props.setUserInfo(passed.userInfo);
           navigate('/')
         } else {
           setError(passed);
