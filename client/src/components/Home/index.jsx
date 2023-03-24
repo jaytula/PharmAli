@@ -29,57 +29,59 @@ const Home = () => {
           subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
         />
       </div>
-      {/* <div className="slider_container_one">
-        <Slider
-          hrefvalue={"/"}
-          imageSrc={medicine}
-          title={"DRUG LIST A-Z"}
-          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
-          flipped={true}
-        />
-      </div> */}
       <div className="slider_container_one">
-        <Slider
+      <Slider
           hrefvalue={"/search"}
           imageSrc={search}
           title={"DRUG SEARCH"}
           subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
-        />
+          flipped={true}
+       />
       </div>
       <div className="slider_container_two">
-        <Slider
+      <Slider
           hrefvalue={"/pharma"}
           imageSrc={locator}
           title={"PHARMACY LOCATOR"}
           subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
-          flipped={true}
+        
         />
       </div>
       <div className="slider_container_one">
-        <Slider
+      <Slider
           hrefvalue={"/blogs"}
           imageSrc={blogs}
           title={"BLOGS"}
           subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
-        />
+          flipped={true}
+       />
       </div>
       <div className="slider_container_two">
-        <Slider
+      <Slider
           hrefvalue={"/myjournal"}
           imageSrc={journal}
           title={"MY JOURNAL"}
           subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
-          flipped={true}
+    
         />
       </div>
       <div className="slider_container_one">
+      <Slider
+          hrefvalue={"/mydrugs"}
+          imageSrc={medlist} 
+          title={"MY MED LIST "}
+          subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
+          flipped={true}
+       />
+      </div>
+      {/* <div className="slider_container_two">
         <Slider
           hrefvalue={"/mydrugs"}
           imageSrc={medlist} 
           title={"MY MED LIST "}
           subtitle={"Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug!Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment. We aim to better aid you in the knowledge of your health concerns and all medications that you put into your body. We strive to make you feel more comfortable in the medical terms and information regarding each drug! "}
         />
-      </div>
+      </div> */}
       {/* <div className="slider_container_one">
         <Slider
           imageSrc={contact}
