@@ -20,6 +20,7 @@ import { UserProvider } from '../context/UserContext';
 function App() {
   const [user, setUser] = useState(null);
   const [darkMode, setDarkMode] = useState(false)
+  const [allBlogs, setAllBlogs] = useState([]);
   const { getCookie } = useApplicationData();
 
   useEffect(() => {
@@ -44,12 +45,13 @@ function App() {
             <Route path="/blogs/:id" element={<BlogPost user={user} />} />
             <Route path="/drugs/*" element={<Drug user={user} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
-            <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} />} />
-            <Route path="/myblogs/edit/*" element={<SaveBlog user={user} />} />
-            <Route path="/myblogs/add" element={<SaveBlog user={user} />} />
+            <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
+            {/* save blog function should passed here */}
+            <Route path="/myblogs/edit/*" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs}/>} />
+            <Route path="/myblogs/add" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs}/>} />
             <Route path="/myjournal" element={<MyJournal user={user} darkMode={darkMode} />} />
             <Route path="/mydrugs" element={<MyDrugs user={user} />} />
-            <Route path="/blogs" element={<BlogPosts user={user} />} />
+            <Route path="/blogs" element={<BlogPosts user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
           </Routes>
         </ UserProvider>
       </Router>
