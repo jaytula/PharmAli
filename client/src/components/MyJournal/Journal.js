@@ -1,6 +1,6 @@
 import { MdDeleteForever } from 'react-icons/md';
 import Profile from './Profile';
-import TimeAgo from 'timeago-react';
+
 
 const Journal = ({user,id, text, date, handleDeleteJournal}) => {
  
@@ -11,7 +11,7 @@ const Journal = ({user,id, text, date, handleDeleteJournal}) => {
       }
       <span className='textSpan'>{text}</span>
       <div className='journal-footer'>
-        <small><TimeAgo datetime={date}/></small>
+        <small>{date}</small>
         <MdDeleteForever
          onClick={()=> handleDeleteJournal(id)}
          className='delete-icon'

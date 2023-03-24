@@ -5,7 +5,10 @@
   color: #fff;
 }
 
-
+.welcomeUser{
+  color: red;
+  font-size: 25px;
+}
 .navbar2 {
   position: sticky;
   top: 0px;
@@ -35,6 +38,8 @@
 
 .navbar__item {
   white-space: nowrap;
+  margin-top: 5px;
+  cursor:pointer;
 }
 
 .navbar__link {

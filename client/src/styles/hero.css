@@ -19,7 +19,7 @@ background-color: #DC0000;
   height:100%;
 }
 .overlay{
-  height:459px;
+  height: 500px;
   width:100%;
   position:absolute;
   background-color: bisque;
