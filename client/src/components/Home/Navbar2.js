@@ -26,16 +26,17 @@ const Navbar2 = (props) => {
   const toggleMenuClick = () => {
     setMenuClicked(!menuClicked)
   }
-// if(props.userInfo){
-//   console.log(props.userInfo.name);
-// }
+  // if(props.userInfo){
+  //   console.log(props.userInfo.name);
+  // }
+  console.log('---------', props.user, '---------');
 
   return (
     <nav className="navbar2">
       <span className="navbar__logo">
-        <img className="logo-image" src={logopharm}/>
-        </span>
-        <span className="logo-title">PHARMALI</span>
+        <img className="logo-image" src={logopharm} />
+      </span>
+      <span className="logo-title">PHARMALI</span>
       {menuClicked ? (
 
         <FiMenu
@@ -54,11 +55,11 @@ const Navbar2 = (props) => {
       <ul className={
         menuClicked ? "navbar__list" : "navbar__list navbar__list--active"
       } >
-        
-          {props.userInfo &&
-                 (<li className="welcomeUser">
-                  Welcome {props.userInfo.name} 💊
-                 </li>)}
+
+        {props.userInfo &&
+          (<li className="welcomeUser">
+            Welcome {props.userInfo.name} 💊
+          </li>)}
         {navbarData(props.user).map((item, index) => {
           return (
             <li className="navbar__item" key={index} onClick={() => setLink(item.url)}>

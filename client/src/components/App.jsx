@@ -25,38 +25,36 @@ function App() {
   const { getCookie } = useApplicationData();
   const [userInfo, setUserInfo] = useState();
 
+  // When app is refreshed
   useEffect(() => {
     getCookie()
       .then((data) => {
-        console.log(data.data.user[0].id);
         setUser(data.data.user[0].id);
         setUserInfo(data.data.user[0]);
       });
-
-
   }, []);
 
   // create context file to make api call to get cookie and get cookie from that (context provider)
   return (
     <div className="App">
       <Router>
-        <Navbar2 user={user} setDarkMode={setDarkMode} userInfo={userInfo} />
+        <Navbar2 user={user} setUser={setUser} setDarkMode={setDarkMode} userInfo={userInfo} />
         <UserProvider>
           <Routes>
             <Route path="*" element={<h1>404 Page Not Found</h1>} />
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/blogs/:id" element={<BlogPost user={user} />} />
             <Route path="/drugs/*" element={<Drug user={user} drugs={drugs} setDrugs={setDrugs} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
-            <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
-            <Route path="/myblogs/edit/*" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
-            <Route path="/myblogs/add" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
+            {/* <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} /> */}
+            <Route path="/blogs" element={<BlogPosts user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
+            <Route path="/blogs/add" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
+            <Route path="/blogs/edit/*" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
             <Route path="/myjournal" element={<MyJournal user={user} darkMode={darkMode} />} />
             <Route path="/mydrugs" element={<MyDrugs user={user} drugs={drugs} setDrugs={setDrugs} />} />
-            <Route path="/blogs" element={<BlogPosts user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
           </Routes>
         </ UserProvider>
       </Router>

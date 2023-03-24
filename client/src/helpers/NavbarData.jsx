@@ -34,12 +34,12 @@ const navbarData = (login) => {
   if (login) {
     
     navbarData.push(
-      {
-        title: "MY BLOGS",
-        url: "/myblogs",
-        // icon: <AutoStoriesIcon color="primary" />,
-        // className: 'nav-text'
-      },
+      // {
+      //   title: "MY BLOGS",
+      //   url: "/myblogs",
+      //   // icon: <AutoStoriesIcon color="primary" />,
+      //   // className: 'nav-text'
+      // },
       {
         title: "MY JOURNAL",
         url: "/myjournal",

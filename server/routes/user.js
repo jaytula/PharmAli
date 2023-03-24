@@ -63,7 +63,7 @@ module.exports = (db, cookieParams) => {
 
   // For logging out
   router.post("/logout", (req, res) => {
-    res.clearCookie('id');
+    res.clearCookie('name');
     res.end();
   });
 
