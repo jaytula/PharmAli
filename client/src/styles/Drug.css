@@ -59,7 +59,7 @@
   -webkit-box-orient: vertical;
 }
 .un-fav-icon{
-  color:red;
+  color: #65FFFC;
   width:50px;
   height:50px;
   cursor:pointer;
@@ -69,6 +69,7 @@
 }
 
 .drugname{
+  color: #65FFFC;
   font-size: 30px;
 }
 .unfavbutton{
