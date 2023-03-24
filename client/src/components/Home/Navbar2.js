@@ -15,10 +15,12 @@ const Navbar2 = (props) => {
   const setLink = (item) => {
     if (item === LOGOUT) {
       removeCookie()
-        .then(() => {
-          props.setUser(null);
-          navigate('/');
-        });
+      .then(() => {
+        console.log('logged out')
+        props.setUserInfo({});
+        props.setUser(null);
+        navigate('/');
+      });
     } else {
       navigate(item);
     }
@@ -31,7 +33,6 @@ const Navbar2 = (props) => {
   // if(props.userInfo){
   //   console.log(props.userInfo.name);
   // }
-  console.log('---------', props.user, '---------');
 
   return (
     <nav className="navbar2">
@@ -58,6 +59,10 @@ const Navbar2 = (props) => {
         menuClicked ? "navbar__list" : "navbar__list navbar__list--active"
       } >
 
+        {props.user &&
+          (<li className="welcomeUser">
+            Welcome {props.userInfo.name} 💊
+          </li>)}
         {navbarData(props.user).map((item, index) => {
           return (
             <li className="navbar__item" key={index} onClick={() => setLink(item.url)}>
