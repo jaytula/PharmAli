@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { BsHeartPulse } from "react-icons/bs";
 
 const DrugListItem = (props) => {
   const navigate = useNavigate();
@@ -20,16 +21,28 @@ const DrugListItem = (props) => {
   }
 
   return (
-    <>
+    <div className="drugcontainer">
       {favourite &&
-        (<>
-          <div onClick={() => navigate(`drugs/${props.drug.name}`)}>
+        (<><h3 className="drugname">Drug Name :
+
+        </h3>
+        <Link to = {(`/drugs/${props.drug.name}`)} >
+
+          <div className="drug-faved" onClick={() => navigate(`drugs/${props.drug.name}`)}>
+
             {props.drug.name}
           </div>
-          <div onClick={changeLike}>Click me to unfavourite
+        </Link>
+          <div className="unfavbutton">
+          <BsHeartPulse className="un-fav-icon" onClick={changeLike}/>
+          <div className="unfavtext">Click me to unfavourite
           </div>
+
+          </div>
+          
         </>)}
-    </>
+    </div>
+    
   )
 }
 

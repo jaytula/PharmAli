@@ -22,18 +22,15 @@
   width: 720px;
   height: 720px;
   box-shadow: 0px 0px 31px 4px #411b2f;
-
-  /* background-color: #411b2f2b; */
 }
 .slider_container_one{
-  /* background-color: #411b2f2b; */
-  background-color: #ffdb899c;
-  box-shadow: 0 0 5px 10px #fff6c3b3;
+  background-color: #1E1E1E;
+  box-shadow: 0 0 5px 10px #2e2d2d;
+  text-decoration-color: #fff;
 }
 .slider_container_two{
-  /* background-color: #411b2f2b; */
-  background-color: #fff6c3b3;
-  box-shadow: 0 0 5px 10px #ffdb899c;
+  background-color: #2e2d2d;
+  box-shadow: 0 0 5px 10px #1E1E1E;
 }
 
 @keyframes imgRotate {
@@ -59,9 +56,11 @@
 
 
 }
-
+.slider__subtitle{
+  color:#fff;
+}
 .slider__title :visited {
-  color: #850000;
+  color: #65FFFC;
 }
 
 .slider__subtitle{
@@ -77,4 +76,7 @@
   .slider__image{
     width: 100%;
   }
+}
+.App-2{
+  background-color: #2e2d2d;
 }
