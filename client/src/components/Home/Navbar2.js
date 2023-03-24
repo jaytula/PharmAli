@@ -4,7 +4,8 @@ import { FiMenu, FiX } from "react-icons/fi";
 import navbarData from "../../helpers/NavbarData";
 import { useNavigate, useParams } from "react-router-dom";
 import useApplicationData from "../../hooks/useApplicationData";
-import logopharm from '../../assets/images/logo-pharm.png';
+import logo from '../../assets/images/logo.png';
+import title from '../../assets/images/title.png';
 
 const Navbar2 = (props) => {
   const { removeCookie } = useApplicationData();
@@ -36,9 +37,9 @@ const Navbar2 = (props) => {
   return (
     <nav className="navbar2">
       <span className="navbar__logo">
-        <img className="logo-image" src={logopharm} />
+        <img className="logo-image" src={logo} />
       </span>
-      <span className="logo-title">PHARMALI</span>
+      <span className="logo-title">Pharmali</span>
       {menuClicked ? (
 
         <FiMenu
@@ -58,10 +59,6 @@ const Navbar2 = (props) => {
         menuClicked ? "navbar__list" : "navbar__list navbar__list--active"
       } >
 
-        {props.user &&
-          (<li className="welcomeUser">
-            Welcome {props.userInfo.name} 💊
-          </li>)}
         {navbarData(props.user).map((item, index) => {
           return (
             <li className="navbar__item" key={index} onClick={() => setLink(item.url)}>
@@ -72,14 +69,18 @@ const Navbar2 = (props) => {
             </li>
           );
         })}
+          {props.userInfo &&
+            (<li className="welcomeUser">
+              Welcome, {props.userInfo.name}
+            </li>)}
 
-        <button
+        {/* <button
           onClick={() =>
             props.setDarkMode(
               (previousDarkMode) =>
                 !previousDarkMode)
           } className="blog-button"
-        >Dark Mode</button>
+        >Dark Mode</button> */}
       </ul>
     </nav >
   );

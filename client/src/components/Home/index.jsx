@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/home.css";
 import family from "../../assets/images/family.png";
-import pharmaliLogo from "../../assets/images/pharmaliLogo.png";
+import logo from "../../assets/images/logo.png";
 import search from "../../assets/images/search.png";
 import medicine from "../../assets/images/medicine.png";
 import locator from "../../assets/images/locator.png";
@@ -20,7 +20,7 @@ import Navbar2 from "./Navbar2";
 const Home = () => {
   return (
     <div className="App-2">
-      <Hero imageSrc={pharmaliLogo} />
+      <Hero imageSrc={logo} />
       <div className="slider_container_two">
         <Slider
           hrefvalue={"/"}
