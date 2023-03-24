@@ -16,7 +16,8 @@ const AddJournal = ({ handleAddJournal }) => {
   };
   return (
     <div className='journal new'>
-      <textarea
+      <h2 className="jounal-title">Add a New Journal Entry Here  :</h2>
+      <textarea className="journal-text"
         rows="8"
         cols="10"
         placeholder="Type here and tell us how you feel....."
@@ -24,7 +25,7 @@ const AddJournal = ({ handleAddJournal }) => {
         onChange={handleChange}
       ></textarea>
       <div className="journal-footer">
-        <small>{charMaximumLimit - journalText.length} remaining </small>
+        <small className="characterlimit">{charMaximumLimit - journalText.length} remaining </small>
         <button 
         className="save" 
         onClick={handleClickSave}
