@@ -15,6 +15,7 @@ const Navbar2 = (props) => {
     if (item === LOGOUT) {
       removeCookie()
         .then(() => {
+          props.setUser(null);
           navigate('/');
         });
     } else {
