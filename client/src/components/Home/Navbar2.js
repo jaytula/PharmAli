@@ -69,7 +69,7 @@ const Navbar2 = (props) => {
             </li>
           );
         })}
-          {props.userInfo &&
+          {props.user &&
             (<li className="welcomeUser">
               Welcome, {props.userInfo.name}
             </li>)}
