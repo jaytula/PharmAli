@@ -8,7 +8,7 @@ import useApplicationData from '../../hooks/useApplicationData';
 import { useNavigate, useParams } from "react-router-dom";
 import pharmaliLogo from "../../assets/images/pharmaliLogo.png";
 
-const Register = () => {
+const Register = (props) => {
   const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
   const navigate = useNavigate();
 
@@ -25,7 +25,14 @@ const Register = () => {
     const userInfo = { email, password, name, postalCode };
     setCookie(userInfo)
       .then((message) => {
-        (typeof message === 'object') ? navigate('/') : setError(message);
+        if (typeof message === 'object') {
+          props.setUser(message.id)
+          props.setUserInfo(message)
+          navigate('/')
+        }
+        else {
+          setError(message);
+        }
       });
   };
 
@@ -47,19 +54,19 @@ const Register = () => {
                 <input className='form-input' value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="Write Name Here" id="name" name="name" required />
               </div>
               <div class="form-group">
-              <label className='label-register' htmlFor="email">Email : </label>
-                </div>
-                <div class="form-group">
+                <label className='label-register' htmlFor="email">Email : </label>
+              </div>
+              <div class="form-group">
                 <input className='form-input' value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="placeyouremail@HERE.com" id="email" name="email" required />
               </div>
               <div class="form-group">
-              <label className='label-register' htmlFor="password">Password : </label>
+                <label className='label-register' htmlFor="password">Password : </label>
               </div>
               <div class="form-group">
                 <input className='form-input' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" required />
               </div>
               <div class="form-group">
-              <label className='label-register' htmlFor="postalCode">Postal Code : </label>
+                <label className='label-register' htmlFor="postalCode">Postal Code : </label>
               </div>
               <div class="form-group">
                 <input className='form-input' value={postalCode} onChange={(e) => setPostalCode(e.target.value)} type="ppostalCode" placeholder="M8M 1R3" id="postalCode" name="postalCode" required />

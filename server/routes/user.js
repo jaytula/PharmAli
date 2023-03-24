@@ -47,12 +47,12 @@ module.exports = (db, cookieParams) => {
       postal_code: req.body.postalCode
     };
     addUser.addUser(db, userInfo)
-      .then((data) => {
+      .then(({rows: id }) => {
         console.log('User Added');
-        userInfo.id = data;
+        userInfo.id = id[0].id;
         // If account doesn't exist with this email
-        res.cookie('name', userInfo.id, cookieParams);
-        res.send({ message: { userInfo } });
+        res.cookie('name', `${userInfo.id}`, cookieParams);
+        res.send({ message: userInfo });
       })
       .catch((err) => {
         console.log('error', err);
