@@ -58,10 +58,6 @@ const Navbar2 = (props) => {
         menuClicked ? "navbar__list" : "navbar__list navbar__list--active"
       } >
 
-        {props.userInfo &&
-          (<li className="welcomeUser">
-            Welcome {props.userInfo.name} 💊
-          </li>)}
         {navbarData(props.user).map((item, index) => {
           return (
             <li className="navbar__item" key={index} onClick={() => setLink(item.url)}>
@@ -72,14 +68,18 @@ const Navbar2 = (props) => {
             </li>
           );
         })}
+          {props.userInfo &&
+            (<li className="welcomeUser">
+              Welcome, {props.userInfo.name}
+            </li>)}
 
-        <button
+        {/* <button
           onClick={() =>
             props.setDarkMode(
               (previousDarkMode) =>
                 !previousDarkMode)
           } className="blog-button"
-        >Dark Mode</button>
+        >Dark Mode</button> */}
       </ul>
     </nav >
   );
