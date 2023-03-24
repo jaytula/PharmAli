@@ -12,11 +12,14 @@
 .bloggg h1 {
   font-family:'Montserrat', sans-serif;
 }
+.blog {
+  box-shadow: 0px 0px 0px 1px #850000;  
+}
 
 .blog:hover{
-  box-shadow: 5px 5px #850000;
-  box-shadow: 5px 5px 0px 1px #850000;  
+  box-shadow: 5px 5px 7px 5px #850000;
 }
+
 
 .articles {
   float: right;

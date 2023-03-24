@@ -21,7 +21,7 @@ function MyBlogsItem(props) {
            Category: {props.blog.category}
         </span>
       </div>
-      <span className="blogTitle" onClick={() => navigate(`/blogs/${props.blog.id}`)}>
+      <span className="myblogTitle" onClick={() => navigate(`/blogs/${props.blog.id}`)}>
         {props.blog.title}
       </span>
       <hr />

@@ -1,6 +1,21 @@
 .blogPost {
   flex: 9;
 }
+.blogPostName{
+  margin-left: 5px;
+}
+
+.blogPostText {
+  color: #3b3a3a;
+  font-size: 30px;
+  line-height: 37px;
+}
+
+.blogPostText::first-letter {
+  margin-left: 20px;
+  font-size: 50px;
+  font-weight: 600;
+}
 
 .blogPostHolder {
   padding: 20px;
@@ -16,7 +31,7 @@
 .blogPostTitle {
   text-align: center;
   margin: 10px;
-  font-size: 28px;
+  font-size: 40px;
   font-family: "Lora", sans-serif;
 }
 
@@ -24,23 +39,9 @@
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: 23px;
   color: #be9656;
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
 }
 
-.blogPostName{
-  margin-left: 5px;
-}
 
-.blogPostText {
-  color: #666;
-  font-size: 18px;
-  line-height: 25px;
-}
-
-.blogPostText::first-letter {
-  margin-left: 20px;
-  font-size: 30px;
-  font-weight: 600;
-}
