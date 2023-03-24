@@ -21,6 +21,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [allBlogs, setAllBlogs] = useState([]);
+  const [drugs, setDrugs] = useState([]);
   const { getCookie } = useApplicationData();
   const [userInfo, setUserInfo] = useState();
 
@@ -48,20 +49,19 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/blogs/:id" element={<BlogPost user={user} />} />
-            <Route path="/drugs/*" element={<Drug user={user} />} />
+            <Route path="/drugs/*" element={<Drug user={user} drugs={drugs} setDrugs={setDrugs} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
             <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} /> */}
             /* save blog function should passed here
-<Route path="/myblogs/edit/*" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs}/>} />
-<Route path="/myblogs/add" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs}/>} />
-<Route path="/myjournal" element={<MyJournal user={user} darkMode={darkMode} />} />
-<Route path="/mydrugs" element={<MyDrugs user={user} />} />
-<Route path="/blogs" element={<BlogPosts user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
-</Routes>
-</ UserProvider>
-</Router>
-</div>
-);
+            <Route path="/myblogs/edit/*" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs}/>} />
+            <Route path="/myblogs/add" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs}/>} />
+            <Route path="/myjournal" element={<MyJournal user={user} darkMode={darkMode} />} />
+            <Route path="/mydrugs" element={<MyDrugs user={user} drugs={drugs} setDrugs={setDrugs}/>} />
+            <Route path="/blogs" element={<BlogPosts user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
+          </Routes>
+        </ UserProvider>
+       </Router>
+    </div>
 }
 
 export default App;

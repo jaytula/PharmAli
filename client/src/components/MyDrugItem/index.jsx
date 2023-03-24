@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const DrugListItem = (props) => {
   const navigate = useNavigate();
-  const [favourite, setFavourite] = useState(props.drug_id);
+  const [favourite, setFavourite] = useState(props.drug.id);
   // Every time drug is favourited
   const changeLike = () => {
     const params = { favourite };
@@ -20,8 +20,8 @@ const DrugListItem = (props) => {
     <>
       {favourite &&
         (<>
-          <div onClick={() => navigate(`drugs/${props.drug_id}`)}>
-            {props.drug_id}
+          <div onClick={() => navigate(`drugs/${props.drug.drug_id}`)}>
+            {props.drug.name}
           </div>
           <div onClick={changeLike}>Click me to unfavourite
           </div>

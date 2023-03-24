@@ -24,7 +24,6 @@ function SaveBlog(props) {
         return axios.get('/blogs');
       })
       .then((data) => {
-        console.log(data);
         props.setAllBlogs(data.data)
         navigate(`/blogs`);
       })

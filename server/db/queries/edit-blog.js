@@ -14,9 +14,6 @@ const editBlog = function(db, blog) {
     queryString += `INSERT INTO blogs (user_id, title, image_url, content, category_id)
     VALUES ($1, $2, $3, $4, $5)`
   }
-
-
-  console.log(queryString, queryParams);
   return db.query(queryString, queryParams)
 };
 
