@@ -6,25 +6,22 @@ import "../../styles/Drug.css";
 import medlist from "../../assets/images/medlist.png";
 import locator from "../../assets/images/locator.png";
 import blogs from "../../assets/images/blogs.png";
-import family from "../../assets/images/family.png";
 import journal from "../../assets/images/journal.png";
 
 const Drug = (props) => {
   // favourite will be the saved_medication id
-  const [favourite, setFavourite] = useState("");
+  const [favourite, setFavourite] = useState();
+  const [drugId, setDrugId] = useState();
   const [content, setContent] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
   const drugName = location.pathname.split("/")[2];
+
   // First time page is visited
   useEffect(() => {
     const drugName = location.pathname.split("/")[2];
-    console.log(drugName);
-    axios
-      .get(`https://api.fda.gov/drug/label.json?search=description:${drugName}`)
+    axios.get(`https://api.fda.gov/drug/label.json?search=description:${drugName}`)
       .then((data) => {
-        console.log(data);
-        // console.log(data.data.results[0].adverse_reactions[0].match(/(\d+) (.*)/))
         setContent({
           Description: data.data.results[0].description
             ? stringifier(data.data.results[0].description[0])
@@ -50,8 +47,24 @@ const Drug = (props) => {
             ? stringifier(data.data.results[0].overdosage[0])
             : "",
         });
-      });
-  }, []);
+      })
+      .catch((err) => {
+        console.log("Error", err)
+      })
+
+    if (props.user) {
+      const findDrug = props.drugs.find(savedDrug => savedDrug.name === drugName)
+      if (findDrug) {
+        setFavourite(findDrug.id);
+        setDrugId(findDrug.drug_id);
+      } else {
+          axios.get(`/drugs/${drugName}`)
+          .then((data) => {
+            setDrugId(data.data[0].id);
+          })
+      }
+    }
+  }, [props.drugs]);
 
   const stringifier = (string) => {
     for (let i = 0; i < string.length; i++) {
@@ -61,20 +74,8 @@ const Drug = (props) => {
     }
   };
 
-  // First time page is visited
-  useEffect(() => {
-    const drugName = location.pathname.split("/")[2];
-    if (props.user) {
-      // axios.get(`/favourite/${props.user}&${drugName}`)
-      //   .then((data) => {
-      //     (data.data.length === 0) ? setFavourite("") : setFavourite(data.data[0].id);
-      //   })
-    }
-  }, [props.user]);
-
   // Every time drug is favourited
   const changeLike = () => {
-    const drugId = location.pathname.split("/")[2];
     let params;
     let route;
     if (favourite) {
@@ -84,7 +85,12 @@ const Drug = (props) => {
       params = { user_id: props.user, drug_id: drugId };
       route = "/favourite/add";
     }
-    Promise.all([axios.post(route, params)]).then((data) => {
+    Promise.all([
+      axios.post(route, params),
+      axios.get(`/favourite/${props.user}`)
+    ])
+    .then((data) => {
+      props.setDrugs(data[1].data)
       favourite ? setFavourite("") : setFavourite(data[0].data.id);
     });
   };
@@ -93,18 +99,18 @@ const Drug = (props) => {
     <>
       <div className="image-container">
         <div className="image1">
-        <Link to="/mydrugs">
-          <img className="drug-image" src={medlist} />
-        </Link>
-        <Link to="/pharma">
-          <img className="drug-image" src={locator} />
-        </Link>
-        <Link to="/blogs">
-          <img className="drug-image" src={blogs} />
-        </Link>
-        <Link to="/myjournal">
-          <img className="drug-image" src={journal} />
-        </Link>
+          <Link to="/mydrugs">
+            <img className="drug-image" src={medlist} alt={"medlist"} />
+          </Link>
+          <Link to="/pharma">
+            <img className="drug-image" src={locator} alt={"pharmlocator"} />
+          </Link>
+          <Link to="/blogs">
+            <img className="drug-image" src={blogs} alt={"blogs"} />
+          </Link>
+          <Link to="/myjournal">
+            <img className="drug-image" src={journal} alt={"journal"} />
+          </Link>
         </div>
       </div>
 
@@ -112,10 +118,13 @@ const Drug = (props) => {
         <ArrowBackIcon size="large" onClick={() => navigate("/search")} />
         <span className="drug-name">
           <h1>Drug Name: {drugName}</h1>
-          {!favourite && (
-            <div onClick={changeLike}>Click me to favourite this drug</div>
-          )}
-          {favourite && <div onClick={changeLike}>Click me to unfavourite</div>}
+          {props.user &&
+            <>
+              {!favourite && (
+                <div onClick={changeLike}>Click me to favourite this drug</div>
+              )}
+              {favourite && <div onClick={changeLike}>Click me to unfavourite</div>}
+            </>}
           <hr />
         </span>
         {Object.keys(content).map((data) => (

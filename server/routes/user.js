@@ -19,6 +19,7 @@ module.exports = (db, cookieParams) => {
   router.post("/login", (req, res) => {
     const userInfo = { email: req.body.email };
     getUser.getUser(db, userInfo)
+
       .then((result) => {
         // If a user exists
         if (result.rows.length > 0) {
@@ -47,12 +48,14 @@ module.exports = (db, cookieParams) => {
     };
     addUser.addUser(db, userInfo)
       .then((data) => {
-        userInfo.id = data.rows[0].id;
+        console.log('User Added');
+        userInfo.id = data;
         // If account doesn't exist with this email
         res.cookie('name', userInfo.id, cookieParams);
         res.send({ message: { userInfo } });
       })
       .catch((err) => {
+        console.log('error', err);
         // If account does exist with this email
         res.send({ message: err.detail });
       });

@@ -14,11 +14,12 @@ export default function useApplicationData() {
     }
     return makeRequest.then((data) => {
       const success = data.data.message;
-      if (success instanceof Object) {
-        setUser(success.userInfo);
-      }
-      return success;
-    })
+      console.log("success",success)
+        if (success instanceof Object) {
+          setUser(success);
+        }
+        return success;
+      })
   };
 
   const removeCookie = () => {

@@ -1,4 +1,5 @@
 const addJournal = function(db, user_id, text) {
+  console.log(user_id)
   const queryParams = [user_id, text];
   const queryString = `
   INSERT INTO journals (user_id, text) 

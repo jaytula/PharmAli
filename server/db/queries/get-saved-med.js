@@ -1,15 +1,17 @@
 const getSavedMed = function(db, queryParams) {
   const queryString = (queryParams.length === 2) ? 
-  `SELECT drugs.*, drug_id
+  `SELECT drugs.name, saved_medications.*
   FROM saved_medications
   JOIN drugs ON
   drugs.id = drug_id 
-  WHERE user_id = $1 AND drug_id = $2;` : 
-  `SELECT drugs.*, drug_id 
+  WHERE user_id = $1 AND drugs.name = $2;` : 
+  `SELECT drugs.name, saved_medications.* 
   FROM saved_medications 
   JOIN drugs ON
   drugs.id = drug_id 
   WHERE user_id = $1;`
+
+  console.log(queryString, queryParams);
   db.query(queryString, queryParams)
   return db.query(queryString, queryParams);
 };

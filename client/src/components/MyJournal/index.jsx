@@ -8,6 +8,10 @@ import "../../styles/Journal.css";
 const MyJournal = (props) => {
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
+  // const[darkMode,setDarkMode]=useState(false);
+  console.log(props);
+  const userId = props.user.id
+
 
   useEffect(() => {
     if (props.user) {
@@ -26,7 +30,6 @@ const MyJournal = (props) => {
   useEffect(() => {
     localStorage.setItem('react-journal-app-data', JSON.stringify(journals));
   }, [journals]);
-
   const AddJournal = (text) => {
     axios.post("/journal/add", { user_id: props.user, text })
       .then((data) => {

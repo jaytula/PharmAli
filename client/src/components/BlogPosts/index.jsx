@@ -5,14 +5,12 @@ import Articles from '../Articles/index.jsx';
 import axios from "axios";
 import SelectSmall from '../Category/index.jsx';
 import { useNavigate } from "react-router-dom";
-import Button from '../Button';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import "../../styles/MyBlogs.css";
 
 const BlogPosts = (props) => {
   // Set the blogs and categories to show
   const navigate = useNavigate();
-  // const [allBlogs, setAllBlogs] = useState([]);
   const [category, setCategory] = useState('')
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -20,9 +18,8 @@ const BlogPosts = (props) => {
 
   // Get all blogs and categories when page is first visited
   useEffect(() => {
-    const blogFetchUrl = (props.myBlogs && props.user) ? `/blogs/${props.user}` : '/blogs'
     Promise.all([
-      axios.get(blogFetchUrl),
+      axios.get('/blogs'),
       axios.get('/categories')
     ]).then((data) => {
       setBlogs(data[0].data);
@@ -61,11 +58,11 @@ const BlogPosts = (props) => {
             </div>
             <div className='category-dropdown'>
               <SelectSmall categories={categories} category={category} setCategory={setCategory} blogFiltering={true} />
-          {props.myBlogs &&
+          {props.user &&
             (<>
             <button className="blog-button"
-              onClick={() => navigate('/myblogs/add')}>Add a blog</button>
-              <PostAddIcon onClick={() => navigate('/myblogs/add')} fontSize='large' color='error'/>
+              onClick={() => navigate('/blogs/add')}>Add a blog</button>
+              <PostAddIcon onClick={() => navigate('/blogs/add')} fontSize='large' color='error'/>
               </>)}
             </div>
           </span>
@@ -75,7 +72,7 @@ const BlogPosts = (props) => {
               blog={blog}
               setBlog={() => navigate(`/blogs/${blog.id}`)}
               user={props.user}
-              editPost={() => navigate(`/myblogs/edit/${blog.id}`)}
+              editPost={() => navigate(`/blogs/edit/${blog.id}`)}
               deletePost={() => deletePost(blog.id)} />
           ))}
 
