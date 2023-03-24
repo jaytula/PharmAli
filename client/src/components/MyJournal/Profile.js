@@ -1,5 +1,5 @@
 import React from 'react';
-import profileImage from '../../assets/images/medicine.png';
+import profileImage from '../../assets/images/avatarPharmali.jpeg';
 
 function Profile({ user }) {
 

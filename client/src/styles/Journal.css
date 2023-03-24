@@ -1,137 +1,268 @@
-.journal{
-  background-color: lightcoral;
+.journal {
+  background-color: #850000;
   /* margin-bottom: 10px; */
   border-radius: 10px;
-  padding:1rem;
+  padding: 2rem;
   min-height: 300px;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  justify-content:space-between;
-  white-space: pre-wrap;
+  justify-content: space-between;
+  /* white-space: pre-wrap; */
+  font-size: 23px;
+  width: 485px;
+  margin: 0px 25px 40px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 850px;
 }
 
-.journal.new{
-  background-color: rgb(179, 158, 172);
-  
+.textSpan {
+  background-color: #f6ededf0;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0px 0px 15px 7px #f6ededf0;
+  font-size: 26px;
+  font-family: 'Montserrat', sans-serif;
+  height: 565px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-y: scroll;
+  font-family: "Varela Round";
 }
-textarea{
+
+.journal.new {
+  background-color: #850000;
+}
+
+.jounal-title {
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  font-family: "Varela Round";
+}
+
+.journal-footer {
+  color: #fff;
+  font-size: 20px;
+}
+
+.characterlimit {
+  font-size: 22px;
+  font-family: "Varela Round";
+}
+
+.journal-text {
+  height: 570px;
+  font-size: 25px;
+  font-family: "Varela Round";
+}
+
+.pagetitle {
+  font-size: 50px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+}
+
+textarea {
   border: none;
-  resize:none;
+  resize: none;
   border-radius: 4px;
-  /* background-color: rgb(74, 57, 68); */
+  font-family: "Varela Round";
 }
-textarea:hover{
-  cursor:pointer;
+
+textarea:hover {
+  cursor: pointer;
 }
-textarea:focus{
-outline:none;
+
+textarea:focus {
+  outline: none;
 }
+
 @keyframes tilt-shaking {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(5deg); }
-  50% { transform: rotate(0eg); }
-  75% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(0eg);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
-.container{
-  max-width: 1900px;
+
+.container {
+  /* max-width: 1900px; */
   margin-right: auto;
   margin-left: auto;
   padding-right: 15px;
   padding-left: 15px;
   min-height: 100vh;
-  display:ruby-base-container;
+  display: ruby-base-container;
 }
-.journals-list{
-display: grid;
+
+.journals-list {
+  /* display: grid;
 grid-gap: 1rem;
-grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); */
+  display: flex;
+  flex-wrap: wrap;
+
 }
-.journal-footer{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+
+.journal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 }
-.profile, .profile-name{
+
+.profile,
+.profile-name {
   /* display:flex; */
-  align-items:center;
-  justify-content:space-between;
+  align-items: center;
+  justify-content: space-between;
 }
-aside{
-display:flex;
-justify-content: space-between;
-align-items:center;
+
+aside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .profile {
-  display:flex;
-	position: relative;
-	padding: 12px;
-	height: 80%;
+  display: flex;
+  position: relative;
+  padding: 12px;
+  height: 80%;
 }
 
 .profile-name {
-	text-align: center;
-	width: 100%;
-	/* margin-top: -40px; */
+  text-align: center;
+  width: 100%;
+  font-family: "Varela Round";
+  /* margin-top: -40px; */
 }
 
 .profile-name h2 {
-	margin: 0;
-	font-weight: 300;
-	color: #fff;
+  margin: 0;
+  font-weight: 300;
+  display: flex;
+  color: #fff;
+  font-size: 30px;
+  /* border: 1px solid #850000; */
+  padding: 5px 5px 5px 5px;
+  width: 105px;
+  float: right;
+  /* background-color: #f6ededf0; */
+  /* border-radius: 32px; */
+  /* box-shadow: 0px 0px 5px 3px #f6ededf0; */
+
 }
 
 .profile--bold {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 .profile-image {
-	float: left;
-	width: 50px;
-	height: 50px;
-	padding: 2px;
+  float: left;
+  width: 90px;
+  height: 90px;
+  padding: 0px;
   z-index: 0;
+  border-radius: 76%;
+  box-shadow: 0px 0px 11px 2px #850000;
+  margin-right: 10px;
+  margin-bottom: 27px;
 }
-.delete-icon{
-  cursor:pointer;
-  -ms-transform: scale(0.9); /* IE 9 */
-  -webkit-transform: scale(0.9); /* Safari 3-8 */
+
+.delete-icon {
+  cursor: pointer;
+  -ms-transform: scale(0.9);
+  /* IE 9 */
+  -webkit-transform: scale(0.9);
+  /* Safari 3-8 */
   transform: scale(0.9);
-  
+  height: 45px;
+
 }
-.delete-icon:hover{
-  -ms-transform: scale(1.1); /* IE 9 */
-  -webkit-transform: scale(1.1); /* Safari 3-8 */
+
+.journalDate {
+  font-size: 22px;
+  font-family: "Varela Round";
+}
+
+.delete-icon:hover {
+  -ms-transform: scale(1.1);
+  /* IE 9 */
+  -webkit-transform: scale(1.1);
+  /* Safari 3-8 */
   transform: scale(1.1);
   border-radius: 10px;
   animation: jump-shaking 0.99s infinite;
 }
-.search-journal{
-  display:flex;
+
+.search-journal {
+  display: flex;
   align-items: center;
   background-color: rgb(233, 233, 233);
   border-radius: 10px;
   padding: 5px;
   margin-bottom: 1.5em;
+  font-size: 35px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
+
 .search input {
-  border:none;
+  border: none;
   background-color: rgb(233, 233, 233);
+ 
 }
+
 .search input:focus {
   outline: none;
 }
-.search-input{
-  background-color: #E9E9E9;;
+
+.search-input {
+  background-color: #E9E9E9;
+  width: 2300px;
+  font-size: 25px;
 }
-.journal-header{
-  display:flex;
+
+.journal-header {
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.dark-mode{
+
+.dark-mode {
   background-color: black;
 }
-.dark-mode h1{
+
+.dark-mode h1 {
   color: #fff;
+}
+
+.save {
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 0px 7px;
+  color: white;
+  font-weight: 900;
+  background-color: #DC0000;
+  border: #DC0000;
+  height: 30px;
+  font-size: 20px;
 }

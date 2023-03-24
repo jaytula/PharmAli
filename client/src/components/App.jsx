@@ -51,18 +51,17 @@ function App() {
             <Route path="/blogs/:id" element={<BlogPost user={user} />} />
             <Route path="/drugs/*" element={<Drug user={user} drugs={drugs} setDrugs={setDrugs} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
-            <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} /> */}
-            /* save blog function should passed here
-            <Route path="/myblogs/edit/*" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs}/>} />
-            <Route path="/myblogs/add" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs}/>} />
+            <Route path="/myblogs" element={<BlogPosts user={user} myBlogs={true} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
+            <Route path="/myblogs/edit/*" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
+            <Route path="/myblogs/add" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
             <Route path="/myjournal" element={<MyJournal user={user} darkMode={darkMode} />} />
-            <Route path="/mydrugs" element={<MyDrugs user={user} drugs={drugs} setDrugs={setDrugs}/>} />
+            <Route path="/mydrugs" element={<MyDrugs user={user} drugs={drugs} setDrugs={setDrugs} />} />
             <Route path="/blogs" element={<BlogPosts user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
           </Routes>
         </ UserProvider>
-       </Router>
+      </Router>
     </div>
-  )
+  );
 }
 
 export default App;

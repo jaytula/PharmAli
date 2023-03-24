@@ -11,7 +11,7 @@ const Journal = ({user,id, text, date, handleDeleteJournal}) => {
       }
       <span className='textSpan'>{text}</span>
       <div className='journal-footer'>
-        <small>{date}</small>
+        <small className='journalDate'>{date}</small>
         <MdDeleteForever
          onClick={()=> handleDeleteJournal(id)}
          className='delete-icon'
