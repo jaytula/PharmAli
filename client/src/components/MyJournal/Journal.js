@@ -1,5 +1,7 @@
 import { MdDeleteForever } from 'react-icons/md';
 import Profile from './Profile';
+
+
 const Journal = ({user,id, text, date, handleDeleteJournal}) => {
  
   return (
