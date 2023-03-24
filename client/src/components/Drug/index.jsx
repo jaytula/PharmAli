@@ -53,18 +53,18 @@ const Drug = (props) => {
       })
 
     if (props.user) {
-      Promise.all([
-        axios.get(`/favourite/${props.user}&${drugName}`),
-        axios.get(`/drugs/${drugName}`)
-      ])
-        .then((data) => {
-          if (data[0].data.length > 0) {
-            setFavourite(data[0].data[0].id)
-          }
-          setDrugId(data[1].data[0].id)
-        })
+      const findDrug = props.drugs.find(savedDrug => savedDrug.name === drugName)
+      if (findDrug) {
+        setFavourite(findDrug.id);
+        setDrugId(findDrug.drug_id);
+      } else {
+          axios.get(`/drugs/${drugName}`)
+          .then((data) => {
+            setDrugId(data.data[0].id);
+          })
+      }
     }
-  }, []);
+  }, [props.drugs]);
 
   const stringifier = (string) => {
     for (let i = 0; i < string.length; i++) {
@@ -85,7 +85,12 @@ const Drug = (props) => {
       params = { user_id: props.user, drug_id: drugId };
       route = "/favourite/add";
     }
-    Promise.all([axios.post(route, params)]).then((data) => {
+    Promise.all([
+      axios.post(route, params),
+      axios.get(`/favourite/${props.user}`)
+    ])
+    .then((data) => {
+      props.setDrugs(data[1].data)
       favourite ? setFavourite("") : setFavourite(data[0].data.id);
     });
   };

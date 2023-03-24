@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
-
+import axios from 'axios';
 import Home from './Home';
 import Search from './Search';
 import PharmaLocator from './PharmLocator';
@@ -31,8 +31,21 @@ function App() {
       .then((data) => {
         setUser(data.data.user[0].id);
         setUserInfo(data.data.user[0]);
-      });
+      })
   }, []);
+
+  // To get all saved meds when user is logged in
+  useEffect(() => {
+    console.log(user);
+    if (user !== null) {
+      console.log(user, '2');
+      Promise.all([
+        axios.get(`/favourite/${user}`),
+      ]).then((data) => {
+        setDrugs(data[0].data)
+      })
+    }
+  }, [user]);
 
   // create context file to make api call to get cookie and get cookie from that (context provider)
   return (

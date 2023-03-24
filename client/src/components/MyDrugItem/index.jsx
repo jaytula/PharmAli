@@ -11,7 +11,10 @@ const DrugListItem = (props) => {
     const route = '/favourite/remove';
     Promise.all([
       axios.post(route, params),
-    ]).then(() => {
+      axios.get(`/favourite/${props.user}`)
+    ]).then((data) => {
+      console.log(data);
+      props.setDrugs(data[1].data)
       setFavourite("");
     })
   }
@@ -20,7 +23,7 @@ const DrugListItem = (props) => {
     <>
       {favourite &&
         (<>
-          <div onClick={() => navigate(`drugs/${props.drug.drug_id}`)}>
+          <div onClick={() => navigate(`drugs/${props.drug.name}`)}>
             {props.drug.name}
           </div>
           <div onClick={changeLike}>Click me to unfavourite
