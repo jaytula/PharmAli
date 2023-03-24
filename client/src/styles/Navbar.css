@@ -5,10 +5,10 @@
   color: #fff;
 }
 .logo-image{
-  width: 60px;
+  width: 40px;
   height: 60px;
   margin-top: 20px;
-  animation: imgRotate 8s ease-in-out infinite;
+  /* animation: imgRotate 8s ease-in-out infinite; */
 }
 
 @keyframes imgRotate {
@@ -18,10 +18,16 @@
 }
 
 .logo-title{
-  font-size: 52px;
-  color: white;
+  font-size: 30px;
+  /* background: linear-gradient(90deg, #EF32D9 0%, #89FFFD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  color:#89fffdfb;
   margin-right: 245px;
-  font-family: 'Varela Round';
+  margin-left: 60px;
+  font-family: 'Exo';
+  position: absolute;
+  font-weight:100;
 }
 
 .welcomeUser{
@@ -63,14 +69,14 @@
 }
 
 .navbar__link {
-  font-size: 20px;
+  /* font-size: 20px; */
   text-decoration: none;
   color: rgb(255, 255, 255);
   text-align: center;
-  padding: 10px;
+  /* padding-right: 5px; */
   margin: 0px 5px;
   border-style: solid;
-  border-width: 0px 0px 1px 0px;
+  /* border-width: 0px 0px 1px 0px; */
   border-color: transparent;
   transition: 250ms;
 }
@@ -86,7 +92,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:1350px) {
   .navbar__list {
     display: flex;
     flex-direction: column;
