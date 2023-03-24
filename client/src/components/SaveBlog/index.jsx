@@ -80,7 +80,7 @@ function SaveBlog(props) {
         </label>
       </form>
       <div className='btn-group'>
-        <button className='button-cancel' onClick={() => navigate('/myblogs')}>
+        <button className='button-cancel' onClick={() => navigate('/blogs')}>
           Cancel
         </button>
         <button className='button-save' onClick={() => savePost({ id: blogId, title, image_url: image, content, user_id: props.user })}>
