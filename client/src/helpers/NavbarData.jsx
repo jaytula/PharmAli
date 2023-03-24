@@ -9,6 +9,7 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import VaccinesIcon from '@mui/icons-material/Vaccines';
 
 const navbarData = (login) => {
+
   const navbarData = [
     {
       title: "SEARCH",

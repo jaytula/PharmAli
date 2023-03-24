@@ -4,9 +4,10 @@ import { FiMenu, FiX } from "react-icons/fi";
 import navbarData from "../../helpers/NavbarData";
 import { useNavigate, useParams } from "react-router-dom";
 import useApplicationData from "../../hooks/useApplicationData";
+import logopharm from '../../assets/images/logo-pharm.png';
 
 const Navbar2 = (props) => {
-  const { removeCookie, setDarkMode } = useApplicationData();
+  const { removeCookie } = useApplicationData();
   const navigate = useNavigate();
   const LOGOUT = "/logout"
 
@@ -25,10 +26,16 @@ const Navbar2 = (props) => {
   const toggleMenuClick = () => {
     setMenuClicked(!menuClicked)
   }
+// if(props.userInfo){
+//   console.log(props.userInfo.name);
+// }
 
   return (
     <nav className="navbar2">
-      <span className="navbar__logo">Pharmali!</span>
+      <span className="navbar__logo">
+        <img className="logo-image" src={logopharm}/>
+        </span>
+        <span className="logo-title">PHARMALI</span>
       {menuClicked ? (
 
         <FiMenu
@@ -47,6 +54,11 @@ const Navbar2 = (props) => {
       <ul className={
         menuClicked ? "navbar__list" : "navbar__list navbar__list--active"
       } >
+        
+          {props.userInfo &&
+                 (<li className="welcomeUser">
+                  Welcome {props.userInfo.name} 💊
+                 </li>)}
         {navbarData(props.user).map((item, index) => {
           return (
             <li className="navbar__item" key={index} onClick={() => setLink(item.url)}>
@@ -57,13 +69,14 @@ const Navbar2 = (props) => {
             </li>
           );
         })}
-          <button
-                onClick={() =>
-                  setDarkMode(
-                    (previousDarkMode) =>
-                      !previousDarkMode)
-                } className="save"
-              >Dark Mode</button>
+
+        <button
+          onClick={() =>
+            props.setDarkMode(
+              (previousDarkMode) =>
+                !previousDarkMode)
+          } className="blog-button"
+        >Dark Mode</button>
       </ul>
     </nav >
   );

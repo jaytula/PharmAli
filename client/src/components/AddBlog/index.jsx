@@ -39,28 +39,31 @@ function AddBlog(props) {
   const contentChange = (e) => setContent(e.target.value);
 
   return (
-    <div className='write'>EditBlog
+    <div className='write'>
+      <span className='writeTitle'>
+        Add a new Blog
+      </span>
       <form className='writeForm'>
         <label className='writeFormGroup'>
           Title:
-          <input className='writeInput' type="text" id="title" defaultValue={title} onChange={titleChange} />
         </label>
+          <input className='writeInput' type="text" id="title" defaultValue={title} onChange={titleChange} />
         <label className='writeFormGroup'>
           Image:
-          <input className='writeInput' type="text" id="image" defaultValue={image} onChange={imageChange} />
         </label>
+          <input className='writeInput' type="text" id="image" defaultValue={image} onChange={imageChange} />
         <label className='writeFormGroup'>
           Content:
-          <textarea className='writeInput writeText' type="text" name="image" defaultValue={content} onChange={contentChange} />
         </label>
+          <textarea className='writeInput writeText' type="text" name="image" defaultValue={content} onChange={contentChange} />
         <label className='writeFormGroup'>
           Category:
+        </label>
           <select>
             {categories.map((cat) => (
               <option key={cat.id} value={cat.id}>{cat.name}</option>
             ))}
           </select>
-        </label>
       </form>
       <div className='btn-group'>
         <button className='button-cancel' onClick={() => navigate('/myblogs')}>
@@ -73,5 +76,3 @@ function AddBlog(props) {
     </div>
   )
 }
-
-export default AddBlog

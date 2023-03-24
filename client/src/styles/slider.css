@@ -17,7 +17,7 @@
   border-radius: 300px;
 } */
 .slider__image {
-  animation: imgRotate 6s  ease-in-out infinite;
+  animation: imgRotate 6s  ease-in-out forwards ;
   border-radius: 76%;
   width: 720px;
   height: 720px;

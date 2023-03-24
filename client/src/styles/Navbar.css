@@ -4,8 +4,30 @@
 .dark-mode nav{
   color: #fff;
 }
+.logo-image{
+  width: 60px;
+  height: 60px;
+  margin-top: 20px;
+  animation: imgRotate 8s ease-in-out infinite;
+}
 
+@keyframes imgRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
+.logo-title{
+  font-size: 52px;
+  color: white;
+  margin-right: 245px;
+  font-family: 'Varela Round';
+}
+
+.welcomeUser{
+  color: red;
+  font-size: 25px;
+}
 .navbar2 {
   position: sticky;
   top: 0px;
@@ -20,6 +42,7 @@
   z-index: 9999;
   overflow: hidden;
   margin-bottom: 0px;
+  font-family: 'Varela Round';
 }
 
 .navbar__logo {
@@ -35,6 +58,8 @@
 
 .navbar__item {
   white-space: nowrap;
+  margin-top: 5px;
+  cursor:pointer;
 }
 
 .navbar__link {

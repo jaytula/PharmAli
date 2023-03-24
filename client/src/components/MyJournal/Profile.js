@@ -1,12 +1,13 @@
 import React from 'react';
+import profileImage from '../../assets/images/avatarPharmali.jpeg';
 
 function Profile({ user }) {
 
   return (
     <aside>
       <div className="profile">
-        {user.image && (
-          <img className="profile-image" src={user.image} alt=""/>
+        {profileImage && (
+          <img className="profile-image" src={profileImage} alt=""/>
         )}
       </div>
       <div className="profile-name">

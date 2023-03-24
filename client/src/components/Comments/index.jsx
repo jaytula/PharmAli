@@ -56,7 +56,7 @@ function Comments(props) {
   // To load all comments when the blog is visited
   useEffect(() => {
     Promise.all([
-      axios.get(`/comments?blogid=${props.blog_id}`),
+      axios.get(`/comments/${props.blog_id}`),
     ]).then((data) => {
       setComments(data[0].data.rows)
     })
@@ -75,9 +75,11 @@ function Comments(props) {
               comment={comment}
               setComments={() => props.setComment(comment)}
             />
-            <IconButton onClick={() => deleteComment(comment.id)}>
+            <div className='trash'>
+            {props.user && (<IconButton onClick={() => deleteComment(comment.id)}>
               <DeleteIcon />
-            </IconButton>
+            </IconButton>)}
+            </div>
           </>
         ))}
 
@@ -93,7 +95,7 @@ function Comments(props) {
         noValidate
         autoComplete="off"
       >
-        <TextField id="filled-basic" label="Filled" variant="filled" fullWidth
+        <TextField id="filled-basic" label="Leave a comment" variant="filled" fullWidth
           {...props}
           value={newComment}
           onChange={(event) => setNewComment(event.target.value)}

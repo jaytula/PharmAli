@@ -1,16 +1,23 @@
-/* .write {
-
-} */
+.write {
+margin-left: 10px;
+}
 
 .writeForm {
   position: relative;
+  margin-left:40px;
+}
+
+.writeTitle {
+  font-size:40px;
+  font-family: 'Montserrat', sans-serif;
+  color:#850000;
 }
 
 .writeFormGroup {
-  margin-left: 150px;
   display: flex;
   align-items: center;
-  font-size: 30px;
+  font-size: 20px;
+  font-weight:900;
 }
 .textarea {
   /* width: 100%;
@@ -23,6 +30,7 @@
   border: black solid;
   padding: 20px;
   width: 70vw;
+  font-size: 15px;
 }
 
 .writeInput:focus {
@@ -31,23 +39,41 @@ outline-style: auto;
 
 .writeText {
   width: 70vw;
-  height: 50vh;
+  height: 30vh;
   font-family: inherit;
-  font-size: 20px;
+  font-size: 15px;
   border-radius: 10px;
 }
 
 .button-save {
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-radius: 45px;
+  padding: 10px;
+  color: white;
+  font-weight: 900;
+  background-color: #DC0000;
+  border: #DC0000;
+  width: 200px;
+  font-size: 25px;
   
 }
 .button-cancel {
   display: flex;
   align-items: center;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  font-weight: 900;
+  background-color: #5d5959;
+  border: #5d5959;
 }
 
 .btn-group {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin:20px;
+  align-items: self-end;
 }
+  
