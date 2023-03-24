@@ -59,10 +59,6 @@ const Navbar2 = (props) => {
         menuClicked ? "navbar__list" : "navbar__list navbar__list--active"
       } >
 
-        {props.user &&
-          (<li className="welcomeUser">
-            Welcome {props.userInfo.name} 💊
-          </li>)}
         {navbarData(props.user).map((item, index) => {
           return (
             <li className="navbar__item" key={index} onClick={() => setLink(item.url)}>
