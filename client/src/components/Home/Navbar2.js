@@ -4,7 +4,8 @@ import { FiMenu, FiX } from "react-icons/fi";
 import navbarData from "../../helpers/NavbarData";
 import { useNavigate, useParams } from "react-router-dom";
 import useApplicationData from "../../hooks/useApplicationData";
-import logopharm from '../../assets/images/logo-pharm.png';
+import logo from '../../assets/images/logo.png';
+import title from '../../assets/images/title.png';
 
 const Navbar2 = (props) => {
   const { removeCookie } = useApplicationData();
@@ -35,9 +36,9 @@ const Navbar2 = (props) => {
   return (
     <nav className="navbar2">
       <span className="navbar__logo">
-        <img className="logo-image" src={logopharm} />
+        <img className="logo-image" src={logo} />
       </span>
-      <span className="logo-title">PHARMALI</span>
+      <span className="logo-title">Pharmali</span>
       {menuClicked ? (
 
         <FiMenu
