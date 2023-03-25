@@ -12,10 +12,6 @@ export default function useApplicationData() {
       makeRequest = axios.post("/user/login", userInfo)
     }
     return makeRequest
-    .then((data) => {
-      const success = data.data.message;
-      return success;
-    })
   };
 
   const removeCookie = () => {
