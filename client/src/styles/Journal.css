@@ -1,5 +1,5 @@
 .journal {
-  background-color: #850000;
+  background-color: #89fffd00;
   /* margin-bottom: 10px; */
   border-radius: 10px;
   padding: 2rem;
@@ -18,10 +18,10 @@
 }
 
 .textSpan {
-  background-color: #f6ededf0;
+  background-color: #dcd2d2f0;
   border-radius: 12px;
   padding: 30px;
-  box-shadow: 0px 0px 15px 7px #f6ededf0;
+  box-shadow: 0px 0px 15px 7px #dcd2d2f0;
   font-size: 26px;
   font-family: 'Montserrat', sans-serif;
   height: 565px;
@@ -32,14 +32,15 @@
 }
 
 .journal.new {
-  background-color: #850000;
+  background-color: #89fffdd1;
 }
 
 .jounal-title {
-  color: #fff;
+  color: black;
   margin-top: 5px;
   margin-bottom: 25px;
-  font-family: "Varela Round";
+  font-family: 'Exo';
+  margin-left: 30px;
 }
 
 .journal-footer {
@@ -49,7 +50,8 @@
 
 .characterlimit {
   font-size: 22px;
-  font-family: "Varela Round";
+  font-family: 'Exo';
+  color: black;
 }
 
 .journal-text {
@@ -60,16 +62,16 @@
 
 .pagetitle {
   font-size: 50px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-
+  margin-top: 25px;
+  margin-bottom: 30px;
+  color: #89FFFD;
 }
 
 textarea {
   border: none;
   resize: none;
   border-radius: 4px;
-  font-family: "Varela Round";
+  font-family: 'Exo';
 }
 
 textarea:hover {
@@ -132,6 +134,7 @@ grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); */
 .profile-name {
   /* display:flex; */
   align-items: center;
+
   justify-content: space-between;
 }
 
@@ -173,6 +176,7 @@ aside {
 
 .profile--bold {
   font-weight: 600;
+  font-family: 'Exo';
 }
 
 .profile-image {
@@ -182,7 +186,7 @@ aside {
   padding: 0px;
   z-index: 0;
   border-radius: 76%;
-  box-shadow: 0px 0px 11px 2px #850000;
+  box-shadow: 0px 0px 11px 2px #89FFFD;
   margin-right: 10px;
   margin-bottom: 27px;
 }
@@ -200,7 +204,7 @@ aside {
 
 .journalDate {
   font-size: 22px;
-  font-family: "Varela Round";
+  font-family: 'Exo';
 }
 
 .delete-icon:hover {
@@ -238,7 +242,7 @@ aside {
 .search-input {
   background-color: #E9E9E9;
   width: 2300px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .journal-header {
@@ -261,8 +265,8 @@ aside {
   padding: 0px 7px;
   color: white;
   font-weight: 900;
-  background-color: #DC0000;
-  border: #DC0000;
+  background-color: #EF32D9;
+  border: #EF32D9;
   height: 30px;
   font-size: 20px;
 }
