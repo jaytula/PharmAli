@@ -9,8 +9,8 @@ const MyJournal = (props) => {
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
   // const[darkMode,setDarkMode]=useState(false);
-  console.log(props);
-  const userId = props.user.id
+
+  
 
 
   useEffect(() => {
