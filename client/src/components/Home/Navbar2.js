@@ -10,29 +10,28 @@ import title from '../../assets/images/title.png';
 const Navbar2 = (props) => {
   const { removeCookie } = useApplicationData();
   const navigate = useNavigate();
-  const LOGOUT = "/logout"
+  const LOGOUT = "/logout";
 
   const setLink = (item) => {
     if (item === LOGOUT) {
       removeCookie()
-      .then(() => {
-        console.log('logged out')
-        props.setUserInfo({});
-        props.setUser(null);
-        navigate('/');
-      });
+        .then(() => {
+          console.log('logged out');
+          props.setUserInfo({});
+          props.setUser(null);
+          navigate('/');
+        });
     } else {
       navigate(item);
     }
-  }
+  };
 
   const [menuClicked, setMenuClicked] = useState(false);
-  const toggleMenuClick = () => {
-    setMenuClicked(!menuClicked)
-  }
-  // if(props.userInfo){
-  //   console.log(props.userInfo.name);
-  // }
+
+  const toggleMenuClicked = () => {
+    setMenuClicked(!menuClicked);
+  };
+
 
   return (
     <nav className="navbar2">
@@ -41,17 +40,17 @@ const Navbar2 = (props) => {
       </span>
       <span className="logo-title">Pharmali</span>
       {menuClicked ? (
-
         <FiMenu
           size={25}
           className={"navbar__menu"}
-          onClick={toggleMenuClick}
-        />) :
+          onClick={toggleMenuClicked}
+        />
+      ) :
         (
           <FiX
             size={25}
             className={"navbar__menu"}
-            onClick={toggleMenuClick}
+            onClick={toggleMenuClicked}
           />
         )}
 
@@ -69,10 +68,10 @@ const Navbar2 = (props) => {
             </li>
           );
         })}
-          {props.user &&
-            (<li className="welcomeUser">
-              Welcome, {props.userInfo.name}
-            </li>)}
+        {props.user &&
+          (<li className="welcomeUser">
+            Welcome, {props.userInfo.name}
+          </li>)}
 
         {/* <button
           onClick={() =>
