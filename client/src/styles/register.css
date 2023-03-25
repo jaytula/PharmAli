@@ -4,16 +4,13 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(90deg, #ffdb8952, #e0241e, 77%, #e0241e);
+  background-image: #1e1e1e;
   padding: 5rem;
-  width: 57.295vw;
+  width: 75vw;
   margin-left: 0;
-  margin:0;
-    padding:0;
   /* box-shadow: inset 20px 2px 20px 0px #E0241E; */
   /* clip-path: inset(Rpx); */
 }
-
 
 .register_container {
   width: 600px !important;
@@ -22,38 +19,23 @@
 
 }
 
-.logo {
-  /* width: 100px;
-  height: 50vh;
-  /* float: left; */
-  /* position: absolute; /*or fixed*/
-    /* right: 0px; */
-
+.logo-register{
+  float: right;
+  width: 40vw;
+  height: 100vh;
+  height: 90vh;
+  margin: 10px 13px 0px 100px;
 }
 
 .register_image {
-  width: 950px;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   float: right;
-  position: absolute;
-  right: -2212px;
 }
 
-.overlay2 {
-  width: 0px;
-  height: 50vh;
-  position: relative;
-  background-color: rgb(249, 246, 244);
-  opacity: 0.93;
-  bottom: 0vh;
-
-}
 
 .register__page {
   display: flex;
-  /* z-index: 5; issue might be here */
-  float: left;
-
 }
 
 .register-content {
@@ -64,23 +46,20 @@
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
   padding: 50px 85px;
-  box-shadow: inset 20px 0px 99px -18px #e0241ead;;
+  background: linear-gradient(90deg, #f29ee8 0%, #affffe 100%);
+  display: flex;
+  flex-direction: column;
 }
 
 .form-inputt {
-  border: 3.5px solid #873434;
+  border: 2.5px solid #ef32d9;
   border-radius: 25px;
   padding: 20px 25px;
-  width: 15vw;
-  height: 7vh;
-  font-size: 21px;
+  width: 415px;
+  height: 55px;
+  font-size: 20px;
 }
 
-.form-group {
-  /* overflow: hidden;
-  margin-bottom: 20px;
-  background-color: black; */
-}
 
 label {
   text-align: right;
@@ -94,9 +73,15 @@ input {
   border: yellow;
   border-radius: 10px;
 }
+.register-form{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
 
 .register-button {
-  /* display: flex; */
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 45px;
@@ -112,27 +97,38 @@ input {
 
 }
 .register-signup{
-  color: #6c757d;
-  font-weight: 500;
-  text-align: center;
-  margin-top: 91px;
-  margin-bottom: 5px;
-  border: 2.3px solid #c1c2c3b0;
-  box-shadow: -1px 0px 30px 2px #8982825c;
-  border-radius: 60px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 45px;
+  padding: 10px;
+  color: white;
+  font-weight: 900;
+  background-color: #ef32d9;
+  border: #ef32d9;
+  width: 178px;
+  font-size: 25px;
+  cursor: pointer;
+  margin-top: 30px;
 }
 .link-btn {
-  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 45px;
+  padding: 10px;
   color: white;
-  font-size: 18px;
-  border: none;
-  cursor:pointer;
-  margin-bottom: 10px;
-    margin-top: 10px;
-    font-size: 22px;
+  font-weight: 900;
+  background-color: #ef32d9;
+  border: #ef32d9;
+  width: 178px;
+  font-size: 25px;
+  cursor: pointer;
+  margin-top: 30px;
 }
+
 .label-register{
   font-size: 22px;
+  text-align:left;
 }
 
 .link-btn :hover{
@@ -143,7 +139,7 @@ input {
   margin-bottom: 5px;
 }
 
-.App1-logo {
+/* .App1-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -178,4 +174,4 @@ input {
   to {
     transform: rotate(360deg);
   }
-}
+} */
