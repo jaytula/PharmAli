@@ -2,19 +2,22 @@
 
 .searchPage {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .search-outer {
   float: left;
   margin-left: 50px;
-  height: 100vh;
+  height: 35vh;
 }
 
 .icon {
   position: relative;
-  top: 50px;
-  right: 42px;
-  font-size: 39px;
+  top: 77px;
+  right: 70px;
+  font-size: 60px;
   color: #89FFFD;
 }
 
@@ -23,6 +26,8 @@
   font-size: 49px;
   font-family:'Exo', sans-serif;;
   color:#89FFFD;
+  display: flex;
+  justify-content: center;
 }
 
 .search {
@@ -37,11 +42,12 @@
 .searchTerm {
   width: 100%;
   padding: 15px;
-  height: 49px;
   border-radius: 45px;
   outline: none;
   color: #9DBFAF;
   font-size: 30px;
+  height: 75px;
+
 }
 
 .searchTerm:focus{
@@ -52,23 +58,31 @@
   background-color: #EF32D9;
   direction: ltr;
   margin-left: 20px;
-  padding-left: 40px;
+  padding-left: 89px;
+}
+.name-drug {
+  padding-left: 89px;
 }
 
 .drug-item {
   display:flex;
   flex-direction: column;
   align-items: flex-end;
-  height: 100vh;
+  height: 100%;;
   overflow: auto;
   overflow-y: auto;
   color: #89FFFD;
-  margin-left: 29px;
-  font-size: 36px;
+  margin-left: 200px;;
+  font-size: 32px;
   /* display: -webkit-box;
   -webkit-box-orient: vertical; */
   direction: rtl;
 
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
 }
 
 

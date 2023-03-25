@@ -36,7 +36,6 @@ const Login = (props) => {
           <img className="login_image" src={logo} />{" "}
       </div>
       <div className="auth-form-container">
-        {error.length > 0 && <Error message={error} />}
         <div class="login_container">
           <div class="login-content">
             <h1>LOGIN</h1>
@@ -54,7 +53,7 @@ const Login = (props) => {
                   id="email"
                   name="email"
                   required
-                />
+                  />
               </div>
               <div class="form-group">
                 <label className="label-login" htmlFor="password">
@@ -71,8 +70,9 @@ const Login = (props) => {
                   id="password"
                   name="password"
                   required
-                />
+                  />
               </div>
+              {error.length > 0 && <Error message={error} />}
               <div className="loginButton">
               <button className="login-button" children={LOGIN}></button>
               </div>
@@ -81,7 +81,7 @@ const Login = (props) => {
               <button
                 className="login-button"
                 onClick={() => navigate("/register")}
-              >
+                >
               REGISTER
               </button>
             </div>

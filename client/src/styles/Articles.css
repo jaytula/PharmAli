@@ -1,7 +1,10 @@
 .articles {
-  flex: 9;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 72px;
+
 }
 
 .articlesTitle {
@@ -15,4 +18,9 @@
   font-size: 29px;
   line-height: 19px;
   color: #89FFFD;
+}
+
+.articles_blog {
+display: flex;
+flex-direction: column;
 }

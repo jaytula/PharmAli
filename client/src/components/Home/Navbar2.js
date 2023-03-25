@@ -38,7 +38,7 @@ const Navbar2 = (props) => {
       <span className="navbar__logo">
         <img className="logo-image" src={logo} />
       </span>
-      <span className="logo-title">Pharmali</span>
+      <span className="logo-title">PharmAli</span>
       {menuClicked ? (
         <FiMenu
           size={25}
