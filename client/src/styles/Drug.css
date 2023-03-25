@@ -7,34 +7,39 @@
   width: 70vw;
   border-radius: 15px;
   padding: 10px;
-  border: 1px solid #850000;
+  /* border: 1px solid #850000; */
   float:left;
+  background-color: #dcd2d2f0;
+  box-shadow: 0px 0px 9px 9px #dcd2d2f0;
 }
 
 .drug-name {
-  color:#850000;
-  margin-left: 20px; 
+  color:#89FFFD;
+  margin-left: 20px;
+  font-size: 18px; 
+  font-family: 'Exo'
 }
 
 .subtitle {
-  color:#850000; 
-  cursor: pointer;
+  color:black; 
+  font-family: 'Exo'
 }
 
 .drug-image{
   border-radius: 76%;
   width: 300px;
   height: 300px;
-  box-shadow: 0px 0px 15px 3px #411b2f;
-  float:right;
+  box-shadow: 17px 6px 19px -7px #ef32d987;
+  float: right;
   margin: 39px 21px 75px 0px;
+  opacity: 0.83;
 }
 .image1{
   float: right;
   flex: auto;
-  width: 100px;
+  width: 100%;;
   height: 0;
-  padding-top: 100px;
+  padding-top: 145px;
 }
 
 .image-container{
@@ -42,6 +47,7 @@
   display: flex;
   flex-direction: column;
   float:right;
+  width: 10vw;
 }
 
 .drug-text {
@@ -49,7 +55,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
-  color: #181818;
+  color: #1f1b1e;
   margin: 8px;
   margin-top: 15px;
   overflow: hidden;
@@ -59,31 +65,79 @@
   -webkit-box-orient: vertical;
 }
 .un-fav-icon{
-  color: #65FFFC;
   width:50px;
   height:50px;
   cursor:pointer;
+  color:#EF32D9;
+}
+
+.green-icon{
+  width:50px;
+  height:50px;
+  cursor:pointer;
+  color:#89FFFD;
+}
+.pink-icon{
+  width:50px;
+  height:50px;
+  cursor:pointer;
+  color:#EF32D9;
 }
 .drug-faved{
   font-size: 25px;
 }
 
 .drugname{
-  color: #65FFFC;
+  color: #89FFFD;
   font-size: 30px;
+  font-family: 'Exo';
 }
 .unfavbutton{
-  float: right;
-    display: flex;
-   
+  display: flex;
+  color: #EF32D9;
+  font-family: 'Exo';
 }
+
 .unfavtext{
   display: flex;
-    align-items: center;
+  align-items: center;
+  margin-left: 10px;
+
 }
 .drugcontainer{
   margin-bottom:30px;
   margin-top:30px;
   display: flex;
   flex-direction: column;
+}
+
+.med-list-icon{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.med-list-icon h3{
+  margin-right: 10px;
+}
+.mymedlist {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.mydrugcontainer {
+  margin: 40px;
+  display: flex;
+  flex-direction: row;
+  margin: 40px;
+  border: solid 1px #89fffda1;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.mymedListSection{
+  display: flex;
+  flex-direction: row;
 }

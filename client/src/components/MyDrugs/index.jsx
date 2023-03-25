@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
-import useApplicationData from '../../hooks/useApplicationData'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import useApplicationData from "../../hooks/useApplicationData";
 import { useNavigate } from "react-router-dom";
 import DrugListItem from "../MyDrugItem";
+import '../../styles/Drug.css'
 
 const MyDrugs = (props) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const MyDrugs = (props) => {
   // }, [props.user]);
 
   return (
-    <>
+    <div className="mymedListSection">
       {props.drugs.map((drug) => (
         <DrugListItem
           key={drug.drug_id}
@@ -28,8 +29,8 @@ const MyDrugs = (props) => {
           user={props.user}
         />
       ))}
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default MyDrugs
+export default MyDrugs;
