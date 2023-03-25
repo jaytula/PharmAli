@@ -37,6 +37,7 @@ const DrugListItem = (props) => {
               <BsHeartPulse className="un-fav-icon" onClick={changeLike} />
               <div className="unfavtext">Click me to unfavourite</div>
             </div>
+            <div class="notes">{props.drug.notes}</div>
           </>
         )}
       </div>
