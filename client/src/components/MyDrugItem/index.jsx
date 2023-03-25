@@ -39,7 +39,7 @@ const DrugListItem = (props) => {
           </div>
 
           </div>
-          
+          <div>{props.drug.notes}</div>
         </>)}
     </div>
     

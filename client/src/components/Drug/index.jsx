@@ -16,6 +16,22 @@ const Drug = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   const drugName = location.pathname.split("/")[2];
+  const [drugNotes, setDrugNotes] = useState("")
+
+  const handleChange = (e) => {
+    setDrugNotes(e.target.value);
+  };
+
+  const handleClickSave = () => {
+    Promise.all([
+      axios.post(`/favourite/notes`, { notes: drugNotes, id: favourite }),
+      axios.get(`/favourite/${props.user}`),
+    ]).then((data) => {
+      console.log(data);
+      props.setDrugs(data[1].data)
+      navigate('/mydrugs');
+    })
+  }
 
   // First time page is visited
   useEffect(() => {
@@ -56,9 +72,10 @@ const Drug = (props) => {
       const findDrug = props.drugs.find(savedDrug => savedDrug.name === drugName)
       if (findDrug) {
         setFavourite(findDrug.id);
+        setDrugNotes(findDrug.notes)
         setDrugId(findDrug.drug_id);
       } else {
-          axios.get(`/drugs/${drugName}`)
+        axios.get(`/drugs/${drugName}`)
           .then((data) => {
             setDrugId(data.data[0].id);
           })
@@ -89,10 +106,10 @@ const Drug = (props) => {
       axios.post(route, params),
       axios.get(`/favourite/${props.user}`)
     ])
-    .then((data) => {
-      props.setDrugs(data[1].data)
-      favourite ? setFavourite("") : setFavourite(data[0].data.id);
-    });
+      .then((data) => {
+        props.setDrugs(data[1].data)
+        favourite ? setFavourite("") : setFavourite(data[0].data.id);
+      });
   };
 
   return (
@@ -123,7 +140,27 @@ const Drug = (props) => {
               {!favourite && (
                 <div onClick={changeLike}>Click me to favourite this drug</div>
               )}
-              {favourite && <div onClick={changeLike}>Click me to unfavourite</div>}
+              {favourite &&
+                <>
+                  <div className='journal new'>
+                    <h2 className="jounal-title">Add Notes:</h2>
+                    <textarea className="journal-text"
+                      rows="8"
+                      cols="10"
+                      placeholder="Type here and tell us how you feel....."
+                      value={drugNotes}
+                      onChange={handleChange}
+                    ></textarea>
+                    <div className="journal-footer">
+                      <button
+                        className="save"
+                        onClick={handleClickSave}
+                      >Save</button>
+                    </div>
+                  </div>
+                  <div onClick={changeLike}>Click me to unfavourite</div>
+                </>
+              }
             </>}
           <hr />
         </span>
