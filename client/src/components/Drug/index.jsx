@@ -7,6 +7,7 @@ import medlist from "../../assets/images/medlist.png";
 import locator from "../../assets/images/locator.png";
 import blogs from "../../assets/images/blogs.png";
 import journal from "../../assets/images/journal.png";
+import { BsHeartPulseFill, BsHeartPulse } from "react-icons/bs";
 
 const Drug = (props) => {
   // favourite will be the saved_medication id
@@ -137,30 +138,33 @@ const Drug = (props) => {
           <h1>Drug Name: {drugName}</h1>
           {props.user &&
             <>
-              {!favourite && (
-                <div onClick={changeLike}>Click me to favourite this drug</div>
-              )}
-              {favourite &&
-                <>
-                  <div className='journal new'>
-                    <h2 className="jounal-title">Add Notes:</h2>
-                    <textarea className="journal-text"
-                      rows="8"
-                      cols="10"
-                      placeholder="Type here and tell us how you feel....."
-                      value={drugNotes}
-                      onChange={handleChange}
-                    ></textarea>
-                    <div className="journal-footer">
-                      <button
-                        className="save"
-                        onClick={handleClickSave}
-                      >Save</button>
+              <span className="med-list-icon">
+                <h3>Add to my med list</h3>
+                {!favourite && (<BsHeartPulse className="green-icon" onClick={changeLike} />
+                )}
+
+                {favourite &&
+                  (<>
+                    <BsHeartPulseFill className="pink-icon" onClick={changeLike} />
+                    <div className='journal new'>
+                      <h2 className="jounal-title">Add Notes:</h2>
+                      <textarea className="journal-text"
+                        rows="8"
+                        cols="10"
+                        placeholder="Add some notes....."
+                        value={drugNotes}
+                        onChange={handleChange}
+                      ></textarea>
+                      <div className="journal-footer">
+                        <button
+                          className="save"
+                          onClick={handleClickSave}
+                        >Save</button>
+                      </div>
                     </div>
-                  </div>
-                  <div onClick={changeLike}>Click me to unfavourite</div>
-                </>
-              }
+                    <div onClick={changeLike}>Click me to unfavourite</div>
+                  </>)}
+              </span>
             </>}
           <hr />
         </span>
