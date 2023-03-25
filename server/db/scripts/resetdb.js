@@ -27,7 +27,7 @@ const addDrugNames = function(db) {
 	// Array of drugs starting with a specific letter
 	Object.values(drugs.drugs).forEach((letterDrugs) => {
 		letterDrugs.forEach((drug) => {
-			const filteredDrug = drug.split(" ")[0].replace("'", "");
+			const filteredDrug = drug.split(" ")[0].replace(/'|;/g, "");
 			if (!unduplicateDrugs.includes(filteredDrug)) {
 				queryString += `('${filteredDrug}'),`
 				unduplicateDrugs.push(filteredDrug);
