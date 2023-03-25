@@ -20,7 +20,7 @@ const Search = () => {
   }, [searchInput]);
 
   return (
-    <>
+    <div className='searchPage'>
       {/* <section className='section-search'> */}
       <div className='articles'>
         <Articles />
@@ -31,7 +31,7 @@ const Search = () => {
       <div className='search-outer'>
         <div className='wrap'>
           <div className='search'>
-            <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+            <form className='form-search' autoComplete="off" onSubmit={event => event.preventDefault()}>
               <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
               <input
                 className="searchTerm"
@@ -47,16 +47,16 @@ const Search = () => {
             {/* <SearchIcon fontSize="large" position="relative" top="3px" left="2px" /> */}
           </div>
         </div>
-        <div>
+        <div className='drug-item'>
           {drugList.map((drug) => (
-            <div onClick={() => navigate(`/drugs/${drug.name}`)}>
+            <div classname="name-drug" onClick={() => navigate(`/drugs/${drug.name}`)}>
               {drug.name}
             </div>
           ))}
         </div>
       </div>
       {/* </section> */}
-    </>
+    </div>
   )
 }
 

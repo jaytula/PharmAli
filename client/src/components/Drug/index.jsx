@@ -7,6 +7,7 @@ import medlist from "../../assets/images/medlist.png";
 import locator from "../../assets/images/locator.png";
 import blogs from "../../assets/images/blogs.png";
 import journal from "../../assets/images/journal.png";
+import { BsHeartPulseFill, BsHeartPulse } from "react-icons/bs";
 
 const Drug = (props) => {
   // favourite will be the saved_medication id
@@ -120,10 +121,13 @@ const Drug = (props) => {
           <h1>Drug Name: {drugName}</h1>
           {props.user &&
             <>
-              {!favourite && (
-                <div onClick={changeLike}>Click me to favourite this drug</div>
-              )}
-              {favourite && <div onClick={changeLike}>Click me to unfavourite</div>}
+            <span className="med-list-icon">
+              <h3>Add to my med list</h3>
+              {!favourite && (<BsHeartPulse className="green-icon" onClick={changeLike}/>
+                )}
+               
+              {favourite &&  <BsHeartPulseFill className="pink-icon" onClick={changeLike}/>}
+            </span>
             </>}
           <hr />
         </span>
