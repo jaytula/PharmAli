@@ -46,6 +46,7 @@
   background: #84d3eb;;
   display: flex;
   flex-direction: column;
+  font-family: 'Exo';
 }
 
 .form-input {
@@ -87,6 +88,7 @@ input {
   font-size: 25px;
   cursor: pointer;
   margin-top: 30px;
+  font-family: 'Exo'
 }
 
 .signup {
