@@ -3,6 +3,10 @@
   padding-top: 20px;
 }
 
-.trash {
-  float: right;
+.commentsSubtitle {
+  color: white;
+}
+
+.commentBox {
+  color: white;
 }
