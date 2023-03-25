@@ -1,3 +1,5 @@
+const validator = require('validator');
+
 const router = require("express").Router();
 const getUser = require('../db/queries/get-user');
 const getUserById = require('../db/queries/get-user-id');
@@ -37,7 +39,7 @@ module.exports = (db, cookieParams) => {
       });
   });
 
-  // For registering
+ // For registering
   router.post("/register", (req, res) => {
     // Gather user information to add to db
     const userInfo = {
@@ -60,6 +62,54 @@ module.exports = (db, cookieParams) => {
         res.send({ message: err.detail });
       });
   });
+
+//refactored code
+
+  // router.post("/register", (req, res) => {
+  //   // Gather user information to add to db
+  //   const { name, email, password, postalCode } = req.body;
+  //   if ( !name || name.length < 5 ) {
+  //     return res.status(400).send({ message: "Please include a full name that contains more then 5 characters" })
+  //   }
+
+  //   if ( !email || validator.isEmail(email) ) {
+  //     return res.status(400).send({ message: "Please provide a valid email" })
+  //   }
+
+  //   if ( !password || password.length < 8 ) {
+  //     return res.status(400).send({ message: "Please provide a valid password that is greater then 7 characters" })
+  //   }
+
+  //   if ( !postalCode || postalCode.length < 8 ) {
+  //     return res.status(400).send({ message: "Please provide a valid postalcode that is greater then 7 characters" })
+  //   }
+
+    // get user by email 
+    // if user is found, reject registration and return 
+    // call add user function to create a new user 
+    // return a message that says welcome to pharmali new user id or the whole user object
+
+
+  //   const userInfo = {
+  //     name: req.body.name,
+  //     email: req.body.email,
+  //     password: bcrypt.hashSync(req.body.password, 10),
+  //     postal_code: req.body.postalCode
+  //   };
+  //   addUser.addUser(db, userInfo)
+  //     .then(({rows: id }) => {
+  //       console.log('User Added');
+  //       userInfo.id = id[0].id;
+  //       // If account doesn't exist with this email
+  //       res.cookie('name', `${userInfo.id}`, cookieParams);
+  //       res.send({ message: userInfo });
+  //     })
+  //     .catch((err) => {
+  //       console.log('error', err);
+  //       // If account does exist with this email
+  //       res.send({ message: err.detail });
+  //     });
+  // });
 
   // For logging out
   router.post("/logout", (req, res) => {
