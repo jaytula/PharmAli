@@ -21,10 +21,6 @@ const Search = () => {
 
   return (
     <div className='searchPage'>
-      {/* <section className='section-search'> */}
-      <div className='articles'>
-        <Articles />
-      </div>
       <div className='searchTitle'>
         <h1> Search Drug Name</h1>
       </div>
@@ -44,7 +40,6 @@ const Search = () => {
 
               />
             </form>
-            {/* <SearchIcon fontSize="large" position="relative" top="3px" left="2px" /> */}
           </div>
         </div>
         <div className='drug-item'>
@@ -55,7 +50,9 @@ const Search = () => {
           ))}
         </div>
       </div>
-      {/* </section> */}
+      <div className='articles'>
+        <Articles />
+      </div>
     </div>
   )
 }

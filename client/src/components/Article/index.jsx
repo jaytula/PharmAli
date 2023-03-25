@@ -9,9 +9,12 @@ function Article(props) {
           src={`${props.article.image_url}`}
           alt=""
         />
-        <span className="sidebarTitle">
-          <a href={`${props.article.article_url}`} target="_blank" rel="noreferrer"> {props.article.title} </a>
+        < span className="sidebarTitle">
+        {props.article.title}
         </span>
+        <div className='btn-pink-container'>
+          <a className="btn-pink" href={`${props.article.article_url}`} target="_blank" rel="noreferrer">Read Article </a>
+        </div>
       </div>
 
     </div>

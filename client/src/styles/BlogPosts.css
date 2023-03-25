@@ -20,7 +20,12 @@
   box-shadow: 5px 5px 7px 5px #850000;
 }
 
-
+.articles-blog {
+  display: flex;
+  flex-direction: column;
+  float:right;
+  flex: 9 1;
+}
 .articles {
   float: right;
 }

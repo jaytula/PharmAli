@@ -46,7 +46,7 @@ const BlogPosts = (props) => {
     <>
       <section className='section'>
         {!props.myBlogs &&
-          (<div className='articles'>
+          (<div className='articles-blog'>
             <Articles />
           </div>)}
         <div className='myBlogPosts'>
