@@ -140,12 +140,16 @@ const Drug = (props) => {
             <>
 
               <span className="med-list-icon">
-                <h3>Add to my med list</h3>
-                {!favourite && (<BsHeartPulse className="green-icon" onClick={changeLike} />
+                {!favourite && (
+                  <>
+                  <h3>Add to my med list</h3>
+                  <BsHeartPulse className="green-icon" onClick={changeLike} />
+                  </>
                 )}
 
                 {favourite &&
                   (<>
+                  <h3>Remove from my med list</h3>
                     <BsHeartPulseFill className="pink-icon" onClick={changeLike} />
                     <div className='journal new'>
                       <h2 className="jounal-title">Add Notes:</h2>
