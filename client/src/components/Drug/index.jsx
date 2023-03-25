@@ -142,32 +142,14 @@ const Drug = (props) => {
               <span className="med-list-icon">
                 {!favourite && (
                   <>
-                  <h3>Add to my med list</h3>
-                  <BsHeartPulse className="green-icon" onClick={changeLike} />
+                    <h3>Add to my med list</h3>
+                    <BsHeartPulse className="green-icon" onClick={changeLike} />
                   </>
                 )}
-
                 {favourite &&
                   (<>
-                  <h3>Remove from my med list</h3>
+                    <h3>Remove from my med list</h3>
                     <BsHeartPulseFill className="pink-icon" onClick={changeLike} />
-                    <div className='journal new'>
-                      <h2 className="jounal-title">Add Notes:</h2>
-                      <textarea className="journal-text"
-                        rows="8"
-                        cols="10"
-                        placeholder="Add some notes....."
-                        value={drugNotes}
-                        onChange={handleChange}
-                      ></textarea>
-                      <div className="journal-footer">
-                        <button
-                          className="save"
-                          onClick={handleClickSave}
-                        >Save</button>
-                      </div>
-                    </div>
-                    <div onClick={changeLike}>Click me to unfavourite</div>
                   </>)}
               </span>
             </>}
@@ -186,6 +168,25 @@ const Drug = (props) => {
             </div>
           </>
         ))}
+        {favourite &&
+          (<>
+            <div className='journal new'>
+              <h2 className="jounal-title">Add Notes:</h2>
+              <textarea className="journal-text"
+                rows="8"
+                cols="10"
+                placeholder="Add some notes....."
+                value={drugNotes}
+                onChange={handleChange}
+              ></textarea>
+              <div className="journal-footer">
+                <button
+                  className="save"
+                  onClick={handleClickSave}
+                >Save</button>
+              </div>
+            </div>
+          </>)}
       </div>
     </>
   );
