@@ -43,13 +43,12 @@
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
   padding: 50px 85px;
-  background: linear-gradient(90deg, #f29ee8 0%, #affffe 100%);
+  background: #84d3eb;;
   display: flex;
   flex-direction: column;
 }
 
 .form-input {
-  border: 2.5px solid #ef32d9;
   border-radius: 25px;
   padding: 20px 25px;
   width: 415px;
@@ -82,8 +81,8 @@ input {
   padding: 10px;
   color: white;
   font-weight: 900;
-  background-color: #ef32d9;
-  border: #ef32d9;
+  background-color: #1e1e1e;
+  border: #1e1e1e;
   width: 415px;
   font-size: 25px;
   cursor: pointer;
