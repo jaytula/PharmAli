@@ -5,6 +5,7 @@
   margin: 20px;
   border: solid;
   border-radius: 10px;
+  color: white;
 }
 .commentDesc {
   margin:20px;
@@ -12,9 +13,6 @@
 
 .commentDeets {
   margin: 0 25px 20px;
-  /* margin-left: 20px; */
-  /* margin-right: 20px; */
-  /* margin-bottom: 20px; */
   display:flex;
   flex-direction: row;
   justify-content: space-between;
@@ -24,5 +22,4 @@
  -webkit-box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
  -moz-box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
  box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
-
 }

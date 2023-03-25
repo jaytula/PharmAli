@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentIcon from '@mui/icons-material/Comment';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 
 function Comments(props) {
@@ -31,7 +30,7 @@ function Comments(props) {
       axios.get(`/comments/${props.blog_id}`)
     ])
       .then((res) => {
-        setComments(res[1].data)
+        setComments(res[1].data.rows)
         setNewComment('');
       })
   }
@@ -69,12 +68,9 @@ function Comments(props) {
               key={comment.id}
               comment={comment}
               setComments={() => props.setComment(comment)}
+              deleteComment={deleteComment}
+              user={props.user}
             />
-            <div className='trash'>
-              {props.user === comment.user_id && (<IconButton onClick={() => deleteComment(comment.id)}>
-                <DeleteIcon />
-              </IconButton>)}
-            </div>
           </>
         ))}
 
@@ -87,7 +83,7 @@ function Comments(props) {
             </IconButton>
           </span>
 
-          {open && <Box className='commentBox'
+          {open && <Box
             component="form"
             noValidate
             autoComplete="off"
@@ -99,7 +95,7 @@ function Comments(props) {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton edge="end" color="primary" size="large" onClick={addComment}>
+                    <IconButton edge="end" color="white" size="large" onClick={addComment}>
                       <KeyboardReturnIcon />
                     </IconButton>
                   </InputAdornment>
