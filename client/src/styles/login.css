@@ -135,6 +135,9 @@ input {
   margin-bottom: 5px;
 }
 
+.text--light {
+  color:red;
+}
 /* .App1-logo {
   height: 40vmin;
   pointer-events: none;

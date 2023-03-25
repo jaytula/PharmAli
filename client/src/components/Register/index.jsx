@@ -41,7 +41,7 @@ const Register = (props) => {
         props.setUserInfo(message);
         navigate("/");
       } else {
-        setError(message);
+        setError(message.substring(13).replace(')', ''));
       }
     });
   };
@@ -52,7 +52,6 @@ const Register = (props) => {
         <img className="register_image" src={logo} />
       </div>
       <div className="auth-form-container2">
-        {error.length > 0 && <Error message={error} />}
         <div class="register_container">
           <div class="register-content">
             <h1>REGISTER</h1>
@@ -123,6 +122,7 @@ const Register = (props) => {
                   required
                 />
               </div>
+              {error.length > 0 && <Error message={error} />}
               <div className="loginButton">
                 <button className="login-button" children={SIGNUP}></button>
               </div>
