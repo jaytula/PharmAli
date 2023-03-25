@@ -6,7 +6,7 @@ import Error from '../Error';
 import Navbar2 from '../Home/Navbar2';
 import useApplicationData from '../../hooks/useApplicationData';
 import { useNavigate, useParams } from "react-router-dom";
-import pharmaliLogo from "../../assets/images/pharmaliLogo.png";
+import logo from "../../assets/images/logo.png";
 
 const Register = (props) => {
   const { menu, drugContent, user, blogContent, darkMode, setMenu, setCookie, removeCookie, onSearchSubmit, setBlogContent, setDarkMode } = useApplicationData();
@@ -39,7 +39,7 @@ const Register = (props) => {
   return (
     <div className='register__page'>
       <div className='overlay2'>
-        <div className='logo'><img className='register_image' src={pharmaliLogo} /> </div>
+        <div className='logo'><img className='register_image' src={logo} /> </div>
       </div>
       <div className="auth-form-container2">
         {error.length > 0 &&
@@ -51,29 +51,29 @@ const Register = (props) => {
             <form className="register-form" onSubmit={handleSubmit}>
               <label className='label-register' htmlFor="name">Full Name : </label>
               <div class="form-group">
-                <input className='form-input' value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="Write Name Here" id="name" name="name" required />
+                <input className='form-inputt' value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="Write Name Here" id="name" name="name" required />
               </div>
               <div class="form-group">
                 <label className='label-register' htmlFor="email">Email : </label>
               </div>
               <div class="form-group">
-                <input className='form-input' value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="placeyouremail@HERE.com" id="email" name="email" required />
+                <input className='form-inputt' value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="placeyouremail@HERE.com" id="email" name="email" required />
               </div>
               <div class="form-group">
                 <label className='label-register' htmlFor="password">Password : </label>
               </div>
               <div class="form-group">
-                <input className='form-input' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" required />
+                <input className='form-inputt' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" required />
               </div>
               <div class="form-group">
                 <label className='label-register' htmlFor="postalCode">Postal Code : </label>
               </div>
               <div class="form-group">
-                <input className='form-input' value={postalCode} onChange={(e) => setPostalCode(e.target.value)} type="ppostalCode" placeholder="M8M 1R3" id="postalCode" name="postalCode" required />
+                <input className='form-inputt' value={postalCode} onChange={(e) => setPostalCode(e.target.value)} type="ppostalCode" placeholder="M8M 1R3" id="postalCode" name="postalCode" required />
               </div>
               <button className='login-button' children={SIGNUP} ></button>
             </form>
-            <div className='signup'>
+            <div className='register-signup'>
               <button className="link-btn" onClick={() => navigate('/login')}> Already have an account? LOG IN HERE !</button>
             </div>
           </div>
