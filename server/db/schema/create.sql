@@ -54,7 +54,8 @@ CREATE TABLE drugs (
 CREATE TABLE saved_medications (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  drug_id INTEGER REFERENCES drugs(id) ON DELETE CASCADE
+  drug_id INTEGER REFERENCES drugs(id) ON DELETE CASCADE,
+  notes TEXT
 );
 
 CREATE TABLE journals (
