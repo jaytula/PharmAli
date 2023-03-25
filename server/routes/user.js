@@ -10,7 +10,7 @@ module.exports = (db, cookieParams) => {
     const user_id = req.signedCookies.name;
     getUserById(db, user_id)
       .then(({ rows: user }) => {
-        res.send({ user });
+        res.send(user[0]);
       });
   });
 

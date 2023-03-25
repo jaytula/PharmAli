@@ -29,8 +29,8 @@ function App() {
   useEffect(() => {
     getCookie()
       .then((data) => {
-        setUser(data.data.user[0].id);
-        setUserInfo(data.data.user[0]);
+        setUser(data.data.id);
+        setUserInfo(data.data);
       })
   }, []);
 
