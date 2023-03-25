@@ -47,7 +47,7 @@ const navbarData = (login) => {
         // className: 'nav-text'
       },
       {
-        title: "MY DRUGS",
+        title: "MY MED LIST",
         url: "/mydrugs",
         // icon: <VaccinesIcon color="primary" />,
         // className: 'nav-text'

@@ -140,6 +140,7 @@
 .mymedListSection{
   display: flex;
   flex-direction: row;
+
 }
 
 .notes {

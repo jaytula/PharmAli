@@ -138,6 +138,7 @@ const Drug = (props) => {
           <h1>Drug Name: {drugName}</h1>
           {props.user &&
             <>
+
               <span className="med-list-icon">
                 <h3>Add to my med list</h3>
                 {!favourite && (<BsHeartPulse className="green-icon" onClick={changeLike} />
@@ -165,6 +166,15 @@ const Drug = (props) => {
                     <div onClick={changeLike}>Click me to unfavourite</div>
                   </>)}
               </span>
+
+            // <span className="med-list-icon">
+              // <h3>Add to my med list</h3>
+              // {!favourite && (<BsHeartPulse className="green-icon" onClick={changeLike}/>
+               // )}
+               
+              //{favourite &&  <BsHeartPulseFill className="pink-icon" onClick={changeLike}/>}
+            // </span>
+
             </>}
           <hr />
         </span>
