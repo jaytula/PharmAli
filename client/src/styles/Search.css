@@ -1,36 +1,41 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-.section-search {
-  margin-left: 10px;
+.searchPage {
+  margin: 20px;
 }
 
 .search-outer {
   float: left;
   margin-left: 50px;
+  height: 100vh;
 }
 
 .icon {
   position: relative;
-  top: 3px;
-  right: 5px;
-  font-size: 30px;
+  top: 50px;
+  right: 42px;
+  font-size: 39px;
+  color: #89FFFD;
 }
 
 .searchTitle h1 {
   margin-left:15px;
   font-size: 49px;
-  font-family:'Montserrat', sans-serif;;
-  color:#850000;
+  font-family:'Exo', sans-serif;;
+  color:#89FFFD;
 }
 
 .search {
-  width: 100%;
+  width: 75vw;
   /* position: relative; */
   display: flex;
 }
 
+.form-search{
+  width:100%;
+}
 .searchTerm {
-  width: 800px;
+  width: 100%;
   padding: 15px;
   height: 49px;
   border-radius: 45px;
@@ -40,8 +45,30 @@
 }
 
 .searchTerm:focus{
-  color: #DC0000;
+  color: #EF32D9;
   
+}
+.name-drug:hover{
+  background-color: #EF32D9;
+  direction: ltr;
+  margin-left: 20px;
+  padding-left: 40px;
+}
+
+.drug-item {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100vh;
+  overflow: auto;
+  overflow-y: auto;
+  color: #89FFFD;
+  margin-left: 29px;
+  font-size: 36px;
+  /* display: -webkit-box;
+  -webkit-box-orient: vertical; */
+  direction: rtl;
+
 }
 
 
