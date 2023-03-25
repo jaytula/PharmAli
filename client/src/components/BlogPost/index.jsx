@@ -46,9 +46,7 @@ function BlogPost(props) {
         <p className="blogPostText">
           {blogContent.content}
         </p>
-        {props.user &&
-          (<Comments blog_id={blogId} user={props.user} />)
-        }
+          <Comments blog_id={blogId} user={props.user} />
       </div>
     </div>
   )
