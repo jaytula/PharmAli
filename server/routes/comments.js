@@ -17,8 +17,8 @@ module.exports = db => {
   // Add a comment to the blog
   router.post("/add", (req, res) => {
     addComment.addComment(db, req.body.user_id, req.body.comment, req.body.blog_id)
-      .then((data) => {
-        return res.json({ comment_id:data.rows[0].id });
+      .then(() => {
+        res.send(200);
       })
   });
 

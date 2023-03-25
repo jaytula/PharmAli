@@ -25,19 +25,13 @@ function Comments(props) {
 
   // To add a comment
   const addComment = () => {
-    const params = { user_id: props.user_id, comment: newComment, blog_id: props.blog_id }
+    const params = { user_id: props.user, comment: newComment, blog_id: props.blog_id }
     Promise.all([
-      axios.post(`/comments/add`, params)
+      axios.post(`/comments/add`, params),
+      axios.get(`/comments/${props.blog_id}`)
     ])
       .then((res) => {
-        // Structure the new comment in the proper way
-        const addedComment = {
-          id: res[0].data.comment_id,
-          user_id: props.user_id,
-          comment: newComment,
-          blog_id: props.blog_id
-        }
-        setComments((prev) => [...prev, addedComment])
+        setComments(res[1].data)
         setNewComment('');
       })
   }
@@ -45,12 +39,12 @@ function Comments(props) {
   // To delete a comment
   const deleteComment = (id) => {
     Promise.all([
-      axios.post("/comments/delete", id)
+      axios.post("/comments/delete", id),
+      axios.get(`/comments/${props.blog_id}`)
     ])
-    .then(() => {
-      const newComment = comments.filter((comment) => comment.id !== id);
-      setComments(newComment);
-    })
+      .then((res) => {
+        setComments(res[1].data.rows);
+      })
   }
 
   // To load all comments when the blog is visited
@@ -61,6 +55,7 @@ function Comments(props) {
       setComments(data[0].data.rows)
     })
   }, []);
+
 
 
   return (
@@ -76,40 +71,43 @@ function Comments(props) {
               setComments={() => props.setComment(comment)}
             />
             <div className='trash'>
-            {props.user && (<IconButton onClick={() => deleteComment(comment.id)}>
-              <DeleteIcon />
-            </IconButton>)}
+              {props.user === comment.user_id && (<IconButton onClick={() => deleteComment(comment.id)}>
+                <DeleteIcon />
+              </IconButton>)}
             </div>
           </>
         ))}
 
       </div>
-      <span className='commentsSubtitle'><h3>Leave a comment:</h3>
-        <IconButton aria-label="comment" onClick={handleClick}>
-          <CommentIcon />
-        </IconButton>
-      </span>
+      {props.user &&
+        (<>
+          <span className='commentsSubtitle'><h3>Leave a comment:</h3>
+            <IconButton aria-label="comment" onClick={handleClick}>
+              <CommentIcon />
+            </IconButton>
+          </span>
 
-      {open && <Box className='commentBox'
-        component="form"
-        noValidate
-        autoComplete="off"
-      >
-        <TextField id="filled-basic" label="Leave a comment" variant="filled" fullWidth
-          {...props}
-          value={newComment}
-          onChange={(event) => setNewComment(event.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton edge="end" color="primary" size="large" onClick={addComment}>
-                  <KeyboardReturnIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Box>}
+          {open && <Box className='commentBox'
+            component="form"
+            noValidate
+            autoComplete="off"
+          >
+            <TextField id="filled-basic" label="Leave a comment" variant="filled" fullWidth
+              {...props}
+              value={newComment}
+              onChange={(event) => setNewComment(event.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton edge="end" color="primary" size="large" onClick={addComment}>
+                      <KeyboardReturnIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>}
+        </>)}
     </div>
   )
 }
