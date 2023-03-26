@@ -12,11 +12,13 @@ const Search = () => {
   const [drugList, setDrugList] = useState([])
 
   useEffect(() => {
-    Promise.all([
-      axios.get(`/drugs/${searchInput}`)
-    ]).then((data) => {
-      setDrugList(data[0].data);
-    })
+    if (searchInput) {
+      Promise.all([
+        axios.get(`/drugs/${searchInput}`)
+      ]).then((data) => {
+        setDrugList(data[0].data);
+      })
+    }
   }, [searchInput]);
 
   return (
@@ -25,35 +27,39 @@ const Search = () => {
         <h1> Search Drug Name</h1>
       </div>
       <div className='searchdiv'>
-      <div className='search-outer'>
-        <div className='wrap'>
-          <div className='search'>
-            <form className='form-search' autoComplete="off" onSubmit={event => event.preventDefault()}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
-              <input
-                className="searchTerm"
-                name="name"
-                type="text"
-                placeholder="Enter Drug Name"
-                value={searchInput}
-                onChange={(event) => { setSearchInput(event.target.value); }}
-                data-testid="search-input"
+        <div className='search-outer'>
+          <div className='wrap'>
+            <div className='search'>
+              <form className='form-search' autoComplete="off" onSubmit={event => event.preventDefault()}>
+                <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
+                <input
+                  className="searchTerm"
+                  name="name"
+                  type="text"
+                  placeholder="Enter Drug Name"
+                  value={searchInput}
+                  onChange={(event) => { setSearchInput(event.target.value); }}
+                  data-testid="search-input"
 
-              />
-            </form>
+                />
+              </form>
+            </div>
+          </div>
+          <div className='drug-item'>
+            {drugList.map((drug) => (
+              <div 
+              key={drug.id}
+              className="name-drug"
+              onClick={() => navigate(`/drugs/${drug.name}`)}
+              >
+                {drug.name}
+              </div>
+            ))}
           </div>
         </div>
-        <div className='drug-item'>
-          {drugList.map((drug) => (
-            <div classname="name-drug" onClick={() => navigate(`/drugs/${drug.name}`)}>
-              {drug.name}
-            </div>
-          ))}
+        <div className='articles'>
+          <Articles isBlog={false} />
         </div>
-      </div>
-      <div className='articles'>
-        <Articles isBlog={false}/>
-      </div>
       </div>
     </div>
   )
