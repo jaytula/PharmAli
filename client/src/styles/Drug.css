@@ -4,7 +4,7 @@
 }
 
 .drug-container {
-  margin: 3rem;
+  margin: 2rem 3rem;
   width: 70vw;
   border-radius: 15px;
   padding: 1rem;
@@ -154,4 +154,8 @@
 .drugListItem {
   display: flex;
   justify-content: space-between;
+}
+
+.linebreak {
+  margin-bottom: 1rem;
 }

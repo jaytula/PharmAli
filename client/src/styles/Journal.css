@@ -280,3 +280,13 @@ aside {
   height: 30px;
   font-size: 20px;
 }
+
+.journaldrug{
+  display: flex;
+  justify-content: flex-end;
+  width: 20rem;
+  float: right;
+  height: 0rem;
+  position: relative;
+  z-index:9999;
+}
