@@ -6,8 +6,8 @@ const getComments = function(db, blog_id) {
   return db.query(queryString, queryParams);
 };
 
-const addComment = function(db, user_id, comment, blog_id) {
-  const queryParams = [user_id, comment, blog_id,];
+const addComment = function(db, comment) {
+  const queryParams = [comment.user_id, comment.comment, comment.blog_id];
   const queryString = `
   INSERT INTO comments (user_id, comment, blog_id)
   VALUES  ($1, $2, $3)`
