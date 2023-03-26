@@ -1,7 +1,6 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import '../../styles/Comments.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comment from '../Comment';
@@ -9,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentIcon from '@mui/icons-material/Comment';
-
+import '../../styles/Comments.css'
 
 function Comments(props) {
   // Set up all states for comment component
@@ -29,8 +28,8 @@ function Comments(props) {
       axios.post(`/comments/add`, params),
       axios.get(`/comments/${props.blog_id}`)
     ])
-      .then((res) => {
-        setComments(res[1].data.rows)
+      .then((data) => {
+        setComments(data[1].data);
         setNewComment('');
       })
   }
@@ -41,8 +40,8 @@ function Comments(props) {
       axios.post("/comments/delete", id),
       axios.get(`/comments/${props.blog_id}`)
     ])
-      .then((res) => {
-        setComments(res[1].data.rows);
+      .then((data) => {
+        setComments(data[1].data);
       })
   }
 
@@ -51,11 +50,9 @@ function Comments(props) {
     Promise.all([
       axios.get(`/comments/${props.blog_id}`),
     ]).then((data) => {
-      setComments(data[0].data.rows)
+      setComments(data[0].data);
     })
   }, []);
-
-
 
   return (
     <div className='comments'>

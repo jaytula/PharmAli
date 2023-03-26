@@ -32,7 +32,7 @@ function SaveBlog(props) {
   useEffect(() => {
     if (props.user) {
       Promise.all([
-        axios.get(`/blogs/${props.user}&${blogId}`),
+        axios.get(`/blogs/${blogId}`),
         axios.get('/categories')
       ]).then((data) => {
         if (blogId) {

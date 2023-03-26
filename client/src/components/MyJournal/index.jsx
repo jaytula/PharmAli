@@ -8,43 +8,27 @@ import "../../styles/Journal.css";
 const MyJournal = (props) => {
   const [journals, setJournals] = useState([]);
   const [searchText, setSearchText] = useState('');
-  // const[darkMode,setDarkMode]=useState(false);
 
-  
-
-
+  // Everytime page is visited
   useEffect(() => {
     if (props.user) {
       Promise.all([
         axios.get(`/journal/${props.user}`),
       ]).then((data) => {
-        const user = {
-          name: data[0].data.journal[0].name
-        };
-        const myJournals = data[0].data.journal.map((loop) => ({ ...loop, user }));
-        setJournals(myJournals);
+        setJournals(data[0].data);
       });
     }
   }, [props.user]);
-
-  useEffect(() => {
-    localStorage.setItem('react-journal-app-data', JSON.stringify(journals));
-  }, [journals]);
+  
   const AddJournal = (text) => {
     axios.post("/journal/add", { user_id: props.user, text })
       .then((data) => {
-        const newJournal = {
-          id: data.data.id,
-          text: text,
-          created_at: data.data.created_at,
-          user: {
-            name: journals[0].name
-          }
-        };
-        const newJournals = [...journals, newJournal];
-        setJournals(newJournals);
+        const newJournal = data.data;
+        newJournal.name = journals[0].name;
+        setJournals((prev) => [...prev, newJournal]);
       });
   };
+
   const DeleteJournal = (id) => {
     axios.post("/journal/delete", id)
       .then(() => {
@@ -52,9 +36,10 @@ const MyJournal = (props) => {
         setJournals(newJournals);
       });
   };
+  
   return (
     <>
-      <div className={`${props.darkMode && 'dark-mode'}`}>
+      <div className={"dark-mode"}>
         <div className='container'>
           <JournalHeader />
           <SearchJournal

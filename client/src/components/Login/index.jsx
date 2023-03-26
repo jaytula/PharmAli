@@ -19,21 +19,19 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInfo = { email, password };
-    setCookie(userInfo).then((passed) => {
-      if (passed.userInfo) {
-        props.setUser(passed.userInfo.id);
-        props.setUserInfo(passed.userInfo);
+    setCookie(userInfo)
+    .then(({data: passed}) => {
+        props.setUser(passed.message.id);
+        props.setUserInfo(passed.message);
         navigate("/");
-      } else {
-        setError(passed);
-      }
-    });
+    })
+    .catch(({response: data}) => setError(data.data.message))
   };
 
   return (
     <div className="login__page">
-        <div className="logo">
-          <img className="login_image" src={logo} />{" "}
+      <div className="logo">
+        <img className="login_image" src={logo} />{" "}
       </div>
       <div className="auth-form-container">
         <div class="login_container">
@@ -53,7 +51,7 @@ const Login = (props) => {
                   id="email"
                   name="email"
                   required
-                  />
+                />
               </div>
               <div class="form-group">
                 <label className="label-login" htmlFor="password">
@@ -70,19 +68,19 @@ const Login = (props) => {
                   id="password"
                   name="password"
                   required
-                  />
+                />
               </div>
               {error.length > 0 && <Error message={error} />}
               <div className="loginButton">
-              <button className="login-button" children={LOGIN}></button>
+                <button className="login-button" children={LOGIN}></button>
               </div>
             </form>
             <div className="loginButton">
               <button
                 className="login-button"
                 onClick={() => navigate("/register")}
-                >
-              REGISTER
+              >
+                REGISTER
               </button>
             </div>
           </div>

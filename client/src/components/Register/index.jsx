@@ -1,49 +1,33 @@
 import { useState } from "react";
+import Error from "../Error";
+import useApplicationData from "../../hooks/useApplicationData";
+import { useNavigate } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
 import "../../styles/login.css";
 import "../../styles/register.css";
-import Button from "../Button";
-import Error from "../Error";
-import Navbar2 from "../Home/Navbar2";
-import useApplicationData from "../../hooks/useApplicationData";
-import { useNavigate, useParams } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
 
 const Register = (props) => {
-  const {
-    menu,
-    drugContent,
-    user,
-    blogContent,
-    darkMode,
-    setMenu,
-    setCookie,
-    removeCookie,
-    onSearchSubmit,
-    setBlogContent,
-    setDarkMode,
-  } = useApplicationData();
+  const { setCookie } = useApplicationData();
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [error, setError] = useState("");
-  const HOME = "HOME";
   const SIGNUP = "SIGNUP";
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInfo = { email, password, name, postalCode };
-    setCookie(userInfo).then((message) => {
-      if (typeof message === "object") {
-        props.setUser(message.id);
-        props.setUserInfo(message);
+    setCookie(userInfo)
+      .then(({ data: user }) => {
+        console.log(user);
+        props.setUser(user.id);
+        props.setUserInfo(user);
         navigate("/");
-      } else {
-        setError(message.substring(13).replace(')', ''));
-      }
-    });
+      })
+      .catch(({ response: data }) => setError(data.data))
+
   };
 
   return (
