@@ -10,14 +10,14 @@
   margin: 10px;
 }
 .bloggg h1 {
-  font-family:'Montserrat', sans-serif;
-}
-.blog {
-  box-shadow: 0px 0px 0px 1px #850000;  
+  font-family: 'Exo', sans-serif;
+  color: #89FFFD;
+  font-size: 89px;
 }
 
+
 .blog:hover{
-  box-shadow: 5px 5px 7px 5px #850000;
+  box-shadow: 1px 1px 20px 1px #89FFFD;
 }
 
 .articles-blog {
@@ -35,10 +35,10 @@
   padding: 5px;
   width: 80vw;
   text-align: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Exo", sans-serif;
   font-size: 48px;
   line-height: 19px;
-  color: #850000;
+  color: #89FFFD;
 }
 
 .category-dropdown{
@@ -76,6 +76,6 @@
     font-family: "Montserrat", sans-serif;
     font-size: 30px;
     line-height: 19px;
-    color: #850000;
+    color: #89FFFD;
   }
 }

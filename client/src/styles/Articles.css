@@ -1,4 +1,4 @@
-.articles {
+.articles-search {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -20,7 +20,8 @@
   color: #89FFFD;
 }
 
-.articles_blog {
+.articles-blog {
 display: flex;
 flex-direction: column;
+align-items: center;
 }

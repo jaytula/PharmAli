@@ -3,7 +3,7 @@ import "../../styles/BlogPostItem.css";
 import TimeAgo from 'timeago-react';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { MdDeleteForever } from 'react-icons/md';
 
 function BlogPostItem(props) {
   return (
@@ -19,7 +19,7 @@ function BlogPostItem(props) {
             Category: {props.blog.category}
           </span>
         </div>
-        <span className="blogTitle" onClick={props.setBlog}>
+        <span className="blogSubTitle" onClick={props.setBlog}>
           {props.blog.title}
         </span>
         <hr />
@@ -28,16 +28,18 @@ function BlogPostItem(props) {
       <p className="blogDescription">
         {props.blog.content}
       </p>
+      <div className='btn-pink-container'>
+        <button className="btn-pink" onClick={props.setBlog}> Read Blog </button>
+      
       {props.user == props.blog.user_id && (
-        <>
+        <div className='edit-icon-container'>
           <IconButton onClick={props.editPost}>
-            <EditIcon />
+            <EditIcon className='edit-icon' fontSize='large' />
           </IconButton>
-          <IconButton onClick={props.deletePost}>
-            <DeleteIcon />
-          </IconButton>
-        </>
+            <MdDeleteForever className='deletee-icon' onClick={props.deletePost}/>
+        </div>
       )}
+      </div>
     </div>
   )
 }
