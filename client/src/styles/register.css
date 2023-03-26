@@ -8,6 +8,7 @@
   padding: 5rem;
   width: 75vw;
   margin-left: 0;
+  margin-top:-1rem;
   /* box-shadow: inset 20px 2px 20px 0px #E0241E; */
   /* clip-path: inset(Rpx); */
 }
@@ -45,7 +46,7 @@
   -webkit-border-radius: 10px;
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
-  padding: 50px 85px;
+  padding: 29px 85px;
   background:  #84d3eb;
   display: flex;
   flex-direction: column;
