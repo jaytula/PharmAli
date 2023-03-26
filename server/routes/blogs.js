@@ -1,13 +1,10 @@
 const router = require("express").Router();
-const deleteBlog = require("../db/queries/delete-blog");
-const editBlog = require("../db/queries/edit-blog");
-const getBlogs = require("../db/queries/get-blogs");
-const getBlogById = require("../db/queries/get-blog-by-id");
+const { getBlogs, getBlogById, addBlog, editBlog, deleteBlog } = require('../db/queries/blogs');
 
 module.exports = db => {
   // Get all blogs
   router.get("/", (request, response) => {
-    getBlogs.getBlogs(db)
+    getBlogs(db)
       .then(({ rows: blogs }) => {
         response.json(blogs);
       });
@@ -16,8 +13,8 @@ module.exports = db => {
   // Get blog by user id (and blog_id)
   router.get("/:id", (request, response) => {
     if (request.url !== '/undefined') {
-      const params = request.url.replace('/', '').split('&').reverse();
-      getBlogById.getBlogById(db, params)
+      const params = request.url.substring(1);
+      getBlogById(db, params)
         .then(({ rows: blogs }) => {
           response.json(blogs);
         });
@@ -29,19 +26,21 @@ module.exports = db => {
   // Delete a blog
   router.post("/delete", (req, res) => {
     const blogId = Object.keys(req.body)[0]
-    deleteBlog.deleteBlog(db, blogId)
+    deleteBlog(db, blogId)
       .then(() => {
         res.send(200)
       })
   });
 
-  // Edit a blog
+  // Add/Edit a blog
   router.post("/edit", (req, res) => {
     const blog = req.body
-    editBlog.editBlog(db, blog)
-      .then((data) => {
+    const actionType = (blog.id) ? editBlog : addBlog;
+    actionType(db, blog)
+      .then(() => {
         res.json({ success: true })
       })
   });
+
   return router;
 };
