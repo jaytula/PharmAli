@@ -58,8 +58,14 @@ function SaveBlog(props) {
   const contentChange = (e) => setContent(e.target.value);
 
   return (
-    <div className='write'>{blogId ? "Edit Blog" : "Add Blog"}
+    <div className='write'><h1>{blogId ? "Edit Blog" : "Add Blog"}</h1>
       <form className='writeForm'>
+        <label className='writeFormGroup'>
+          Category:
+          <div className='category-dropdown'>
+            <SelectSmall categories={categories} category={category} setCategory={setCategory} />
+          </div>
+        </label>
         <label className='writeFormGroup'>
           Title:
         </label>
@@ -72,12 +78,6 @@ function SaveBlog(props) {
           Content:
         </label>
         <textarea className='writeInput writeText' type="text" name="image" defaultValue={content} onChange={contentChange} />
-        <label className='writeFormGroup'>
-          Category:
-          <div className='category-dropdown'>
-            <SelectSmall categories={categories} category={category} setCategory={setCategory} />
-          </div>
-        </label>
       </form>
       <div className='btn-group'>
         <button className='button-cancel' onClick={() => navigate('/blogs')}>

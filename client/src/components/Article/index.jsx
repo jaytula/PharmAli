@@ -3,7 +3,7 @@ import "../../styles/Article.css"
 
 function Article(props) {
   return (
-    <div className='articlebar'>
+    <div className={`articlebar-${props.isBlog ? "blog" : "search"}`}>
       <div className="articlebarItem">
         <img
           src={`${props.article.image_url}`}

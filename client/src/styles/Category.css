@@ -1,0 +1,11 @@
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #89fffd !important;
+}
+
+.MuiInputLabel-root {
+  color: white !important;
+} 
+
+.MuiSelect-icon{
+  color:white;
+}

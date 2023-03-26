@@ -15,12 +15,13 @@ const Articles = (props) => {
   }, []);
 
   return (
-    <div className='articles'>
+    <div className={`articles-${props.isBlog ? "blog" : "search"}`}>
       <span className="articlesTitle">ARTICLES</span>
       {articles.map((article) => (
         <Article
           key={article.id}
           article={article}
+          isBlog={props.isBlog}
         />
       ))}
     </div>

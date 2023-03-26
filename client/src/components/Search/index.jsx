@@ -51,7 +51,7 @@ const Search = () => {
         </div>
       </div>
       <div className='articles'>
-        <Articles />
+        <Articles isBlog={false}/>
       </div>
     </div>
   )

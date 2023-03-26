@@ -3,8 +3,8 @@
   margin: 0px 25px 40px 25px;
   display: flex;
   flex-direction: column;
-  gap:10px;
-  background-color: #fdfbfb;
+  gap: 40px;
+  background-color: transparent;
   border-radius: 5px;
 }
 
@@ -32,14 +32,19 @@
   cursor: pointer;
 }
 
-.blogTitle {
+.blogSubTitle {
   font-family: "Varela Round";
   font-size: 24px;
   font-weight: 900;
   margin-top: 15px;
   cursor: pointer;
   text-align: center;
-  color: #850000;
+  color: #89fffd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .blogDate {
@@ -54,9 +59,9 @@
 .blogDescription {
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 24px;
-  color: #444444;
+  color: white;
   margin: 8px;
   margin-top: 15px;
   overflow: hidden;
@@ -64,4 +69,78 @@
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  text-align: center;
+}
+@keyframes jump-shaking {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(0eg);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.edit-icon-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-icon {
+  color: #89fffd;
+  font-size: 80px;
+}
+.edit-icon:hover {
+  color: white;
+  transform: scale(2.4);
+  border-radius: 40px;
+  animation: jump-shaking 0.99s infinite;
+}
+
+.deletee-icon {
+  color: #89fffd;
+  cursor: pointer;
+  margin-top: 7px;
+  font-size: 35px;
+}
+
+.deletee-icon:hover {
+  color: white;
+  transform: scale(2.4);
+  border-radius: 40px;
+  animation: jump-shaking 0.99s infinite;
+}
+.readBlog {
+  width: 100%;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  color:white;
+  border-width: 1px !important;
+  border-color: #89fffd !important;
+}
+
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #89fffd !important;
+}
+
+.MuiInputLabel-root {
+  color: white !important;
+} 
+
+.MuiSelect-icon{
+  color:white;
 }
