@@ -36,9 +36,7 @@ function App() {
 
   // To get all saved meds when user is logged in
   useEffect(() => {
-    console.log(user);
-    if (user !== null) {
-      console.log(user, '2');
+    if (user) {
       Promise.all([
         axios.get(`/favourite/${user}`),
       ]).then((data) => {
