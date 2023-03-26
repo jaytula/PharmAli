@@ -18,6 +18,8 @@ const Search = () => {
       ]).then((data) => {
         setDrugList(data[0].data);
       })
+    } else {
+      setDrugList([]);
     }
   }, [searchInput]);
 
@@ -47,10 +49,10 @@ const Search = () => {
           </div>
           <div className='drug-item'>
             {drugList.map((drug) => (
-              <div 
-              key={drug.id}
-              className="name-drug"
-              onClick={() => navigate(`/drugs/${drug.name}`)}
+              <div
+                key={drug.id}
+                className="name-drug"
+                onClick={() => navigate(`/drugs/${drug.name}`)}
               >
                 {drug.name}
               </div>
