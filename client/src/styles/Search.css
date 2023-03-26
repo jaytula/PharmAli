@@ -9,7 +9,7 @@
 
 .search-outer {
   float: left;
-  margin-left: 50px;
+  margin-left: 5rem;
   height: 35vh;
 }
 
@@ -62,17 +62,18 @@
 }
 .name-drug {
   padding-left: 89px;
+  margin-left: 45px;
 }
 
 .drug-item {
   display:flex;
   flex-direction: column;
   align-items: flex-end;
-  height: 100%;;
+  height: 100%;
   overflow: auto;
   overflow-y: auto;
   color: #89FFFD;
-  margin-left: 200px;;
+  margin-left: 245px;;
   font-size: 32px;
   /* display: -webkit-box;
   -webkit-box-orient: vertical; */
