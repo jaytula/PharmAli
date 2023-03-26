@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Comment from '../Comment';
+import CommentListItem from '../CommentListItem';
 import IconButton from '@mui/material/IconButton';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -11,7 +11,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import Error from "../Error";
 import '../../styles/Comments.css'
 
-function Comments(props) {
+function CommentList(props) {
   // Set up all states for comment component
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
@@ -66,7 +66,7 @@ function Comments(props) {
 
         {comments.map((comment) => (
           <>
-            <Comment
+            <CommentListItem
               key={comment.id}
               comment={comment}
               setComments={() => props.setComment(comment)}
@@ -111,4 +111,4 @@ function Comments(props) {
   )
 }
 
-export default Comments;
+export default CommentList;

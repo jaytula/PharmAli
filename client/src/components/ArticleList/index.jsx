@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Article from '../Article';
+import ArticleListItem from '../ArticleListItem';
 import '../../styles/Articles.css';
 import axios from 'axios';
 
@@ -19,7 +19,7 @@ const Articles = (props) => {
       <span className="articlesTitle">ARTICLES</span>
       <div className={`articlecontainers-${props.isBlog ? "blog" : "search"}`}>
         {articles.map((article) => (
-          <Article
+          <ArticleListItem
             key={article.id}
             article={article}
             isBlog={props.isBlog}

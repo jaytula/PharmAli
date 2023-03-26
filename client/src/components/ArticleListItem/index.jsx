@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../styles/Article.css"
 
-function Article(props) {
+function ArticleListItem(props) {
   return (
     <div className={`articlebar-${props.isBlog ? "blog" : "search"}`}>
       <div className="articlebarItem">
@@ -21,4 +21,4 @@ function Article(props) {
   )
 }
 
-export default Article
+export default ArticleListItem

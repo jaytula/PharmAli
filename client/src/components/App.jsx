@@ -5,12 +5,12 @@ import axios from 'axios';
 import Home from './Home';
 import Search from './Search';
 import PharmaLocator from './PharmLocator';
-import BlogPosts from './BlogPosts';
+import BlogPostList from './BlogPostList';
 import Login from './Login';
 import Register from './Register';
 import MyJournal from './MyJournal';
 import Drug from './Drug';
-import MyDrugs from './MyDrugs';
+import MyDrugList from './MyDrugList';
 import BlogPost from './BlogPost';
 import Navbar2 from "./Home/Navbar2";
 import SaveBlog from "./SaveBlog";
@@ -55,11 +55,11 @@ function App() {
             <Route path="/blogs/:id" element={<BlogPost user={user} />} />
             <Route path="/drugs/*" element={<Drug user={user} drugs={drugs} setDrugs={setDrugs} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
-            <Route path="/blogs" element={<BlogPosts user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
+            <Route path="/blogs" element={<BlogPostList user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
             <Route path="/blogs/add" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
             <Route path="/blogs/edit/*" element={<SaveBlog user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />
             <Route path="/myjournal" element={<MyJournal user={user} />} />
-            <Route path="/mydrugs" element={<MyDrugs user={user} drugs={drugs} setDrugs={setDrugs} />} />
+            <Route path="/mydrugs" element={<MyDrugList user={user} drugs={drugs} setDrugs={setDrugs} />} />
           </Routes>
         </ UserProvider>
       </Router>
