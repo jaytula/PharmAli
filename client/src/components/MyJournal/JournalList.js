@@ -1,14 +1,13 @@
-import Journal from './Journal';
+import JournalListItem from './JournalListItem';
 
 import AddJournal from './AddJournal';
 const JournalList = ({ journals, handleAddJournal, handleDeleteJournal }) => {
-  console.log(journals);
   return (
     <div className="journals-list">
       {journals.map((journal) => (
-        <Journal
+        <JournalListItem
           key={journal.id}
-          user={journal.user}
+          user={journal.name}
           id={journal.id}
           text={journal.text}
           date={journal.created_at.split("T")[0]}

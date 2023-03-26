@@ -1,4 +1,5 @@
-const getSavedMed = function(db, queryParams) {
+const getSavedMed = function(db, user_id) {
+  const queryParams = [user_id];
   const queryString = `SELECT drugs.name, saved_medications.* 
   FROM saved_medications 
   JOIN drugs ON

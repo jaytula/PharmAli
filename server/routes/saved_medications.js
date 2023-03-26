@@ -4,7 +4,7 @@ const { getSavedMed, addSavedMed, removeSavedMed, addDrugNotes } = require('../d
 module.exports = db => {
   // Get all or specific saved medication
   router.get("/:id", (request, response) => {
-    getSavedMed(db, [request.url.substring(1)])
+    getSavedMed(db, request.url.substring(1))
       .then(({ rows: saved_medications }) => {
         response.json(saved_medications);
       })
