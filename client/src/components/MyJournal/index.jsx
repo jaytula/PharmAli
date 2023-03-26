@@ -7,6 +7,7 @@ import "../../styles/Journal.css";
 
 const MyJournal = (props) => {
   const [journals, setJournals] = useState([]);
+  const [error, setError] = useState("")
   const [searchText, setSearchText] = useState('');
 
   // Everytime page is visited
@@ -26,7 +27,9 @@ const MyJournal = (props) => {
         const newJournal = data.data;
         newJournal.name = journals[0].name;
         setJournals((prev) => [newJournal, ...prev]);
-      });
+        setError('');
+      })
+    .catch(({response: data}) => setError(data.data))
   };
 
   const DeleteJournal = (id) => {
@@ -49,7 +52,8 @@ const MyJournal = (props) => {
             journals={journals.filter((journal) =>
               journal.text.toLowerCase().includes(searchText))}
             handleAddJournal={AddJournal}
-            handleDeleteJournal={DeleteJournal} />
+            handleDeleteJournal={DeleteJournal}
+            error={error} />
         </div>
       </div>
     </>

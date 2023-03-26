@@ -1,23 +1,25 @@
 import { useState } from "react";
 import "../../styles/Journal.css";
-const AddJournal = ({ handleAddJournal }) => {
+import Error from "../Error";
+
+const AddJournal = ({ handleAddJournal, error }) => {
   const charMaximumLimit = 500;
   const [journalText, setJournalText] = useState('');
-  const handleChange = (e) => {
-    if(charMaximumLimit - e.target.value.length >= 0)
-    setJournalText(e.target.value);
-  };
-  const handleClickSave = () => {
-    if (journalText.trim().length > 0) {
-      handleAddJournal(journalText);
-      setJournalText('');
-      // props.setPage("MY_JOURNAL")
-    }
 
+  const handleChange = (e) => {
+    if (charMaximumLimit - e.target.value.length >= 0)
+      setJournalText(e.target.value);
   };
+
+  const handleClickSave = () => {
+    handleAddJournal(journalText);
+    setJournalText('');
+  };
+
   return (
     <div className='journal-new'>
       <h2 className="jounal-title">Add a New Journal Entry Here  :</h2>
+      {error.length > 0 && <Error message={error} />}
       <textarea className="journal-text"
         rows="8"
         cols="10"
@@ -27,9 +29,9 @@ const AddJournal = ({ handleAddJournal }) => {
       ></textarea>
       <div className="journal-footer">
         <small className="characterlimit">{charMaximumLimit - journalText.length} remaining </small>
-        <button 
-        className="save" 
-        onClick={handleClickSave}
+        <button
+          className="save"
+          onClick={handleClickSave}
         >Save</button>
       </div>
     </div>
