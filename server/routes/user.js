@@ -1,8 +1,7 @@
 const validator = require('validator');
 const bcrypt = require("bcryptjs");
 const router = require("express").Router();
-const { getUserByEmail, addUser, getUserById } = require('../db/queries/get-user');
-
+const { getUserByEmail, addUser, getUserById } = require('../db/queries/user');
 
 module.exports = (db, cookieParams) => {
   // For getting login state when app is refreshed
@@ -76,7 +75,6 @@ module.exports = (db, cookieParams) => {
       })
       .catch((err) => res.status(status).send(err.detail.substring(13).replace(')', '')));
   });
-
 
   // For logging out
   router.post("/logout", (req, res) => {
