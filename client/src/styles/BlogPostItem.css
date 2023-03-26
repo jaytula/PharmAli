@@ -1,11 +1,12 @@
 .blog {
-  width: 385px;
-  margin: 0px 25px 40px 25px;
+  width: 45rem;
+  margin: 0rem 4rem 4rem 4rem;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  background-color: transparent;
-  border-radius: 5px;
+  background-color: #2e2d2d;
+  border-radius: 15px;
+  padding: 3rem 2rem;
+  align-items: center;
 }
 
 .blogImage {
@@ -100,8 +101,11 @@
 }
 
 .edit-icon {
+  font-size: 3.3rem;
+  text-decoration: none;
   color: #89fffd;
-  font-size: 80px;
+  border-radius: 999px;
+  margin-top: 35px;
 }
 .edit-icon:hover {
   color: white;
@@ -111,10 +115,12 @@
 }
 
 .deletee-icon {
+  color: #89fffd; 
+  font-size: 2.4rem;
+  text-decoration: none;
   color: #89fffd;
-  cursor: pointer;
-  margin-top: 7px;
-  font-size: 35px;
+  border-radius: 999px;
+  margin-top: 2.6rem;
 }
 
 .deletee-icon:hover {
@@ -143,4 +149,8 @@
 
 .MuiSelect-icon{
   color:white;
+}
+.addtext{
+  display: inline-flex;
+
 }

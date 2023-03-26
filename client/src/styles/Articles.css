@@ -3,7 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 72px;
+  /* margin-top: 7rem; */
 
 }
 
@@ -18,7 +18,7 @@
   font-size: 29px;
   line-height: 30px;
   color: #89FFFD;
-  margin-top: 8rem;
+  /* margin-top: 8rem; */
   margin-bottom: 2rem;
 }
 
@@ -32,5 +32,5 @@ align-items: center;
 }
 
 .articles-search{
-  margin-top: 70px;
+  /* margin-top: 70px; */
 }

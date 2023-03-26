@@ -112,6 +112,7 @@ textarea:focus {
   padding-left: 15px;
   min-height: 100vh;
   display: ruby-base-container;
+  background-color: #1E1E1E;
 }
 
 .journals-list {
@@ -251,13 +252,6 @@ aside {
   justify-content: space-between;
 }
 
-.dark-mode {
-  background-color: black;
-}
-
-.dark-mode h1 {
-  color: #fff;
-}
 
 .save {
   cursor: pointer;

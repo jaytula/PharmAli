@@ -69,8 +69,10 @@ const BlogPosts = (props) => {
                   <button
                     className="blog-button"
                     onClick={() => navigate("/blogs/add")}
-                    >
+                    ><h1 className="addtext"> 
+
                     Add a blog
+                    </h1>
                   <PostAddIcon
                     fontSize="large"
                     color="white"
@@ -80,6 +82,8 @@ const BlogPosts = (props) => {
               )}
             </div>
           </span>
+          <div className="blogdiv">
+
           {blogs.map((blog) => (
             <BlogPostItem
               key={blog.id}
@@ -90,6 +94,7 @@ const BlogPosts = (props) => {
               deletePost={() => deletePost(blog.id)}
             />
           ))}
+          </div>
         </div>
       </section>
     </>

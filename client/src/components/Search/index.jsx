@@ -24,6 +24,7 @@ const Search = () => {
       <div className='searchTitle'>
         <h1> Search Drug Name</h1>
       </div>
+      <div className='searchdiv'>
       <div className='search-outer'>
         <div className='wrap'>
           <div className='search'>
@@ -52,6 +53,7 @@ const Search = () => {
       </div>
       <div className='articles'>
         <Articles isBlog={false}/>
+      </div>
       </div>
     </div>
   )
