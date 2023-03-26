@@ -6,8 +6,8 @@ const getJournal = function(db, user_id) {
   return db.query(queryString, queryParams);
 };
 
-const addJournal = function(db, user_id, text) {
-  const queryParams = [user_id, text];
+const addJournal = function(db, journalInfo) {
+  const queryParams = [journalInfo.user_id, journalInfo.text];
   const queryString = `
   INSERT INTO journals (user_id, text) 
   VALUES ($1, $2) RETURNING *`
