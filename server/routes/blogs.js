@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const validator = require('validator');
 const { getBlogs, getBlogById, addBlog, editBlog, deleteBlog } = require('../db/queries/blogs');
 
 module.exports = db => {
@@ -34,11 +35,29 @@ module.exports = db => {
 
   // Add/Edit a blog
   router.post("/edit", (req, res) => {
-    const blog = req.body
-    const actionType = (blog.id) ? editBlog : addBlog;
-    actionType(db, blog)
+    // Validate the registration info
+    const { id, title, image_url, content, user_id, category } = req.body;
+    const blogInfo = { id, title, image_url, content, user_id, category };
+    let status = 400
+    if (!title) {
+      return res.status(status).send("Please include a title")
+    }
+    if (!image_url || !validator.isURL(image_url)) {
+      return res.status(status).send("Please include a valid image url")
+    }
+    if (!content) {
+      return res.status(status).send("Please add some content to the blog")
+    }
+    if (!user_id) {
+      return res.status(status).send("It seems you're trying to add a blog withtout logging in")
+    }
+    if (!category) {
+      return res.status(status).send("Please choose one of the categories")
+    }
+    const actionType = (id) ? editBlog : addBlog;
+    actionType(db, blogInfo)
       .then(() => {
-        res.json({ success: true })
+        return res.status(200).send(`Blog ${(id) ? 'Edited' : 'Added'}`)
       })
   });
 
