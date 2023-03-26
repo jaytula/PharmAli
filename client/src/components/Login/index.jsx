@@ -19,14 +19,13 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInfo = { email, password };
-    setCookie(userInfo).then(({data: passed}) => {
+    setCookie(userInfo)
+    .then(({data: passed}) => {
         props.setUser(passed.message.id);
         props.setUserInfo(passed.message);
         navigate("/");
     })
-    .catch(({response: data}) => {
-      setError(data.data.message);
-    })
+    .catch(({response: data}) => setError(data.data.message))
   };
 
   return (

@@ -1,4 +1,4 @@
-const getUser = function(db, email) {
+const getUserByEmail = function(db, email) {
   const queryString = `SELECT * FROM users WHERE email = $1`;
   const queryParams = [email];
   return db.query(queryString, queryParams);
@@ -18,4 +18,4 @@ const getUserById = function(db, user_id) {
 };
 
 
-module.exports = { getUser, addUser, getUserById };
+module.exports = { getUserByEmail, addUser, getUserById };
