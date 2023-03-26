@@ -153,24 +153,11 @@ const Drug = (props) => {
                   </>)}
               </span>
             </>}
-          <hr />
+          <hr className="linebreak"/>
         </span>
-        {Object.keys(content).map((data) => (
-          <>
-            <div className="drug-container">
-              <div className="subtitle">
-                <h1>{data}</h1>
-                <hr />
-              </div>
-              <div className="drug-content">
-                <p className="drug-text">{content[`${data}`]}</p>
-              </div>
-            </div>
-          </>
-        ))}
         {favourite &&
-          (<>
-            <div className='journal new'>
+          (<div className="journaldrug">
+            <div className='journal-new'>
               <h2 className="jounal-title">Add Notes:</h2>
               <textarea className="journal-text"
                 rows="8"
@@ -186,7 +173,20 @@ const Drug = (props) => {
                 >Save</button>
               </div>
             </div>
-          </>)}
+          </div>)}
+        {Object.keys(content).map((data) => (
+          <>
+            <div className="drug-container">
+              <div className="subtitle">
+                <h1>{data}</h1>
+                <hr />
+              </div>
+              <div className="drug-content">
+                <p className="drug-text">{content[`${data}`]}</p>
+              </div>
+            </div>
+          </>
+        ))}
       </div>
     </>
   );

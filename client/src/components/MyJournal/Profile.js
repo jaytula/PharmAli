@@ -11,7 +11,7 @@ function Profile({ user }) {
         )}
       </div>
       <div className="profile-name">
-        <h2><span className="profile--bold">{user.name}</span></h2>
+        <h2><span className="profile--bold">{user}</span></h2>
       </div>
     </aside>
   )
