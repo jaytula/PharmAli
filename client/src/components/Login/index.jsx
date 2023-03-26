@@ -31,17 +31,17 @@ const Login = (props) => {
   return (
     <div className="login__page">
       <div className="logo">
-        <img className="login_image" src={logo} />{" "}
+        <img className="login_image" src={logo} alt="login_image"/>{" "}
       </div>
       <div className="auth-form-container">
-        <div class="login_container">
-          <div class="login-content">
+        <div className="login_container">
+          <div className="login-content">
             <h1>LOGIN</h1>
             <form className="login-form" onSubmit={handleSubmit}>
               <label className="label-login" htmlFor="email">
                 Email :{" "}
               </label>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   className="form-input"
                   value={email}
@@ -53,12 +53,12 @@ const Login = (props) => {
                   required
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label className="label-login" htmlFor="password">
                   Password :{" "}
                 </label>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   className="form-input"
                   value={password}
