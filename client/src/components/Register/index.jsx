@@ -33,17 +33,17 @@ const Register = (props) => {
   return (
     <div className="register__page">
       <div className="logo-register">
-        <img className="register_image" src={logo} />
+        <img className="register_image" src={logo} alt="register_image" />
       </div>
       <div className="auth-form-container2">
-        <div class="register_container">
-          <div class="register-content">
+        <div className="register_container">
+          <div className="register-content">
             <h1>REGISTER</h1>
             <form className="register-form" onSubmit={handleSubmit}>
               <label className="label-register" htmlFor="name">
                 Full Name :{" "}
               </label>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   className="form-inputt"
                   value={name}
@@ -55,12 +55,12 @@ const Register = (props) => {
                   required
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label className="label-register" htmlFor="email">
                   Email :{" "}
                 </label>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   className="form-inputt"
                   value={email}
@@ -72,12 +72,12 @@ const Register = (props) => {
                   required
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label className="label-register" htmlFor="password">
                   Password :{" "}
                 </label>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   className="form-inputt"
                   value={password}
@@ -89,12 +89,12 @@ const Register = (props) => {
                   required
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label className="label-register" htmlFor="postalCode">
                   Postal Code :{" "}
                 </label>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   className="form-inputt"
                   value={postalCode}
