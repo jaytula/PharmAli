@@ -34,6 +34,7 @@ module.exports = (db) => {
       return res.status(status).send("It seems you're trying to add a journal withtout logging in")
     }
 
+    // If journal entry is valid add it to the journal table
     addJournal(db, journalInfo)
       .then((journal) => {
         res.status(200).send(journal.rows[0]);

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { getSavedMed, addSavedMed, removeSavedMed, addDrugNotes } = require('../db/queries/saved-medication');
 
 module.exports = db => {
-  // Get all or specific saved medication
+  // Get all saved medications for a user
   router.get("/:id", (request, response) => {
     getSavedMed(db, request.url.substring(1))
       .then(({ rows: saved_medications }) => {

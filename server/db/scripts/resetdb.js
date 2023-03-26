@@ -1,5 +1,4 @@
-// -- /server/db/scripts/resetdb.js
-// reset your database
+// Create a connection to the db
 require("dotenv").config();
 const { Client } = require('pg');
 const SCHEMA_PATH = './db/schema';
@@ -26,19 +25,24 @@ const addDrugNames = function(db) {
 
 	// Array of drugs starting with a specific letter
 	Object.values(drugs.drugs).forEach((letterDrugs) => {
+		// Each drug in the array of drugs
 		letterDrugs.forEach((drug) => {
 			const filteredDrug = drug.split(" ")[0].replace(/'|;/g, "");
+			// Verify not duplicate
 			if (!unduplicateDrugs.includes(filteredDrug)) {
 				queryString += `('${filteredDrug}'),`
 				unduplicateDrugs.push(filteredDrug);
 			}
 		})
 	});
+
+	// Chance the last , with a semicolon
 	queryString = `${queryString.slice(0, -1)};`
 
 	return db.query(queryString);
 };
 
+// To add the tables
 const runMigrations = async db => {
 	const migrations = await fs.readdir(SCHEMA_PATH);
 	for (const migration of migrations) {
@@ -48,10 +52,10 @@ const runMigrations = async db => {
 	}
 }
 
+// To add the seeds
 const runSeeds = async db => {
 	// Add drug names to drug
 	addDrugNames(db)
-
 	// Add rest of the seeds
 	const seeds = await fs.readdir(SEEDS_PATH);
 	for (const seed of seeds) {
@@ -61,6 +65,7 @@ const runSeeds = async db => {
 	}
 }
 
+// To create connection, add tables and seeds
 const resetDB = async () => {
 	try {
 		console.log("Running DB Reset...");
@@ -83,4 +88,5 @@ const resetDB = async () => {
 	}
 }
 
+// Reset the db
 resetDB();

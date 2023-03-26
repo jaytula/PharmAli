@@ -11,7 +11,7 @@ module.exports = db => {
       });
   });
 
-  // Get blog by user id (and blog_id)
+  // Get blog by blog_id
   router.get("/:id", (request, response) => {
     if (request.url !== '/undefined') {
       const params = request.url.substring(1);
@@ -35,7 +35,7 @@ module.exports = db => {
 
   // Add/Edit a blog
   router.post("/edit", (req, res) => {
-    // Validate the registration info
+    // Validate the blog info
     const { id, title, image_url, content, user_id, category } = req.body;
     const blogInfo = { id, title, image_url, content, user_id, category };
     let status = 400
@@ -54,6 +54,8 @@ module.exports = db => {
     if (!category) {
       return res.status(status).send("Please choose one of the categories")
     }
+
+    // If blog info is valid, add it to blog table
     const actionType = (id) ? editBlog : addBlog;
     actionType(db, blogInfo)
       .then(() => {
