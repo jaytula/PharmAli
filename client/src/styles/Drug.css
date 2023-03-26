@@ -13,38 +13,38 @@
   box-shadow: 0px 0px 9px 9px #dcd2d2f0;
 }
 
-
 .drug-name {
-  color:#89FFFD;
+  color: #89fffd;
   margin-left: 20px;
-  font-size: 18px; 
-  font-family: 'Exo'
+  font-size: 18px;
+  font-family: "Exo";
 }
 
 .subtitle {
-  color:black; 
-  font-family: 'Exo'
+  color: black;
+  font-family: "Exo";
 }
 
-.drug-image{
+.drug-image {
   border-radius: 76%;
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
   box-shadow: 17px 6px 19px -7px #ef32d987;
   float: right;
-  margin: 3rem 9rem 7rem 0rem;
+  margin: 3rem 3rem 7rem 0rem;
   opacity: 0.83;
 }
-.image1{
+
+.image1 {
   height: 0;
   padding-top: 145px;
 }
 
-.image-container{
+.image-container {
   flex: 9 1;
   display: flex;
   flex-direction: column;
-  float:right;
+  float: right;
   width: 10vw;
 }
 
@@ -62,59 +62,58 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
-.un-fav-icon{
-  width:50px;
-  height:50px;
-  cursor:pointer;
-  color:#EF32D9;
+.un-fav-icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  color: #ef32d9;
 }
 
-.green-icon{
-  width:50px;
-  height:50px;
-  cursor:pointer;
-  color:#89FFFD;
+.green-icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  color: #89fffd;
 }
-.pink-icon{
-  width:50px;
-  height:50px;
-  cursor:pointer;
-  color:#EF32D9;
+.pink-icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  color: #ef32d9;
 }
-.drug-faved{
+.drug-faved {
   font-size: 25px;
 }
 
-.drugname{
-  color: #89FFFD;
+.drugname {
+  color: #89fffd;
   font-size: 30px;
-  font-family: 'Exo';
+  font-family: "Exo";
 }
-.unfavbutton{
+.unfavbutton {
   display: flex;
-  color: #EF32D9;
-  font-family: 'Exo';
+  color: #ef32d9;
+  font-family: "Exo";
 }
 
-.unfavtext{
+.unfavtext {
   display: flex;
   align-items: center;
   margin-left: 10px;
-
 }
-.drugcontainer{
-  margin-bottom:30px;
-  margin-top:30px;
+.drugcontainer {
+  margin-bottom: 30px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
 
-.med-list-icon{
+.med-list-icon {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-.med-list-icon h3{
+.med-list-icon h3 {
   margin-right: 10px;
 }
 .mymedlist {
@@ -124,7 +123,12 @@
   align-items: flex-start;
   padding: 20px;
 }
-
+.mymedListSection h1 {
+  margin: 1rem 2rem 0rem 3rem;
+  font-family: "Exo";
+  font-size: 43px;
+  color: #88fffd;
+}
 .mydrugcontainer {
   margin: 40px;
   display: flex;
@@ -135,16 +139,19 @@
   border-radius: 30px;
 }
 
-.mymedListSection{
-  display: flex;
-  flex-direction: row;
-
-}
-
 .notes {
   color: white;
 }
 .name-drug {
   padding-left: 89px;
   margin-left: 45px;
+}
+.drugListItemContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.drugListItem {
+  display: flex;
+  justify-content: space-between;
 }

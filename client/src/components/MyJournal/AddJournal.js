@@ -16,7 +16,7 @@ const AddJournal = ({ handleAddJournal }) => {
 
   };
   return (
-    <div className='journal new'>
+    <div className='journal-new'>
       <h2 className="jounal-title">Add a New Journal Entry Here  :</h2>
       <textarea className="journal-text"
         rows="8"

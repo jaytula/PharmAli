@@ -54,7 +54,7 @@ const BlogPosts = (props) => {
         <div className="myBlogPosts">
           <span className="blogPostsTitle">
             <div className="bloggg">
-              <h1>{props.myBlogs ? "MY BLOGS" : "BLOGS"}</h1>
+              <h1>{props.myBlogs ? "My Blogs" : "Blogs"}</h1>
             </div>
             <div className="category-dropdown">
               <SelectSmall
