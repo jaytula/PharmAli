@@ -3,7 +3,7 @@ import axios from "axios";
 import useApplicationData from "../../hooks/useApplicationData";
 import { useNavigate } from "react-router-dom";
 import DrugListItem from "../MyDrugItem";
-import '../../styles/Drug.css'
+import "../../styles/Drug.css";
 
 const MyDrugs = (props) => {
   const navigate = useNavigate();
@@ -21,14 +21,19 @@ const MyDrugs = (props) => {
 
   return (
     <div className="mymedListSection">
-      {props.drugs.map((drug) => (
-        <DrugListItem
-          key={drug.drug_id}
-          setDrugs={props.setDrugs}
-          drug={drug}
-          user={props.user}
-        />
-      ))}
+        <h1> My Med List</h1>
+      <div className="drugListItemContainer">
+        {props.drugs.map((drug) => (
+          <div className="drugListItem">
+            <DrugListItem
+              key={drug.drug_id}
+              setDrugs={props.setDrugs}
+              drug={drug}
+              user={props.user}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

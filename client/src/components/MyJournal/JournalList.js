@@ -4,6 +4,7 @@ import AddJournal from './AddJournal';
 const JournalList = ({ journals, handleAddJournal, handleDeleteJournal }) => {
   return (
     <div className="journals-list">
+      <AddJournal handleAddJournal={handleAddJournal} />
       {journals.map((journal) => (
         <JournalListItem
           key={journal.id}
@@ -14,7 +15,6 @@ const JournalList = ({ journals, handleAddJournal, handleDeleteJournal }) => {
           handleDeleteJournal={handleDeleteJournal}
         />
       ))}
-      <AddJournal handleAddJournal={handleAddJournal} />
 
     </div>
   );

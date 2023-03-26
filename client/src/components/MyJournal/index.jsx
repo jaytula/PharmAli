@@ -25,7 +25,7 @@ const MyJournal = (props) => {
       .then((data) => {
         const newJournal = data.data;
         newJournal.name = journals[0].name;
-        setJournals((prev) => [...prev, newJournal]);
+        setJournals((prev) => [newJournal, ...prev]);
       });
   };
 
