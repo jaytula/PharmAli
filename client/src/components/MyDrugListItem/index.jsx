@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsHeartPulse } from "react-icons/bs";
 import "../../styles/Drug.css";
 
-const DrugListItem = (props) => {
+const MyDrugListItem = (props) => {
   const navigate = useNavigate();
   const [favourite, setFavourite] = useState(props.drug.id);
+  
   // Every time drug is favourited
   const changeLike = () => {
     const params = { favourite };
@@ -26,13 +27,13 @@ const DrugListItem = (props) => {
       <div className="mymedlist">
         {favourite && (
           <>
-              <div
-                className="drug-faved"
-                onClick={() => navigate(`/drugs/${props.drug.name}`)}
-              >
+            <div
+              className="drug-faved"
+              onClick={() => navigate(`/drugs/${props.drug.name}`)}
+            >
               <h3 className="drugname">Drug Name : {props.drug.name}</h3>
-                
-              </div>
+
+            </div>
             <div className="unfavbutton">
               <BsHeartPulse className="un-fav-icon" onClick={changeLike} />
               <div className="unfavtext">Click me to unfavourite</div>
@@ -45,4 +46,4 @@ const DrugListItem = (props) => {
   );
 };
 
-export default DrugListItem;
+export default MyDrugListItem;

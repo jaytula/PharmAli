@@ -1,3 +1,4 @@
+// Database connection when server is started
 require("dotenv").config();
 const { Client } = require('pg');
 

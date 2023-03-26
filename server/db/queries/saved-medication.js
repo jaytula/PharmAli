@@ -16,12 +16,6 @@ const addSavedMed = function(db, user_id, drug_id) {
   return db.query(queryString, queryParams);
 };
 
-const removeSavedMed = function(db, savedMedId) {
-  const queryParams = [savedMedId]
-  const queryString = `DELETE FROM saved_medications WHERE id = $1`
-  return db.query(queryString, queryParams);
-};
-
 const addDrugNotes = function(db, id, notes) {
   const queryParams = [notes, id]
   const queryString = `UPDATE saved_medications SET notes = $1
@@ -29,4 +23,10 @@ const addDrugNotes = function(db, id, notes) {
   return db.query(queryString, queryParams)
 };
 
-module.exports = { getSavedMed, addSavedMed, removeSavedMed, addDrugNotes };
+const removeSavedMed = function(db, savedMedId) {
+  const queryParams = [savedMedId]
+  const queryString = `DELETE FROM saved_medications WHERE id = $1`
+  return db.query(queryString, queryParams);
+};
+
+module.exports = { getSavedMed, addSavedMed, addDrugNotes, removeSavedMed };

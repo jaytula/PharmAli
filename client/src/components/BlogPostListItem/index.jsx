@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import { MdDeleteForever } from 'react-icons/md';
 
-function BlogPostItem(props) {
+function BlogPostListItem(props) {
   return (
     <div className="blog">
       <img
@@ -44,4 +44,4 @@ function BlogPostItem(props) {
   )
 }
 
-export default BlogPostItem
+export default BlogPostListItem

@@ -23,6 +23,7 @@ module.exports = db => {
       return res.status(status).send("It seems you're trying to add a comment withtout logging in")
     }
     
+    // If comment is valid add it to the comment table
     addComment(db, commentInfo)
       .then(() => {
         res.status(200).send('Comment added successfully');

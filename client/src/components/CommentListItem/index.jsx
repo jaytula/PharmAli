@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-function Comment(props) {
+function CommentListItem(props) {
   return (
     <>
       <div className='comment'>
@@ -26,4 +26,4 @@ function Comment(props) {
   )
 }
 
-export default Comment;
+export default CommentListItem;

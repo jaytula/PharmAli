@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import BlogPostItem from "../BlogPostItem/index.jsx";
+import BlogPostListItem from "../BlogPostListItem";
 import "../../styles/BlogPosts.css";
-import Articles from "../Articles/index.jsx";
+import ArticleList from "../ArticleList";
 import axios from "axios";
-import SelectSmall from "../Category/index.jsx";
+import SelectSmall from "../Category";
 import { useNavigate } from "react-router-dom";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import "../../styles/MyBlogs.css";
 
-const BlogPosts = (props) => {
+const BlogPostList = (props) => {
   // Set the blogs and categories to show
   const navigate = useNavigate();
   const [category, setCategory] = useState("");
@@ -49,7 +49,7 @@ const BlogPosts = (props) => {
       <section className="section">
         {!props.myBlogs && (
           <div className="articles-blog">
-            <Articles isBlog={true} />
+            <ArticleList isBlog={true} />
           </div>
         )}
         <div className="myBlogPosts">
@@ -86,7 +86,7 @@ const BlogPosts = (props) => {
           <div className="blogdiv">
 
             {blogs.map((blog) => (
-              <BlogPostItem
+              <BlogPostListItem
                 key={blog.id}
                 blog={blog}
                 setBlog={() => navigate(`/blogs/${blog.id}`)}
@@ -102,4 +102,4 @@ const BlogPosts = (props) => {
   );
 };
 
-export default BlogPosts;
+export default BlogPostList

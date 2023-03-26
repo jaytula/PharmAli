@@ -1,10 +1,15 @@
 import axios from "axios";
-import { useState } from 'react'
+import { useState } from 'react';
 
 export default function useApplicationData() {
+  // All universeal states
+  const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [drugs, setDrugs] = useState([]);
 
   const setCookie = (userInfo) => {
-    // Set up the userinfo to send and request type (get, post)
+    // Makde request to login/register
     let makeRequest;
     if (userInfo.name) {
       makeRequest = axios.post("/user/register", userInfo)
@@ -22,6 +27,6 @@ export default function useApplicationData() {
     return axios.get("/user")
   }
 
-  return { setCookie, removeCookie, getCookie }
+  return { user, setUser, userInfo, setUserInfo, allBlogs, setAllBlogs, drugs, setDrugs, setCookie, removeCookie, getCookie };
 
 }
