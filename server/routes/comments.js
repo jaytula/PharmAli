@@ -12,9 +12,20 @@ module.exports = db => {
 
   // Add a comment to the blog
   router.post("/add", (req, res) => {
-    addComment(db, req.body.user_id, req.body.comment, req.body.blog_id)
+    // Validate comment
+    const { user_id, comment, blog_id } = req.body;
+    const commentInfo = { user_id, comment, blog_id };
+    let status = 400
+    if (!comment) {
+      return res.status(status).send("Please include some text in the comment.")
+    }
+    if (!user_id) {
+      return res.status(status).send("It seems you're trying to add a comment withtout logging in")
+    }
+    
+    addComment(db, commentInfo)
       .then(() => {
-        res.send('Comment added successfully');
+        res.status(200).send('Comment added successfully');
       })
   });
 

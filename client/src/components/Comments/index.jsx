@@ -8,12 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentIcon from '@mui/icons-material/Comment';
+import Error from "../Error";
 import '../../styles/Comments.css'
 
 function Comments(props) {
   // Set up all states for comment component
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState("")
   const [newComment, setNewComment] = useState('');
 
   // To open or close comment component
@@ -31,6 +33,9 @@ function Comments(props) {
       .then((data) => {
         setComments(data[1].data);
         setNewComment('');
+      })
+      .catch(({ response: data }) => {
+        setError(data.data)
       })
   }
 
@@ -74,6 +79,7 @@ function Comments(props) {
       </div>
       {props.user &&
         (<>
+          {error.length > 0 && <Error message={error} />}
           <span className='commentsSubtitle'><h3>Leave a comment:</h3>
             <IconButton aria-label="comment" onClick={handleClick}>
               <CommentIcon />
