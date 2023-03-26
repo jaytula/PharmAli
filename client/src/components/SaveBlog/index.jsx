@@ -3,6 +3,7 @@ import { useState } from 'react';
 import '../../styles/EditBlog.css';
 import { useEffect } from 'react';
 import axios from 'axios';
+import Error from "../Error";
 import { useNavigate, useLocation } from "react-router-dom";
 import SelectSmall from '../Category/index.jsx';
 
@@ -10,22 +11,29 @@ import SelectSmall from '../Category/index.jsx';
 function SaveBlog(props) {
   const navigate = useNavigate();
   const location = useLocation();
+  const [title, setTitle] = useState("")
+  const [image, setImage] = useState("")
+  const [content, setContent] = useState("")
+  const [category, setCategory] = useState("")
+  const [categories, setCategories] = useState([])
+  const [error, setError] = useState("")
   const urlEnd = location.pathname.split('/').pop()
   const blogId = (urlEnd === "add") ? 0 : urlEnd;
 
   const savePost = (saveBlog) => {
-    saveBlog.category = categories.find(cat => cat.name === category).id;
+    saveBlog.category = (category) ? categories.find(cat => cat.name === category).id : null;
     Promise.all([
       axios.post("/blogs/edit", saveBlog)
     ])
       .then(() => {
-        // set all blogs
-        // make axios request to get all blogs when setAllBLogs
         return axios.get('/blogs');
       })
       .then((data) => {
         props.setAllBlogs(data.data)
         navigate(`/blogs`);
+      })
+      .catch(({ response: data }) => {
+        setError(data.data)
       })
   };
 
@@ -47,18 +55,13 @@ function SaveBlog(props) {
     }
   }, [props.user]);
 
-  const [title, setTitle] = useState("")
-  const [image, setImage] = useState("")
-  const [content, setContent] = useState("")
-  const [category, setCategory] = useState("")
-  const [categories, setCategories] = useState([])
-
   const titleChange = (e) => setTitle(e.target.value);
   const imageChange = (e) => setImage(e.target.value);
   const contentChange = (e) => setContent(e.target.value);
 
   return (
     <div className='write'><h1>{blogId ? "Edit Blog" : "Add Blog"}</h1>
+      {error.length > 0 && <Error message={error} />}
       <form className='writeForm'>
         <label className='writeFormGroup'>
           Category:
