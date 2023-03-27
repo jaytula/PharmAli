@@ -35,18 +35,18 @@
   background-color: #89fffdd1;
   /* margin-bottom: 10px; */
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1.35rem;
   min-height: 300px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   /* white-space: pre-wrap; */
   font-size: 23px;
-  width: 26rem;;
+  width: 26rem;
   margin: 0px 25px 40px 25px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* gap: 10px; */
   height: 35rem;
 }
 
@@ -76,9 +76,9 @@
 }
 
 .pagetitle {
-  font-size: 50px;
-  margin-top: 25px;
-  margin-bottom: 30px;
+  font-size: 49px;
+  margin-bottom: 20px;
+  margin-top: 7px;
   color: #89FFFD;
   font-family: 'Exo';
 }
@@ -239,8 +239,8 @@ aside {
   align-items: center;
   background-color: rgb(233, 233, 233);
   border-radius: 10px;
-  padding: 5px;
-  margin-bottom: 1.5em;
+  padding: 2px;
+  margin-bottom: 1.25em;
   font-size: 35px;
   margin-left: 25px;
   margin-right: 25px;

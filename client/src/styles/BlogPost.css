@@ -1,13 +1,16 @@
 .blogPost {
-  flex: 9;
+  margin-left: 15px;
+  flex: 9 1;
+  color: #fff;
+  margin-top: 10px;
 }
 .blogPostName{
   margin-left: 5px;
 }
 
 .blogPostText {
-  color: #3b3a3a;
-  font-size: 30px;
+  color: #fff;
+  font-size: 20px;
   line-height: 37px;
 }
 
@@ -23,7 +26,7 @@
 
 .blogPostImage {
   width: 100%;
-  height: 300px;
+  height: 200px;
   border-radius: 5px;
   object-fit: cover;
 }
@@ -31,8 +34,9 @@
 .blogPostTitle {
   text-align: center;
   margin: 10px;
-  font-size: 40px;
-  font-family: "Lora", sans-serif;
+  font-size: 35px;
+  font-family: 'Exo';
+  color: #89FFFD
 }
 
 .blogPostInfo {
@@ -40,8 +44,10 @@
   display: flex;
   justify-content: space-between;
   font-size: 23px;
-  color: #be9656;
+  color: #dab506cf;
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
 }
-
+.blogPostHolder{
+  padding: 1rem 6rem 0rem 7rem;
+}
 
