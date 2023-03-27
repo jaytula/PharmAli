@@ -14,9 +14,9 @@ function Comment(props) {
           <p><TimeAgo datetime={props.comment.created_at} /></p>
           <div>
             <p>{props.comment.name}</p>
-            <div>
-              {props.user === props.comment.user_id && (<IconButton onClick={() => props.deleteComment(props.comment.id)}>
-                <DeleteIcon />
+            <div className='commentIcon'>
+              {props.user === props.comment.user_id && (<IconButton className='commentIcon' onClick={() => props.deleteComment(props.comment.id)}>
+                <DeleteIcon className='commentIcon' />
               </IconButton>)}
             </div>
           </div>

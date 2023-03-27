@@ -9,8 +9,21 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentIcon from '@mui/icons-material/Comment';
 import '../../styles/Comments.css'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Comments(props) {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        // Purple and green play nicely together.
+        main: '#ffffff',
+      },
+      secondary: {
+        // This is green.A700 as hex.
+        main: '#ffffff',
+      },
+    },
+  });
   // Set up all states for comment component
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
@@ -57,11 +70,42 @@ function Comments(props) {
   return (
     <div className='comments'>
       <span className='commentsTitle'><h1>Comments</h1></span>
+        {props.user &&
+          (<>
+            <span className='commentsSubtitle'><h3>Leave a comment:</h3>
+              <IconButton aria-label="comment" onClick={handleClick}>
+                <CommentIcon className='commentIcon'/>
+              </IconButton>
+            </span>
+  
+            {open && <Box
+           
+              component="form"
+              noValidate
+              autoComplete="off"
+            >
+              <TextField sx={{ input: { color: 'white',backgroundColor:"#595955" , borderColor:"white"} }} className='commentinputText' id="filled-basic" label="Leave a comment" variant="filled" fullWidth
+                {...props}
+                value={newComment}
+                
+                onChange={(event) => setNewComment(event.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment  position="end" >
+                      <IconButton className='commentinputText' edge="end" color="white" size="large" onClick={addComment}>
+                        <KeyboardReturnIcon className='commentinputText' />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Box>}
+          </>)}
       <div className='commentsContainer'>
 
         {comments.map((comment) => (
           <>
-            <Comment
+            <Comment className='commentinputText'
               key={comment.id}
               comment={comment}
               setComments={() => props.setComment(comment)}
@@ -72,35 +116,6 @@ function Comments(props) {
         ))}
 
       </div>
-      {props.user &&
-        (<>
-          <span className='commentsSubtitle'><h3>Leave a comment:</h3>
-            <IconButton aria-label="comment" onClick={handleClick}>
-              <CommentIcon />
-            </IconButton>
-          </span>
-
-          {open && <Box
-            component="form"
-            noValidate
-            autoComplete="off"
-          >
-            <TextField id="filled-basic" label="Leave a comment" variant="filled" fullWidth
-              {...props}
-              value={newComment}
-              onChange={(event) => setNewComment(event.target.value)}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton edge="end" color="white" size="large" onClick={addComment}>
-                      <KeyboardReturnIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>}
-        </>)}
     </div>
   )
 }

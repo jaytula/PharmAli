@@ -8,18 +8,18 @@
   color: white;
 }
 .commentDesc {
-  margin:20px;
+  margin: 5px 18px -15px 10px;
 }
 
 .commentDeets {
-  margin: 0 25px 20px;
-  display:flex;
-  flex-direction: row;
+  margin: 0 25px 0px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
 .comment:hover {
  -webkit-box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
  -moz-box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
- box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
+ box-shadow: 5px 5px 11px 1px rgba(197, 203, 227, 1)
 }

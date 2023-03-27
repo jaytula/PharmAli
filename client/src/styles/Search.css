@@ -57,12 +57,12 @@
 .name-drug:hover{
   background-color: #EF32D9;
   direction: ltr;
-  margin-left: 20px;
-  padding-left: 89px;
+  margin-left: 139px;
+  padding-left: 0px;
 }
 .name-drug {
-  padding-left: 89px;
-  margin-left: 45px;
+  padding-left: 20px;
+  margin-left: 20px;
 }
 
 .drug-item {
@@ -73,7 +73,7 @@
   overflow: auto;
   overflow-y: auto;
   color: #89FFFD;
-  margin-left: 245px;;
+  margin-left: 20px;
   font-size: 32px;
   cursor:pointer;
   direction: rtl;
