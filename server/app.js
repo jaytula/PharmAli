@@ -19,30 +19,36 @@ const categoriesRouter = require('./routes/categories');
 // Initialize app/server settings
 const app = express();
 
-const secretKey = 'foobarbaz12345';
-app.use(cookieParser(secretKey));
-const cookieParams = {
-  httpOnly: true,
-  signed: true,
-};
+module.exports = function application(actions = { updateComment: () => { } }) {
+  const secretKey = 'foobarbaz12345';
+  app.use(cookieParser(secretKey));
+  const cookieParams = {
+    httpOnly: true,
+    signed: true,
+  };
 
-app.set("view engine", "ejs");
-app.set("trust proxy", 1);
+  app.set("view engine", "ejs");
+  app.set("trust proxy", 1);
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(express.static(path.join(__dirname, 'public')));
 
-// Connect router with routes
-app.use('/', indexRouter);
-app.use('/user', usersRouter(db, cookieParams));
-app.use('/blogs', blogsRouter(db));
-app.use('/comments', commentsRouter(db));
-app.use('/articles', articlesRouter(db));
-app.use('/journal', journalRouter(db));
-app.use('/drugs', drugsRouter(db));
-app.use('/favourite', savedMedicationsRouter(db));
-app.use('/categories', categoriesRouter(db));
+  // Connect router with routes
+  app.use('/', indexRouter);
+  app.use('/user', usersRouter(db, cookieParams));
+  app.use('/blogs', blogsRouter(db));
+  app.use('/comments', commentsRouter(db, actions.updateComment));
+  app.use('/articles', articlesRouter(db));
+  app.use('/journal', journalRouter(db));
+  app.use('/drugs', drugsRouter(db));
+  app.use('/favourite', savedMedicationsRouter(db));
+  app.use('/categories', categoriesRouter(db));
 
-module.exports = app;
+  app.close = function() {
+    return db.end();
+  };
+
+  return app;
+}

@@ -46,7 +46,7 @@ function BlogPost(props) {
         <p className="blogPostText">
           {blogContent.content}
         </p>
-          <CommentList blog_id={blogId} user={props.user} />
+          <CommentList blog_id={blogId} user={props.user} userInfo={props.userInfo} />
       </div>
     </div>
   )

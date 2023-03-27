@@ -52,7 +52,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/register" element={<Register setUser={setUser} setUserInfo={setUserInfo} setCookie={setCookie} />} />
             <Route path="/login" element={<Login setUser={setUser} setUserInfo={setUserInfo} setCookie={setCookie} />} />
-            <Route path="/blogs/:id" element={<BlogPost user={user} />} />
+            <Route path="/blogs/:id" element={<BlogPost user={user} userInfo={userInfo} />} />
             <Route path="/drugs/*" element={<Drug user={user} drugs={drugs} setDrugs={setDrugs} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
             <Route path="/blogs" element={<BlogPostList user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />

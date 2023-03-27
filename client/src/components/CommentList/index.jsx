@@ -38,13 +38,11 @@ function CommentList(props) {
 
   // To add a comment
   const addComment = () => {
-    const params = { user_id: props.user, comment: newComment, blog_id: props.blog_id }
+    const params = { user_id: props.user, comment: newComment, blog_id: props.blog_id, name: props.userInfo.name }
     Promise.all([
       axios.post(`/comments/add`, params),
-      axios.get(`/comments/${props.blog_id}`)
     ])
-      .then((data) => {
-        setComments(data[1].data);
+      .then(() => {
         setNewComment('');
       })
       .catch(({ response: data }) => {
@@ -56,12 +54,22 @@ function CommentList(props) {
   const deleteComment = (id) => {
     Promise.all([
       axios.post("/comments/delete", id),
-      axios.get(`/comments/${props.blog_id}`)
     ])
-      .then((data) => {
-        setComments(data[1].data);
-      })
   }
+
+  useEffect(() => {
+    const websocket = new WebSocket('ws://localhost:8080');
+    websocket.onopen = () => {
+      websocket.onmessage = (event) => {
+        const commentInfo = JSON.parse(event.data)
+        if (commentInfo.add) {
+          setComments(prev => (prev.find(comment => comment.id === commentInfo.comment.id)) ? prev : [...prev, commentInfo.comment])
+        } else {
+          setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
+        }
+      };
+    };
+  }, []);
 
   // To load all comments when the blog is visited
   useEffect(() => {
@@ -75,38 +83,38 @@ function CommentList(props) {
   return (
     <div className='comments'>
       <span className='commentsTitle'><h1>Comments</h1></span>
-        {props.user &&
-          (<>
+      {props.user &&
+        (<>
           {error.length > 0 && <Error message={error} />}
-            <span className='commentsSubtitle'><h3>Leave a comment:</h3>
-              <IconButton aria-label="comment" onClick={handleClick}>
-                <CommentIcon className='commentIcon'/>
-              </IconButton>
-            </span>
-  
-            {open && <Box
-           
-              component="form"
-              noValidate
-              autoComplete="off"
-            >
-              <TextField sx={{ input: { color: 'white',backgroundColor:"#595955" , borderColor:"white"} }} className='commentinputText' id="filled-basic" label="Leave a comment" variant="filled" fullWidth
-                {...props}
-                value={newComment}
-                
-                onChange={(event) => setNewComment(event.target.value)}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment  position="end" >
-                      <IconButton className='commentinputText' edge="end" color="white" size="large" onClick={addComment}>
-                        <KeyboardReturnIcon className='commentinputText' />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Box>}
-          </>)}
+          <span className='commentsSubtitle'><h3>Leave a comment:</h3>
+            <IconButton aria-label="comment" onClick={handleClick}>
+              <CommentIcon className='commentIcon' />
+            </IconButton>
+          </span>
+
+          {open && <Box
+
+            component="form"
+            noValidate
+            autoComplete="off"
+          >
+            <TextField sx={{ input: { color: 'white', backgroundColor: "#595955", borderColor: "white" } }} className='commentinputText' id="filled-basic" label="Leave a comment" variant="filled" fullWidth
+              {...props}
+              value={newComment}
+
+              onChange={(event) => setNewComment(event.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end" >
+                    <IconButton className='commentinputText' edge="end" color="white" size="large" onClick={addComment}>
+                      <KeyboardReturnIcon className='commentinputText' />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>}
+        </>)}
       <div className='commentsContainer'>
 
         {comments.map((comment) => (
@@ -114,7 +122,6 @@ function CommentList(props) {
             <CommentListItem className='commentinputText'
               key={comment.id}
               comment={comment}
-              setComments={() => props.setComment(comment)}
               deleteComment={deleteComment}
               user={props.user}
             />
