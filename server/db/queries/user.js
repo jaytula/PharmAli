@@ -4,6 +4,12 @@ const getUserByEmail = function(db, email) {
   return db.query(queryString, queryParams);
 };
 
+const getUserById = function(db, user_id) {
+  const queryString = `SELECT * FROM users WHERE id = $1`;
+  const queryParams = [user_id];
+  return db.query(queryString, queryParams);
+};
+
 const addUser = function(db, userInfo) {
   const { name, email, password, postal_code } = userInfo;
   const queryParams = [name, email, password, postal_code];
@@ -11,11 +17,5 @@ const addUser = function(db, userInfo) {
   return db.query(queryString, queryParams);
 };
 
-const getUserById = function(db, user_id) {
-  const queryString = `SELECT * FROM users WHERE id = $1`;
-  const queryParams = [user_id];
-  return db.query(queryString, queryParams);
-};
 
-
-module.exports = { getUserByEmail, addUser, getUserById };
+module.exports = { getUserByEmail, getUserById, addUser };

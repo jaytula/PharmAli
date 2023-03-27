@@ -3,15 +3,16 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Comment from '../Comment';
+import CommentListItem from '../CommentListItem';
 import IconButton from '@mui/material/IconButton';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentIcon from '@mui/icons-material/Comment';
+import Error from "../Error";
 import '../../styles/Comments.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Comments(props) {
+function CommentList(props) {
   const theme = createTheme({
     palette: {
       primary: {
@@ -27,6 +28,7 @@ function Comments(props) {
   // Set up all states for comment component
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState("")
   const [newComment, setNewComment] = useState('');
 
   // To open or close comment component
@@ -44,6 +46,9 @@ function Comments(props) {
       .then((data) => {
         setComments(data[1].data);
         setNewComment('');
+      })
+      .catch(({ response: data }) => {
+        setError(data.data)
       })
   }
 
@@ -72,6 +77,7 @@ function Comments(props) {
       <span className='commentsTitle'><h1>Comments</h1></span>
         {props.user &&
           (<>
+          {error.length > 0 && <Error message={error} />}
             <span className='commentsSubtitle'><h3>Leave a comment:</h3>
               <IconButton aria-label="comment" onClick={handleClick}>
                 <CommentIcon className='commentIcon'/>
@@ -105,7 +111,7 @@ function Comments(props) {
 
         {comments.map((comment) => (
           <>
-            <Comment className='commentinputText'
+            <CommentListItem className='commentinputText'
               key={comment.id}
               comment={comment}
               setComments={() => props.setComment(comment)}
@@ -120,4 +126,4 @@ function Comments(props) {
   )
 }
 
-export default Comments;
+export default CommentList;

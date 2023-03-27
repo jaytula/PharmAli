@@ -24,6 +24,8 @@ module.exports = (db, cookieParams) => {
     if (!password || password.length < 1) {
       return res.status(status).send({ message: "Please provide a valid password that is greater then 7 characters" })
     }
+
+    // If valid get user information and verify login details
     getUserByEmail(db, email)
       .then(({ rows: user }) => {
         const correctPassword = (user.length > 0) ? bcrypt.compareSync(password, user[0].password) : null;

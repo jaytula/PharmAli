@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -15,7 +14,7 @@ export default function SelectSmall(props) {
     <FormControl sx={{ m: 1, minWidth: 250, minHeight: 10 }} size="small">
       <InputLabel id="demo-select-small">Category</InputLabel>
       <Select
-        sx={{ "& .MuiSvgIcon-root": { color: "black" } }}        labelId="demo-select-small"
+        sx={{ "& .MuiSvgIcon-root": { color: "black" } }} labelId="demo-select-small"
         id="demo-select-small"
         value={props.category}
         label="Category"

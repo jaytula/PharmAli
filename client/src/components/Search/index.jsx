@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Articles from '../Articles';
+import ArticleList from '../ArticleList';
 import '../../styles/Search.css'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,8 @@ const Search = () => {
       ]).then((data) => {
         setDrugList(data[0].data);
       })
+    } else {
+      setDrugList([]);
     }
   }, [searchInput]);
 
@@ -47,10 +49,10 @@ const Search = () => {
           </div>
           <div className='drug-item'>
             {drugList.map((drug) => (
-              <div 
-              key={drug.id}
-              className="name-drug"
-              onClick={() => navigate(`/drugs/${drug.name}`)}
+              <div
+                key={drug.id}
+                className="name-drug"
+                onClick={() => navigate(`/drugs/${drug.name}`)}
               >
                 {drug.name}
               </div>
@@ -58,7 +60,7 @@ const Search = () => {
           </div>
         </div>
         <div className='articles'>
-          <Articles isBlog={false} />
+          <ArticleList isBlog={false} />
         </div>
       </div>
     </div>

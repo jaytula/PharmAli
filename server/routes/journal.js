@@ -15,16 +15,29 @@ module.exports = (db) => {
   router.post("/delete", (req, res) => {
     const journalId = Object.keys(req.body)[0]
     removeJournal(db, journalId)
-    .then(() => {
+      .then(() => {
         res.status(200).send("Journal Removed")
       })
   });
 
   // To add a journal entry of a user
   router.post("/add", (req, res) => {
-    addJournal(db, req.body.user_id, req.body.text)
+    // Validate comment
+    const { user_id, text } = req.body;
+    const journalInfo = { user_id, text };
+    console.log(journalInfo);
+    let status = 400
+    if (!text) {
+      return res.status(status).send("Please include some text in this journal entry.")
+    }
+    if (!user_id) {
+      return res.status(status).send("It seems you're trying to add a journal withtout logging in")
+    }
+
+    // If journal entry is valid add it to the journal table
+    addJournal(db, journalInfo)
       .then((journal) => {
-        res.send(journal.rows[0]);
+        res.status(200).send(journal.rows[0]);
       })
   });
 

@@ -1,8 +1,6 @@
--- Note: all seeds with dates is showing error.
-
+-- Note: password is 1
 INSERT INTO users (name, email, password, postal_code)
 VALUES 
--- password is 1
 ('Michael', 'michael.lawson@gmail.com', '$2a$10$mOg1K5.ejDuaRtpYPw6E5.n9HASqxtdcMr66W4CtVPnlePROw8yP.', 'M3H 0C3'),
 ('Lindsay', 'lindsay.ferguson@gmail.com', '$2a$10$mOg1K5.ejDuaRtpYPw6E5.n9HASqxtdcMr66W4CtVPnlePROw8yP.', 'M4B 0A3'),
 ('Tobias', 'tobias.funke@gmail.com', '$2a$10$mOg1K5.ejDuaRtpYPw6E5.n9HASqxtdcMr66W4CtVPnlePROw8yP.', 'M3C 0E4'),
@@ -27,8 +25,6 @@ INSERT INTO comments (user_id, comment, blog_id, created_at)
 VALUES 
 (5, 'OMG! I feel the same way I feel like it really helped with my depression I wasn on 10mg for 25 years. I feel like this medicaition is a life-saver. I recommend this to anyone who is suffering with severe insomnia', 1, '2022-12-27'),
 (3, 'My son is suffering from this addiction, he got perscribed it for the first time for his injury. He thought the feeling was so nice he continues to buy them off the streets and is currently addicted. I am thinking to send him to REHAB but he is mentally addicted and ignores me when I try to bring it up. I am happy your now fully recovered...I hate PERCOCETS!!', 4, '2023-02-27');
--- (5, 'OMG! I feel the same way I feel like it really helped with my depression I was on 10mg for 25 years. I feel like this medicaition is a life-saver. I recommend this to anyone who is suffering with severe insomnia'),
--- (3, 'My son is suffering from this addiction, he got perscribed it for the first time for his injury. He thought the feeling was so nice he continues to buy them off the streets and is currently addicted. I am thinking to send him to REHAB but he is mentally addicted and ignores me when I try to bring it up. I am happy your now fully recovered...I hate PERCOCETS!!');
 
 INSERT INTO articles (title, image_url, article_url)
 VALUES

@@ -1,6 +1,6 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import "../../styles/BlogPost.css"
-import Comments from '../Comments'
+import CommentList from '../CommentList'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios'
 import { useNavigate, useLocation } from "react-router-dom";
@@ -46,7 +46,7 @@ function BlogPost(props) {
         <p className="blogPostText">
           {blogContent.content}
         </p>
-          <Comments blog_id={blogId} user={props.user} />
+          <CommentList blog_id={blogId} user={props.user} />
       </div>
     </div>
   )

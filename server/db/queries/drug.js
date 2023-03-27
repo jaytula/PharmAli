@@ -2,7 +2,7 @@
 const getDrug = function(db, params) {
   let queryParams;
   let queryString;
-
+  
   // If searching by name
   if (isNaN(params)) {
     queryParams = [`${params.toUpperCase()}%`];

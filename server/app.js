@@ -1,9 +1,11 @@
+// Inital settings
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-const db = require('./db/index');
+const db = require('./db');
 var cookieParser = require('cookie-parser')
 
+// Set up the router
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
 const blogsRouter = require('./routes/blogs');
@@ -14,6 +16,7 @@ const drugsRouter = require('./routes/drugs');
 const savedMedicationsRouter = require('./routes/saved_medications');
 const categoriesRouter = require('./routes/categories');
 
+// Initialize app/server settings
 const app = express();
 
 const secretKey = 'foobarbaz12345';
@@ -31,6 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Connect router with routes
 app.use('/', indexRouter);
 app.use('/user', usersRouter(db, cookieParams));
 app.use('/blogs', blogsRouter(db));

@@ -1,10 +1,10 @@
 import JournalListItem from './JournalListItem';
-
 import AddJournal from './AddJournal';
-const JournalList = ({ journals, handleAddJournal, handleDeleteJournal }) => {
+
+const JournalList = ({ journals, handleAddJournal, handleDeleteJournal, error }) => {
   return (
     <div className="journals-list">
-      <AddJournal handleAddJournal={handleAddJournal} />
+      <AddJournal handleAddJournal={handleAddJournal} error={error} />
       {journals.map((journal) => (
         <JournalListItem
           key={journal.id}
