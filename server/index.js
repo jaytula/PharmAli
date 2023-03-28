@@ -29,14 +29,11 @@ function updateComment(add, comment) {
   });
 }
 
-function updateBlog(add, blog) {
+function updateBlog(blogs) {
   wss.clients.forEach(function eachClient(client) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(
-        JSON.stringify({
-          add,
-          blog
-        })
+        JSON.stringify({ blogs })
       );
     }
   });

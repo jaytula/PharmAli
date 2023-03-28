@@ -27,10 +27,15 @@ module.exports = (db, updateBlog) => {
   // Delete a blog
   router.post("/delete", (req, res) => {
     const blogId = Object.keys(req.body)[0]
+    console.log(deleteBlog)
     deleteBlog(db, blogId)
-      .then(() => {
-        res.send(200)
-      })
+    .then(() => {
+      return getBlogs(db)
+    })
+    .then(({ rows: blogs }) => {
+      res.status(200).send(`Blog Deleted`)
+      updateBlog(blogs);
+    });
   });
 
   // Add/Edit a blog
@@ -58,18 +63,13 @@ module.exports = (db, updateBlog) => {
     // If blog info is valid, add it to blog table
     const actionType = (!isNaN(id)) ? editBlog : addBlog;
     actionType(db, blogInfo)
-    .then(({rows: blog}) => {
-        let add;
-        if (!isNaN(id)) {
-          add = false;
-        }
-        if (isNaN(id)) {
-          add = true;
-          blogInfo.id = blog[0].id;    
-        }
-        res.status(200).send(`Blog ${(id) ? 'Edited' : 'Added'}`)
-        updateBlog(add, blogInfo);
+      .then(() => {
+        return getBlogs(db)
       })
+      .then(({ rows: blogs }) => {
+        res.status(200).send(`Blog ${(id) ? 'Edited' : 'Added'}`)
+        updateBlog(blogs);
+      });
   });
 
   return router;

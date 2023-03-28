@@ -17,7 +17,7 @@ const getBlogById = function(db, blog_id) {
 const addBlog = function(db, blog) {
   const queryParams = [blog.user_id, blog.title, blog.image_url, blog.content, blog.category];
   const queryString = `INSERT INTO blogs (user_id, title, image_url, content, category_id)
-  VALUES ($1, $2, $3, $4, $5) RETURNING id`
+  VALUES ($1, $2, $3, $4, $5)`
   return db.query(queryString, queryParams);
 };
 
@@ -35,7 +35,7 @@ const editBlog = function(db, blog) {
 const deleteBlog = function(db, blog_id) {
   const queryParams = [blog_id];
   const queryString = `
-  DELETE FROM blogs WHERE id =$1`
+  DELETE FROM blogs WHERE id = $1`
   return db.query(queryString, queryParams);
 };
 

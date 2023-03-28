@@ -25,12 +25,8 @@ function App() {
     const websocket = new WebSocket('ws://localhost:8080');
     websocket.onopen = () => {
       websocket.onmessage = (event) => {
-        const blogInfo = JSON.parse(event.data)
-        if (blogInfo.add) {
-          setAllBlogs(prev => (prev.find(blog => blog.id === blogInfo.blog.id)) ? prev : [...prev, blogInfo.blog])
-        } else {
-          setAllBlogs(prev => [blogInfo.blog, ...prev.filter(blog => blog.id != blogInfo.blog.id)])
-        }
+        const blogs = JSON.parse(event.data);
+        setAllBlogs(blogs.blogs);
       };
     };
   }, []);
