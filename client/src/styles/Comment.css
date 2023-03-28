@@ -1,25 +1,33 @@
 .comment {
   display:flex;
   flex-direction: column;
-  background-color: rgb(193 193 184 / 36%);
+  background-color: transparent;
   margin: 20px;
-  border: solid;
+  border: solid #89FFFD;;
   border-radius: 10px;
   color: white;
 }
 .commentDesc {
-  margin: 5px 18px -15px 10px;
+  margin: 0px 15px 0px 15px;
+  line-height: 27px;
+  font-size: 16.5px;
 }
 
 .commentDeets {
-  margin: 26px 25px 9px;
+  margin: 0px 26px 18px 26px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: #89FFFD;
+  font-family: 'Lora';
 }
 
 .comment:hover {
  -webkit-box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
  -moz-box-shadow: 8px 8px 0px 0px rgba(197, 203, 227, 1);
  box-shadow: 5px 5px 11px 1px rgba(197, 203, 227, 1)
+}
+
+.commentIcon{
+  color: #89FFFD;
 }

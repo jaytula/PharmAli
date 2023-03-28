@@ -14,7 +14,7 @@ export default function SelectSmall(props) {
     <FormControl sx={{ m: 1, minWidth: 250, minHeight: 10 }} size="small">
       <InputLabel id="demo-select-small">Category</InputLabel>
       <Select
-        sx={{ "& .MuiSvgIcon-root": { color: "black" } }} labelId="demo-select-small"
+        sx={{" &.MuiInputBase-root": {color:"white"}, "&& .MuiSvgIcon-root": { color: "white" } }} labelId="demo-select-small"
         id="demo-select-small"
         value={props.category}
         label="Category"

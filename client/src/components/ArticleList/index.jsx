@@ -16,7 +16,7 @@ const Articles = (props) => {
 
   return (
     <div className={`articles-${props.isBlog ? "blog" : "search"}`}>
-      <span className="articlesTitle">ARTICLES</span>
+      <span className="articlesTitle">Browse Related Articles</span>
       <div className={`articlecontainers-${props.isBlog ? "blog" : "search"}`}>
         {articles.map((article) => (
           <ArticleListItem

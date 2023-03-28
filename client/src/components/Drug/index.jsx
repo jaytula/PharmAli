@@ -8,6 +8,8 @@ import locator from "../../assets/images/locator.png";
 import blogs from "../../assets/images/blogs.png";
 import journal from "../../assets/images/journal.png";
 import { BsHeartPulseFill, BsHeartPulse } from "react-icons/bs";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Drug = (props) => {
   // favourite will be the saved_medication id
@@ -22,6 +24,7 @@ const Drug = (props) => {
   const handleChange = (e) => {
     setDrugNotes(e.target.value);
   };
+
 
   const handleClickSave = () => {
     Promise.all([
@@ -93,6 +96,9 @@ const Drug = (props) => {
   };
 
   // Every time drug is favourited
+  const removeNotification = () => toast("Removed from my Med List 💊");
+  const addNotification = () => toast("Added to my Med List 💊");
+
   const changeLike = () => {
     let params;
     let route;
@@ -142,14 +148,19 @@ const Drug = (props) => {
               <span className="med-list-icon">
                 {!favourite && (
                   <>
+
                     <h3>Add to my med list</h3>
+                    <button className="transparentbutton" onClick={addNotification}>
                     <BsHeartPulse className="green-icon" onClick={changeLike} />
+                    </button>
                   </>
                 )}
                 {favourite &&
                   (<>
                     <h3>Remove from my med list</h3>
+                    <button className="transparentbutton" onClick={removeNotification}>
                     <BsHeartPulseFill className="pink-icon" onClick={changeLike} />
+                    </button>
                   </>)}
               </span>
             </>}
@@ -188,6 +199,7 @@ const Drug = (props) => {
           </>
         ))}
       </div>
+      <ToastContainer autoClose={3000} />
     </>
   );
 };

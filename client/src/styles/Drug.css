@@ -159,3 +159,8 @@
 .linebreak {
   margin-bottom: 1rem;
 }
+
+.transparentbutton{
+  background-color: transparent;
+  border-color: transparent;
+}
