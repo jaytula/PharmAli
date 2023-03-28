@@ -58,17 +58,16 @@ function CommentList(props) {
   }
 
   useEffect(() => {
-    const websocket = new WebSocket('ws://localhost:8080');
-    websocket.onopen = () => {
-      websocket.onmessage = (event) => {
+      props.websocket.onmessage = (event) => {
         const commentInfo = JSON.parse(event.data)
-        if (commentInfo.add) {
-          setComments(prev => (prev.find(comment => comment.id === commentInfo.comment.id)) ? prev : [...prev, commentInfo.comment])
-        } else {
-          setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
+        if (commentInfo.type === 'COMMENT') {
+          if (commentInfo.add) {
+            setComments(prev => (prev.find(comment => comment.id === commentInfo.comment.id)) ? prev : [...prev, commentInfo.comment])
+          } else {
+            setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
+          }
         }
-      };
-    };
+    }
   }, []);
 
   // To load all comments when the blog is visited

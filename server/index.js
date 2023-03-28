@@ -21,6 +21,7 @@ function updateComment(add, comment) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(
         JSON.stringify({
+          type: "COMMENT",
           add,
           comment
         })
@@ -33,7 +34,7 @@ function updateBlog(blogs) {
   wss.clients.forEach(function eachClient(client) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(
-        JSON.stringify({ blogs })
+        JSON.stringify({ type: "BLOGS", blogs })
       );
     }
   });

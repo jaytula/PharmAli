@@ -23,6 +23,17 @@ function BlogPost(props) {
       .catch(() => navigate('/*'))
   }, []);
 
+  useEffect(() => {
+    const updatedBlog = props.allBlogs.find(blog => blog.id == blogId);
+    if (updatedBlog) {
+      setBlogContent(prev => {
+        return { ...updatedBlog, name: prev.name }
+      })
+    } else {
+      navigate('/*')
+    }
+  }, [props.allBlogs]);
+
   return (
     <div className='blogPost'>
       <ArrowBackIcon size='large' onClick={() => navigate('/blogs')} />
@@ -47,7 +58,7 @@ function BlogPost(props) {
         <p className="blogPostText">
           {blogContent.content}
         </p>
-        <CommentList blog_id={blogId} user={props.user} userInfo={props.userInfo} />
+        <CommentList blog_id={blogId} user={props.user} userInfo={props.userInfo} websocket={props.websocket} />
       </div>
     </div>
   )
