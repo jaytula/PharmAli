@@ -25,6 +25,9 @@
   flex-direction: column;
   float:right;
   flex: 9 1;
+  border: solid 0.5px #88fffd;
+  border-radius: 15px;
+  background-color: #2e2d2d;
 }
 .articles {
   float: right;
@@ -46,8 +49,8 @@
     float: left;
     font-size: 12px;
     display: flex;
-    flex-direction: column-reverse;
-    align-items: stretch;
+    flex-direction: row-reverse;
+    align-items: flex-end;
 }
 
 @media only screen and (max-width: 1182px) {
