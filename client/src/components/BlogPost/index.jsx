@@ -14,13 +14,25 @@ function BlogPost(props) {
   const blogId = location.pathname.split('/')[2]
 
   useEffect(() => {
-      Promise.all([
-        axios.get(`/blogs/${blogId}`),
-      ])
-        .then((data) => {
-          setBlogContent(data[0].data[0])
-        })
+    Promise.all([
+      axios.get(`/blogs/${blogId}`),
+    ])
+      .then((data) => {
+        setBlogContent(data[0].data)
+      })
+      .catch(() => navigate('/*'))
   }, []);
+
+  useEffect(() => {
+    const updatedBlog = props.allBlogs.find(blog => blog.id == blogId);
+    if (updatedBlog) {
+      setBlogContent(prev => {
+        return { ...updatedBlog, name: prev.name }
+      })
+    } else {
+      navigate('/*')
+    }
+  }, [props.allBlogs]);
 
   return (
     <div className='blogPost'>
@@ -41,12 +53,12 @@ function BlogPost(props) {
               {blogContent.name}
             </b>
           </span>
-          <span><TimeAgo datetime={blogContent.created_at}/></span>
+          <span><TimeAgo datetime={blogContent.created_at} /></span>
         </div>
         <p className="blogPostText">
           {blogContent.content}
         </p>
-          <CommentList blog_id={blogId} user={props.user} />
+        <CommentList blog_id={blogId} user={props.user} userInfo={props.userInfo} websocket={props.websocket} />
       </div>
     </div>
   )

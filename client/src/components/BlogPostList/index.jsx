@@ -11,25 +11,23 @@ import "../../styles/MyBlogs.css";
 const BlogPostList = (props) => {
   // Set the blogs and categories to show
   const navigate = useNavigate();
-  const [category, setCategory] = useState("");
-  const [blogs, setBlogs] = useState([]);
-  const [categories, setCategories] = useState([]);
   const allBlogs = props.allBlogs;
+  const [category, setCategory] = useState("");
+  const [blogs, setBlogs] = useState(allBlogs);
+  const [categories, setCategories] = useState([]);
 
   // Get all blogs and categories when page is first visited
   useEffect(() => {
     Promise.all([
-      axios.get("/blogs"),
       axios.get("/categories")
     ])
-      .then(
-        (data) => {
-          setBlogs(data[0].data);
-          props.setAllBlogs(data[0].data);
-          setCategories(data[1].data);
-        }
-      );
-  }, [props.user]);
+    .then((data) => setCategories(data[0].data));
+  }, []);
+
+  useEffect(() => {
+    setBlogs(allBlogs);
+    setCategory("None");
+  }, [allBlogs]);
 
   useEffect(() => {
     const filteredByCategory = (category === "None") ? allBlogs : allBlogs.filter((blog) => blog.category === category);

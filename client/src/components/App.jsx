@@ -18,7 +18,20 @@ import useApplicationData from "../hooks/useApplicationData";
 import '../styles/App.css';
 
 function App() {
+  const websocket = new WebSocket('ws://localhost:8080');
   const { user, setUser, userInfo, setUserInfo, allBlogs, setAllBlogs, drugs, setDrugs, setCookie, removeCookie, getCookie } = useApplicationData();
+
+  // Update all blogs for realtime updates
+  useEffect(() => {
+    websocket.onopen = () => {
+      websocket.onmessage = (event) => {
+        const blogs = JSON.parse(event.data);
+        if (blogs.type === 'BLOGS') {
+          setAllBlogs(blogs.blogs);
+        }
+      };
+    };
+  }, []);
 
   // When app is refreshed
   useEffect(() => {
@@ -26,6 +39,10 @@ function App() {
       .then((data) => {
         setUser(data.data.id);
         setUserInfo(data.data);
+        return axios.get("/blogs")
+      })
+      .then((data) => {
+        setAllBlogs(data.data);
       })
   }, []);
 
@@ -52,7 +69,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/register" element={<Register setUser={setUser} setUserInfo={setUserInfo} setCookie={setCookie} />} />
             <Route path="/login" element={<Login setUser={setUser} setUserInfo={setUserInfo} setCookie={setCookie} />} />
-            <Route path="/blogs/:id" element={<BlogPost user={user} />} />
+            <Route path="/blogs/:id" element={<BlogPost user={user} userInfo={userInfo} websocket={websocket} allBlogs={allBlogs} />} />
             <Route path="/drugs/*" element={<Drug user={user} drugs={drugs} setDrugs={setDrugs} />} />
             <Route path="/pharma" element={<PharmaLocator user={user} />} />
             <Route path="/blogs" element={<BlogPostList user={user} allBlogs={allBlogs} setAllBlogs={setAllBlogs} />} />

@@ -17,43 +17,34 @@ function SaveBlog(props) {
   const [category, setCategory] = useState("")
   const [categories, setCategories] = useState([])
   const [error, setError] = useState("")
-  const urlEnd = location.pathname.split('/').pop()
-  const blogId = (urlEnd === "add") ? 0 : urlEnd;
+  const blogId = location.pathname.split('/').pop();
 
   const savePost = (saveBlog) => {
     saveBlog.category = (category) ? categories.find(cat => cat.name === category).id : null;
     Promise.all([
       axios.post("/blogs/edit", saveBlog)
     ])
-      .then(() => {
-        return axios.get('/blogs');
-      })
-      .then((data) => {
-        props.setAllBlogs(data.data)
-        navigate(`/blogs`);
-      })
-      .catch(({ response: data }) => {
-        setError(data.data)
-      })
+    .then(() => navigate(`/blogs`))
+    .catch(({ response: data }) => {
+      setError(data.data)
+    })
   };
 
   useEffect(() => {
-    if (props.user) {
-      Promise.all([
-        axios.get(`/blogs/${blogId}`),
-        axios.get('/categories')
-      ]).then((data) => {
-        if (blogId) {
-          const blog = data[0].data[0];
-          setTitle(blog.title);
-          setImage(blog.image_url);
-          setContent(blog.content);
-          setCategory(blog.category);
-        }
-        setCategories(data[1].data);
-      });
-    }
-  }, [props.user]);
+    Promise.all([
+      axios.get(`/blogs/${blogId}`),
+      axios.get('/categories')
+    ]).then((data) => {
+      if (!isNaN(blogId)) {
+        const blog = data[0].data;
+        setTitle(blog.title);
+        setImage(blog.image_url);
+        setContent(blog.content);
+        setCategory(blog.category);
+      }
+      setCategories(data[1].data);
+    })
+  }, []);
 
   const titleChange = (e) => setTitle(e.target.value);
   const imageChange = (e) => setImage(e.target.value);

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const validator = require('validator');
 const { getBlogs, getBlogById, addBlog, editBlog, deleteBlog } = require('../db/queries/blogs');
 
-module.exports = db => {
+module.exports = (db, updateBlog) => {
   // Get all blogs
   router.get("/", (request, response) => {
     getBlogs(db)
@@ -13,24 +13,29 @@ module.exports = db => {
 
   // Get blog by blog_id
   router.get("/:id", (request, response) => {
-    if (request.url !== '/undefined') {
-      const params = request.url.substring(1);
+    const params = request.url.substring(1);
+    if (!isNaN(params)) {
       getBlogById(db, params)
         .then(({ rows: blogs }) => {
-          response.json(blogs);
+          (blogs.length === 0) ? res.send(404) : response.json(blogs[0]);
         });
     } else {
-      response.send(200);
+      response.send([]);
     }
   });
 
   // Delete a blog
   router.post("/delete", (req, res) => {
     const blogId = Object.keys(req.body)[0]
+    console.log(deleteBlog)
     deleteBlog(db, blogId)
-      .then(() => {
-        res.send(200)
-      })
+    .then(() => {
+      return getBlogs(db)
+    })
+    .then(({ rows: blogs }) => {
+      res.status(200).send(`Blog Deleted`)
+      updateBlog(blogs);
+    });
   });
 
   // Add/Edit a blog
@@ -56,11 +61,15 @@ module.exports = db => {
     }
 
     // If blog info is valid, add it to blog table
-    const actionType = (id) ? editBlog : addBlog;
+    const actionType = (!isNaN(id)) ? editBlog : addBlog;
     actionType(db, blogInfo)
       .then(() => {
-        return res.status(200).send(`Blog ${(id) ? 'Edited' : 'Added'}`)
+        return getBlogs(db)
       })
+      .then(({ rows: blogs }) => {
+        res.status(200).send(`Blog ${(id) ? 'Edited' : 'Added'}`)
+        updateBlog(blogs);
+      });
   });
 
   return router;
