@@ -1,6 +1,6 @@
 const PORT = process.env.PORT || 8080;
 
-const app = require("./app")({ updateComment });
+const app = require("./app")({ updateComment, updateBlog });
 const server = require("http").Server(app);
 
 const WebSocket = require("ws");
@@ -23,6 +23,19 @@ function updateComment(add, comment) {
         JSON.stringify({
           add,
           comment
+        })
+      );
+    }
+  });
+}
+
+function updateBlog(add, blog) {
+  wss.clients.forEach(function eachClient(client) {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(
+        JSON.stringify({
+          add,
+          blog
         })
       );
     }

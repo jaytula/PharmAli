@@ -19,7 +19,7 @@ const categoriesRouter = require('./routes/categories');
 // Initialize app/server settings
 const app = express();
 
-module.exports = function application(actions = { updateComment: () => { } }) {
+module.exports = function application(actions = { updateComment: () => { }, updateBlog: () => { } }) {
   const secretKey = 'foobarbaz12345';
   app.use(cookieParser(secretKey));
   const cookieParams = {
@@ -38,7 +38,7 @@ module.exports = function application(actions = { updateComment: () => { } }) {
   // Connect router with routes
   app.use('/', indexRouter);
   app.use('/user', usersRouter(db, cookieParams));
-  app.use('/blogs', blogsRouter(db));
+  app.use('/blogs', blogsRouter(db, actions.updateBlog));
   app.use('/comments', commentsRouter(db, actions.updateComment));
   app.use('/articles', articlesRouter(db));
   app.use('/journal', journalRouter(db));

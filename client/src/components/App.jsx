@@ -20,12 +20,31 @@ import '../styles/App.css';
 function App() {
   const { user, setUser, userInfo, setUserInfo, allBlogs, setAllBlogs, drugs, setDrugs, setCookie, removeCookie, getCookie } = useApplicationData();
 
+  // Update all blogs for realtime updates
+  useEffect(() => {
+    const websocket = new WebSocket('ws://localhost:8080');
+    websocket.onopen = () => {
+      websocket.onmessage = (event) => {
+        const blogInfo = JSON.parse(event.data)
+        if (blogInfo.add) {
+          setAllBlogs(prev => (prev.find(blog => blog.id === blogInfo.blog.id)) ? prev : [...prev, blogInfo.blog])
+        } else {
+          setAllBlogs(prev => [blogInfo.blog, ...prev.filter(blog => blog.id != blogInfo.blog.id)])
+        }
+      };
+    };
+  }, []);
+
   // When app is refreshed
   useEffect(() => {
     getCookie()
       .then((data) => {
         setUser(data.data.id);
         setUserInfo(data.data);
+        return axios.get("/blogs")
+      })
+      .then((data) => {
+        setAllBlogs(data.data);
       })
   }, []);
 
