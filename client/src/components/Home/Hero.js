@@ -9,7 +9,7 @@ const Hero = ({imageSrc}) => {
 
       <div className="hero-subtitle">
         <h1 className="hero-title"> BETTER DRUG CHOICES & CONFIDENCE STARTS HERE.</h1>
-        <p className="hero-paragraph">Pharmali provides accurate and independent information on more than 24,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment.</p>
+        <p className="hero-paragraph">PharmAli provides accurate and independent information on more than 25,000 prescription drugs and substitutes over-the-counter medicines. This material is provided for educational purposes only and is not intended for medical advice, diagnosis, or treatment.</p>
       </div>
     </div>
   )
