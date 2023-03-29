@@ -17,7 +17,7 @@ module.exports = (db, updateBlog) => {
     if (!isNaN(params)) {
       getBlogById(db, params)
         .then(({ rows: blogs }) => {
-          (blogs.length === 0) ? res.send(404) : response.json(blogs[0]);
+          (blogs.length === 0) ? response.send(404) : response.json(blogs[0]);
         });
     } else {
       response.send([]);
