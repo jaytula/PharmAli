@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import React from 'react';
 import "../../styles/BlogPost.css"
 import CommentList from '../CommentList'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -25,18 +26,23 @@ function BlogPost(props) {
   }, []);
 
   useEffect(() => {
-      const updatedBlog = props.allBlogs.find(blog => blog.id == blogId);
-      if (updatedBlog) {
-        setBlogContent(prev => {
-          return { ...updatedBlog, name: prev.name }
-        })
-      } 
-      if (!updatedBlog && props.allBlogs.length !== 0) {
-        navigate('/*')
-      }
+    const updatedBlog = props.allBlogs.find(blog => blog.id == blogId);
+    if (updatedBlog) {
+      setBlogContent(prev => {
+        return { ...updatedBlog, name: prev.name }
+      })
+    }
+    if (!updatedBlog && props.allBlogs.length !== 0) {
+      navigate('/*')
+    }
   }, [props.allBlogs]);
 
-  const addNotification = (name) => toast(`Comment Added by ${name}`);
+  const toastId = React.useRef(null);
+  const addNotification = (name) => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast(`Comment Added by ${name}`);
+    }
+  }
   const deleteNotification = () => toast('Your comment has been deleted');
 
   return (
