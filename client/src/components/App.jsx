@@ -16,10 +16,13 @@ import Navbar2 from "./Home/Navbar2";
 import SaveBlog from "./SaveBlog";
 import useApplicationData from "../hooks/useApplicationData";
 import '../styles/App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const websocket = new WebSocket('ws://localhost:8080');
   const { user, setUser, userInfo, setUserInfo, allBlogs, setAllBlogs, drugs, setDrugs, setCookie, removeCookie, getCookie } = useApplicationData();
+  const addNotification = (title) => toast(`${title} has been added in blogs`);
 
   // Update all blogs for realtime updates
   useEffect(() => {
@@ -28,10 +31,11 @@ function App() {
         const blogs = JSON.parse(event.data);
         if (blogs.type === 'BLOGS') {
           setAllBlogs(blogs.blogs);
+          return (blogs.title) ? addNotification(blogs.title) : null;
         }
       };
     };
-  }, []);
+  }, [websocket.onmessage]);
 
   // When app is refreshed
   useEffect(() => {
@@ -62,6 +66,7 @@ function App() {
     <div className="App">
       <Router>
         <Navbar2 user={user} setUser={setUser} setUserInfo={setUserInfo} userInfo={userInfo} removeCookie={removeCookie} />
+        <ToastContainer autoClose={3000} />
         <UserProvider>
           <Routes>
             <Route path="*" element={<h1>404 Page Not Found</h1>} />
