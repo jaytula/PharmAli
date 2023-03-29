@@ -7,6 +7,8 @@ import SelectSmall from "../Category";
 import { useNavigate } from "react-router-dom";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import "../../styles/MyBlogs.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BlogPostList = (props) => {
   // Set the blogs and categories to show
@@ -34,12 +36,14 @@ const BlogPostList = (props) => {
     setBlogs(filteredByCategory);
   }, [category]);
 
-  const deletePost = (id) => {
-    axios.post("/blogs/delete", id).then(() => {
-      const newBlogPost = blogs.filter((blog) => blog.id !== id);
-      setBlogs(newBlogPost);
+  const deletePost = (id, title) => {
+    axios.post("/blogs/delete", id)
+    .then(() => {
+      addNotification(title)
     });
   };
+
+  const addNotification = (title) => toast(`Blog ${title} has been deleted`);
 
   // Render all articles and available categories
   return (
@@ -90,7 +94,7 @@ const BlogPostList = (props) => {
                 setBlog={() => navigate(`/blogs/${blog.id}`)}
                 user={props.user}
                 editPost={() => navigate(`/blogs/edit/${blog.id}`)}
-                deletePost={() => deletePost(blog.id)}
+                deletePost={() => deletePost(blog.id, blog.title)}
               />
             ))}
           </div>
