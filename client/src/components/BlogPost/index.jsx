@@ -37,6 +37,7 @@ function BlogPost(props) {
   }, [props.allBlogs]);
 
   const addNotification = (name) => toast(`Comment Added by ${name}`);
+  const deleteNotification = () => toast('Your comment has been deleted');
 
   return (
     <div className='blogPost'>
@@ -69,7 +70,8 @@ function BlogPost(props) {
           user={props.user}
           userInfo={props.userInfo}
           websocket={props.websocket}
-          addNotification={addNotification} />
+          addNotification={addNotification}
+          deleteNotification={deleteNotification} />
       </div>
     </div>
   )

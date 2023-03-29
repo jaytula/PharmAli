@@ -55,6 +55,9 @@ function CommentList(props) {
     Promise.all([
       axios.post("/comments/delete", id)
     ])
+      .then(() => {
+        props.deleteNotification();
+      })
   }
 
   useEffect(() => {
