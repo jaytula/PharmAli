@@ -51,7 +51,7 @@ function SaveBlog(props) {
   const contentChange = (e) => setContent(e.target.value);
 
   return (
-    <div className='write'><h1>{blogId ? "Edit Blog" : "Add Blog"}</h1>
+    <div className='write'><h1>{(blogId === "add") ? "Add Blog" : "Edit Blog"}</h1>
       {error.length > 0 && <Error message={error} />}
       <form className='writeForm'>
         <label className='writeFormGroup'>
