@@ -2,7 +2,8 @@ const getComments = function(db, blog_id) {
   const queryParams = [blog_id];
   const queryString = `SELECT comments.*, users.name FROM comments
   JOIN users ON comments.user_id = users.id
-  WHERE comments.blog_id = $1`;
+  WHERE comments.blog_id = $1
+  ORDER BY comments.created_at ASC`;
   return db.query(queryString, queryParams);
 };
 

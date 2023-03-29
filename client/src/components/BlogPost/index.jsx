@@ -5,7 +5,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios'
 import { useNavigate, useLocation } from "react-router-dom";
 import TimeAgo from 'timeago-react';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function BlogPost(props) {
   const navigate = useNavigate();
@@ -24,18 +25,22 @@ function BlogPost(props) {
   }, []);
 
   useEffect(() => {
-    const updatedBlog = props.allBlogs.find(blog => blog.id == blogId);
-    if (updatedBlog) {
-      setBlogContent(prev => {
-        return { ...updatedBlog, name: prev.name }
-      })
-    } else {
-      navigate('/*')
-    }
+      const updatedBlog = props.allBlogs.find(blog => blog.id == blogId);
+      if (updatedBlog) {
+        setBlogContent(prev => {
+          return { ...updatedBlog, name: prev.name }
+        })
+      } 
+      if (!updatedBlog && props.allBlogs.length !== 0) {
+        navigate('/*')
+      }
   }, [props.allBlogs]);
+
+  const addNotification = (name) => toast(`Comment Added by ${name}`);
 
   return (
     <div className='blogPost'>
+      <ToastContainer autoClose={3000} />
       <ArrowBackIcon size='large' onClick={() => navigate('/blogs')} />
       <div className="blogPostHolder">
         <img
@@ -58,7 +63,13 @@ function BlogPost(props) {
         <p className="blogPostText">
           {blogContent.content}
         </p>
-        <CommentList blog_id={blogId} user={props.user} userInfo={props.userInfo} websocket={props.websocket} />
+        <CommentList
+          key={blogId}
+          blog_id={blogId}
+          user={props.user}
+          userInfo={props.userInfo}
+          websocket={props.websocket}
+          addNotification={addNotification} />
       </div>
     </div>
   )

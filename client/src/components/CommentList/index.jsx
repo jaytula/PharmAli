@@ -40,7 +40,7 @@ function CommentList(props) {
   const addComment = () => {
     const params = { user_id: props.user, comment: newComment, blog_id: props.blog_id, name: props.userInfo.name }
     Promise.all([
-      axios.post(`/comments/add`, params),
+      axios.post(`/comments/add`, params)
     ])
       .then(() => {
         setNewComment('');
@@ -53,22 +53,29 @@ function CommentList(props) {
   // To delete a comment
   const deleteComment = (id) => {
     Promise.all([
-      axios.post("/comments/delete", id),
+      axios.post("/comments/delete", id)
     ])
   }
 
   useEffect(() => {
-      props.websocket.onmessage = (event) => {
-        const commentInfo = JSON.parse(event.data)
-        if (commentInfo.type === 'COMMENT') {
-          if (commentInfo.add) {
-            setComments(prev => (prev.find(comment => comment.id === commentInfo.comment.id)) ? prev : [...prev, commentInfo.comment])
-          } else {
-            setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
-          }
+    props.websocket.onmessage = (event) => {
+      const commentInfo = JSON.parse(event.data)
+      if (commentInfo.type === 'COMMENT') {
+        if (commentInfo.add) {
+          setComments(prev => {
+            if (prev.find(comment => comment.id === commentInfo.comment.id)) {
+              return prev
+            } else {
+              props.addNotification(commentInfo.comment.name)
+              return [...prev, commentInfo.comment]
+            }
+          })
+        } else {
+          setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
         }
+      }
     }
-  }, []);
+  }, [props.websocket.onmessage]);
 
   // To load all comments when the blog is visited
   useEffect(() => {
