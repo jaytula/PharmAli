@@ -3,9 +3,11 @@ import ArticleListItem from '../ArticleListItem';
 import '../../styles/Articles.css';
 import axios from 'axios';
 
-const Articles = (props) => {
+const Articles = ({isBlog}) => {
+  // Set initial state of the content displayed for this component
   const [articles, setArticles] = useState([]);
 
+  // Get all articles when component is called
   useEffect(() => {
     Promise.all([
       axios.get('/articles'),
@@ -15,14 +17,14 @@ const Articles = (props) => {
   }, []);
 
   return (
-    <div className={`articles-${props.isBlog ? "blog" : "search"}`}>
+    <div className={`articles-${isBlog ? "blog" : "search"}`}>
       <span className="articlesTitle">Browse Related Articles</span>
-      <div className={`articlecontainers-${props.isBlog ? "blog" : "search"}`}>
+      <div className={`articlecontainers-${isBlog ? "blog" : "search"}`}>
         {articles.map((article) => (
           <ArticleListItem
             key={article.id}
             article={article}
-            isBlog={props.isBlog}
+            isBlog={isBlog}
           />
         ))}
       </div>

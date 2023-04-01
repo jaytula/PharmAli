@@ -5,28 +5,29 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import '../../styles/Category.css'
 
-export default function SelectSmall(props) {
+export default function SelectSmall({ setCategory, category, blogFiltering, categories }) {
+  // Set category evertime one is selected
   const handleChange = (event) => {
-    props.setCategory(event.target.value);
+    setCategory(event.target.value);
   };
 
   return (
     <FormControl sx={{ m: 1, minWidth: 250, minHeight: 10 }} size="small">
       <InputLabel id="demo-select-small">Category</InputLabel>
       <Select
-        sx={{" &.MuiInputBase-root": {color:"white"}, "&& .MuiSvgIcon-root": { color: "white" } }} labelId="demo-select-small"
+        sx={{ " &.MuiInputBase-root": { color: "white" }, "&& .MuiSvgIcon-root": { color: "white" } }} labelId="demo-select-small"
         id="demo-select-small"
-        value={props.category}
+        value={category}
         label="Category"
         onChange={handleChange}
       >
-        {props.blogFiltering && (
+        {blogFiltering && (
           <MenuItem value="None">
             <em>None</em>
           </MenuItem>
         )}
 
-        {props.categories.map((option) => (
+        {categories.map((option) => (
           <MenuItem key={option.id} value={option.name}>
             {" "}
             {option.name}

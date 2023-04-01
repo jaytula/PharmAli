@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import ArticleList from '../ArticleList';
-import '../../styles/Search.css'
 import axios from 'axios';
+import ArticleList from '../ArticleList';
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import '../../styles/Search.css'
 
 const Search = () => {
+  // Gather all important helpers and states
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const [drugList, setDrugList] = useState([])
 
+  // Get the name of all drugs starting with the search input
   useEffect(() => {
     if (searchInput) {
       Promise.all([

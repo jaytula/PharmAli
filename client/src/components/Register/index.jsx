@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Error from "../Error";
 import useApplicationData from "../../hooks/useApplicationData";
-import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import "../../styles/login.css";
 import "../../styles/register.css";
 
-const Register = (props) => {
+const Register = ({ setUser, setUserInfo }) => {
+  // Gather all important helpers and states
   const { setCookie } = useApplicationData();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -16,14 +17,15 @@ const Register = (props) => {
   const [error, setError] = useState("");
   const SIGNUP = "SIGNUP";
 
+  // When user registers
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInfo = { email, password, name, postalCode };
     setCookie(userInfo)
       .then(({ data: user }) => {
         console.log(user);
-        props.setUser(user.id);
-        props.setUserInfo(user);
+        setUser(user.id);
+        setUserInfo(user);
         navigate("/");
       })
       .catch(({ response: data }) => setError(data.data))

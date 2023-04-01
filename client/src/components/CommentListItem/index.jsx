@@ -1,21 +1,21 @@
 import React from 'react'
-import '../../styles/Comment.css'
 import TimeAgo from 'timeago-react';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import '../../styles/Comment.css'
 
 
-function CommentListItem(props) {
+function CommentListItem({ comment, deleteComment, user }) {
   return (
     <>
       <div className='comment'>
-        <span className='commentDesc'>{props.comment.comment}</span>
+        <span className='commentDesc'>{comment.comment}</span>
         <div className="commentDeets">
-          <p><TimeAgo datetime={props.comment.created_at} /></p>
+          <p><TimeAgo datetime={comment.created_at} /></p>
           <div>
-            <p>{props.comment.name}</p>
+            <p>{comment.name}</p>
             <div className='commentIcon'>
-              {props.user === props.comment.user_id && (<IconButton className='commentIcon' onClick={() => props.deleteComment(props.comment.id)}>
+              {user === comment.user_id && (<IconButton className='commentIcon' onClick={() => deleteComment(comment.id)}>
                 <DeleteIcon className='commentIcon' />
               </IconButton>)}
             </div>

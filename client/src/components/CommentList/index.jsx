@@ -1,30 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import CommentListItem from '../CommentListItem';
 import IconButton from '@mui/material/IconButton';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentIcon from '@mui/icons-material/Comment';
 import Error from "../Error";
+import { createTheme } from '@mui/material/styles';
 import '../../styles/Comments.css'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function CommentList(props) {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        // Purple and green play nicely together.
-        main: '#ffffff',
-      },
-      secondary: {
-        // This is green.A700 as hex.
-        main: '#ffffff',
-      },
-    },
-  });
   // Set up all states for comment component
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
@@ -60,6 +47,7 @@ function CommentList(props) {
       })
   }
 
+  // For realtime updates on comments
   useEffect(() => {
     props.websocket.onmessage = (event) => {
       const commentInfo = JSON.parse(event.data)

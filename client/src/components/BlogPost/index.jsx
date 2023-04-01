@@ -1,48 +1,35 @@
-import { useEffect, useState } from 'react'
-import React from 'react';
-import "../../styles/BlogPost.css"
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate, useLocation } from "react-router-dom";
 import CommentList from '../CommentList'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import axios from 'axios'
-import { useNavigate, useLocation } from "react-router-dom";
 import TimeAgo from 'timeago-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../../styles/BlogPost.css"
 
-function BlogPost(props) {
+function BlogPost({ allBlogs, user, userInfo, websocket }) {
+  // Set initial state of the content displayed for this component
   const navigate = useNavigate();
   const location = useLocation();
   const [blogContent, setBlogContent] = useState({});
   const blogId = location.pathname.split('/')[2]
 
+  // Get blog content from allBlogs
   useEffect(() => {
-    Promise.all([
-      axios.get(`/blogs/${blogId}`),
-    ])
-      .then((data) => {
-        setBlogContent(data[0].data)
-      })
-      .catch(() => navigate('/*'))
-  }, []);
-
-  useEffect(() => {
-    const updatedBlog = props.allBlogs.find(blog => blog.id == blogId);
+    const updatedBlog = allBlogs.find(blog => blog.id == blogId);
     if (updatedBlog) {
       setBlogContent(prev => {
         return { ...updatedBlog, name: prev.name }
       })
     }
-    if (!updatedBlog && props.allBlogs.length !== 0) {
+    if (!updatedBlog && allBlogs.length !== 0) {
       navigate('/*')
     }
-  }, [props.allBlogs]);
+  }, [allBlogs]);
 
-  const toastId = React.useRef(null);
-  const addNotification = (name) => {
-    if (!toast.isActive(toastId.current)) {
-      toastId.current = toast(`Comment Added by ${name}`);
-    }
-  }
+  // Add toaster notifications
+  const addNotification = (name) => toast(`Comment Added by ${name}`);
   const deleteNotification = () => toast('Your comment has been deleted');
 
   return (
@@ -73,9 +60,9 @@ function BlogPost(props) {
         <CommentList
           key={blogId}
           blog_id={blogId}
-          user={props.user}
-          userInfo={props.userInfo}
-          websocket={props.websocket}
+          user={user}
+          userInfo={userInfo}
+          websocket={websocket}
           addNotification={addNotification}
           deleteNotification={deleteNotification} />
       </div>
