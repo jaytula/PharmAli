@@ -15,7 +15,6 @@ const JournalList = ({ journals, handleAddJournal, handleDeleteJournal, error })
           handleDeleteJournal={handleDeleteJournal}
         />
       ))}
-
     </div>
   );
 };

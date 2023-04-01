@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
-import { useNavigate, useLocation, Link } from "react-router-dom";
-import "../../styles/Drug.css";
 import medlist from "../../assets/images/medlist.png";
 import locator from "../../assets/images/locator.png";
 import blogs from "../../assets/images/blogs.png";
@@ -10,8 +9,9 @@ import journal from "../../assets/images/journal.png";
 import { BsHeartPulseFill, BsHeartPulse } from "react-icons/bs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../../styles/Drug.css";
 
-const Drug = (props) => {
+const Drug = ({ user, setDrugs, drugs }) => {
   // favourite will be the saved_medication id
   const [favourite, setFavourite] = useState();
   const [drugId, setDrugId] = useState();
@@ -21,18 +21,18 @@ const Drug = (props) => {
   const drugName = location.pathname.split("/")[2];
   const [drugNotes, setDrugNotes] = useState("")
 
+  // Everytime something is typed into the drug notes form
   const handleChange = (e) => {
     setDrugNotes(e.target.value);
   };
 
-
+  // Everyime a drug is added to favourites
   const handleClickSave = () => {
     Promise.all([
       axios.post(`/favourite/notes`, { notes: drugNotes, id: favourite }),
-      axios.get(`/favourite/${props.user}`),
+      axios.get(`/favourite/${user}`)
     ]).then((data) => {
-      console.log(data);
-      props.setDrugs(data[1].data)
+      setDrugs(data[1].data)
       navigate('/mydrugs');
     })
   }
@@ -72,8 +72,9 @@ const Drug = (props) => {
         console.log("Error", err)
       })
 
-    if (props.user) {
-      const findDrug = props.drugs.find(savedDrug => savedDrug.name === drugName)
+    // Check if user is logged in and if so, see if they favourited this dru
+    if (user) {
+      const findDrug = drugs.find(savedDrug => savedDrug.name === drugName)
       if (findDrug) {
         setFavourite(findDrug.id);
         setDrugNotes(findDrug.notes)
@@ -85,8 +86,9 @@ const Drug = (props) => {
           })
       }
     }
-  }, [props.drugs]);
+  }, [drugs]);
 
+  // Remove numbers present at the beginning of the components from the external api data
   const stringifier = (string) => {
     for (let i = 0; i < string.length; i++) {
       if (isNaN(string[i])) {
@@ -99,6 +101,7 @@ const Drug = (props) => {
   const removeNotification = () => toast("Removed from my Med List 💊");
   const addNotification = () => toast("Added to my Med List 💊");
 
+  // Everytime a heart is added or removed from the list
   const changeLike = () => {
     let params;
     let route;
@@ -106,15 +109,15 @@ const Drug = (props) => {
       params = { favourite };
       route = "/favourite/remove";
     } else {
-      params = { user_id: props.user, drug_id: drugId };
+      params = { user_id: user, drug_id: drugId };
       route = "/favourite/add";
     }
     Promise.all([
       axios.post(route, params),
-      axios.get(`/favourite/${props.user}`)
+      axios.get(`/favourite/${user}`)
     ])
       .then((data) => {
-        props.setDrugs(data[1].data)
+        setDrugs(data[1].data)
         favourite ? setFavourite("") : setFavourite(data[0].data.id);
       });
   };
@@ -142,7 +145,7 @@ const Drug = (props) => {
         <ArrowBackIcon size="large" onClick={() => navigate("/search")} />
         <span className="drug-name">
           <h1>Drug Name: {drugName}</h1>
-          {props.user &&
+          {user &&
             <>
 
               <span className="med-list-icon">
@@ -151,7 +154,7 @@ const Drug = (props) => {
 
                     <h3>Add to my med list</h3>
                     <button className="transparentbutton" onClick={addNotification}>
-                    <BsHeartPulse className="green-icon" onClick={changeLike} />
+                      <BsHeartPulse className="green-icon" onClick={changeLike} />
                     </button>
                   </>
                 )}
@@ -159,12 +162,12 @@ const Drug = (props) => {
                   (<>
                     <h3>Remove from my med list</h3>
                     <button className="transparentbutton" onClick={removeNotification}>
-                    <BsHeartPulseFill className="pink-icon" onClick={changeLike} />
+                      <BsHeartPulseFill className="pink-icon" onClick={changeLike} />
                     </button>
                   </>)}
               </span>
             </>}
-          <hr className="linebreak"/>
+          <hr className="linebreak" />
         </span>
         {favourite &&
           (<div className="journaldrug">

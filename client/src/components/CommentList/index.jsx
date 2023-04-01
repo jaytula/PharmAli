@@ -1,30 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import CommentListItem from '../CommentListItem';
 import IconButton from '@mui/material/IconButton';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentIcon from '@mui/icons-material/Comment';
 import Error from "../Error";
+import { createTheme } from '@mui/material/styles';
 import '../../styles/Comments.css'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function CommentList(props) {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        // Purple and green play nicely together.
-        main: '#ffffff',
-      },
-      secondary: {
-        // This is green.A700 as hex.
-        main: '#ffffff',
-      },
-    },
-  });
   // Set up all states for comment component
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
@@ -40,7 +27,7 @@ function CommentList(props) {
   const addComment = () => {
     const params = { user_id: props.user, comment: newComment, blog_id: props.blog_id, name: props.userInfo.name }
     Promise.all([
-      axios.post(`/comments/add`, params),
+      axios.post(`/comments/add`, params)
     ])
       .then(() => {
         setNewComment('');
@@ -53,22 +40,33 @@ function CommentList(props) {
   // To delete a comment
   const deleteComment = (id) => {
     Promise.all([
-      axios.post("/comments/delete", id),
+      axios.post("/comments/delete", id)
     ])
+      .then(() => {
+        props.deleteNotification();
+      })
   }
 
+  // For realtime updates on comments
   useEffect(() => {
-      props.websocket.onmessage = (event) => {
-        const commentInfo = JSON.parse(event.data)
-        if (commentInfo.type === 'COMMENT') {
-          if (commentInfo.add) {
-            setComments(prev => (prev.find(comment => comment.id === commentInfo.comment.id)) ? prev : [...prev, commentInfo.comment])
-          } else {
-            setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
-          }
+    props.websocket.onmessage = (event) => {
+      const commentInfo = JSON.parse(event.data)
+      if (commentInfo.type === 'COMMENT') {
+        if (commentInfo.add) {
+          setComments(prev => {
+            if (prev.find(comment => comment.id === commentInfo.comment.id)) {
+              return prev
+            } else {
+              props.addNotification(commentInfo.comment.name)
+              return [...prev, commentInfo.comment]
+            }
+          })
+        } else {
+          setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
         }
+      }
     }
-  }, []);
+  }, [props.websocket.onmessage]);
 
   // To load all comments when the blog is visited
   useEffect(() => {

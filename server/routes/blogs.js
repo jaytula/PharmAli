@@ -17,7 +17,7 @@ module.exports = (db, updateBlog) => {
     if (!isNaN(params)) {
       getBlogById(db, params)
         .then(({ rows: blogs }) => {
-          (blogs.length === 0) ? res.send(404) : response.json(blogs[0]);
+          (blogs.length === 0) ? response.send(404) : response.json(blogs[0]);
         });
     } else {
       response.send([]);
@@ -29,13 +29,13 @@ module.exports = (db, updateBlog) => {
     const blogId = Object.keys(req.body)[0]
     console.log(deleteBlog)
     deleteBlog(db, blogId)
-    .then(() => {
-      return getBlogs(db)
-    })
-    .then(({ rows: blogs }) => {
-      res.status(200).send(`Blog Deleted`)
-      updateBlog(blogs);
-    });
+      .then(() => {
+        return getBlogs(db)
+      })
+      .then(({ rows: blogs }) => {
+        res.status(200).send(`Blog Deleted`)
+        updateBlog(blogs);
+      });
   });
 
   // Add/Edit a blog
@@ -68,7 +68,7 @@ module.exports = (db, updateBlog) => {
       })
       .then(({ rows: blogs }) => {
         res.status(200).send(`Blog ${(id) ? 'Edited' : 'Added'}`)
-        updateBlog(blogs);
+        updateBlog(blogs, title, isNaN(id));
       });
   });
 

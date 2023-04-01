@@ -4,20 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { BsHeartPulse } from "react-icons/bs";
 import "../../styles/Drug.css";
 
-const MyDrugListItem = (props) => {
+const MyDrugListItem = ({ drug, setDrugs, user }) => {
+  // Gather all important helpers and states
   const navigate = useNavigate();
-  const [favourite, setFavourite] = useState(props.drug.id);
-  
+  const [favourite, setFavourite] = useState(drug.id);
+
   // Every time drug is favourited
   const changeLike = () => {
     const params = { favourite };
     const route = "/favourite/remove";
     Promise.all([
       axios.post(route, params),
-      axios.get(`/favourite/${props.user}`),
+      axios.get(`/favourite/${user}`),
     ]).then((data) => {
       console.log(data);
-      props.setDrugs(data[1].data);
+      setDrugs(data[1].data);
       setFavourite("");
     });
   };
@@ -29,16 +30,16 @@ const MyDrugListItem = (props) => {
           <>
             <div
               className="drug-faved"
-              onClick={() => navigate(`/drugs/${props.drug.name}`)}
+              onClick={() => navigate(`/drugs/${drug.name}`)}
             >
-              <h3 className="drugname">Drug Name : {props.drug.name}</h3>
+              <h3 className="drugname">Drug Name : {drug.name}</h3>
 
             </div>
             <div className="unfavbutton">
               <BsHeartPulse className="un-fav-icon" onClick={changeLike} />
               <div className="unfavtext">Click me to unfavourite</div>
             </div>
-            <div class="notes">{props.drug.notes}</div>
+            <div class="notes">{drug.notes}</div>
           </>
         )}
       </div>

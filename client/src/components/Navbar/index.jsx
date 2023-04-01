@@ -1,82 +1,80 @@
-import React from 'react'
-import "../../styles/Nav.css"
-import NavbarData from '../../helpers/NavbarData'
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import useApplicationData from '../../hooks/useApplicationData'
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import "../../styles/Navbar.css";
+import { FiMenu, FiX } from "react-icons/fi";
+import navbarData from "../../helpers/NavbarData";
+import { useNavigate } from "react-router-dom";
+import useApplicationData from "../../hooks/useApplicationData";
+import logo from '../../assets/images/logo.png';
 
-const Navbar = (props) => {
+const Navbar = ({ user, userInfo, setUser, setUserInfo }) => {
+  // Gather all important helpers and states
+  const { removeCookie } = useApplicationData();
   const navigate = useNavigate();
-  const LOGOUT = "/logout"
+  const [menuClicked, setMenuClicked] = useState(false);
+  const LOGOUT = "/logout";
 
-  const { menu, setMenu, removeCookie, setDarkMode } = useApplicationData();
-
-  const theme = createTheme({
-    palette: {
-      primary: {
-        // Purple and green play nicely together.
-        main: '#e3f2fd',
-      },
-      secondary: {
-        // This is green.A700 as hex.
-        main: '#11cb5f',
-      },
-    },
-  });
-
-  const showMenu = () => setMenu(!menu);
-
+  // To set a link associated with item in the navbar
   const setLink = (item) => {
     if (item === LOGOUT) {
       removeCookie()
         .then(() => {
+          setUserInfo({});
+          setUser(null);
           navigate('/');
         });
     } else {
       navigate(item);
     }
-  }
+  };
+
+  // To open/close menu
+  const toggleMenuClicked = () => {
+    setMenuClicked(!menuClicked);
+  };
+
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <div data-testid="navbar" className='navbar'>
-          <MenuIcon data-testid="navmenu-icon" onClick={showMenu} />
-        </div>
-        <nav data-testid="nav-menu" className={menu ? 'nav-menu active' : 'nav-menu'}>
-          <ul className='nav-menu-items'>
-            <ul className='navbar-toggle'>
-              <CloseIcon color="primary" onClick={showMenu} />
-            </ul>
-            <ul key={props.user} className="nav-text" data-testid="nav-item">
-              {props.user &&
-                (<h3>
-                  Welcome {props.user}
-                </h3>)}
-              <button
-                onClick={() =>
-                  setDarkMode(
-                    (previousDarkMode) =>
-                      !previousDarkMode)
-                } className="save"
-              >Dark Mode</button>
-            </ul>
-            {NavbarData(props.user).map((item, index) => {
-              return (
-                <ul key={index} className={item.cName} onClick={() => setLink(item.route)} data-testid="nav-item">
-                  {item.icon}
-                  <span className="item-title">{item.title}</span>
-                </ul>
-              );
-            })}
-          </ul>
-        </nav>
-      </ThemeProvider>
-    </>
+    <nav className="navbar2">
+      <span className="navbar__logo">
+        <img className="logo-image" src={logo} />
+      </span>
+      <span className="logo-title">PharmAli</span>
+      {menuClicked ? (
+        <FiMenu
+          size={25}
+          className={"navbar__menu"}
+          onClick={toggleMenuClicked}
+        />
+      ) :
+        (
+          <FiX
+            size={25}
+            className={"navbar__menu"}
+            onClick={toggleMenuClicked}
+          />
+        )}
+
+      <ul className={
+        menuClicked ? "navbar__list" : "navbar__list navbar__list--active"
+      } >
+
+        {navbarData(user).map((item, index) => {
+          return (
+            <li className="navbar__item" key={index} onClick={() => setLink(item.url)}>
+              <a className="navbar__link">
+
+                {item.title}
+              </a>
+            </li>
+          );
+        })}
+        {user &&
+          (<li className="welcomeUser">
+            Welcome, {userInfo.name}
+          </li>)}
+      </ul>
+    </nav >
   );
-}
 
-
-export default Navbar
+};
+export default Navbar;

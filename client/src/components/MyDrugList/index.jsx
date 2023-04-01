@@ -1,18 +1,18 @@
 import MyDrugListItem from "../MyDrugListItem";
 import "../../styles/Drug.css";
 
-const MyDrugList = (props) => {
+const MyDrugList = ({ drugs, setDrugs, user }) => {
   return (
     <div className="mymedListSection">
-        <h1> My Med List</h1>
+      <h1> My Med List</h1>
       <div className="drugListItemContainer">
-        {props.drugs.map((drug) => (
+        {drugs.map((drug) => (
           <div className="drugListItem">
             <MyDrugListItem
               key={drug.drug_id}
-              setDrugs={props.setDrugs}
+              setDrugs={setDrugs}
               drug={drug}
-              user={props.user}
+              user={user}
             />
           </div>
         ))}

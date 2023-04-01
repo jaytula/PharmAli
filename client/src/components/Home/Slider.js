@@ -1,79 +1,41 @@
 import React from "react";
 import "../../styles/slider.css";
 import { useInView } from "react-intersection-observer";
-import { useNavigate, useLocation } from "react-router-dom";
-// const Slider = ({ imageSrc, title, subtitle, flipped }) => {
-//   const { ref, inView } = useInView({
-//     /* Optional options */
-//     threshold: 0.4,
-//   });
 
-//   const renderContent = () => {
-//     if (!flipped) {
-//       return (
-//         <>
-//           <img src={imageSrc} alt="Travel" className="slider__image" />
-//           <div className="slider__content">
-//             <h1 className="slider__title">{title}</h1>
-//             <p>{subtitle}</p>
-//           </div>
-//         </>
-//       );
-//     } else {
-//       return (
-//         <>
-//           <div className="slider__content">
-//             <h1 className="slider__title">{title}</h1>
-//             <p>{subtitle}</p>
-//           </div>
-//           <img src={imageSrc} alt="Travel" className="slider__image" />
-//         </>
-//       );
-//     }
-//   };
-
-//   return (
-//     <div className={inView ? "slider slider--zoom" : "slider"} ref={ref}>
-//       {renderContent()}
-//     </div>
-//   );
-// };
-
-// export default Slider;
-const Slider = ({imageSrc, hrefvalue,title, subtitle, flipped}) => {
-  const navigate = useNavigate();
+const Slider = ({ imageSrc, hrefvalue, title, subtitle, flipped }) => {
   const { ref, inView } = useInView({
-        /* Optional options */
-        threshold: 0.4,
-      });
-    
+    /* Optional options */
+    threshold: 0.4,
+  });
+
+  // To render content in flipped direction w.r.t image and text
   const renderContent = () => {
     if (!flipped) {
       return (
-      <>
-        <img href={hrefvalue} src={imageSrc} alt="Travel" className="slider__image" />
-        <div className="slider__content">
-          <h1 className="slider__title">
-            <a href={hrefvalue} >{title}</a></h1>
-          <p className="slider__subtitle">{subtitle}</p>
-        </div>
-      </>
+        <>
+          <img href={hrefvalue} src={imageSrc} alt="Travel" className="slider__image" />
+          <div className="slider__content">
+            <h1 className="slider__title">
+              <a href={hrefvalue} >{title}</a></h1>
+            <p className="slider__subtitle">{subtitle}</p>
+          </div>
+        </>
       );
     } else {
       return (
-      <>
-        <div className="slider__content">
-          <h1 className="slider__title">
-          <a href={hrefvalue}>{title}</a>
-          </h1>
-          <p className="slider__subtitle">{subtitle}</p>
-        </div>
-        <img  href={hrefvalue} src={imageSrc} alt="Travel" className="slider__image" />
-    
-      </>
+        <>
+          <div className="slider__content">
+            <h1 className="slider__title">
+              <a href={hrefvalue}>{title}</a>
+            </h1>
+            <p className="slider__subtitle">{subtitle}</p>
+          </div>
+          <img href={hrefvalue} src={imageSrc} alt="Travel" className="slider__image" />
+
+        </>
       );
     }
-  
+
   };
   return (
     <div className={inView ? "slider slider--zoom" : "slider"} ref={ref}>
@@ -81,30 +43,5 @@ const Slider = ({imageSrc, hrefvalue,title, subtitle, flipped}) => {
     </div>
   );
 };
-//   return (
-//     <div className="slider">
-//     {/* {/* //  { !flipped && (<>
-//     //     <img src={imageSrc} alt="Travel" className="slider__image" />
-//     //     <div className="sider__content">
-//     //       <h1 className="slider__title">{title}</h1>
-//     //       <p>{subtitle}</p>
-//     //     </div>
-//     //   </>) */}
-//     {/* //  } 
-//     //  { */}
-//     {/* //   flipped && (
-//     //     <>
-//     //     <div className="sider__content">
-//     //       <h1 className="slider__title">{title}</h1>
-//     //       <p>{subtitle}</p>
-//     //     </div>
-//     //     <img src={imageSrc} alt="Travel" className="slider__image" />
-//     //   </>
-//     //   ) */}
-//     {/* //  } */} 
-//     </div>
-//   // );
-//   );
-// };
 
 export default Slider;

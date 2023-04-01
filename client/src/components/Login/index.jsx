@@ -1,37 +1,36 @@
 import { useState } from "react";
 import "../../styles/login.css";
-import Button from "../Button";
 import Error from "../Error";
-import Navbar2 from "../Home/Navbar2";
 import useApplicationData from "../../hooks/useApplicationData";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
-const Login = (props) => {
+const Login = ({ setUser, setUserInfo }) => {
+  // Gather all important helpers and states
   const { setCookie } = useApplicationData();
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const LOGIN = "LOGIN";
 
+  // Each time user clicks login
   const handleSubmit = (e) => {
     e.preventDefault();
     const userInfo = { email, password };
     setCookie(userInfo)
-    .then(({data: passed}) => {
-        props.setUser(passed.message.id);
-        props.setUserInfo(passed.message);
+      .then(({ data: passed }) => {
+        setUser(passed.message.id);
+        setUserInfo(passed.message);
         navigate("/");
-    })
-    .catch(({response: data}) => setError(data.data.message))
+      })
+      .catch(({ response: data }) => setError(data.data.message))
   };
 
   return (
     <div className="login__page">
       <div className="logo">
-        <img className="login_image" src={logo} alt="login_image"/>{" "}
+        <img className="login_image" src={logo} alt="login_image" />{" "}
       </div>
       <div className="auth-form-container">
         <div className="login_container">
@@ -70,7 +69,8 @@ const Login = (props) => {
                   required
                 />
               </div>
-              {error.length > 0 && <Error message={error} />}
+              {error.length > 0 &&
+                (<Error message={error} />)}
               <div className="loginButton">
                 <button className="login-button" children={LOGIN}></button>
               </div>
@@ -78,8 +78,7 @@ const Login = (props) => {
             <div className="loginButton">
               <button
                 className="login-button"
-                onClick={() => navigate("/register")}
-              >
+                onClick={() => navigate("/register")}>
                 REGISTER
               </button>
             </div>

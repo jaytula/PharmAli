@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import BlogPostListItem from "../BlogPostListItem";
-import "../../styles/BlogPosts.css";
-import ArticleList from "../ArticleList";
 import axios from "axios";
+import BlogPostListItem from "../BlogPostListItem";
+import ArticleList from "../ArticleList";
 import SelectSmall from "../Category";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import PostAddIcon from "@mui/icons-material/PostAdd";
+import 'react-toastify/dist/ReactToastify.css';
+import "../../styles/BlogPosts.css";
 import "../../styles/MyBlogs.css";
 
-const BlogPostList = (props) => {
+const BlogPostList = ({ allBlogs, myBlogs, user }) => {
   // Set the blogs and categories to show
   const navigate = useNavigate();
-  const allBlogs = props.allBlogs;
   const [category, setCategory] = useState("");
   const [blogs, setBlogs] = useState(allBlogs);
   const [categories, setCategories] = useState([]);
@@ -21,31 +22,35 @@ const BlogPostList = (props) => {
     Promise.all([
       axios.get("/categories")
     ])
-    .then((data) => setCategories(data[0].data));
+      .then((data) => setCategories(data[0].data));
   }, []);
 
+  // Update blogs whenever all blogs has a new/editted blog
   useEffect(() => {
     setBlogs(allBlogs);
     setCategory("None");
   }, [allBlogs]);
 
+  // Filter through blogs everytime a category is chosen
   useEffect(() => {
     const filteredByCategory = (category === "None") ? allBlogs : allBlogs.filter((blog) => blog.category === category);
     setBlogs(filteredByCategory);
   }, [category]);
 
-  const deletePost = (id) => {
-    axios.post("/blogs/delete", id).then(() => {
-      const newBlogPost = blogs.filter((blog) => blog.id !== id);
-      setBlogs(newBlogPost);
-    });
+  const deletePost = (id, title) => {
+    axios.post("/blogs/delete", id)
+      .then(() => {
+        addNotification(title)
+      });
   };
 
-  // Render all articles and available categories
+  // Toaster notifications for blog creator when blog has been deleted
+  const addNotification = (title) => toast(`Blog ${title} has been deleted`);
+
   return (
     <>
       <section className="section">
-        {!props.myBlogs && (
+        {!myBlogs && (
           <div className="articles-blog">
             <ArticleList isBlog={true} />
           </div>
@@ -53,7 +58,7 @@ const BlogPostList = (props) => {
         <div className="myBlogPosts">
           <span className="blogPostsTitle">
             <div className="bloggg">
-              <h1>{props.myBlogs ? "My Blogs" : "Blogs"}</h1>
+              <h1>{myBlogs ? "My Blogs" : "Blogs"}</h1>
             </div>
             <div className="category-dropdown">
               <SelectSmall
@@ -63,7 +68,7 @@ const BlogPostList = (props) => {
                 setCategory={setCategory}
                 blogFiltering={true}
               />
-              {props.user && (
+              {user && (
                 <div className="addBlogButton">
                   <button
                     className="blog-button"
@@ -88,9 +93,9 @@ const BlogPostList = (props) => {
                 key={blog.id}
                 blog={blog}
                 setBlog={() => navigate(`/blogs/${blog.id}`)}
-                user={props.user}
+                user={user}
                 editPost={() => navigate(`/blogs/edit/${blog.id}`)}
-                deletePost={() => deletePost(blog.id)}
+                deletePost={() => deletePost(blog.id, blog.title)}
               />
             ))}
           </div>

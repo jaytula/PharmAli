@@ -30,11 +30,11 @@ function updateComment(add, comment) {
   });
 }
 
-function updateBlog(blogs) {
+function updateBlog(blogs, title, add) {
   wss.clients.forEach(function eachClient(client) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(
-        JSON.stringify({ type: "BLOGS", blogs })
+        JSON.stringify({ type: "BLOGS", blogs, title: (add) ? title : undefined })
       );
     }
   });

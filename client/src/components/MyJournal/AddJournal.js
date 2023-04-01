@@ -3,9 +3,11 @@ import "../../styles/Journal.css";
 import Error from "../Error";
 
 const AddJournal = ({ handleAddJournal, error }) => {
+  // Gather all important helpers and states
   const charMaximumLimit = 500;
   const [journalText, setJournalText] = useState('');
 
+  // Each time user adds or removes text in the journal form
   const handleChange = (e) => {
     if (charMaximumLimit - e.target.value.length >= 0)
       setJournalText(e.target.value);

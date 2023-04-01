@@ -1,10 +1,10 @@
 import React from "react";
 import "../../styles/hero.css";
-const Hero = ({imageSrc}) => {
+const Hero = ({ imageSrc }) => {
   return (
     <div className="hero">
       <div className="hero-container">
-        <img src={imageSrc} alt="Travel" className="hero-image"/>
+        <img src={imageSrc} alt="Travel" className="hero-image" />
       </div>
 
       <div className="hero-subtitle">

@@ -1,14 +1,12 @@
-import React from 'react'
-import { useState } from 'react';
-import '../../styles/EditBlog.css';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Error from "../Error";
 import { useNavigate, useLocation } from "react-router-dom";
 import SelectSmall from '../Category/index.jsx';
+import '../../styles/EditBlog.css';
 
-
-function SaveBlog(props) {
+function SaveBlog({ user, allBlogs, setAllBlogs }) {
+  // Gather all important helpers and states
   const navigate = useNavigate();
   const location = useLocation();
   const [title, setTitle] = useState("")
@@ -24,34 +22,35 @@ function SaveBlog(props) {
     Promise.all([
       axios.post("/blogs/edit", saveBlog)
     ])
-    .then(() => navigate(`/blogs`))
-    .catch(({ response: data }) => {
-      setError(data.data)
-    })
+      .then(() => navigate(`/blogs`))
+      .catch(({ response: data }) => {
+        setError(data.data)
+      })
   };
 
+  // Add information to the form based on edit vs. new blog
   useEffect(() => {
     Promise.all([
-      axios.get(`/blogs/${blogId}`),
       axios.get('/categories')
     ]).then((data) => {
       if (!isNaN(blogId)) {
-        const blog = data[0].data;
+        const blog = allBlogs.find(blog => blog.id == blogId);
         setTitle(blog.title);
         setImage(blog.image_url);
         setContent(blog.content);
         setCategory(blog.category);
       }
-      setCategories(data[1].data);
+      setCategories(data[0].data);
     })
-  }, []);
+  }, [allBlogs]);
 
+  // Everytime title, image or content is changed update state(s)
   const titleChange = (e) => setTitle(e.target.value);
   const imageChange = (e) => setImage(e.target.value);
   const contentChange = (e) => setContent(e.target.value);
 
   return (
-    <div className='write'><h1>{blogId ? "Edit Blog" : "Add Blog"}</h1>
+    <div className='write'><h1>{(blogId === "add") ? "Add Blog" : "Edit Blog"}</h1>
       {error.length > 0 && <Error message={error} />}
       <form className='writeForm'>
         <label className='writeFormGroup'>
@@ -77,7 +76,7 @@ function SaveBlog(props) {
         <button className='button-cancel' onClick={() => navigate('/blogs')}>
           Cancel
         </button>
-        <button className='button-save' onClick={() => savePost({ id: blogId, title, image_url: image, content, user_id: props.user })}>
+        <button className='button-save' onClick={() => savePost({ id: blogId, title, image_url: image, content, user_id: user })}>
           Save
         </button>
       </div>
