@@ -1,6 +1,6 @@
 # PharmAli Project
 
-PharmAli is a full stack web application built using Node and Express for the server and React for the client. This app allows the user to search information on drugs....
+A full stack web application built with React and Express that allows user to search for pharmaceutical drugs for their drug-drug interactions as well as create and view blogs and journals.
 
 
 ## Final Product
