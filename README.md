@@ -4,14 +4,7 @@ A full stack web application built with React and Express that allows user to se
 
 
 ## Final Product
-<!-- Homepage -->
-<!-- Login -->
-<!-- Register -->
-<!-- Search -->
-<!-- Pharmacy Nearby -->
-<!-- Blog Posts -->
-<!-- My Journal -->
-<!-- My Med List -->
+!["PharmAli Application Walkthrough"](docs/PharmAli.gif)
 
 ## Dependencies
 
