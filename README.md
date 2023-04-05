@@ -54,18 +54,18 @@ A full stack web application built with React and Express that allows user to se
   - Create .env file inside the server folder and copy content from .env.example into .env
   - Fill in the necessary PostgreSQL configuration
     - (  eg. 
-    PORT=8080
-    DB_HOST=localhost
-    DB_USER=labber
-    DB_PASSWORD=labber
-    DB_DATABASE=pharmali
-    DB_PORT=5432
-    )
-  - Go into psql
-  - Create a db ( CREATE DATABASE pharmali; )
-  - Creat user ( CREATE USER labber WITH ENCRYPTED PASSWORD 'labber'; )
-  - Granting access to user ( GRANT ALL PRIVILEGES ON DATABASE pharmali TO labber;)
-  - Run npm run db:reset
+      PORT=8080
+      DB_HOST=localhost
+      DB_USER=labber
+      DB_PASSWORD=labber
+      DB_DATABASE=pharmali
+      DB_PORT=5432
+      )
+    - Go into psql
+    - Create a db ( CREATE DATABASE pharmali; )
+    - Creat user ( CREATE USER labber WITH ENCRYPTED PASSWORD 'labber'; )
+    - Granting access to user ( GRANT ALL PRIVILEGES ON DATABASE pharmali TO labber;)
+    - Run npm run db:reset
 
 5. Run the client and server: `npm start` in client and server folder.
 6. Visit `http://localhost:8080` for the server and `http://localhost:3000` for the client.
