@@ -5,8 +5,6 @@ const logger = require('morgan');
 const db = require('./db');
 var cookieParser = require('cookie-parser')
 
-db();
-
 // Set up the router
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
