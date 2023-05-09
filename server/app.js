@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const db = require('./db');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 var cookieParser = require('cookie-parser')
 
 // Set up the router
@@ -36,7 +37,6 @@ module.exports = function application(actions = { updateComment: () => { }, upda
   app.use(express.static(path.join(__dirname, 'public')));
 
   // Connect router with routes
-  app.use('/', indexRouter);
   app.use('/user', usersRouter(db, cookieParams));
   app.use('/blogs', blogsRouter(db, actions.updateBlog));
   app.use('/comments', commentsRouter(db, actions.updateComment));
@@ -45,6 +45,7 @@ module.exports = function application(actions = { updateComment: () => { }, upda
   app.use('/drugs', drugsRouter(db));
   app.use('/favourite', savedMedicationsRouter(db));
   app.use('/categories', categoriesRouter(db));
+  app.use(createProxyMiddleware({ target: 'http://localhost:3000' }));
 
   app.close = function() {
     return db.end();
