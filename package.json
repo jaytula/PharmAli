@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "postgres": "docker run --name mypostgres --rm -e POSTGRES_USER=labber -e POSTGRES_PASSWORD=labber -e POSTGRES_DB=pharmali -p 5432:5432 postgres:13",
-    "client": "wait-on tcp:localhost:8080 && cd ./client && npm start",
-    "server": "wait-on -d 2500 tcp:localhost:5432 && cd ./server && npm run db:reset && npm start",
-    "start": "concurrently \"npm:postgres\" \"npm:server\" \"npm:client\""
+    "dev:client": "wait-on tcp:localhost:8080 && cd ./client && npm start",
+    "dev:server": "wait-on -d 2500 tcp:localhost:5432 && cd ./server && npm run db:reset && npm start",
+    "dev:start": "concurrently \"npm:postgres\" \"npm:dev:server\" \"npm:dev:client\""
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
