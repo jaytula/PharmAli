@@ -86,7 +86,7 @@ const Drug = ({ user, setDrugs, drugs }) => {
           })
       }
     }
-  }, [drugs]);
+  }, [drugs, location.pathname, user]);
 
   // Remove numbers present at the beginning of the components from the external api data
   const stringifier = (string) => {
