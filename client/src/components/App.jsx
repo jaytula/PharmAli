@@ -19,9 +19,10 @@ import '../styles/App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const websocket = new WebSocket('ws://localhost:8080');
+
 function App() {
   // Gather all important helpers and states
-  const websocket = new WebSocket('ws://localhost:8080');
   const { user, setUser, userInfo, setUserInfo, allBlogs, setAllBlogs, drugs, setDrugs, setCookie, removeCookie, getCookie } = useApplicationData();
   const addNotification = (title) => toast(`${title} has been added in blogs`);
 
@@ -36,7 +37,7 @@ function App() {
         }
       };
     };
-  }, [websocket.onmessage]);
+  }, [setAllBlogs]);
 
   // When app is refreshed
   useEffect(() => {
