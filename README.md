@@ -83,6 +83,7 @@ DB_USER=labber
 DB_PASSWORD=labber
 DB_DATABASE=pharmali
 DB_PORT=5432
+NODE_ENV=development
 ```
 
 - Run `npm run dev:start`

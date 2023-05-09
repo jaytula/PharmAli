@@ -37,6 +37,9 @@ module.exports = function application(actions = { updateComment: () => { }, upda
   app.use(express.static(path.join(__dirname, 'public')));
 
   // Connect router with routes
+  app.get('/info', (req, res) => {
+    res.json({val: process.env.NODE_ENV || 'blank'});
+  })
   app.use('/user', usersRouter(db, cookieParams));
   app.use('/blogs', blogsRouter(db, actions.updateBlog));
   app.use('/comments', commentsRouter(db, actions.updateComment));
