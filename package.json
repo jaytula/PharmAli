@@ -1,0 +1,9 @@
+{
+  "name": "pharmali",
+  "version": "1.0.0",
+  "description": "Description goes here",
+  "main": "index.js",
+  "scripts": {
+    "postgres": "docker run --name mypostgres --rm -e POSTGRES_USER=labber -e POSTGRES_PASSWORD=labber -e POSTGRES_DB=pharmali -p 5432:5432 postgres:13"
+  }
+}
