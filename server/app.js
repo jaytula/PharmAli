@@ -49,8 +49,11 @@ module.exports = function application(actions = { updateComment: () => { }, upda
   app.use('/drugs', drugsRouter(db));
   app.use('/favourite', savedMedicationsRouter(db));
   app.use('/categories', categoriesRouter(db));
-  app.use(createProxyMiddleware({ target: 'http://localhost:3000' }));
-
+  if(process.env.NODE_ENV==='development') {
+    app.use(createProxyMiddleware({ target: 'http://localhost:3000' }));
+  } else {
+    app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')));
+  }
 
   app.close = function() {
     // return db.end();
