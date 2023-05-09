@@ -35,7 +35,7 @@ const BlogPostList = ({ allBlogs, myBlogs, user }) => {
   useEffect(() => {
     const filteredByCategory = (category === "None") ? allBlogs : allBlogs.filter((blog) => blog.category === category);
     setBlogs(filteredByCategory);
-  }, [category]);
+  }, [category, allBlogs]);
 
   const deletePost = (id, title) => {
     axios.post("/blogs/delete", id)
