@@ -4,6 +4,7 @@ const path = require('path');
 const logger = require('morgan');
 const db = require('./db');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+
 var cookieParser = require('cookie-parser')
 
 // Set up the router
@@ -50,8 +51,9 @@ module.exports = function application(actions = { updateComment: () => { }, upda
   app.use('/categories', categoriesRouter(db));
   app.use(createProxyMiddleware({ target: 'http://localhost:3000' }));
 
+
   app.close = function() {
-    return db.end();
+    // return db.end();
   };
 
   return app;
