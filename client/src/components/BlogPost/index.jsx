@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import CommentList from '../CommentList'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import TimeAgo from 'timeago-react';
+import TimeAgo from 'react-timeago';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../../styles/BlogPost.css"
@@ -51,7 +51,7 @@ function BlogPost({ allBlogs, user, userInfo, websocket }) {
               {blogContent.name}
             </b>
           </span>
-          <span><TimeAgo datetime={blogContent.created_at} /></span>
+          <span><TimeAgo date={blogContent.created_at} /></span>
         </div>
         <p className="blogPostText">
           {blogContent.content}
