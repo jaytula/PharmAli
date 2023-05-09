@@ -4,7 +4,10 @@
   "description": "Description goes here",
   "main": "index.js",
   "scripts": {
-    "postgres": "docker run --name mypostgres --rm -e POSTGRES_USER=labber -e POSTGRES_PASSWORD=labber -e POSTGRES_DB=pharmali -p 5432:5432 postgres:13"
+    "postgres": "docker run --name mypostgres --rm -e POSTGRES_USER=labber -e POSTGRES_PASSWORD=labber -e POSTGRES_DB=pharmali -p 5432:5432 postgres:13",
+    "client": "wait-on tcp:localhost:8080 cd ./client && npm start",
+    "server": "wait-on tcp:localhost:5432 && cd ./server && npm start",
+    "start": "concurrently \"npm:postgres\" \"npm:server\""
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
