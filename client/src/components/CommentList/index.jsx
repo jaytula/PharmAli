@@ -8,7 +8,6 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import InputAdornment from '@mui/material/InputAdornment';
 import CommentIcon from '@mui/icons-material/Comment';
 import Error from "../Error";
-import { createTheme } from '@mui/material/styles';
 import '../../styles/Comments.css'
 
 function CommentList(props) {
