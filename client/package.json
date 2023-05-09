@@ -30,7 +30,6 @@
     "react-timeago": "^7.1.0",
     "react-toastify": "^9.1.2",
     "styled-components": "^5.3.9",
-    "timeago-react": "^3.0.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
