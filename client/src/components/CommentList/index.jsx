@@ -10,7 +10,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import Error from "../Error";
 import '../../styles/Comments.css'
 
-function CommentList(props) {
+function CommentList({websocket, addNotification, blog_id, ...props}) {
   // Set up all states for comment component
   const [comments, setComments] = useState([]);
   const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ function CommentList(props) {
 
   // To add a comment
   const addComment = () => {
-    const params = { user_id: props.user, comment: newComment, blog_id: props.blog_id, name: props.userInfo.name }
+    const params = { user_id: props.user, comment: newComment, blog_id, name: props.userInfo.name }
     Promise.all([
       axios.post(`/comments/add`, params)
     ])
@@ -48,7 +48,7 @@ function CommentList(props) {
 
   // For realtime updates on comments
   useEffect(() => {
-    props.websocket.onmessage = (event) => {
+    websocket.onmessage = (event) => {
       const commentInfo = JSON.parse(event.data)
       if (commentInfo.type === 'COMMENT') {
         if (commentInfo.add) {
@@ -56,7 +56,7 @@ function CommentList(props) {
             if (prev.find(comment => comment.id === commentInfo.comment.id)) {
               return prev
             } else {
-              props.addNotification(commentInfo.comment.name)
+              addNotification(commentInfo.comment.name)
               return [...prev, commentInfo.comment]
             }
           })
@@ -65,16 +65,16 @@ function CommentList(props) {
         }
       }
     }
-  }, [props.websocket.onmessage]);
+  }, [websocket, addNotification]);
 
   // To load all comments when the blog is visited
   useEffect(() => {
     Promise.all([
-      axios.get(`/comments/${props.blog_id}`),
+      axios.get(`/comments/${blog_id}`),
     ]).then((data) => {
       setComments(data[0].data);
     })
-  }, []);
+  }, [blog_id]);
 
   return (
     <div className='comments'>
