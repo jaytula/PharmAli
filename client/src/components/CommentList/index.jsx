@@ -61,7 +61,7 @@ function CommentList(props) {
             }
           })
         } else {
-          setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
+          setComments(prev => prev.filter(comment => comment.id !== commentInfo.comment))
         }
       }
     }
