@@ -16,7 +16,7 @@ function BlogPost({ allBlogs, user, userInfo, websocket }) {
 
   // Get blog content from allBlogs
   useEffect(() => {
-    const updatedBlog = allBlogs.find(blog => blog.id == blogId);
+    const updatedBlog = allBlogs.find(blog => blog.id === blogId);
     if (updatedBlog) {
       setBlogContent(prev => {
         return { ...updatedBlog, name: prev.name }
@@ -25,7 +25,7 @@ function BlogPost({ allBlogs, user, userInfo, websocket }) {
     if (!updatedBlog && allBlogs.length !== 0) {
       navigate('/*')
     }
-  }, [allBlogs]);
+  }, [allBlogs, blogId, navigate]);
 
   // Add toaster notifications
   const addNotification = (name) => toast(`Comment Added by ${name}`);
