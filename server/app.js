@@ -37,17 +37,17 @@ module.exports = function application(actions = { updateComment: () => { }, upda
 
   // Connect router with routes
   app.use('/', indexRouter);
-  app.use('/user', usersRouter(db, cookieParams));
-  app.use('/blogs', blogsRouter(db, actions.updateBlog));
-  app.use('/comments', commentsRouter(db, actions.updateComment));
-  app.use('/articles', articlesRouter(db));
-  app.use('/journal', journalRouter(db));
-  app.use('/drugs', drugsRouter(db));
-  app.use('/favourite', savedMedicationsRouter(db));
-  app.use('/categories', categoriesRouter(db));
+  // app.use('/user', usersRouter(db, cookieParams));
+  // app.use('/blogs', blogsRouter(db, actions.updateBlog));
+  // app.use('/comments', commentsRouter(db, actions.updateComment));
+  // app.use('/articles', articlesRouter(db));
+  // app.use('/journal', journalRouter(db));
+  // app.use('/drugs', drugsRouter(db));
+  // app.use('/favourite', savedMedicationsRouter(db));
+  // app.use('/categories', categoriesRouter(db));
 
   app.close = function() {
-    return db.end();
+    // return db.end();
   };
 
   return app;
