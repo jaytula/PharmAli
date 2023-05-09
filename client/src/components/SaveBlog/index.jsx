@@ -42,7 +42,7 @@ function SaveBlog({ user, allBlogs, setAllBlogs }) {
       }
       setCategories(data[0].data);
     })
-  }, [allBlogs]);
+  }, [allBlogs, blogId]);
 
   // Everytime title, image or content is changed update state(s)
   const titleChange = (e) => setTitle(e.target.value);
