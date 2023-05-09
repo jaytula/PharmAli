@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-// const db = require('./db');
+const db = require('./db');
 var cookieParser = require('cookie-parser')
 
 // Set up the router
