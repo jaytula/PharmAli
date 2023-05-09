@@ -1,7 +1,7 @@
 {
   "name": "pharma-ali",
   "version": "0.1.0",
-  "proxy": "https://pharmali-prod-backend.onrender.com",
+  "proxy": "https://localhost:8080",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
