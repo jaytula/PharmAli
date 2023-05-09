@@ -36,7 +36,7 @@ const Navbar = ({ user, userInfo, setUser, setUserInfo }) => {
   return (
     <nav className="navbar2">
       <span className="navbar__logo">
-        <img className="logo-image" src={logo} />
+        <img className="logo-image" src={logo} alt="" />
       </span>
       <span className="logo-title">PharmAli</span>
       {menuClicked ? (
