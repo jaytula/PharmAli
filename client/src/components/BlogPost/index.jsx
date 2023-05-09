@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
 import CommentList from '../CommentList'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
