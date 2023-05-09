@@ -71,3 +71,19 @@ A full stack web application built with React and Express that allows user to se
 6. Visit `http://localhost:8080` for the server and `http://localhost:3000` for the client.
 
 [Our Planning](https://docs.google.com/document/d/1U8eNGZD_s1pxMBGhaHakMUgmOXnHBa7SInt2FYvRPeY/edit?usp=sharing)
+
+## Development Setup
+
+- Make sure you have Docker installed.
+- Create `./server/.env` with the following:
+
+```
+DB_HOST=localhost
+DB_USER=labber
+DB_PASSWORD=labber
+DB_DATABASE=pharmali
+DB_PORT=5432
+```
+
+- Run `npm run dev:start`
+- Visit http://localhost:8080
