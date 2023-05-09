@@ -31,7 +31,7 @@ function BlogPostListItem({ blog, setBlog, user, editPost, deletePost }) {
       <div className='btn-pink-container'>
         <button className="btn-pink" onClick={setBlog}> Read Blog </button>
 
-        {user == blog.user_id && (
+        {user === blog.user_id && (
           <div className='edit-icon-container'>
             <IconButton onClick={editPost}>
               <EditIcon className='edit-icon' fontSize='large' />
