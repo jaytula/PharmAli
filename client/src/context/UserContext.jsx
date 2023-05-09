@@ -12,7 +12,7 @@ const UserProvider = ({ children }) => {
       .then((data) => {
         setUser(data.data.user_id);
       })
-  }, [])
+  }, [getCookie])
 
   const contextValue = {
     user
