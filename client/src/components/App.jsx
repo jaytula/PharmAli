@@ -50,7 +50,7 @@ function App() {
       .then((data) => {
         setAllBlogs(data.data);
       })
-  }, []);
+  }, [getCookie, setAllBlogs, setUser, setUserInfo]);
 
   // To get all saved meds when user is logged in
   useEffect(() => {
@@ -61,7 +61,7 @@ function App() {
         setDrugs(data[0].data)
       })
     }
-  }, [user]);
+  }, [user, setDrugs]);
 
   // create context file to make api call to get cookie and get cookie from that (context provider)
   return (
