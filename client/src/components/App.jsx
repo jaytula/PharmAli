@@ -23,7 +23,7 @@ const websocket = new WebSocket('ws://localhost:8080');
 
 function App() {
   // Gather all important helpers and states
-  const { user, setUser, userInfo, setUserInfo, allBlogs, setAllBlogs, drugs, setDrugs, setCookie, removeCookie, getCookie } = useApplicationData();
+  const { user, setUser, userInfo, setUserInfo, allBlogs, setAllBlogs, drugs, setDrugs, setCookie, removeCookie } = useApplicationData();
   const addNotification = (title) => toast(`${title} has been added in blogs`);
 
   // Update all blogs for realtime updates
@@ -41,7 +41,7 @@ function App() {
 
   // When app is refreshed
   useEffect(() => {
-    getCookie()
+    axios.get("/user")
       .then((data) => {
         setUser(data.data.id);
         setUserInfo(data.data);
@@ -50,7 +50,7 @@ function App() {
       .then((data) => {
         setAllBlogs(data.data);
       })
-  }, [getCookie, setAllBlogs, setUser, setUserInfo]);
+  }, [setAllBlogs, setUser, setUserInfo]);
 
   // To get all saved meds when user is logged in
   useEffect(() => {
