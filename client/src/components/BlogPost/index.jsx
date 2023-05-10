@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../../styles/BlogPost.css"
 
-function BlogPost({ allBlogs, user, userInfo, websocket }) {
+function BlogPost({ allBlogs, user, userInfo, /*websocket*/ }) {
   // Set initial state of the content displayed for this component
   const navigate = useNavigate();
   const location = useLocation();
@@ -62,7 +62,7 @@ function BlogPost({ allBlogs, user, userInfo, websocket }) {
           blog_id={blogId}
           user={user}
           userInfo={userInfo}
-          websocket={websocket}
+          // websocket={websocket}
           addNotification={addNotification}
           deleteNotification={deleteNotification} />
       </div>

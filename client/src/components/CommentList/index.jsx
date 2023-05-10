@@ -48,25 +48,25 @@ function CommentList(props) {
   }
 
   // For realtime updates on comments
-  useEffect(() => {
-    props.websocket.onmessage = (event) => {
-      const commentInfo = JSON.parse(event.data)
-      if (commentInfo.type === 'COMMENT') {
-        if (commentInfo.add) {
-          setComments(prev => {
-            if (prev.find(comment => comment.id === commentInfo.comment.id)) {
-              return prev
-            } else {
-              props.addNotification(commentInfo.comment.name)
-              return [...prev, commentInfo.comment]
-            }
-          })
-        } else {
-          setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
-        }
-      }
-    }
-  }, [props.websocket.onmessage]);
+  // useEffect(() => {
+  //   props.websocket.onmessage = (event) => {
+  //     const commentInfo = JSON.parse(event.data)
+  //     if (commentInfo.type === 'COMMENT') {
+  //       if (commentInfo.add) {
+  //         setComments(prev => {
+  //           if (prev.find(comment => comment.id === commentInfo.comment.id)) {
+  //             return prev
+  //           } else {
+  //             props.addNotification(commentInfo.comment.name)
+  //             return [...prev, commentInfo.comment]
+  //           }
+  //         })
+  //       } else {
+  //         setComments(prev => prev.filter(comment => comment.id != commentInfo.comment))
+  //       }
+  //     }
+  //   }
+  // }, [props.websocket.onmessage]);
 
   // To load all comments when the blog is visited
   useEffect(() => {
