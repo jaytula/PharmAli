@@ -55,11 +55,11 @@ A full stack web application built with React and Express that allows user to se
   - Fill in the necessary PostgreSQL configuration
     - (  eg. 
       PORT=8080
-      DB_HOST=localhost
-      DB_USER=labber
-      DB_PASSWORD=labber
-      DB_DATABASE=pharmali
-      DB_PORT=5432
+      PGHOST=localhost
+      PGUSER=labber
+      PGPASSWORD=labber
+      PGDATABASE=pharmali
+      PGPORT=5432
       )
     - Go into psql
     - Create a db ( CREATE DATABASE pharmali; )
@@ -78,11 +78,11 @@ A full stack web application built with React and Express that allows user to se
 - Create `./server/.env` with the following:
 
 ```
-DB_HOST=localhost
-DB_USER=labber
-DB_PASSWORD=labber
-DB_DATABASE=pharmali
-DB_PORT=5432
+PGHOST=localhost
+PGUSER=labber
+PGPASSWORD=labber
+PGDATABASE=pharmali
+PGPORT=5432
 NODE_ENV=development
 ```
 
