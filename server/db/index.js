@@ -1,5 +1,5 @@
 // Database connection when server is started
-if(process.env.NODE_ENV === 'development') require('dotenv').config();
+if(process.env.NODE_ENV !== 'production') require('dotenv').config();
 const { Client } = require('pg');
 
 const { PGHOST, PGUSER, PGPASSWORD, DB_NAME, PGPORT } = process.env;
