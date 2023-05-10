@@ -1,3 +1,4 @@
+const {resetDB } = require('./db/scripts/resetdb.js');
 const PORT = process.env.PORT || 8080;
 
 const app = require("./app")({ updateComment, updateBlog });
@@ -41,5 +42,7 @@ function updateBlog(blogs, title, add) {
 }
 
 server.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+  resetDB().then(() => {
+    console.log(`Listening on port ${PORT}`);
+  })
 });

@@ -6,10 +6,10 @@
   "scripts": {
     "postgres": "docker run --name mypostgres --rm -e POSTGRES_USER=labber -e POSTGRES_PASSWORD=labber -e POSTGRES_DB=pharmali -p 5432:5432 postgres:13",
     "dev:client": "wait-on tcp:localhost:8080 && cd ./client && npm start",
-    "dev:server": "wait-on -d 2500 tcp:localhost:5432 && cd ./server && npm run db:reset && npm start",
+    "dev:server": "wait-on -d 2500 tcp:localhost:5432 && cd ./server && npm start",
     "dev:start": "concurrently \"npm:postgres\" \"npm:dev:server\" \"npm:dev:client\"",
     "prod:client": "cd ./client && npm run build",
-    "prod:server": "wait-on -d 2500 tcp:localhost:5432 && cd ./server && npm run db:reset && NODE_ENV=production npm start",
+    "prod:server": "wait-on -d 2500 tcp:localhost:5432 && cd ./server && NODE_ENV=production npm start",
     "prod:start": "concurrently \"npm:postgres\" \"npm:prod:server\" \"npm:prod:client\""
   },
   "devDependencies": {

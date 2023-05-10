@@ -1,5 +1,5 @@
 // Create a connection to the db
-require("dotenv").config();
+// require("dotenv").config();
 const { Client } = require('pg');
 const SCHEMA_PATH = './db/schema';
 const SEEDS_PATH = './db/seeds';
@@ -89,4 +89,5 @@ const resetDB = async () => {
 }
 
 // Reset the db
-resetDB();
+// resetDB();
+module.exports = { resetDB };
