@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ArticleListItem from '../ArticleListItem';
 import '../../styles/Articles.css';
-import axios from 'axios';
+import axios from '../../axiosInstance';
 
 const Articles = ({isBlog}) => {
   // Set initial state of the content displayed for this component

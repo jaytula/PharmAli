@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import JournalList from './JournalList';
 import SearchJournal from './Search';
 import JournalHeader from './JournalHeader';
-import axios from 'axios';
+import axios from '../../axiosInstance';
 import "../../styles/Journal.css";
 
 const MyJournal = ({ user }) => {

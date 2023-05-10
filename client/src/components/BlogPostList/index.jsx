@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../axiosInstance";
 import BlogPostListItem from "../BlogPostListItem";
 import ArticleList from "../ArticleList";
 import SelectSmall from "../Category";

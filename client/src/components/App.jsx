@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from '../context/UserContext';
 import { useEffect } from 'react';
-import axios from 'axios';
+import axios from '../axiosInstance';
 import Home from './Home';
 import Search from './Search';
 import PharmaLocator from './PharmLocator';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axiosInstance';
 import Error from "../Error";
 import { useNavigate, useLocation } from "react-router-dom";
 import SelectSmall from '../Category/index.jsx';

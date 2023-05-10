@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import axios from "axios";
+import axios from "../../axiosInstance";
 import medlist from "../../assets/images/medlist.png";
 import locator from "../../assets/images/locator.png";
 import blogs from "../../assets/images/blogs.png";

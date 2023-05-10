@@ -36,18 +36,23 @@ module.exports = function application(actions = { updateComment: () => { }, upda
   app.use(express.urlencoded({ extended: false }));
   app.use(express.static(path.join(__dirname, 'public')));
 
+  const apiRouter = express.Router();
+
   // Connect router with routes
-  app.get('/info', (req, res) => {
+  apiRouter.get('/info', (req, res) => {
     res.json({val: process.env.NODE_ENV || 'blank'});
   })
-  app.use('/user', usersRouter(db, cookieParams));
-  app.use('/blogs', blogsRouter(db, actions.updateBlog));
-  app.use('/comments', commentsRouter(db, actions.updateComment));
-  app.use('/articles', articlesRouter(db));
-  app.use('/journal', journalRouter(db));
-  app.use('/drugs', drugsRouter(db));
-  app.use('/favourite', savedMedicationsRouter(db));
-  app.use('/categories', categoriesRouter(db));
+
+  apiRouter.use('/user', usersRouter(db, cookieParams));
+  apiRouter.use('/blogs', blogsRouter(db, actions.updateBlog));
+  apiRouter.use('/comments', commentsRouter(db, actions.updateComment));
+  apiRouter.use('/articles', articlesRouter(db));
+  apiRouter.use('/journal', journalRouter(db));
+  apiRouter.use('/drugs', drugsRouter(db));
+  apiRouter.use('/favourite', savedMedicationsRouter(db));
+  apiRouter.use('/categories', categoriesRouter(db));
+  app.use('/api', apiRouter);
+
   if(process.env.NODE_ENV==='development') {
     app.use(createProxyMiddleware({ target: 'http://localhost:3000' }));
   } else {
