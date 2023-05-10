@@ -8,7 +8,6 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 var cookieParser = require('cookie-parser')
 
 // Set up the router
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
 const blogsRouter = require('./routes/blogs');
 const commentsRouter = require('./routes/comments');
